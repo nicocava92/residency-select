@@ -10,3 +10,16 @@ F:\ppi.core.web.11122015\PPI.Core\bin\Release\PostSharp.dll
 F:\ppi.core.web.11122015\PPI.Core\bin\Release\PostSharp.xml
 F:\ppi.core.web.11122015\PPI.Core\obj\Release\PPI.Core.dll
 F:\ppi.core.web.11122015\PPI.Core\obj\Release\PPI.Core.pdb
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core\bin\Release\PPI.Core.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core\bin\Release\PPI.Core.pdb
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core\bin\Release\PostSharp.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core\bin\Release\PostSharp.xml
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core\obj\Release\PPI.Core.csprojResolveAssemblyReference.cache
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core\obj\Release\PPI.Core.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core\obj\Release\PPI.Core.pdb
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core\bin\Release\PPI.Core.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core\bin\Release\PPI.Core.pdb
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core\bin\Release\PostSharp.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core\bin\Release\PostSharp.xml
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core\obj\Release\PPI.Core.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core\obj\Release\PPI.Core.pdb

@@ -25,6 +25,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <DontImportPostSharp>True</DontImportPostSharp>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -267,7 +268,6 @@
     <Compile Include="Infrastructure\Utility.cs" />
     <Compile Include="MatchPracticeReports.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Migrations\201401152243236_InitialCreate.cs" />
     <Compile Include="Migrations\201401152243236_InitialCreate.Designer.cs">

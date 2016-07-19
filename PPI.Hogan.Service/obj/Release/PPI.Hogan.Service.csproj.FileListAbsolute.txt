@@ -60,3 +60,13 @@ F:\ppi.core.web.11122015\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.exe.man
 F:\ppi.core.web.11122015\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.application
 F:\ppi.core.web.11122015\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.exe
 F:\ppi.core.web.11122015\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.pdb
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.csprojResolveAssemblyReference.cache
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.ProjectInstaller.resources
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.csproj.GenerateResource.Cache
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.exe
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.csprojResolveAssemblyReference.cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.ProjectInstaller.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.csproj.GenerateResource.Cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.exe
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.pdb

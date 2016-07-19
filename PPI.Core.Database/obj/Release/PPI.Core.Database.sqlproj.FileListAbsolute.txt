@@ -14,3 +14,33 @@ F:\ppi.core.web.11122015\PPI.Core.Database\bin\Release\PPI.Core.Database.pdb
 F:\ppi.core.web.11122015\PPI.Core.Database\bin\Release\master.dacpac
 F:\ppi.core.web.11122015\PPI.Core.Database\obj\Release\PPI.Core.Database.dll
 F:\ppi.core.web.11122015\PPI.Core.Database\obj\Release\PPI.Core.Database.pdb
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\bin\Release\PPI.Core.Database.dacpac
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\bin\Release\PPI.Core.Database.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\bin\Release\PPI.Core.Database.pdb
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\bin\Release\master.dacpac
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\obj\Release\Model.xml
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\obj\Release\refactor.xml
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\obj\Release\postdeploy.sql
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\obj\Release\predeploy.sql
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\obj\Release\PPI.Core.Database.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\ppi.core.web.11122015\PPI.Core.Database\obj\Release\PPI.Core.Database.pdb
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\bin\Release\PPI.Core.Database.dacpac
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\bin\Release\PPI.Core.Database.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\bin\Release\PPI.Core.Database.pdb
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\bin\Release\master.dacpac
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\obj\Release\Model.xml
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\obj\Release\refactor.xml
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\obj\Release\postdeploy.sql
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\obj\Release\predeploy.sql
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\obj\Release\PPI.Core.Database.dll
+C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\PPI.Core.Database\obj\Release\PPI.Core.Database.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Release\PPI.Core.Database.dacpac
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Release\PPI.Core.Database.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Release\PPI.Core.Database.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Release\master.dacpac
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\Model.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\refactor.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\postdeploy.sql
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\predeploy.sql
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\PPI.Core.Database.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\PPI.Core.Database.pdb

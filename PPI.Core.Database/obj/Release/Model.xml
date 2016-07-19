@@ -11,14 +11,13 @@
 			<Metadata Name="CompatibilityMode" Value="110" />
 		</CustomData>
 		<CustomData Category="Reference" Type="SqlSchema">
-			<Metadata Name="FileName" Value="C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\SQLDB\EXTENSIONS\SQLSERVER\110\SQLSCHEMAS\MASTER.DACPAC" />
+			<Metadata Name="FileName" Value="C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\SQLDB\EXTENSIONS\SQLSERVER\110\SQLSCHEMAS\MASTER.DACPAC" />
 			<Metadata Name="LogicalName" Value="master.dacpac" />
 			<Metadata Name="ExternalParts" Value="[master]" />
 			<Metadata Name="SuppressMissingDependenciesErrors" Value="False" />
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="PPI.Core.Database.dll" />
-			<Metadata Name="FileName" Value="E:\RESIDENCY\SOURCE\PPI.CORE.WEB.11122015\PPI.CORE.DATABASE\OBJ\RELEASE\PPI.CORE.DATABASE.DLL" />
 			<Metadata Name="AssemblyName" Value="PPI.Core.Database" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -26,7 +25,6 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="E:\Residency\Source\ppi.core.web.11122015\PPI.Core.Database\obj\Release\PPI.Core.Database.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>
