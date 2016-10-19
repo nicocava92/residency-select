@@ -34,3 +34,12 @@ C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\Resi
 C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\OwinContrib.Security.LinkedIn\bin\Release\Owin.dll
 C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\OwinContrib.Security.LinkedIn\obj\Release\OwinContrib.Security.LinkedIn.dll
 C:\wamp\www\PPI\projects\Residency Select\RS_WebFiles_DB_Schema_Data.071316\ResidencySelect_2_DotNet_Source_04202016\Residency Select App\OwinContrib.Security.LinkedIn\obj\Release\OwinContrib.Security.LinkedIn.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Release\OwinContrib.Security.LinkedIn.dll.config
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Release\OwinContrib.Security.LinkedIn.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Release\OwinContrib.Security.LinkedIn.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Release\Microsoft.Owin.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Release\Microsoft.Owin.Security.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Release\Owin.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Release\OwinContrib.Security.LinkedIn.csprojResolveAssemblyReference.cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Release\OwinContrib.Security.LinkedIn.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Release\OwinContrib.Security.LinkedIn.pdb

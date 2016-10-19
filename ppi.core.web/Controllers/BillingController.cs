@@ -43,7 +43,8 @@ namespace PPI.Core.Web.Controllers
                 .Where(m => DbFunctions.TruncateTime(m.RunDate) >= startDate && DbFunctions.TruncateTime(m.RunDate) <= endDate)
                 .Where(m => m.Event.EventTypeId != 1) // ignore match events match
                 .OrderBy(m => m.PracticeReportId).ToList();
-           
+            
+
             //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));            
             return View("Index",model);
         }       

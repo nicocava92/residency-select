@@ -170,8 +170,25 @@
                                     </td>
                                     <!-- Billable / Non-Billable -->
                                     <td style="word-wrap:break-word">
-                                        @if (item.Event != null) {
-                                        @item.Event.getBillableYesNo()
+                                        @try { 
+                                            if (item.Event == null || item == null) {
+                                                <text>No set</text>
+                                            }
+                                            else {
+                                                if(item.Event.Billable != null) { 
+                                                    if ((Boolean)item.Event.Billable)
+                                                    {
+                                                    <text>Yes</text>
+                                                    }
+                                                    else {
+                                                    <text>No</text>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        catch
+                                        {
+                                            <text></text>
                                         }
                                     </td>
                                     <!-- Report -->

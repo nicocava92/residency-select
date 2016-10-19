@@ -18,6 +18,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="PPI.Core.Database.dll" />
+			<Metadata Name="FileName" Value="C:\WAMP\WWW\PPI\PROJECTS\RESIDENCY SELECT\RESIDENCY-SELECT\PPI.CORE.DATABASE\OBJ\RELEASE\PPI.CORE.DATABASE.DLL" />
 			<Metadata Name="AssemblyName" Value="PPI.Core.Database" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -25,6 +26,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\PPI.Core.Database.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>

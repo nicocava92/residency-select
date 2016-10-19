@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Testing out creation of pdf</title>
+</head>
+<style type='text/css'>
+.wrapper {
+            width: 1110px;
+            height: 800px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border: 0px solid black;
+            page-break-after: avoid;
+            page-break-before: always;
+        }
+</style>
+<body>
+
+        <!-- PAGE 1 - COVER -->
+        <div class="wrapper" style="height:800px; margin-top:20px; page-break-before: avoid;">
+            <div style="float:left;">
+                <img src="../Plugins/PPI.Plugin.Survey/Content/images/cover_red_block.jpg" width="535" height="800">
+            </div>
+            <div style="float:left; margin-left:40px;">
+                <div style="margin-top:520px;">
+                    <div style="position: relative;">
+                        <img src="../Plugins/PPI.Plugin.Survey/Content/images/cover_teal_block.jpg" width="535" height="100">
+                        <div id="cover">
+                            <h3 class="cover black">HBS Leadership Initiative</h3>
+                            <h3 class="cover white">Network Diagnostic Survey</h3>
+                        </div>
+                    </div>
+                    <div class="covername">
+                        REPORT PREPARED FOR @Model.FullName<br />
+                        @Model.CreateDate
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+
+        <!-- PAGE 2 - INTRODUCTION -->
+        <div class="wrapper">
+            <h2>Introduction</h2>
+            <p>
+                Welcome to your individualized network diagnostic report. This report was created using data from your responses to the Network Diagnostic Survey.* The goal of the diagnostic report is to help you gain insight into the effectiveness of your <b>core</b> professional network.
+            </p>
+            <h2>IN THIS REPORT</h2>
+            <p>
+                In the following pages, you will find diagrams of your network created from your self-reported data. The diagrams are designed to help you visualize your core network—the people you identified as key members of your network.  You were asked to identify up to 24 people within your network—those individuals you rely on most consistently. It is not always easy to decipher network data. A facilitator or coach will take you through the report to help you interpret your results and develop a personalized action plan for making your network as effective as it can be. On your own, please review the report and reflect on the questions posed throughout it. Suggested readings are also provided.
+            </p>
+            <div class="footnote">
+                *This instrument is based on Herminia Ibarra's "Network Diagnostic Exercise: Executive Version" (Harvard Business School Publishing, product #9-497-003), and the works of R. S. Burt, Tiziana Casciaro, Morten Hansen, Monica Higgins, Linda Hill, and David Thomas.
+            </div>
+            <div id="pageno">2</div>
+        </div>
+</body>
+</html>
