@@ -435,3 +435,5 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Rele
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Release\PPI.Core.Web.csproj.GenerateResource.Cache
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Release\PPI.Core.Web.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Release\PPI.Core.Web.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\HiQPdf.dep
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\HiQPdf.xml

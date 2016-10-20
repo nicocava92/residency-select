@@ -112,6 +112,8 @@ namespace PPI.Core.Web.Infrastructure
         }
 
 
+
+
         [Log]
         public bool SendEmailAsync(List<EmailModel> emails, bool cloud)
         {

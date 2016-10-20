@@ -34,6 +34,11 @@
       <mvcSiteMapNode title="Get Reports" controller="Reports" action="GetReports"/>
       <mvcSiteMapNode title="Hogan Export for ZCO" controller="Hogan" action="ZCOExportConfig"/>
     </mvcSiteMapNode>
+    <mvcSiteMapNode title="AmsaReports" controller="Reports" action="#">
+      <mvcSiteMapNode title="Generate Reports" controller="Reports" action="IndexAmsaStudents"/>
+      <mvcSiteMapNode title="Add Student Data" controller="Reports" action="CreateAmsaStudents"/>
+    </mvcSiteMapNode>
+    
     <mvcSiteMapNode title="Billing" controller="Billing" action="Index"/>
   </mvcSiteMapNode>
 </mvcSiteMap>

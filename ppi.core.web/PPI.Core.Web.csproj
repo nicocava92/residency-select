@@ -72,6 +72,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HiQPdf, Version=8.10.0.0, Culture=neutral, PublicKeyToken=acd8b62594985b24, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\HiQPdf.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
@@ -288,6 +292,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AmsaReports\AmsaReportsItems.cs" />
+    <Compile Include="Models\AmsaReports\AmsaReportStudentData.cs" />
+    <Compile Include="Models\AmsaReports\AonItemsAF716AMSAVersionAB.cs" />
+    <Compile Include="Models\AmsaReports\AonParagraphs.cs" />
+    <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
+    <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
     <Compile Include="Models\AssessmentViewModel.cs" />
     <Compile Include="Models\Base\ReportViewModel.cs" />
     <Compile Include="Models\BillingReportViewModel.cs" />
@@ -529,7 +539,9 @@
     <Content Include="MatchPracticeReports.xss">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
     </Content>
-    <Content Include="Mvc.sitemap" />
+    <Content Include="Mvc.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -551,6 +563,19 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Project_Readme.html" />
+    <Content Include="Reports\Artwork\AMSA_Artwork\amsa_logo_trans_bck.png" />
+    <Content Include="Reports\Artwork\AMSA_Artwork\bottom_right_logos.jpg" />
+    <Content Include="Reports\Artwork\AMSA_Artwork\covert_gradient_art.jpg" />
+    <Content Include="Reports\Artwork\AMSA_Artwork\cover_page_bg.jpg" />
+    <Content Include="Reports\Artwork\Scale_Score_Images\scale_score_1.png" />
+    <Content Include="Reports\Artwork\Scale_Score_Images\scale_score_2.png" />
+    <Content Include="Reports\Artwork\Scale_Score_Images\scale_score_3.png" />
+    <Content Include="Reports\Artwork\Scale_Score_Images\scale_score_4.png" />
+    <Content Include="Reports\Artwork\Scale_Score_Images\scale_score_5.png" />
+    <Content Include="Reports\Artwork\Scale_Score_Images\scale_score_6.png" />
+    <Content Include="Reports\Artwork\Scale_Score_Images\scale_score_7.png" />
+    <Content Include="Reports\Artwork\Scale_Score_Images\scale_score_8.png" />
+    <Content Include="Reports\Artwork\Scale_Score_Images\scale_score_9.png" />
     <Content Include="Reports\images\arc.gif" />
     <Content Include="Reports\images\arc.PNG" />
     <Content Include="Reports\images\bubble_Page.png" />
@@ -2912,6 +2937,12 @@
     <Content Include="Views\Shared\_PratialOesAddDepartment.cshtml" />
     <Content Include="Views\Shared\_PartialAddSpeciality.cshtml" />
     <Content Include="Views\OrderForms\_PartialEmailEventCompleteFormat.cshtml" />
+    <Content Include="Views\Shared\_LayoutReports.cshtml" />
+    <Content Include="Views\Reports\AMSAReportToPDF.cshtml" />
+    <Content Include="Views\Reports\CreateAmsaStudents.cshtml" />
+    <Content Include="Views\Reports\EditAmsaStudents.cshtml" />
+    <Content Include="Views\Reports\IndexAmsaStudents.cshtml" />
+    <Content Include="Views\Reports\AMSAReportToPDFTestDesign.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2920,6 +2951,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="CodeTemplates\MvcControllerEmpty\" />
     <Folder Include="Scripts\NewFolder1\" />
+    <Folder Include="Views\AmsaReportStudentDatas\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Images\" />
   </ItemGroup>

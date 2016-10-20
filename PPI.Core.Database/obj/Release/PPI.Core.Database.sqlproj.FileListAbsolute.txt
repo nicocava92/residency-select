@@ -38,9 +38,5 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Release\PPI.Core.Database.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Release\PPI.Core.Database.pdb
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Release\master.dacpac
-C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\Model.xml
-C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\refactor.xml
-C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\postdeploy.sql
-C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\predeploy.sql
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\PPI.Core.Database.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Release\PPI.Core.Database.pdb

@@ -9,6 +9,12 @@ using Microsoft.Reporting.WebForms;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Ionic.Zip;
+//Import HiqPdf
+using HiQPdf;
+using PPI.Core.Web.Models.AmsaReports;
+//Zip files
+using System.IO.Compression;
+
 
 namespace PPI.Core.Web.Controllers
 {
@@ -17,6 +23,10 @@ namespace PPI.Core.Web.Controllers
     using PPI.Core.Domain.Abstract;
     using PPI.Core.Domain.Concrete;
     using PPI.Core.Domain.Entities;
+    using System.Security.AccessControl;
+    using System.Net.Mail;
+    using System.Net;
+
 
     public class ReportsController : BaseController
     {               
@@ -1036,5 +1046,299 @@ namespace PPI.Core.Web.Controllers
             System.IO.File.WriteAllBytes(savedFileName, renderbytes);
             return savedFileName;
         }
-	}
+        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [HttpGet]
+        public ActionResult AMSAReportToPDF(ViewDataDictionary data)
+        {
+            UserAnswersViewModel userWAnswers = (UserAnswersViewModel)data.Model;
+            return View(userWAnswers);
+        }
+        //Used to check design for pdf report generation, comment out before deploy
+        [HttpGet]
+        public ActionResult AMSAReportToPDFTestDesign()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            //Instead of getting all users we will only get the ints that are passed through
+            //When needed to buid reports only for the users they send through
+            List<AmsaReportStudentData> lstStudents = db.lstStudentsForReport.ToList();
+            AmsaReportsItems items = new AmsaReportsItems();
+            List<string> lstFiles = new List<string>();
+            UserAnswersViewModel participantWAnswers = new UserAnswersViewModel(lstStudents[0], items);
+            return View(participantWAnswers);
+        }
+
+        //Getting reports for users and triggering download to pdf
+        //Getting reports for users and triggering download to pdf
+        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        public void getPdfReports(List<int> lstParticipantIds)
+        {
+            if(lstParticipantIds.Count > 0) { 
+                var FilePath = Server.MapPath("~/Reports");
+                string timeStamp = DateTime.Now.ToString("yyyyMMdd");
+                Guid fileName = Guid.NewGuid();
+                string fName = fileName.ToString() + timeStamp;
+
+                var FilePathZip = System.IO.Path.Combine(FilePath, fName + ".zip");
+                ZipFile _Zip = new ZipFile(FilePathZip);
+           
+                //Get all users for reports
+                ApplicationDbContext db = new ApplicationDbContext();
+                //Find users that are selected for report generation
+                List<AmsaReportStudentData> lstStudents = new List<AmsaReportStudentData>();
+                //Loop through users and generate the final list (remove non selected users from the list)
+                lstStudents = getFinalListOfParticipantsForReport(lstParticipantIds);
+
+                AmsaReportsItems items = new AmsaReportsItems();
+                List<string> lstFiles = new List<string>();
+
+                List<FileResult> lstResult = new List<FileResult>();
+                //Get Report for only 1 studen for now            
+                Guid g;
+                foreach (AmsaReportStudentData s in lstStudents)
+                {
+
+                    UserAnswersViewModel participantWAnswers = new UserAnswersViewModel(s, items);
+                    ViewDataDictionary sendData = new ViewDataDictionary();
+                    sendData.Model = participantWAnswers;
+                    // get the About view HTML code
+                    string htmlToConvert = RenderViewAsString("AMSAReportToPDF", sendData);
+                
+                    // the base URL to resolve relative images and css
+                    String thisViewUrl = this.ControllerContext.HttpContext.Request.Url.AbsoluteUri;
+                    String baseUrl = thisViewUrl;
+
+                    // instantiate the HiQPdf HTML to PDF converter
+                    HtmlToPdf htmlToPdfConverter = new HtmlToPdf();
+                    //Set to the highest quality of images possible
+                    htmlToPdfConverter.Document.ImagesCompression = 0;
+                    htmlToPdfConverter.Document.PageOrientation = PdfPageOrientation.Portrait;
+                    htmlToPdfConverter.Document.PageSize = PdfPageSize.A4;
+                    htmlToPdfConverter.SerialNumber = @"35e2jo+7-uZO2va2+-rabn8e//-7v/s/+bq-6P/s7vHu-7fHm5ubm";
+                    // render the HTML code as PDF in memory
+                    byte[] pdfBuffer = htmlToPdfConverter.ConvertHtmlToMemory(htmlToConvert, baseUrl);
+
+                    // send the PDF document to browser
+                    FileResult fileResult = new FileContentResult(pdfBuffer, "application/pdf");
+                    g = Guid.NewGuid();
+                    string gN = g.ToString();
+                    string name = s.LastName + "-" + s.FirstName + "-AmsaReport-" + s.PersonId + "--" + gN + ".pdf";
+                    //fileResult.FileDownloadName = name;
+                    //Store the file to folder on disc
+                    MemoryStream ms = new MemoryStream();
+                    System.IO.File.WriteAllBytes(FilePath + "/" + name, pdfBuffer);
+                    _Zip.AddFile(FilePath + "/" + name, "");
+                    lstFiles.Add(FilePath + "/" + name);
+                }
+                _Zip.Save();
+                //Delete pdfs outside the zip file (doing it this way so we dont use up all the memory if a lot of pdfs are happening from different)
+                //users at the same time
+                foreach (string s in lstFiles)
+                {
+                    System.IO.File.Delete(s);
+                }
+
+                string fileNameEmail = "";
+
+                fileNameEmail = this.uri(FilePathZip);
+                //string requestUrl = this.uri(Request.Url.ToString());
+                string requestUrl = Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.UriEscaped);
+
+                string to = System.Web.HttpContext.Current.User.Identity.Name;
+                to = db.Users.Where(m => m.UserName == to).FirstOrDefault().Email;
+                //After pdf is created we send over the e-mail
+
+                var emailmessage = new System.Net.Mail.MailMessage();
+                emailmessage.From = new System.Net.Mail.MailAddress("noreply@j3personica.com");
+                emailmessage.Subject = "Your AON Reports are ready";
+                emailmessage.IsBodyHtml = true;
+                var filename = fileName.ToString();
+                emailmessage.Body = "<p>Your aon reports have been generated successfully!</p>";
+                emailmessage.Body += "<p>Please click the 'Requested Reports' link to view and download the reports.</p>";
+                emailmessage.Body += "<p><a href='" + requestUrl + "/Reports/" + fileNameEmail + "'>Requested Reports</a></p>";
+                //MailClass.SendEmail(emailmessage.Subject, emailmessage.Body, "noreply@j3personica.com", "nicocava92@live.com");
+
+
+                //Send Grid example code
+                var Credentials = new NetworkCredential(
+                        PPI.Core.Web.Properties.Settings.Default.SMTPUSER,
+                        PPI.Core.Web.Properties.Settings.Default.SMTPPASSWORD
+                        );
+
+                var transportWeb = new SendGrid.Web(Credentials);
+
+                var Mail = new SendGrid.SendGridMessage();
+
+                MailAddress from = new MailAddress("noreply@j3personica.com");
+           
+                Mail.AddTo(to);
+                Mail.From = from;
+
+
+                Mail.Subject = emailmessage.Subject;
+                Mail.Html = emailmessage.Body;
+                try { 
+                transportWeb.Deliver(Mail);
+                }
+                catch
+                {
+                    Console.WriteLine("Error producing message to that needs to be sent");
+                }
+            }
+        }
+
+        //Receives list of students and returns them
+        private List<AmsaReportStudentData> getFinalListOfParticipantsForReport(List<int> lstParticipantIds)
+        {
+            List<AmsaReportStudentData> lstS = new List<AmsaReportStudentData>();
+            ApplicationDbContext dbr = new ApplicationDbContext();
+            foreach(int i in lstParticipantIds)
+            {
+                AmsaReportStudentData s = dbr.lstStudentsForReport.Where(m => m.PersonId == i.ToString()).FirstOrDefault();
+                lstS.Add(s);
+            }
+            //Order students by lastname for reports to be ordered alphabetifcally
+            lstS.OrderBy(m => m.LastName);
+            dbr.Dispose();
+            return lstS;
+        }
+        
+
+        public string uri(string s)
+        {
+            string result = "";
+            Uri uri = new Uri(s);
+            if (uri.IsFile)
+            {
+                result = System.IO.Path.GetFileName(uri.LocalPath);
+            }
+            return result;
+        }
+
+        public string RenderViewAsString(string viewName, ViewDataDictionary viewData)
+        {
+            // create a string writer to receive the HTML code
+            StringWriter stringWriter = new StringWriter();
+
+            // get the view to render
+            ViewEngineResult viewResult = ViewEngines.Engines.FindView(ControllerContext, viewName, null);
+            // create a context to render a view based on a model
+            ViewContext viewContext = new ViewContext(
+                    ControllerContext,
+                    viewResult.View,
+                    viewData,
+                    new TempDataDictionary(),
+                    stringWriter
+                    );
+
+            // render the view to a HTML code
+            viewResult.View.Render(viewContext, stringWriter);
+
+            // return the HTML code
+            return stringWriter.ToString();
+        }
+
+        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [HttpGet]
+        public ActionResult CreateAmsaStudents()
+        {
+            AmsaReportStudentData student = new AmsaReportStudentData();
+            return View(student);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateAmsaStudents(AmsaReportStudentData student)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationDbContext db = new ApplicationDbContext();
+                //student.UploadDate = DateTime.Now;
+                
+                AmsaReportStudentData s = new AmsaReportStudentData();
+                s.CompletionDate = student.CompletionDate;
+                s.RegistrationDate = student.RegistrationDate;
+                s.PersonId = student.PersonId;
+                s.FirstName = student.FirstName;
+                s.LastName = student.LastName;
+                s.Stanine_Drive = student.Stanine_Drive;
+                s.Stanine_Structure = student.Stanine_Structure;
+                s.Stanine_Conceptual = student.Stanine_Conceptual;
+                s.Stanine_Flexibility = student.Stanine_Flexibility;
+                s.Stanine_Mastery = student.Stanine_Mastery;
+                s.Stanine_Ambition = student.Stanine_Ambition;
+                s.Stanine_Power = student.Stanine_Power;
+                s.Stanine_Assertiveness = student.Stanine_Assertiveness;
+                s.Stanine_Liveliness = student.Stanine_Liveliness;
+                s.Stanine_Composure = student.Stanine_Composure;
+                s.Stanine_Positivity = student.Stanine_Positivity;
+                s.Stanine_Awareness = student.Stanine_Awareness;
+                s.Stanine_Cooperativeness = student.Stanine_Cooperativeness;
+                s.Stanine_Sensitivity = student.Stanine_Sensitivity;
+                s.Stanine_Humility = student.Stanine_Humility;
+                db.lstStudentsForReport.Add(s);
+                db.SaveChanges();
+                return RedirectToAction("IndexAmsaStudents");
+            }
+
+            return View(student);
+            
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        public ActionResult EditAmsaStudents(int id) {
+            ApplicationDbContext db = new ApplicationDbContext();
+            AmsaReportStudentData student = db.lstStudentsForReport.Find(id);
+            return View(student);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAmsaStudents(AmsaReportStudentData student)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationDbContext db = new ApplicationDbContext();
+                AmsaReportStudentData studentInDb = db.lstStudentsForReport.Find(student.Id);
+                studentInDb.CompletionDate = student.CompletionDate;
+                studentInDb.RegistrationDate = student.RegistrationDate;
+                studentInDb.PersonId = student.PersonId;
+                studentInDb.FirstName = student.FirstName;
+                studentInDb.LastName = student.LastName;
+                studentInDb.Stanine_Drive = student.Stanine_Drive;
+                studentInDb.Stanine_Structure = student.Stanine_Structure;
+                studentInDb.Stanine_Conceptual = student.Stanine_Conceptual;
+                studentInDb.Stanine_Flexibility = student.Stanine_Flexibility;
+                studentInDb.Stanine_Mastery = student.Stanine_Mastery;
+                studentInDb.Stanine_Ambition = student.Stanine_Ambition;
+                studentInDb.Stanine_Power = student.Stanine_Power;
+                studentInDb.Stanine_Assertiveness = student.Stanine_Assertiveness;
+                studentInDb.Stanine_Liveliness = student.Stanine_Liveliness;
+                studentInDb.Stanine_Composure = student.Stanine_Composure;
+                studentInDb.Stanine_Positivity = student.Stanine_Positivity;
+                studentInDb.Stanine_Awareness = student.Stanine_Awareness;
+                studentInDb.Stanine_Cooperativeness = student.Stanine_Cooperativeness;
+                studentInDb.Stanine_Sensitivity = student.Stanine_Sensitivity;
+                studentInDb.Stanine_Humility = student.Stanine_Humility;
+                db.SaveChanges();
+                return RedirectToAction("IndexAmsaStudents");
+            }
+
+            return View(student);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        public ActionResult IndexAmsaStudents()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            List<AmsaReportStudentData> lst_students = db.lstStudentsForReport.OrderBy(m => m.LastName).ToList();
+            return View(lst_students);
+        }
+
+    }
+
+    
 }

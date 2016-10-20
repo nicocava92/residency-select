@@ -9,10 +9,10 @@
         <header class="main-box-header clearfix">
             <div class="row">
                 <h2 class="pull-left">Events List</h2>
-
+               
             </div>
         </header>
-
+       
         <div>
             <table class="table table-responsive">
                 <tr>
@@ -20,20 +20,20 @@
                         Events
                     </th>
                     <th class="col-md-3">
-                        Organization
+                       Organization
 
                     </th>
                     <th class="col-md-1">
-                        Site
+                       Site
 
                     </th>
                     <th class="col-md-1">
                         Specialty
                     </th>
                     <th class="col-md-1">
-                        Requested Date
+                       Requested Date
                     </th>
-
+                    
                     <th class="col-md-1"></th>
                 </tr>
 
@@ -55,20 +55,20 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.CreateDate, "ShortDateTime")
                         </td>
-
-
+                       
+                        
                         <td>
                             <div class="groupbtn text-right">
-
+                               
 
 
                                 @if (@User.IsInRole("Admin"))
-                                {
+{
 
 
-                                    <a href="@Url.Action("OESSetup", new { ID=item.Id })" class="btn btn-primary btn200 pull-left md-trigger mobile_full_width_btn" title="SetUp">SetUp</a>
-                                }
-
+    <a href="@Url.Action("OESSetup", new { ID=item.Id })" class="btn btn-primary btn200 pull-left md-trigger mobile_full_width_btn" title="SetUp">SetUp</a>
+}
+                               
                             </div>
                         </td>
                     </tr>

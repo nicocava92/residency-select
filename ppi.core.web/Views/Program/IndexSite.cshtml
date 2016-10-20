@@ -100,7 +100,27 @@
     <script type="text/javascript">
 
 
-        //Method to fill  Department dropdown on organization selection
+
+        //function FillSiteDropdown() {
+        //    var orgId = $('#OrganizationId').val();
+        //    $.ajax({
+        //        url: '/Program/FillSiteDropDown',
+        //        type: "GET",
+        //        dataType: "JSON",
+        //        data: { id: orgId },
+        //        success: function (data) {
+        //            $("#SiteId").html(""); // clear before appending new list
+        //            $.each(data, function (i, sitedata) {
+        //                $("#SiteId").append(
+        //                    $('<option></option>').val(sitedata.Id).html(sitedata.SiteName));
+        //            });
+        //        },
+        //        error: function (xhr) { alert('Error'); }
+        //    });
+        //}
+
+
+
         function FillDepartment() {
             var orgId = $('#OrganizationId').val();
             $.ajax({
@@ -115,18 +135,22 @@
             });
         }
 
-        //Method to validate required fields
+
         function validate() {
+
             if (!document.getElementById('OrganizationId').value) {
                 alert('Please select Organization.');
                 document.getElementById('OrganizationId').focus();
                 return false;
             }
+
             if (!document.getElementById('SiteId').value) {
                 alert('Please select Department.');
                 document.getElementById('SiteId').focus();
                 return false;
             }
+
+
         }
 
     </script>

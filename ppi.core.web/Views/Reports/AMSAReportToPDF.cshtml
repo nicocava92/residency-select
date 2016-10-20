@@ -1,0 +1,1277 @@
+@model PPI.Core.Web.Models.AmsaReports.UserAnswersViewModel
+@using PPI.Core.Web.HtmlHelpers;
+@{
+    Layout = "~/Views/Shared/_LayoutReports.cshtml";
+}
+
+<!-- PAGE 1 - COVER -->
+<div id="cover" style="page-break-before: avoid;">
+    <div class="amsa-cover">
+        <img style="margin: 0 auto;" src="../../Reports/Artwork/AMSA_Artwork/amsa_logo_trans_bck.jpg" />
+    </div>
+    <br>
+    <img class="cover-gradient" src="../../Reports/Artwork/AMSA_Artwork/covert_gradient_art.jpg" />
+    <br>
+    <div class="text-cover">
+        <span class="student-name">
+            @Model.student.FirstName @Model.student.LastName<br>
+        </span>
+        <span class="date">
+            @if (Model.student.CompletionDate == null)
+            {
+                <text>Null</text>
+            }
+            else
+            {
+                @Model.student.CompletionDate.ToString("MM/dd/yyyy")
+            }
+        </span>
+        <span class="cover-subtitles">
+            <br><br>
+            Role<br>
+        </span>
+        <span class="cover-strings">
+            Medical Student<br>
+        </span>
+        <span class="cover-subtitles">
+            <br><br>
+            Location<br>
+        </span>
+        <span class="cover-strings">
+            AMSA<br>
+        </span>
+    </div>
+    <div class="cover-bottom-logos">
+        <img src="../../Reports/Artwork/AMSA_Artwork/bottom_right_logos.jpg" />
+        <p>
+            Powered by AON | Distributed by J3Personica
+        </p>
+    </div>
+</div>
+
+<div style="clear:both;"></div>
+
+<!-- PAGE 2 - INTRODUCTION -->
+<div class="wrapper">
+    <div class="text-content">
+        <h1>
+            Introduction
+        </h1>
+        <h2>
+            Purpose
+        </h2>
+        <p>
+            This report is designed to provide insight into your preferences, attitudes and personal characteristics, and how they relate to your behavior, primarily in professional settings.  It is organized around six Styles and fifteen Aspects of personality. Each Style and Aspect provides insight into your approaches as assessed by AMSA’s Self-Awareness Assessment Instrument.   Each of the Styles and their Aspects, along with your results and the implications of your scores, are described in greater detail below.
+        </p>
+        <h2>
+            Cautions
+        </h2>
+        <p>
+            Your results should be considered in the context of other available information. It is important not to over-emphasize any one specific statement or conclusion.  When examining the report, consider the pattern of strengths and improvement opportunities across the personality Aspects presented, and review feedback you have received from other sources. Although individual personality tends to be relatively static and stable across an individual’s lifespan, certain identified Aspects of personality can vary and shift over time for a variety of reasons. In addition, the display of specific behaviors in professional settings is also a function of situations and contexts, which also can change over time. Therefore, it is important not to rely on results which have become dated.
+        </p>
+        <h2>
+            Interpretation
+        </h2>
+        <p>
+            Personality traits are best interpreted on a continuum. Low scores and high scores are neither inherently good nor bad. Both low and high scores have beneficial and undesirable implications for behavior. While scores reflect a likelihood of displaying certain behaviors, remember it is possible to compensate for improvement opportunities through development, experience and coaching.
+        </p>
+        <p>
+            Interpretation of personality scores requires a comparison to others. In this report, the scores for each Aspect are communicated on a standardized nine-point scale called a stanine. As illustrated below, most people will tend to fall toward the middle of the stanine continuum on many Aspects, but will likely have higher or lower scores for some Aspects.
+        </p>
+        <p>
+            Each of the fifteen Aspects is presented with a single, short description, along with descriptions at each end of the continuum. The darker box on the graph represents your exact stanine and the lighter boxes to either side indicate the possible range of your score. For example, the graph below indicates a stanine of 2 and a possible range of scores of 1 to 3.
+        </p>
+
+        <div class="scale-number-container">
+            <div class="scale-number-background">
+                <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+            </div>
+            <div class="scale-number">
+                2
+            </div>
+        </div>
+
+        <p>
+            <div class="scale">
+                <h1>
+                    Aspect: A short aspect description
+                </h1>
+                <span class="desc-text green left">A description of one end of the spectrum </span>
+                <img class="scale-img scale-img-pg2" src="../../Reports/Artwork/Scale_Score_Images/intro-scale.jpg" />
+                <span class="desc-text green right" style="padding-left:10px;">
+                    A description of the other end of the spectrum
+                </span>
+            </div>
+        </p>
+        <div class="clear"></div>
+        <p>
+            To interpret your results, start by reviewing your overall Styles. Then proceed to the detail for each of the
+            Aspects that constitute those Styles.
+        </p>
+        <footer>
+            <div>
+                <p class="footer-name-date">
+                    @Model.student.CompletionDate.ToString("MM/dd/yyyy")<br>
+                    @Model.student.FirstName @Model.student.LastName
+                </p>
+            </div>
+            <div class="footer-page-number">
+                <p><br />1</p>
+            </div>
+        </footer>
+    </div>
+</div>
+<div style="clear:both;"></div>
+
+<!-- Page 3 About -->
+<div class="wrapper">
+    <div class="text-content">
+        <!--
+        <h1>
+            About
+        </h1>
+        <h2>
+            Response Consistency
+        </h2>
+        <p>
+            This questionnaire is specifically designed to mitigate the impact of conscious and unconscious biases, intentional inflation, and socially desirable responding, which can invalidate results. Although the instrument was designed to decrease the impact of such factors, it is still important to evaluate the consistency of scores across the fifteen Aspects to identify inconsistent response patterns that may reduce the accuracy of the results.
+        </p>
+        <p>
+            The responses to this questionnaire indicate a <strong>consistent response pattern</strong>. There is very little evidence of inconsistent responding that may invalidate the results.
+        </p>
+            -->
+        <h2>Model of Personality</h2>
+        <p>
+            The Personality Model used as a foundation for this assessment is firmly grounded in the well-established and empirically supported Five Factor Model (at times referred to as the Big Five). Elements of each of the traditional concepts of Extroversion, Emotional Stability, Agreeableness, Consciousness, and Openness to Experience are directly represented across ten of the fifteen Aspects of the model. The remaining five Aspects reflect traits critical for successful professional performance, particularly in leadership roles, but not captured in the traditional Five Factor Model. These additional five Aspects were taken from the latest literature on authentic leadership, learning theories, and positive psychology.
+        </p>
+        <h2>Normative Group</h2>
+        <p>
+            The selection of an appropriate normative group is important for accurate interpretation of personality results. The choice of which is based on a number of factors including cultural elements and the intended use of the report. This report is based on Professionals and Managers in the U.S.  As physicians occupy a space in the top tiers of the health care hierarchy, it is important to explore individual student potential, as well as behaviors, from this perspective.
+        </p>
+        <h2>
+            American Medical Student Association
+        </h2>
+        <p>
+            <!-- New paragraph -->
+            AMSA is a student-governed, national organization committed to representing the concerns of physicians-in-training. AMSA members are medical students, premedical students, interns, residents and practicing physicians. Founded in 1950, AMSA continues its commitment to improving medical training and the nation’s health. This self-awareness assessment represents one part of AMSA's commitment to assisting future physicians realize their full potential and grow their skill sets in areas not typically addressed in medical schools. The assessment is specifically focused on traits critical for medical students, and is but one tool offered by AMSA to assist physicians-in-training in their professional development and well-being.
+        </p>
+
+        <p>
+            For more information on the assessment please visit <a href="http://www.amsa.org/">http://www.amsa.org</a>
+        </p>
+        <!--
+        <p>
+            This assessment and accompanying report is provided by Aon Hewitt's team of assessment and selection professionals. Aon Hewitt is one of the world's top employers of organizational and occupational psychologists and has over 30 years of experience designing and implementing industryleading tools for the world's leading companies.
+        </p>
+            -->
+        <footer>
+            <div>
+                <p class="footer-name-date">
+                    @Model.student.CompletionDate.ToString("MM/dd/yyyy")<br>
+                    @Model.student.FirstName @Model.student.LastName
+                </p>
+            </div>
+            <div class="footer-page-number">
+                <p><br />2</p>
+            </div>
+        </footer>
+    </div>
+</div>
+<div style="clear:both;"></div>
+<!-- Page 4 Aspect Summary -->
+<div class="wrapper">
+    <div class="text-content">
+        <h1>
+            Aspect Summary
+        </h1>
+        <h2>
+            Aspect Profile
+        </h2>
+        <p>
+            Stanine scores on each of the fifteen Aspects of personality are summarized in the table below.
+        </p>
+        <div id="summaryPage" ">
+            <!-- Internal Drive -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Relaxed, distractible, unconcerned
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Internal Drive: @Model.student.Stanine_Drive</span><br>
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Drive)" /><br>
+                    <span class="aspect-scale-desc-bottom">relaxed vs. focused</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Hard working, reliable, overly taskfocused
+                </span>
+            </div>
+            <!-- Organization -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Comfortable with ambiguity, spontaneous, unorganized
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Organization: @Model.student.Stanine_Structure</span><br>
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Structure)" />
+                    <br><span class="aspect-scale-desc-bottom">big picture vs. detail focus</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Organized, careful, detail-focused,
+                    perfectionist
+                </span>
+            </div>
+            <!-- Conceptual -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Pragmatic, concrete, overly tactical
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Conceptual: @Model.student.Stanine_Conceptual</span><br>
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Conceptual)" />
+                    <br><span class="aspect-scale-desc-bottom">practical vs. abstract</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Inquisitive, imaginative, overly
+                    theoretical
+                </span>
+            </div>
+            <!-- Open-Mindedness: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Predictable, consistent, inflexible
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Open-Mindedness: @Model.student.Stanine_Flexibility</span><br />
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Flexibility)" />
+                    <br><span class="aspect-scale-desc-bottom">consistent vs. flexible</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Open to new ideas and
+                    experiences, inconsistent
+                </span>
+            </div>
+            <!-- Mastery: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Focused on doing, less concerned
+                    with learning and development
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Mastery: @Model.student.Stanine_Mastery</span><br />
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Mastery)" />
+                    <br><span class="aspect-scale-desc-bottom">doing vs. improving</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Seeks challenges, focused on
+                    learning and development
+                </span>
+            </div>
+            <!-- Ambition: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Good work-life balance, less
+                    concerned with career progression
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Ambition: @Model.student.Stanine_Ambition</span><br>
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Ambition)" />
+                    <br><span class="aspect-scale-desc-bottom">contented vs. striving</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Career-focused, goal-oriented,
+                    obsessive
+                </span>
+            </div>
+            <!-- Control: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Interested in contributing, open to
+                    others taking control
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Control: @Model.student.Stanine_Power</span><br />
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Power)" />
+                    <br><span class="aspect-scale-desc-bottom">contributor vs. controller</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Interested in leading, having
+                    influence, controlling
+                </span>
+            </div>
+            <!-- Color for titles of scales changes here? ask matt-->
+            <!-- Assertiveness: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Non-confrontational, hesitant,
+                    indecisive
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Assertiveness: @Model.student.Stanine_Assertiveness</span><br>
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Assertiveness)" />
+                    <br><span class="aspect-scale-desc-bottom">cautious vs. socially bold</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Opinionated, decisive, competitive,
+                    overbearing
+                </span>
+            </div>
+            <!-- Approachability: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Quiet, unassuming, private
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Approachability: @Model.student.Stanine_Liveliness</span><br>
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Liveliness)" />
+                    <br><span class="aspect-scale-desc-bottom">reserved vs. outgoing</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Talkative, friendly, attention
+                    seeking
+                </span>
+            </div>
+            <!-- Composure: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Passionate, intense, reactive,
+                    moody
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Composure: @Model.student.Stanine_Composure</span><br>
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Composure)" />
+                    <br><span class="aspect-scale-desc-bottom">passionate vs. calm</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Stable, poised, emotionless
+                </span>
+            </div>
+            <!-- Positivity: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Realistic, nervous, self-critical
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Positivity: @Model.student.Stanine_Positivity</span><br>
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Positivity)" />
+                    <br><span class="aspect-scale-desc-bottom">concerned vs. hopeful</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Resilient, cheerful, overly
+                    optimistic
+                </span>
+            </div>
+            <!-- Self-Awareness: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Unconcerned with criticism,
+                    resistant to feedback
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Self-Awareness: @Model.student.Stanine_Awareness</span><br />
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Awareness)" />
+                    <br><span class="aspect-scale-desc-bottom">insulated vs. self-aware</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Reflective, open to feedback,
+                    overly concerned with criticism
+                </span>
+            </div>
+            <!-- Team Orientation: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Self-reliant, independent, skeptical
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Team Orientation: @Model.student.Stanine_Cooperativeness</span><br />
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Cooperativeness)" />
+                    <br><span class="aspect-scale-desc-bottom">independent vs. team-oriented</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Team-oriented, accommodating,
+                    overly trusting
+                </span>
+            </div>
+            <!--Compassion: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Stoic, direct, unsentimental
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Compassion: @Model.student.Stanine_Sensitivity</span><br />
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Sensitivity)" />
+                    <br><span class="aspect-scale-desc-bottom">stoic vs. compassionate</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Warmhearted, empathetic,
+                    unwilling to be tough
+                </span>
+            </div>
+            <!--Humility: -->
+            <div class="scale">
+                <span class="desc-text aspect-summary left">
+                    Boastful, shrewd, status-focused
+                </span>
+                <div class="aspect-summary">
+                    <span class="aspect-summary right">Humility: @Model.student.Stanine_Humility</span><br />
+                    <img class="scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Humility)" />
+                    <br><span class="aspect-scale-desc-bottom">proud vs. humble</span>
+                </div>
+                <span class="desc-text aspect-summary right">
+                    Modest, genuine, self-effacing
+                </span>
+            </div>
+        </div>
+        <footer>
+            <div>
+                <p class="footer-name-date">
+                    @Model.student.CompletionDate.ToString("MM/dd/yyyy")<br>
+                    @Model.student.FirstName @Model.student.LastName
+                </p>
+            </div>
+            <div class="footer-page-number">
+                <p><br />3</p>
+            </div>
+        </footer>
+    </div>
+</div>
+<div style="clear:both;"></div>
+
+<!-- Page 5 Task Style -->
+<div class="wrapper">
+    <div style="position:relative;" class="text-content">
+        <h1>
+            Task Style
+        </h1>
+        <div class="scale-number-container-big">
+            <div class="scale-number-background-big">
+                <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg-big.png" />
+            </div>
+            <div class="scale-number-big">
+                @Model.getAverageTaskStyle()
+            </div>
+        </div>
+        <div class="scale-big">
+            <h2>
+                Summary
+            </h2>
+            <p>
+                @Model.getParagraph("Task Style", Model.student.Stanine_Drive, Model.student.Stanine_Structure)
+            </p>
+        </div>
+        <div class="clear"></div>
+        <!-- Motivation: relaxed vs. focused -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Drive
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Internal Drive: relaxed vs. focused
+                </h1>
+                <span class="desc-text green right">Relaxed, distractible, unconcerned</span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Drive)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Hard working, reliable, overly task-focused
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>People who fall within this range of the Internal Drive scale may be seen as:</p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Motivation", @Model.student.Stanine_Drive))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Organization: big picture vs. detail focus -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Structure
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Organization: big picture vs. detail focus
+                </h1>
+                <span class="desc-text green right">Comfortable with ambiguity, spontaneous, unorganized</span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Structure)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Organized, careful, detail-focused, perfectionist
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>People who fall within this range of the Organization scale may be seen as:</p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Organization", @Model.student.Stanine_Structure))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="footer2">
+        <div>
+            <p class="footer-name-date">
+                @Model.student.CompletionDate.ToString("MM/dd/yyyy")<br>
+                @Model.student.FirstName @Model.student.LastName
+            </p>
+        </div>
+        <div class="footer-page-number5">
+            <p><br />4</p>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Page 6 Adaptation Style -->
+<div class="wrapper">
+    <div style="position:relative;" class="text-content">
+        <h1>
+            Adaptation Style
+        </h1>
+        <div class="scale-number-container-big">
+            <div class="scale-number-background-big">
+                <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg-big.png" />
+            </div>
+            <div class="scale-number-big">
+                @Model.getAdaptationStyle()
+            </div>
+        </div>
+        <div class="scale-big">
+            <h2>
+                Summary
+            </h2>
+            <p>
+                @Model.getParagraph("Adaptation Style", Model.student.Stanine_Conceptual, Model.student.Stanine_Mastery)
+            </p>
+        </div>
+        <div class="clear"></div>
+        <!-- Conceptual: practical vs. abstract -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Conceptual
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Conceptual: practical vs. abstract
+                </h1>
+                <span class="desc-text green right">
+                    Pragmatic, concrete, overly tactical
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Conceptual)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Inquisitive,
+                    imaginative, overly
+                    theoretical
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>People who fall within this range of the Conceptual scale may be seen as:</p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Conceptual", @Model.student.Stanine_Conceptual))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Open-mindedness: consistent vs. flexible -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Flexibility
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Open-mindedness: consistent vs. flexible
+                </h1>
+                <span class="desc-text green right">
+                    Predictable, consistent,
+                    inflexible
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Flexibility)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Open to new ideas
+                    and experiences,
+                    inconsistent
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>People who fall within this range of the Open-Mindedness scale may be seen as:</p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Open-mindedness", @Model.student.Stanine_Flexibility))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Mastery: doing vs. improving -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Mastery
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Mastery: doing vs. improving
+                </h1>
+                <span class="desc-text green right">
+                    Focused on doing, less
+                    concerned with learning
+                    and development
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Mastery)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Seeks challenges,
+                    focused on learning
+                    and development
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Mastery scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Mastery", @Model.student.Stanine_Mastery))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="footer2">
+        <div>
+            <p class="footer-name-date">
+                @Model.student.CompletionDate.ToString("MM/dd/yyyy")<br>
+                @Model.student.FirstName @Model.student.LastName
+            </p>
+        </div>
+        <div class="footer-page-number">
+            <p><br />5</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Page 7 Achievement Style -->
+<div class="wrapper">
+    <div style="position:relative;" class="text-content">
+        <h1>
+            Achievement Style
+        </h1>
+        <div class="scale-number-container-big">
+            <div class="scale-number-background-big">
+                <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg-big.png" />
+            </div>
+            <div class="scale-number-big">
+                @Model.getAchivementStyle()
+            </div>
+        </div>
+        <div class="scale-big">
+            <h2>
+                Summary
+            </h2>
+            <p>
+                @Model.getParagraph("Achievement Style", Model.student.Stanine_Ambition, Model.student.Stanine_Power)
+            </p>
+        </div>
+        <div class="clear"></div>
+        <!-- Ambition: contented vs. striving -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Ambition
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Ambition: contented vs. striving
+                </h1>
+                <span class="desc-text green right">
+                    Good work-life balance,
+                    less concerned with
+                    career progression
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Ambition)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Career-focused, goaloriented,
+                    obsessive
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Ambition scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Ambition", @Model.student.Stanine_Ambition))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Control: contributor vs. controller -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Power
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Control: contributor vs. controller
+                </h1>
+                <span class="desc-text green right">
+                    Interested in
+                    contributing, open to
+                    others taking control
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Power)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Interested in leading,
+                    having influence,
+                    controlling
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Control scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Control", @Model.student.Stanine_Power))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <footer class="footer2">
+        <div>
+            <p class="footer-name-date">
+                @Model.student.CompletionDate.ToString("MM/dd/yyyy")<br>
+                @Model.student.FirstName @Model.student.LastName
+            </p>
+        </div>
+        <div class="footer-page-number">
+            <p><br />6</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Page 8 Interaction Style-->
+<div class="wrapper">
+    <div style="position:relative;" class="text-content">
+        <h1>
+            Interaction Style
+        </h1>
+        <div class="scale-number-container-big">
+            <div class="scale-number-background-big">
+                <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg-big.png" />
+            </div>
+            <div class="scale-number-big">
+                @Model.getInteractionStyle()
+            </div>
+        </div>
+        <div class="scale-big">
+            <h2>
+                Summary
+            </h2>
+            <p>
+                @Model.getParagraph("Interaction Style", Model.student.Stanine_Assertiveness, Model.student.Stanine_Liveliness)
+            </p>
+        </div>
+        <div class="clear"></div>
+        <!-- Assertiveness: cautious vs. socially bold -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Assertiveness
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Assertiveness: cautious vs. socially bold
+                </h1>
+                <span class="desc-text green right">
+                    Non-confrontational,
+                    hesitant, indecisive
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Assertiveness)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Opinionated, decisive,
+                    competitive,
+                    overbearing
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Assertiveness scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Assertiveness", @Model.student.Stanine_Assertiveness))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Approachability: reserved vs. outgoing -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Liveliness
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Approachability: reserved vs. outgoing
+                </h1>
+                <span class="desc-text green right">
+                    Quiet, unassuming,
+                    private
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Liveliness)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Talkative, friendly,
+                    attention seeking
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Approachability scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Approachability", @Model.student.Stanine_Liveliness))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="footer2">
+        <div>
+            <p class="footer-name-date">
+                @Model.student.CompletionDate.ToString("MM/dd/yyyy")<br>
+                @Model.student.FirstName @Model.student.LastName
+            </p>
+        </div>
+        <div class="footer-page-number">
+            <p><br />7</p>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Page 9 Emotional Style -->
+<div class="wrapper">
+    <div style="position:relative;" class="text-content">
+        <h1>
+            Emotional Style
+        </h1>
+        <div class="scale-number-container-big">
+            <div class="scale-number-background-big">
+                <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg-big.png" />
+            </div>
+            <div class="scale-number-big">
+                @Model.getEmotionalStyle()
+            </div>
+        </div>
+        <div class="scale-big">
+            <h2>
+                Summary
+            </h2>
+            <p>
+                @Model.getParagraph("Emotional Style", Model.student.Stanine_Composure, Model.student.Stanine_Awareness)
+            </p>
+        </div>
+        <div class="clear"></div>
+        <!-- Self-Control: passionate vs. calm -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Composure
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Self-Control: passionate vs. calm
+                </h1>
+                <span class="desc-text green right">
+                    Passionate, intense,
+                    reactive, moody
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Composure)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Stable, poised,
+                    emotionless
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Self-Control scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Self-Control", @Model.student.Stanine_Composure))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Positivity: concerned vs. hopeful -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Positivity
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Positivity: concerned vs. hopeful
+                </h1>
+                <span class="desc-text green right">
+                    Realistic, nervous, selfcritical
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Positivity)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Resilient, cheerful,
+                    overly optimistic
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Positivity scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Positivity", @Model.student.Stanine_Positivity))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Self-Awareness: insulated vs. self-aware -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Awareness
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Self-Awareness: insulated vs. self-aware
+                </h1>
+                <span class="desc-text green right">
+                    Unconcerned with
+                    criticism, resistant to
+                    feedback
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Awareness)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Reflective, open to
+                    feedback, overly
+                    concerned with
+                    criticism
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Self-Awareness scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Self-Awareness", @Model.student.Stanine_Awareness))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer2">
+        <div>
+            <p class="footer-name-date">
+                @Model.student.CompletionDate.ToString("MM/dd/yyyy")<br>
+                @Model.student.FirstName @Model.student.LastName
+            </p>
+        </div>
+        <div class="footer-page-number">
+            <p><br />8</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Page 10 Teamwork Style -->
+<div class="wrapper">
+    <div style="position:relative;" class="text-content">
+        <h1>
+            Teamwork Style
+        </h1>
+        <div class="scale-number-container-big">
+            <div class="scale-number-background-big">
+                <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg-big.png" />
+            </div>
+            <div class="scale-number-big">
+                @Model.getTeamworkStyle()
+            </div>
+        </div>
+        <div class="scale-big">
+            <h2>
+                Summary
+            </h2>
+            <p>
+                @Model.getParagraph("Teamwork Style", Model.student.Stanine_Cooperativeness, Model.student.Stanine_Humility)
+            </p>
+        </div>
+        <div class="clear"></div>
+        <!--  Team Orientation: independent vs. team-oriented -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Cooperativeness
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Team Orientation: independent vs. team-oriented
+                </h1>
+                <span class="desc-text green right">
+                    Self-reliant, independent,
+                    skeptical
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Cooperativeness)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Team-oriented,
+                    accommodating,
+                    overly trusting
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Team Orientation scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Group Focus", @Model.student.Stanine_Cooperativeness))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  Compassion: stoic vs. compassionate -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Sensitivity
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Compassion: stoic vs. compassionate
+                </h1>
+                <span class="desc-text green right">
+                    Stoic, direct,
+                    unsentimental
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Sensitivity)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Warmhearted,
+                    empathetic, unwilling
+                    to be tough
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Compassion scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Compassion", @Model.student.Stanine_Sensitivity))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  Humility: proud vs. humble -->
+        <div class="description-line">
+            <div class="scale-number-container detail-number-container">
+                <div class="scale-number-background">
+                    <img src="../../Reports/Artwork/Scale_Score_Images/scale-num-bg.png" />
+                </div>
+                <div class="scale-number">
+                    @Model.student.Stanine_Humility
+                </div>
+            </div>
+            <div class="detail-scale">
+                <h1>
+                    Humility: proud vs. humble
+                </h1>
+                <span class="desc-text green right">
+                    Boastful, shrewd,
+                    status-focused
+                </span>
+
+                <img class="detail-scale-img" src="@Model.getScaleByInt(@Model.student.Stanine_Humility)" height="100" />
+
+                <span class="detail-right desc-text green right">
+                    Modest, genuine, selfeffacing
+                </span>
+                <div class="clear"></div>
+                <div>
+                    <div class="detail-ul">
+                        <p>
+                            People who fall within this range of the Humility scale may be seen as:
+                        </p>
+                        <ul>
+                            @foreach (string i in Model.getScaleItems("Humility", @Model.student.Stanine_Humility))
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="footer2">
+        <div>
+            <p class="footer-name-date">
+                @Model.student.CompletionDate.ToString("MM/dd/yyyy")<br>
+                @Model.student.FirstName @Model.student.LastName
+            </p>
+        </div>
+        <div class="footer-page-number">
+            <p><br />9</p>
+        </div>
+    </footer>
+</div>
