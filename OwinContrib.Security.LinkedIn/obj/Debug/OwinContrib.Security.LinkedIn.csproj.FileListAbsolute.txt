@@ -7,3 +7,21 @@ E:\Residency\Source\ppi.core.web.11122015\OwinContrib.Security.LinkedIn\bin\Debu
 E:\Residency\Source\ppi.core.web.11122015\OwinContrib.Security.LinkedIn\bin\Debug\Owin.dll
 E:\Residency\Source\ppi.core.web.11122015\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.dll
 E:\Residency\Source\ppi.core.web.11122015\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\OwinContrib.Security.LinkedIn.dll.config
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\OwinContrib.Security.LinkedIn.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\OwinContrib.Security.LinkedIn.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\Microsoft.Owin.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\Microsoft.Owin.Security.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\Owin.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.csprojResolveAssemblyReference.cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.pdb
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\OwinContrib.Security.LinkedIn.dll.config
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\OwinContrib.Security.LinkedIn.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\OwinContrib.Security.LinkedIn.pdb
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\Microsoft.Owin.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\Microsoft.Owin.Security.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\Owin.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.csprojResolveAssemblyReference.cache
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.pdb

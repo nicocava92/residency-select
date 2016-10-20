@@ -13,6 +13,9 @@ namespace PPI.Core.Web.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<AmsaReports.AonItemsAF716AMSAVersionAB> lstReportItems { get; set; }
+        public DbSet<AmsaReports.AmsaReportStudentData> lstStudentsForReport { get; set; }
+        public DbSet<AmsaReports.AonParagraphs> lstAonParagraphs { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection")
         {

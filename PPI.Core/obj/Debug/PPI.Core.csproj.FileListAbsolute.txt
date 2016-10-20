@@ -4,3 +4,17 @@ E:\Residency\Source\ppi.core.web.11122015\PPI.Core\bin\Debug\PostSharp.dll
 E:\Residency\Source\ppi.core.web.11122015\PPI.Core\bin\Debug\PostSharp.xml
 E:\Residency\Source\ppi.core.web.11122015\PPI.Core\obj\Debug\PPI.Core.dll
 E:\Residency\Source\ppi.core.web.11122015\PPI.Core\obj\Debug\PPI.Core.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core\bin\Debug\PPI.Core.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core\bin\Debug\PPI.Core.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core\bin\Debug\PostSharp.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core\bin\Debug\PostSharp.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core\obj\Debug\PPI.Core.csprojResolveAssemblyReference.cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core\obj\Debug\PPI.Core.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core\obj\Debug\PPI.Core.pdb
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Core\bin\Debug\PPI.Core.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Core\bin\Debug\PPI.Core.pdb
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Core\bin\Debug\PostSharp.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Core\bin\Debug\PostSharp.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Core\obj\Debug\PPI.Core.csprojResolveAssemblyReference.cache
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Core\obj\Debug\PPI.Core.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Core\obj\Debug\PPI.Core.pdb

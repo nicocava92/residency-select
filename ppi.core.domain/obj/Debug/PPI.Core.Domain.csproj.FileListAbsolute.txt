@@ -27,3 +27,61 @@ E:\Residency\Source\ppi.core.web.11122015\ppi.core.domain\bin\Debug\System.Web.W
 E:\Residency\Source\ppi.core.web.11122015\ppi.core.domain\obj\Debug\PPI.Core.Domain.csprojResolveAssemblyReference.cache
 E:\Residency\Source\ppi.core.web.11122015\ppi.core.domain\obj\Debug\PPI.Core.Domain.dll
 E:\Residency\Source\ppi.core.web.11122015\ppi.core.domain\obj\Debug\PPI.Core.Domain.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.Domain.dll.config
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.Domain.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.Domain.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\EntityFramework.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\PostSharp.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.Helpers.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.Razor.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.Razor.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\EntityFramework.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\PostSharp.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.Helpers.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.Razor.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.Razor.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\obj\Debug\PPI.Core.Domain.csprojResolveAssemblyReference.cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\obj\Debug\PPI.Core.Domain.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.domain\obj\Debug\PPI.Core.Domain.pdb
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.Domain.dll.config
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.Domain.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.Domain.pdb
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\EntityFramework.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\PostSharp.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.Helpers.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.Razor.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\PPI.Core.pdb
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\EntityFramework.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\PostSharp.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.Helpers.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.Razor.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\obj\Debug\PPI.Core.Domain.csprojResolveAssemblyReference.cache
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\obj\Debug\PPI.Core.Domain.dll
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.domain\obj\Debug\PPI.Core.Domain.pdb

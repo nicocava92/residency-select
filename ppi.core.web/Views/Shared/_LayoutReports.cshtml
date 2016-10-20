@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+    <title>@ViewBag.Title</title>
+    <!--Google Fonts-->
+    <style type='text/css'>
+        body{
+            text-align:justify;
+        }
+        h1{
+            font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+            font-size:29pt;
+            color:#5582B5;
+            margin-bottom:30px;
+        }
+        h2{
+            font-size:18pt;
+        }
+        h2,p,ul{
+            color:#231F20;
+        }
+        p,ul{
+            font-size:12.5pt;
+        }
+        h2{
+            font-family: "Franklin Gothic Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+            margin-bottom:20pt;
+        }
+        p,ul{
+            font-family: "Franklin Gothic Book", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+            margin-bottom:20px;
+        }
+        .text-content{
+            padding:32px 50px;
+        }
+        .aspect-summary{
+            position:relative;
+            float:left;
+            text-align:center;
+        }
+        .student-name{
+            font-family: "Franklin Gothic Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+            font-size:35pt;
+            color:#00AEEF;
+        }
+        .date,.cover-strings{
+            font-family: "Franklin Gothic Book", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+            font-size:25pt;
+            color:#231F20;
+        }
+        .cover-subtitles{
+            font-family: "Franklin Gothic Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+            font-size:25pt;
+            color:#231F20;
+        }
+        .wrapper, #cover {
+            margin-top: 10px;
+            padding-top: 10px;
+            width:1180px;
+            height:1510px;
+            page-break-after: avoid;
+            page-break-before: always;
+            position:relative;
+        }
+        .scale-img{
+            width:190px;
+            height:auto;
+        }
+        .detail-scale-img{
+            width:350px;
+            height:auto;
+            float:left;
+        }
+        .scale,.scale-big
+        {
+            float:left;
+            font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+            margin-left:20px;
+            position:relative;
+        }
+        .scale-big{
+            margin-left:200px;
+        }
+        .scale{
+            margin-top:10px;
+        }
+        span.desc-text.aspect-summary.left,span.desc-text.aspect-summary.right,span.aspect-summary.right,span.aspect-scale-desc-bottom{
+            font-size:11pt;
+        }
+        span.desc-text.aspect-summary.left,span.desc-text.aspect-summary.right{
+            padding-top:20px;
+        }
+        .scale .desc-text, .detail-scale .desc-text{
+            font-size:15pt;
+            vertical-align: top;
+            padding-right:10px;
+            padding-left:10px;
+            width:200px;
+            vertical-align:top;
+            word-wrap:normal;
+            font-family:"Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif
+        }
+        .detail-scale .desc-text{
+            width:100px;
+        }
+        .desc-text{
+            float:left;
+        }
+        .left{
+            text-align:right;
+            padding-left:10px;
+        }
+        .scale img{
+            float:left;
+        }
+        .right{
+            text-align:left;
+        }
+        
+        .aspect-summary span{
+            vertical-align:top;
+            font-size:19pt;
+        }
+        .green{
+            color:#22B24B;
+        }
+        .clear{
+            clear:both;
+            display:block;
+        }
+        .scale-number-container{
+            position:relative;
+            width:100px;
+            height:100px;
+            float:left;
+        }
+        .scale-number-container-big{
+            float:left;
+            position:absolute;
+            width:150px;
+            height:150px;
+            
+        }
+        .scale-number-background{
+            position:absolute;
+            z-index:1;
+            width:100px;
+            height:100px;
+        }
+        .scale-number-background-big{
+            position:absolute;
+            z-index:1;
+            width:150px;
+            height:150px;
+        }
+        .scale-number-big{
+            position:absolute;
+            color:#ffffff;
+            z-index:20;
+            padding:20px 13px;
+            font-size:67pt;
+            font-family: "Franklin Gothic Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+        }
+        .scale-number{
+            position:absolute;
+            color:#ffffff;
+            z-index:20;
+            padding:7px 30px;
+            font-size:50pt;
+            font-family: "Franklin Gothic Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+        }
+        a, .aspect-summary span{
+            color:#00AEEF;
+        }
+        #cover{
+            position:relative;
+        }
+        .scale h1{
+            padding-top:5px;
+        }
+        .amsa-cover, .amsa-cover img{
+            position:absolute;
+            width:750px;
+            height:auto;
+        }
+        .amsa-cover{
+            margin-left:220px;
+        }
+        .cover-gradient{
+            position:absolute;
+            z-index:1;
+            width:1180px;
+            height:auto;
+            margin-top:200px;
+        }
+        .cover-bottom-logos{
+            position:absolute;
+            margin-top:1325px;
+            margin-left:500px;
+            clear:left;
+            width:520px;
+        }
+        .cover-bottom-logos img{
+            width:490px;
+            height:auto;
+        }
+        .cover-bottom-logos p{
+            padding-left:20px;
+            font-family:'Century Gothic',Arial,sans-serif;
+            color:#808285;
+            font-size:16pt;
+            text-align: left;
+            margin-top:0px;
+        }
+        .text-cover{
+            position:absolute;
+            padding-top:950px;
+            padding-left:525px;
+            z-index:30;
+        }
+        
+        
+        span.aspect-scale-desc-bottom{
+            color:#231F20;
+            margin:0 auto;
+            text-align:center;
+            font-size:11pt;
+        }
+
+        #summaryPage{
+            width:800px;
+            margin:0 auto;
+        }
+        .detail-scale{
+            float:left;
+            margin-left:52px;
+            width:880px;
+        }
+        .detail-number-container{
+            margin-left:45px;
+        }
+        .description-line,.detail-ul-title{
+            margin-top:35px;
+        }
+        .detail-ul{
+            margin-left:70px;
+            width:700px;
+        }
+        .detail-ul-title{
+            width:750px;
+        }
+        .detail-desc-text{
+            width:1000px;
+        }
+        span.desc-text.green.right, span.desc-text.green.left{
+            width:250px;
+        }
+        span.desc-text.green.right{
+            padding-left:0px;
+        }
+        span.detail-right.desc-text.green.right{
+            padding-left:10px;
+        }
+        footer{
+            position:absolute;
+            clear:both;
+            bottom:5px;
+            width:1080px;
+        }
+        .footer-page-number{
+            float:right;
+        }
+        .footer-name-date{
+            float:left;
+        }
+        .footer2 {
+            font-family:"Franklin Gothic Book", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+            color:#231F20;
+            margin-right:50px;
+            margin-left:50px;
+            font-size:12.5pt;
+        }
+        .footer-page-number5{
+            float:right;
+        }
+        .footer-page-number, footer-page-number5{
+            vertical-align:bottom;
+        }
+        .scale-img-pg2{
+            width:280px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        @RenderBody()
+    </div>
+</body>
+</html>
+

@@ -29,3 +29,8 @@ E:\Residency\Source\ppi.core.web.11122015\PPI.Hogan.Service\obj\Debug\PPI.Hogan.
 E:\Residency\Source\ppi.core.web.11122015\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.application
 E:\Residency\Source\ppi.core.web.11122015\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.exe
 E:\Residency\Source\ppi.core.web.11122015\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.pdb
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.csprojResolveAssemblyReference.cache
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.ProjectInstaller.resources
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.csproj.GenerateResource.Cache
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.exe
+C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.pdb
