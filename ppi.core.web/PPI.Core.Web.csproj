@@ -273,17 +273,9 @@
     <Compile Include="MatchPracticeReports.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201401152243236_InitialCreate.cs" />
-    <Compile Include="Migrations\201401152243236_InitialCreate.Designer.cs">
-      <DependentUpon>201401152243236_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405202058358_IdentityUpdate.cs" />
-    <Compile Include="Migrations\201405202058358_IdentityUpdate.Designer.cs">
-      <DependentUpon>201405202058358_IdentityUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405202254219_IdentityUpdate1.cs" />
-    <Compile Include="Migrations\201405202254219_IdentityUpdate1.Designer.cs">
-      <DependentUpon>201405202254219_IdentityUpdate1.cs</DependentUpon>
+    <Compile Include="Migrations\201610202042549_StartingToAddEventsForAMSA.cs" />
+    <Compile Include="Migrations\201610202042549_StartingToAddEventsForAMSA.Designer.cs">
+      <DependentUpon>201610202042549_StartingToAddEventsForAMSA.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
@@ -292,8 +284,17 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AmsaReports\AmsaReportsItems.cs" />
+    <Compile Include="Models\AMSAReportContext.cs" />
+    <Compile Include="Models\AmsaReports\AMSAReportsItems.cs" />
     <Compile Include="Models\AmsaReports\AmsaReportStudentData.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAEvent.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAEventStatus.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAEventType.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAOrganization.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAProgram.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAProgramSite.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSASite.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSASurveyType.cs" />
     <Compile Include="Models\AmsaReports\AonItemsAF716AMSAVersionAB.cs" />
     <Compile Include="Models\AmsaReports\AonParagraphs.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
@@ -2982,21 +2983,17 @@
     <Content Include="Reports\TransistionPractice.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201401152243236_InitialCreate.resx">
-      <DependentUpon>201401152243236_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405202058358_IdentityUpdate.resx">
-      <DependentUpon>201405202058358_IdentityUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405202254219_IdentityUpdate1.resx">
-      <DependentUpon>201405202254219_IdentityUpdate1.cs</DependentUpon>
-    </EmbeddedResource>
     <Content Include="Reports\ManagePractice.rdlc" />
     <Content Include="Reports\RangeReport.rdlc" />
     <Content Include="Reports\MatchReport.rdlc" />
     <Content Include="Reports\CoachReport.rdlc" />
     <Content Include="Reports\GraphPractice.rdlc" />
     <Content Include="Reports\ScalesReport.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610202042549_StartingToAddEventsForAMSA.resx">
+      <DependentUpon>201610202042549_StartingToAddEventsForAMSA.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

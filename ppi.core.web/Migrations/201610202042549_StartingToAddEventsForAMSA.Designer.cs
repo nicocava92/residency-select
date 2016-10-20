@@ -6,14 +6,14 @@ namespace PPI.Core.Web.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class IdentityUpdate : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
+    public sealed partial class StartingToAddEventsForAMSA : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(IdentityUpdate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(StartingToAddEventsForAMSA));
         
         string IMigrationMetadata.Id
         {
-            get { return "201405202058358_IdentityUpdate"; }
+            get { return "201610202042549_StartingToAddEventsForAMSA"; }
         }
         
         string IMigrationMetadata.Source
