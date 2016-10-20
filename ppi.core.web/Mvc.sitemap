@@ -3,7 +3,9 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="Dashboard" controller="Administration" action="Index">
+  <mvcSiteMapNode title="Menu" action="#">
+    <mvcSiteMapNode title="Hogan Reports" action="#">
+    <mvcSiteMapNode title="Dashboard" controller="Administration" action="Index" />
     <mvcSiteMapNode title="Administration" controller="Home" action="About">
       <mvcSiteMapNode title="Participants" controller="People" action="#" >
         <mvcSiteMapNode title="People" controller="People" action="Index" />
@@ -33,6 +35,7 @@
       <mvcSiteMapNode title="Manage Hogan Data" controller="Reports" action="Index"/>
       <mvcSiteMapNode title="Get Reports" controller="Reports" action="GetReports"/>
       <mvcSiteMapNode title="Hogan Export for ZCO" controller="Hogan" action="ZCOExportConfig"/>
+    </mvcSiteMapNode>
     </mvcSiteMapNode>
     <mvcSiteMapNode title="AmsaReports" controller="Reports" action="#">
       <mvcSiteMapNode title="Generate Reports" controller="Reports" action="IndexAmsaStudents"/>
