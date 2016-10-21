@@ -40,6 +40,8 @@
     <mvcSiteMapNode title="AmsaReports" controller="Reports" action="#">
       <mvcSiteMapNode title="Generate Reports" controller="Reports" action="IndexAmsaStudents"/>
       <mvcSiteMapNode title="Add Student Data" controller="Reports" action="CreateAmsaStudents"/>
+    
+    <mvcSiteMapNode title="Administer Event Status" controller="AMSAEventStatus" action="Index"/>
     </mvcSiteMapNode>
     
     <mvcSiteMapNode title="Billing" controller="Billing" action="Index"/>

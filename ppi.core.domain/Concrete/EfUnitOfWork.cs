@@ -406,5 +406,18 @@ namespace PPI.Core.Domain.Concrete
         {
             get { return _GenericRepository; }
         }
+
+        public object IAMSAEventStatusRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

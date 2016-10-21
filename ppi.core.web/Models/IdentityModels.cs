@@ -22,9 +22,11 @@ namespace PPI.Core.Web.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<PPI.Core.Web.Models.AmsaReports.AMSAEventStatus> AMSAEventStatus { get; set; }
     }
 
-    
+
 
 
     public class ApplicationDbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>

@@ -61,6 +61,7 @@ namespace PPI.Core.Domain.Abstract
          IGenericRepository<OESSetup> IOESSetup { get; }
          IGenericRepository<OESSchedule> IOESSchedule { get; }
          IGenericRepository<OESPracticeReport> IOESPracticeReport { get; }
+        object IAMSAEventStatusRepository { get; set; }
 
         void Commit();
     }
