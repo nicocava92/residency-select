@@ -1,46 +1,55 @@
-﻿@model PPI.Core.Web.Models.AmsaReports.AMSASite
+﻿@model PPI.Core.Web.Models.AmsaReports.Event.ViewModel.AMSASiteViewModel
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<h1>Edit</h1>
+<div class="main-box clearfix">
+    <div class="main-box-body">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>AMSASite</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <h2>AMSASite</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.AMSASite.id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSASite.Name, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AMSASite.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AMSASite.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSASite.FriendlyName, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AMSASite.FriendlyName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AMSASite.FriendlyName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.lstOrganization, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.idSelectedOrganization, Model.lstOrganization, new { @class = "form-control col-md-2" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                </div>
             </div>
-        </div>
+        }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FriendlyName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FriendlyName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FriendlyName, "", new { @class = "text-danger" })
-            </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+        </div></div>

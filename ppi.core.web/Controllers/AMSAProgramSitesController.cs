@@ -12,24 +12,26 @@ using PPI.Core.Web.Models.AmsaReports.Event.ViewModel;
 
 namespace PPI.Core.Web.Controllers
 {
-    public class AMSASitesController : Controller
+    public class AMSAProgramSitesController : Controller
     {
         public AMSAReportContext dbr { get; set; }
 
-        public AMSASitesController()
+        //Replace in Scafolding file
+        //private AMSAReportContext db = new AMSAReportContext();
+
+        public AMSAProgramSitesController()
         {
             dbr = new AMSAReportContext();
         }
 
-        // GET: /AMSASites/
+        // GET: /AMSAProgramSites/
         public ActionResult Index()
         {
-            AMSAReportContext dbo = new AMSAReportContext();
-            var model = dbo.AMSASite.ToList();
+            var model = dbr.AMSAProgramSite.ToList();
 			return View(model);
         }
 
-        // GET: /AMSASites/Details/5
+        // GET: /AMSAProgramSites/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,8 +39,8 @@ namespace PPI.Core.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 			//replace scafolding
-            //AMSASite aMSASite = db.AMSASite.Find(id);
-			var model = dbr.AMSASite.First(m => m.id == id);
+            //AMSAProgramSite aMSAProgramSite = db.AMSAProgramSite.Find(id);
+			var model = dbr.AMSAProgramSite.First(m => m.id == id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -46,70 +48,73 @@ namespace PPI.Core.Web.Controllers
             return View(model);
         }
 
-        // GET: /AMSASites/Create
+        // GET: /AMSAProgramSites/Create
         public ActionResult Create()
         {
-            return View(new AMSASiteViewModel());
+            
+            return View(new AMSAProgramSiteViewModel());
         }
 
-        // POST: /AMSASites/Create
+        // POST: /AMSAProgramSites/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?Linkid=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AMSASiteViewModel asvm)
+        public ActionResult Create(AMSAProgramSiteViewModel avm)
         {
             if (ModelState.IsValid)
             {
-                asvm.saveNewSite();
+                //db.AMSAProgramSite.Add(aMSAProgramSite);
+                //db.SaveChanges();
+                avm.saveNewSite();
                 return RedirectToAction("Index");
             }
 
-            return View(asvm);
+            return View(avm);
         }
 
-        // GET: /AMSASites/Edit/5
-        public ActionResult Edit(int id)
+        // GET: /AMSAProgramSites/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //AMSASite aMSASite = db.AMSASite.Find(id);
-            var model = new AMSASiteViewModel();
-            model.loadSelectedData(id);
+            //AMSAProgramSite aMSAProgramSite = db.AMSAProgramSite.Find(id);
+			var model = dbr.AMSAProgramSite.First(m => m.id == id);
+            AMSAProgramSiteViewModel avm = new AMSAProgramSiteViewModel();
+            avm.idSelectedProgram = model.AMSAProgram.id;
+            avm.idSelectedSite = model.AMSASite.id;
+            avm.AMSAProgramSite = dbr.AMSAProgramSite.Find(id);
             if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(model);
+            return View(avm);
         }
 
-        // POST: /AMSASites/Edit/5
+        // POST: /AMSAProgramSites/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?Linkid=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(AMSASiteViewModel asvm)
+        public ActionResult Edit(AMSAProgramSiteViewModel avm)
         {
-            if (ModelState.IsValid)
-            {
-                // db.Entry(aMSASite).State = EntityState.Modified;
-                asvm.saveChanges();
+              // db.Entry(aMSAProgramSite).State = EntityState.Modified;
+                //db.SaveChanges();
+                avm.saveChanges();
 				return RedirectToAction("Index");
-            }
-            return View(asvm);
         }
 
-        // GET: /AMSASites/Delete/5
+        // GET: /AMSAProgramSites/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //AMSASite aMSASite = db.AMSASite.Find(id);
-			var model = dbr.AMSASite.First(m => m.id == id);
+            //AMSAProgramSite aMSAProgramSite = db.AMSAProgramSite.Find(id);
+			var model = dbr.AMSAProgramSite.First(m => m.id == id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -117,19 +122,18 @@ namespace PPI.Core.Web.Controllers
             return View(model);
         }
 
-        // POST: /AMSASites/Delete/5
+        // POST: /AMSAProgramSites/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-           // AMSASite aMSASite = db.AMSASite.Find(id);
-           // db.AMSASite.Remove(aMSASite);
+           // AMSAProgramSite aMSAProgramSite = db.AMSAProgramSite.Find(id);
+           // db.AMSAProgramSite.Remove(aMSAProgramSite);
            // db.SaveChanges();
-		   var model = dbr.AMSASite.First(m => m.id == id);
-		   dbr.AMSASite.Remove(model);	
-		   dbr.SaveChanges();	
-
-            return RedirectToAction("Index");
+		    var model = dbr.AMSAProgramSite.First(m => m.id == id);
+		    dbr.AMSAProgramSite.Remove(model);
+            dbr.SaveChanges();
+           return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

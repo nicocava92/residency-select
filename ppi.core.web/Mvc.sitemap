@@ -46,6 +46,8 @@
       <mvcSiteMapNode title="Administer Event Types" controller="AMSAEventTypes" action="Index"/>
       <mvcSiteMapNode title="Administer Programs" controller="AMSAPrograms" action="Index"/>
       <mvcSiteMapNode title="Administer Survey Types" controller="AMSASurveyTypes" action="Index"/>
+      <mvcSiteMapNode title="Administer Sites" controller="AMSASites" action="Index"/>
+      <mvcSiteMapNode title="Administer Program - Sites" controller="AMSAProgramSites" action="Index"/>
     </mvcSiteMapNode>
     
     </mvcSiteMapNode>

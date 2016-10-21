@@ -23,6 +23,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             AMSAReportContext dbr = new AMSAReportContext();
             AMSASite amsaSite = dbr.AMSASite.Find(id);
             this.idSelectedOrganization = amsaSite.AMSAOrganization.id;
+            this.AMSASite = amsaSite;
             dbr.Dispose();
         }
         public void saveChanges()
@@ -33,6 +34,18 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             AMSAOrganization amsaOrganization = dbr.AMSAOrganization.Find(idSelectedOrganization);
             amsaSite.AMSAOrganization = amsaOrganization;
             dbr.SaveChanges();
+            dbr.Dispose();
+        }
+
+        public void saveNewSite()
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSASite amsaSite = new AMSASite();
+            amsaSite.Name = this.AMSASite.Name;
+            AMSASite.AMSAOrganization = dbr.AMSAOrganization.Find(this.idSelectedOrganization);
+            dbr.AMSASite.Add(AMSASite);
+            dbr.SaveChanges();
+            dbr.Dispose();
         }
 
     }

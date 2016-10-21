@@ -11,5 +11,9 @@ namespace PPI.Core.Web.Models.AmsaReports
         public int id { get; set; }
         [Required(ErrorMessage = "Name for Organization is required")]
         public string Name { get; set; }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

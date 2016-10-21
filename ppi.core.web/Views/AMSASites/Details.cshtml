@@ -5,27 +5,32 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<h1>Details</h1>
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        <div>
+            <h2>AMSASite</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-<div>
-    <h4>AMSASite</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FriendlyName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FriendlyName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FriendlyName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.FriendlyName)
+                </dd>
+                <dt>
+                    Organization
+                </dt>
+                <dd>@Html.DisplayFor(model => model.AMSAOrganization.Name)</dd>
 
     </dl>
 </div>
@@ -33,3 +38,5 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+</div>
+</div>
