@@ -1,4 +1,4 @@
-﻿@model PPI.Core.Web.Models.AmsaReports.AMSAEventStatus
+﻿@model PPI.Core.Web.Models.AmsaReports.AMSAProgram
 
 @{
     ViewBag.Title = "Create";
@@ -6,7 +6,6 @@
 }
 
 <h1>Create</h1>
-
 <div class="main-box clearfix">
     <div class="main-box-body">
         @using (Html.BeginForm())
@@ -14,7 +13,7 @@
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h2>AMSAEventStatus</h2>
+                <h2>AMSAProgram</h2>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">

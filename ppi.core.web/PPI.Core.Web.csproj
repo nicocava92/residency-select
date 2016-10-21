@@ -242,6 +242,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AMSAEventStatusController.cs" />
+    <Compile Include="Controllers\AMSAEventTypesController.cs" />
+    <Compile Include="Controllers\AMSAOrganizationsController.cs" />
+    <Compile Include="Controllers\AMSAProgramsController.cs" />
+    <Compile Include="Controllers\AMSASitesController.cs" />
+    <Compile Include="Controllers\AMSASurveyTypesController.cs" />
     <Compile Include="Controllers\AssessmentController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
@@ -278,6 +283,14 @@
     <Compile Include="Migrations\201610202042549_StartingToAddEventsForAMSA.Designer.cs">
       <DependentUpon>201610202042549_StartingToAddEventsForAMSA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610211621026_RestraintsOnCrud.cs" />
+    <Compile Include="Migrations\201610211621026_RestraintsOnCrud.Designer.cs">
+      <DependentUpon>201610211621026_RestraintsOnCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610211632494_RemovingImageInformationForAmsaSite.cs" />
+    <Compile Include="Migrations\201610211632494_RemovingImageInformationForAmsaSite.Designer.cs">
+      <DependentUpon>201610211632494_RemovingImageInformationForAmsaSite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -298,6 +311,7 @@
     <Compile Include="Models\AmsaReports\Event\AMSASurveyType.cs" />
     <Compile Include="Models\AmsaReports\AonItemsAF716AMSAVersionAB.cs" />
     <Compile Include="Models\AmsaReports\AonParagraphs.cs" />
+    <Compile Include="Models\AmsaReports\Event\ViewModel\AMSASiteViewModel.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
     <Compile Include="Models\AssessmentViewModel.cs" />
@@ -2950,6 +2964,31 @@
     <Content Include="Views\AMSAEventStatus\Details.cshtml" />
     <Content Include="Views\AMSAEventStatus\Edit.cshtml" />
     <Content Include="Views\AMSAEventStatus\Index.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Create.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Delete.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Details.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Edit.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Index.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Create.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Delete.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Details.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Edit.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Index.cshtml" />
+    <Content Include="Views\AMSAPrograms\Create.cshtml" />
+    <Content Include="Views\AMSAPrograms\Delete.cshtml" />
+    <Content Include="Views\AMSAPrograms\Details.cshtml" />
+    <Content Include="Views\AMSAPrograms\Edit.cshtml" />
+    <Content Include="Views\AMSAPrograms\Index.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Create.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Delete.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Details.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Edit.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Index.cshtml" />
+    <Content Include="Views\AMSASites\Create.cshtml" />
+    <Content Include="Views\AMSASites\Delete.cshtml" />
+    <Content Include="Views\AMSASites\Details.cshtml" />
+    <Content Include="Views\AMSASites\Edit.cshtml" />
+    <Content Include="Views\AMSASites\Index.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2999,6 +3038,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610202042549_StartingToAddEventsForAMSA.resx">
       <DependentUpon>201610202042549_StartingToAddEventsForAMSA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610211621026_RestraintsOnCrud.resx">
+      <DependentUpon>201610211621026_RestraintsOnCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610211632494_RemovingImageInformationForAmsaSite.resx">
+      <DependentUpon>201610211632494_RemovingImageInformationForAmsaSite.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
