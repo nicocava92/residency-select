@@ -5,6 +5,7 @@ using System.Web;
 
 using PPI.Core.Web.Models.AmsaReports;
 using System.Data.Entity;
+using PPI.Core.Web.Models.AmsaReports.Event;
 
 namespace PPI.Core.Web.Models
 {
@@ -20,6 +21,7 @@ namespace PPI.Core.Web.Models
         public DbSet<AMSAProgramSite> AMSAProgramSite { get; set; }
         public DbSet<AMSASite> AMSASite { get; set; }
         public DbSet<AMSASurveyType> AMSASurveySiteType { get; set; }
+        public DbSet<AMSANotBillableReason> AMSANotBillableReason { get; set; }
         public AMSAReportContext()
             : base("DefaultConnection")
         {

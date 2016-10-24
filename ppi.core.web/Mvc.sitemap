@@ -48,6 +48,7 @@
       <mvcSiteMapNode title="Survey Types" controller="AMSASurveyTypes" action="Index"/>
       <mvcSiteMapNode title="Sites" controller="AMSASites" action="Index"/>
       <mvcSiteMapNode title="Program - Sites" controller="AMSAProgramSites" action="Index"/>
+      <mvcSiteMapNode title="Not Billable Reason" controller="AMSANotBillableReasons" action="Index"/>
     </mvcSiteMapNode>
     
     </mvcSiteMapNode>

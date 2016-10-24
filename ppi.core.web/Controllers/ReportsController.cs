@@ -1112,7 +1112,7 @@ namespace PPI.Core.Web.Controllers
                     //Set to the highest quality of images possible
                     htmlToPdfConverter.Document.ImagesCompression = 0;
                     htmlToPdfConverter.Document.PageOrientation = PdfPageOrientation.Portrait;
-                    htmlToPdfConverter.Document.PageSize = PdfPageSize.A4;
+                    htmlToPdfConverter.Document.PageSize = PdfPageSize.Letter;
                     htmlToPdfConverter.SerialNumber = @"35e2jo+7-uZO2va2+-rabn8e//-7v/s/+bq-6P/s7vHu-7fHm5ubm";
                     // render the HTML code as PDF in memory
                     byte[] pdfBuffer = htmlToPdfConverter.ConvertHtmlToMemory(htmlToConvert, baseUrl);
