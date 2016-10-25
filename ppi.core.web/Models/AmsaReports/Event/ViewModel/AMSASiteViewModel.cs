@@ -47,6 +47,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             dbr.SaveChanges();
             dbr.Dispose();
         }
+        
 
     }
 

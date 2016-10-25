@@ -16,7 +16,7 @@ namespace PPI.Core.Web.Models.AmsaReports
         public string Description { get; set; } 
         //Users should be able to upload and administer event types
         [Required(ErrorMessage = "Please select an event type")]
-        public AMSAEventType AMSAEventType { get; set; } 
+        public AMSAEventType AMSAEventType { get; set; }  //Event type
         
         /*******
         Need to check how to add errors here
@@ -38,15 +38,18 @@ namespace PPI.Core.Web.Models.AmsaReports
 
         
         
-        public bool Placement { get; set; }
+        public int Placement { get; set; }
         public bool Billable { get; set; } 
 
         public AMSAOrganization AMSAOrganization { get; set; } //Organization
 
-        public AMSAProgramSite AMSAProgramSite { get; set; }  //Speciality
+        public AMSASurveyType AMSASurveyType { get; set; } // Survey Type
 
-        public AMSASurveyType AMSASurveyType { get; set; } // Site
+        public AMSAProgram AMSAProgram { get; set; } // Speciality
 
+        public AMSASite AMSASite { get; set; } //Departement
+
+        
         public int TotalNumberOfParticipants { get; set; } 
 
         public string defaultEmailAddress { get; set; } 
@@ -63,5 +66,7 @@ namespace PPI.Core.Web.Models.AmsaReports
 
 
         //Events start with a value of not started
+        
+
     }
 }
