@@ -1,0 +1,148 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.AMSAEvent
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Delete</h1>
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        <h2>Are you sure you want to delete this?</h2>
+        <div>
+            <h2>AMSAEvent</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.StartDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.EndDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ReviewDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ReviewDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CreateDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompositeNeedByDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CompositeNeedByDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.JetNeedByDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.JetNeedByDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Placement)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Placement)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Billable)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Billable)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalNumberOfParticipants)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalNumberOfParticipants)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.defaultEmailAddress)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.defaultEmailAddress)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.OrderBy)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OrderBy)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.JetRequired)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.JetRequired)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompositeRequired)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CompositeRequired)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+        </div></div>

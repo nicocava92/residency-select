@@ -241,6 +241,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\AMSAEventsController.cs" />
     <Compile Include="Controllers\AMSAEventStatusController.cs" />
     <Compile Include="Controllers\AMSAEventTypesController.cs" />
     <Compile Include="Controllers\AMSANotBillableReasonsController.cs" />
@@ -322,7 +323,7 @@
     <Compile Include="Models\AmsaReports\Event\AMSASurveyType.cs" />
     <Compile Include="Models\AmsaReports\AonItemsAF716AMSAVersionAB.cs" />
     <Compile Include="Models\AmsaReports\AonParagraphs.cs" />
-    <Compile Include="Models\AmsaReports\Event\ViewModel\AMAEventViewModel.cs" />
+    <Compile Include="Models\AmsaReports\Event\ViewModel\AMSAEventViewModel.cs" />
     <Compile Include="Models\AmsaReports\Event\ViewModel\AMSAProgramSiteViewModel.cs" />
     <Compile Include="Models\AmsaReports\Event\ViewModel\AMSASiteViewModel.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
@@ -3012,6 +3013,14 @@
     <Content Include="Views\AMSANotBillableReasons\Details.cshtml" />
     <Content Include="Views\AMSANotBillableReasons\Edit.cshtml" />
     <Content Include="Views\AMSANotBillableReasons\Index.cshtml" />
+    <Content Include="Views\AMSAEvents\Create.cshtml" />
+    <Content Include="Views\AMSAEvents\Delete.cshtml" />
+    <Content Include="Views\AMSAEvents\Details.cshtml" />
+    <Content Include="Views\AMSAEvents\Edit.cshtml" />
+    <Content Include="Views\AMSAEvents\Index.cshtml" />
+    <Content Include="Views\AMSAEvents\CreateInsertDates.cshtml" />
+    <Content Include="Views\AMSAEvents\CreateInsertDatesPost.cshtml" />
+    <Content Include="Views\AMSAEvents\PreviewCreate.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

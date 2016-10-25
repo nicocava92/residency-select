@@ -1,0 +1,135 @@
+﻿@model IEnumerable<PPI.Core.Web.Models.AmsaReports.AMSAEvent>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn  btn-primary btn-lg btn-block" })
+</p>
+<div>
+<table class="table table-responsive table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReviewDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompositeNeedByDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JetNeedByDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Placement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Billable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalNumberOfParticipants)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.defaultEmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JetRequired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompositeRequired)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReviewDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompositeNeedByDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JetNeedByDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Placement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Billable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalNumberOfParticipants)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.defaultEmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JetRequired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompositeRequired)
+        </td>
+        <td>            
+			<a href="@Url.Action("Edit", new { id = item.id })" class="table-link success">
+                        <span class="fa-stack">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>                            
+                        </span>
+                    </a>            
+			<a href="@Url.Action("Details", new { id=item.id })" class="table-link">
+                        <span class="fa-stack">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>            
+			<a href="@Url.Action("Delete", new { id=item.id })" class="table-link danger" onclick="return confirm('Are you sure you wish to delete');">
+                        <span class="fa-stack">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                        </span>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>
+</div>
