@@ -11,5 +11,6 @@ namespace PPI.Core.Web.Models.AmsaReports
         public int id { get; set; }
         [Required(ErrorMessage = "Name for Program is required")]
         public string Name { get; set; }
+        public AMSAProgram() { }
     }
 }

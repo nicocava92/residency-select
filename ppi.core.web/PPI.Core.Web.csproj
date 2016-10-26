@@ -302,6 +302,22 @@
     <Compile Include="Migrations\201610241435494_AddingNotBillableReason.Designer.cs">
       <DependentUpon>201610241435494_AddingNotBillableReason.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610251539458_AMSAEvent.cs" />
+    <Compile Include="Migrations\201610251539458_AMSAEvent.Designer.cs">
+      <DependentUpon>201610251539458_AMSAEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610251814438_Event.cs" />
+    <Compile Include="Migrations\201610251814438_Event.Designer.cs">
+      <DependentUpon>201610251814438_Event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610261911110_Events.cs" />
+    <Compile Include="Migrations\201610261911110_Events.Designer.cs">
+      <DependentUpon>201610261911110_Events.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610262034579_Event1.cs" />
+    <Compile Include="Migrations\201610262034579_Event1.Designer.cs">
+      <DependentUpon>201610262034579_Event1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -3019,7 +3035,6 @@
     <Content Include="Views\AMSAEvents\Edit.cshtml" />
     <Content Include="Views\AMSAEvents\Index.cshtml" />
     <Content Include="Views\AMSAEvents\CreateInsertDates.cshtml" />
-    <Content Include="Views\AMSAEvents\CreateInsertDatesPost.cshtml" />
     <Content Include="Views\AMSAEvents\PreviewCreate.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3082,6 +3097,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610241435494_AddingNotBillableReason.resx">
       <DependentUpon>201610241435494_AddingNotBillableReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251539458_AMSAEvent.resx">
+      <DependentUpon>201610251539458_AMSAEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251814438_Event.resx">
+      <DependentUpon>201610251814438_Event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610261911110_Events.resx">
+      <DependentUpon>201610261911110_Events.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610262034579_Event1.resx">
+      <DependentUpon>201610262034579_Event1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -15,5 +15,6 @@ namespace PPI.Core.Web.Models.AmsaReports
         {
             return Name;
         }
+        public AMSAOrganization() { }
     }
 }

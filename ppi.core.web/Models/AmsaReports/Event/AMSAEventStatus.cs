@@ -11,5 +11,7 @@ namespace PPI.Core.Web.Models.AmsaReports
         public int id { get; set; }
         [Required (ErrorMessage = "Name for Event Status is required")]
         public string Name { get; set; }
+
+        public AMSAEventStatus() { }
     }
 }

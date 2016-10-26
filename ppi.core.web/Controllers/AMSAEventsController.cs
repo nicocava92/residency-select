@@ -62,6 +62,10 @@ namespace PPI.Core.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AMSAEventViewModel ae)
         {
+            //Check for select menus that are missing a selection
+            ae.selectMenusHaveValues(ModelState);
+
+
             if (ModelState.IsValid) //Need to change this because all information will not be present because of pagination
             {
                 //db.AMSAEvent.Add(aMSAEvent);
@@ -72,14 +76,15 @@ namespace PPI.Core.Web.Controllers
                 to come back or finish entering the Event
                 ***************/
 
-                
-                return RedirectToAction("CreateInsertDates",ae);
+                return RedirectToAction("CreateInsertDates","AMSAEvents",ae);
             }
 
-            return View();
+            return View(ae);
         }
 
         //Get page that shows date insertion for the different values related to Amsa Event
+
+
         [HttpGet]
         public ActionResult CreateInsertDates(AMSAEventViewModel ae) {
             return View(ae);
@@ -195,5 +200,38 @@ namespace PPI.Core.Web.Controllers
             //}
            // base.Dispose(disposing);
         }
+
+        //Method called to get values for when Organization changes
+        [HttpPost]
+        public ActionResult GetDepartments(int organizationId) {
+            //Search for departments (sites) with the selected organization Id and change the values inside of the select menu
+            List<AMSASite> lstResult = new List<AMSASite>();
+            lstResult = dbr.AMSASite.Where(m => m.AMSAOrganization.id == organizationId).ToList();
+            return Json( new { Data = lstResult });
+        }
+
+        [HttpPost]
+        public ActionResult GetSpeciality(int departmentId)
+        {
+            List<AMSAProgram> lstResult = new List<AMSAProgram>();
+            //Store the ids of programs related to the department
+            List<int> lstIdDepartment = new List<int>();
+            List<AMSAProgramSite> lstProgramSite = dbr.AMSAProgramSite.Where(m => m.AMSASite.id == departmentId).ToList();
+            foreach(var a in lstProgramSite)
+            {
+                lstIdDepartment.Add(a.AMSAProgram.id);
+            }
+            //Get all programs and filter them
+            foreach(int i in lstIdDepartment)
+            {
+                AMSAProgram auxProgram = dbr.AMSAProgram.Where(m => m.id == i).FirstOrDefault();
+                if (!lstResult.Contains(auxProgram))
+                {
+                    lstResult.Add(auxProgram);
+                }
+            }
+            return Json(new { Data = lstResult });
+        }
     }
+
 }

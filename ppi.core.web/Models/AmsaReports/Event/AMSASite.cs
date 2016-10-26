@@ -19,5 +19,6 @@ namespace PPI.Core.Web.Models.AmsaReports
         //public string BrandingBackground { get; set; }
         //public string BrandingBackgroundMimeType { get; set; }
         public virtual AMSAOrganization AMSAOrganization { get; set; }
+        public AMSASite() { }
     }
 }

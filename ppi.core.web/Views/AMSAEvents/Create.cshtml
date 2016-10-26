@@ -1,11 +1,12 @@
-﻿@model PPI.Core.Web.Models.AmsaReports.AMSAEvent
+﻿@model PPI.Core.Web.Models.AmsaReports.Event.ViewModel.AMSAEventViewModel
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "SetUp";
+    Layout = "~/Views/Shared/_LayoutAdminOESSetup.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Setup</h1>
+<br>
 <div class="main-box clearfix">
     <div class="main-box-body">
 
@@ -18,136 +19,128 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.AMSAEvent.Name, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.AMSAEvent.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AMSAEvent.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.AMSAEvent.AMSAOrganization, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.idSelectedOrganization, Model.AMSAOrganization, new { @class = "form-control", @id = "EventOrganizationId", @onChange = "getDepartment()" })
+                        @Html.ValidationMessage("selectedOrganization")
+                        <br />
+                        @Html.ActionLink("Add New Organization", "Create" , "AMSAOrganizations", null, new { @class = "btn btn-primary"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.AMSASite, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.idSelectedSite, Model.AMSASite, new { @class = "form-control", @id = "EventDepartmentId", @onChange = "getSpeciality()" })
+                        @Html.ValidationMessage("selectedDepartment")
+                        <br />
+                        @Html.ActionLink("Add New Department (Site)", "Create", "AMSASites", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.AMSAProgram, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.idSelectedProgram, Model.AMSAProgram, new { @class = "form-control", @id = "SpecialityId" })
+                        @Html.ValidationMessage("selectedSpeciality")
+                        <br />
+                        @Html.ActionLink("Add New Department (Site)", "Create", "AMSAProgramSites", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.Description, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.AMSAEvent.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AMSAEvent.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ReviewDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ReviewDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ReviewDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CreateDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CreateDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CreateDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CompositeNeedByDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CompositeNeedByDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CompositeNeedByDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.JetNeedByDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.JetNeedByDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.JetNeedByDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Placement, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.AMSAEvent.OrderBy, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.Placement)
-                            @Html.ValidationMessageFor(model => model.Placement, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.AMSAEvent.OrderBy, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.AMSAEvent.OrderBy, "", new { @class = "text-danger"})
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Billable, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.AMSAEvent.defaultEmailAddress, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.Billable)
-                            @Html.ValidationMessageFor(model => model.Billable, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.AMSAEvent.defaultEmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AMSAEvent.defaultEmailAddress, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.TotalNumberOfParticipants, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TotalNumberOfParticipants, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TotalNumberOfParticipants, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.AMSAEvent.Billable, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.AMSAEvent.Billable, Model.YesNo, new { @class = "form-control", @onChange = "billableOptions()", @id = "idBillable" })
+                        @Html.ValidationMessageFor(model => model.AMSAEvent.Billable, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" id="notBillableOptions" style="display:none;">
+                    @Html.LabelFor(model => model.AMSAEvent.AMSANotBillableReason, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.idSelectedNotBillableReason, Model.AMSANotBillableReason, new { @class = "form-control", @onChange = "billableOptions()", @id = "idBillable" })
+                        @Html.ValidationMessage("notBillableReson")
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.defaultEmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.defaultEmailAddress, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.defaultEmailAddress, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.AMSAEvent.AMSAEventType, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.idSelectedEventType, Model.AMSAEventType, new { @class = "form-control" })
+                        @Html.ValidationMessage("eventType")
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.AMSASurveyType, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.idSelectedSurveyType, Model.AMSASurveyType, new { @class = "form-control" })
+                        @Html.ValidationMessage("surveyType")
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.CompositeRequired, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.AMSAEvent.CompositeRequired, Model.YesNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AMSAEvent.CompositeRequired, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.JetRequired, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.AMSAEvent.JetRequired, Model.YesNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AMSAEvent.JetRequired, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.TotalNumberOfParticipants, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.AMSAEvent.TotalNumberOfParticipants, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AMSAEvent.TotalNumberOfParticipants, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.OrderBy, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.OrderBy, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.OrderBy, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.JetRequired, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.JetRequired)
-                            @Html.ValidationMessageFor(model => model.JetRequired, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CompositeRequired, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.CompositeRequired)
-                            @Html.ValidationMessageFor(model => model.CompositeRequired, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-success" />
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" value="Next >" class="btn btn-success" />
                     </div>
                 </div>
             </div>
@@ -157,3 +150,77 @@
             @Html.ActionLink("Back to List", "Index")
         </div>
         </div></div>
+
+@section Scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
+        billableOptions();
+    });
+
+    function getDepartment() {
+            var orgId = $('#EventOrganizationId').val();
+            if (orgId != "") {
+                $.ajax({
+                    url: '/AMSAEvents/GetDepartments/',
+                    type: "POST",
+                    dataType: "json",
+                    data: { organizationId: orgId },
+                    success: function (result) {
+                        $('#SpecialityId').empty();
+                        $('#SpecialityId').append('<option>' + " - Select - " + '</option>');
+                        $('#EventDepartmentId').empty();
+                        $('#EventDepartmentId').append('<option>' + " - Select - " + '</option>');
+                        console.log("Information that we are getting back at this piint?");
+                        console.log(result);
+                        result = result.Data;
+                        if(result.length > 0){
+                            $.each(result, function (i, result) {
+                                $('#EventDepartmentId').append('<option value="' + result.id + '">' + result.Name + '</option>');
+                            });
+                        }
+                    },
+                    error: function (xhr) {
+                        console.log("Error:");
+                        cosnole.log(JSON.stringify({ errr: xhr }));
+                    }
+                });
+                }
+    }
+    function getSpeciality() {
+        var depId = $('#EventDepartmentId').val();
+        if (depId != "") {
+            $.ajax({
+                url: '/AMSAEvents/GetSpeciality/',
+                type: "POST",
+                dataType: "json",
+                data: { departmentId: depId },
+                success: function (result) {
+                    $('#SpecialityId').empty();
+                    $('#SpecialityId').append('<option>' + " - Select - " + '</option>');
+                    result = result.Data;
+                    if (result.length > 0) {
+                        $.each(result, function (i, result) {
+                            $('#SpecialityId').append('<option value="' + result.id + '">' + result.Name + '</option>');
+                        });
+                    }
+                },
+                error: function (xhr) {
+                    console.log("Error:");
+                    cosnole.log(JSON.stringify({ errr: xhr }));
+                }
+            });
+        }
+    }
+
+    function billableOptions() {
+        var valueSelected = $("#idBillable").val();
+        if (valueSelected == "False") {
+            $("#notBillableOptions").fadeIn();
+        }
+        else {
+            $("#notBillableOptions").fadeOut();
+        }
+
+    }
+</script>
+}

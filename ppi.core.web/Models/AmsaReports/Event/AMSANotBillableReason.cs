@@ -9,5 +9,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event
     {
         public int id { get; set; }
         public string Name { get; set; }
+
+        public AMSANotBillableReason() { }
     }
 }

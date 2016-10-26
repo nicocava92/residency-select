@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PPI.Core.Web.Models.AmsaReports.Event;
+using System.ComponentModel.DataAnnotations;
 
 namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
 {
@@ -16,21 +18,25 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
         public SelectList AMSAEventStatus { get; set; }
         public int idSelectedEventStatus { get; set; }
         public SelectList AMSAOrganization { get; set; }
+        [Required(ErrorMessage = "Please select an Organization")]
         public int idSelectedOrganization { get; set; }
         public SelectList AMSASurveyType { get; set; }
         public int idSelectedSurveyType { get; set; }
         public SelectList AMSANotBillableReason { get; set; }
         public int idSelectedNotBillableReason { get; set; }
         public SelectList AMSAProgram { get; set; }
+        [Required(ErrorMessage = "Please select a Program")]
         public int idSelectedProgram { get; set; }
         public SelectList AMSASite { get; set; }
+        [Required(ErrorMessage = "Please select a Site")]
         public int idSelectedSite { get; set; }
 
         //Select yes or no
         public SelectList YesNo { get; set; }
         public List<YesNo> ValuesYesNo { get; set; }
 
-        
+        private List<AMSAOrganization> ListOfOrganization = new List<AMSAOrganization>();
+        private List<AMSASite> ListOfAmsaSite = new List<AMSASite>();
 
 
         public AMSAEventViewModel()
@@ -40,9 +46,13 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             AMSAEventStatus = new SelectList(dbr.AMSAEventStatus.ToList(), "id", "Name");
             AMSASurveyType = new SelectList(dbr.AMSASurveySiteType.ToList(), "id", "Name");
             AMSANotBillableReason = new SelectList(dbr.AMSANotBillableReason.ToList(), "id", "Name");
-            AMSAOrganization = new SelectList(dbr.AMSAOrganization.ToList(), "id", "Name");
-            AMSASite = new SelectList(dbr.AMSASite.ToList(), "id", "Name");
-            AMSAProgram = new SelectList(dbr.AMSAProgram.ToList(), "id", "Name");
+            ListOfOrganization = dbr.AMSAOrganization.ToList();
+            AMSAOrganization = new SelectList(ListOfOrganization, "id", "Name");
+            //AMSASite = new SelectList(dbr.AMSASite.ToList(), "id", "Name"); //We get this value when an organization is selected
+            ListOfAmsaSite = getSiteRelatedToFirstOrganization(dbr);
+            AMSASite = new SelectList(getSiteRelatedToFirstOrganization(dbr),"id","Name");
+            
+            AMSAProgram = new SelectList(getProgramRelatedToFirstOrganizationandFirtDepartment(dbr), "id", "Name");
 
             //Order by set
             this.AMSAEvent = new AMSAEvent();
@@ -52,9 +62,89 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             dbr.Dispose();
         }
 
+        internal void selectMenusHaveValues(ModelStateDictionary m)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            //Search for the selected organization and see if it exists
+            AMSAOrganization o = dbr.AMSAOrganization.Find(idSelectedOrganization);
+            if (o == null)
+                m.AddModelError("selectedOrganization", "Error! Please select an Organization");
+            else
+                this.AMSAEvent.AMSAOrganization = o;
+
+            AMSASite s = dbr.AMSASite.Find(idSelectedSite);
+            if (s == null)
+                m.AddModelError("selectedDepartment", "Error! Please select a Department");
+            else
+                this.AMSAEvent.AMSASite = s;
+
+            AMSAProgram p = dbr.AMSAProgram.Find(idSelectedProgram);
+            if (p == null)
+                m.AddModelError("selectedSpeciality", "Error! Please select a Speciality");
+            else
+                this.AMSAEvent.AMSAProgram = p;
+
+            AMSAEventType et = dbr.AMSAEventType.Find(idSelectedEventType);
+            if (et == null)
+                m.AddModelError("eventType", "Please select an event type");
+            else
+                this.AMSAEvent.AMSAEventType = et;
+
+            AMSASurveyType st = dbr.AMSASurveySiteType.Find(idSelectedSurveyType);
+            if (st == null)
+                m.AddModelError("surveyType", "Please select a survey type");
+            else
+                this.AMSAEvent.AMSASurveyType = st;
+
+            if (!this.AMSAEvent.Billable) { 
+            AMSANotBillableReason nbr = dbr.AMSANotBillableReason.Find(idSelectedNotBillableReason);
+            if (nbr == null)
+                m.AddModelError("notBillableReson", "Please select a not billable reason");
+            else
+                this.AMSAEvent.AMSANotBillableReason = nbr;
+            }
+
+            
+            dbr.Dispose();
+        }
+
+        //Gets organizations to show on first load for event creation
+        private List<AMSASite> getSiteRelatedToFirstOrganization(AMSAReportContext dbr)
+        {
+            List<AMSASite> lst = new List<AMSASite>();
+            if(this.ListOfOrganization.Count() > 0) {
+                int idOrganization = this.ListOfOrganization[0].id;
+                lst = dbr.AMSASite.Where(m => m.AMSAOrganization.id == idOrganization).ToList();
+            }
+            return lst;
+        }
+
+        //Gets programs to be shown on first load for event creation
+        private List<AMSAProgram> getProgramRelatedToFirstOrganizationandFirtDepartment(AMSAReportContext dbr)
+        {
+            List<AMSAProgram> lst = new List<AMSAProgram>();
+            List<AMSAProgramSite> lstProgramSite = new List<AMSAProgramSite>();
+            if (this.ListOfAmsaSite.Count() > 0)
+            {
+                int idAMSASite = this.ListOfAmsaSite[0].id;
+                lstProgramSite = dbr.AMSAProgramSite.Where(m => m.AMSASite.id == idAMSASite).ToList();
+            }
+            foreach(var i in lstProgramSite)
+            {
+                AMSAProgram auxProgram = dbr.AMSAProgram.Where(m => m.id == i.AMSAProgram.id).FirstOrDefault();
+                if(!lst.Contains(auxProgram))
+                {
+                    lst.Add(auxProgram);
+                }
+            }
+            
+            return lst;
+        }
+
         public void addValuesToYesNo()
         {
             this.ValuesYesNo = new List<YesNo>();
+            this.AMSAEvent.Billable = true;
             this.ValuesYesNo.Add(new YesNo { name = "Yes", value = true });
             this.ValuesYesNo.Add(new YesNo { name = "No", value = false });
         }
@@ -160,5 +250,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
     {
         public string name { get; set; }
         public bool value { get; set; }
+
+        public YesNo() { }
     }
 }
