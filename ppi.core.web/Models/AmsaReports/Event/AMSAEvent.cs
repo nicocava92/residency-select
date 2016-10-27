@@ -26,12 +26,12 @@ namespace PPI.Core.Web.Models.AmsaReports
         *********/
         [DisplayName("Start Date")]
         public DateTime StartDate { get; set; }
-        [DisplayName("End Date")]
-        public DateTime EndDate { get; set; }
-        [DisplayName("Review Date")]
+        [DisplayName("Event / Review Date")]
         public DateTime ReviewDate { get; set; }
         [DisplayName("Create Date")]
         public DateTime CreateDate { get; set; }
+        [DisplayName("End Date")]
+        public DateTime EndDate { get; set; }
         //If Composite = true
         [DisplayName("Composite Needed By Date")]
         public DateTime CompositeNeedByDate { get; set; }

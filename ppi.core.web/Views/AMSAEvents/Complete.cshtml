@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Complete";
+    Layout = "~/Views/Shared/_LayoutAdminOESSetup.cshtml";
+}
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        <h2>Complete</h2>
+        <div class="alert alert-success alert-white rounded">
+            <div class="icon"><i class="fa fa-check"></i></div>
+            <strong>Success!</strong> The event has been successfully created!.
+        </div>
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
+
+@section Scripts{
+
+<script type="text/javascript">
+    //Scripts for top banner with current step of process
+    $(document).ready(function (e) {
+        $("#setupProjectli").addClass("active");
+        $("#scheduleProjectli").addClass("complete");
+        $("#reviewProjectli").addClass("complete");
+        $("#completeProjectli").addClass("active");
+    });
+</script>
+}

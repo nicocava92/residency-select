@@ -62,6 +62,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             dbr.Dispose();
         }
 
+       
         internal void selectMenusHaveValues(ModelStateDictionary m)
         {
             AMSAReportContext dbr = new AMSAReportContext();
@@ -106,6 +107,58 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
 
             
             dbr.Dispose();
+        }
+
+        //Check validity of inserted Dates
+        internal void checkDates(ModelStateDictionary m)
+        {
+            //Check that none of the dates are empty
+            if (this.AMSAEvent.ReviewDate == null) {
+                m.AddModelError("EventDate","Event Date Required");
+            }
+            if (this.AMSAEvent.StartDate == null) {
+                m.AddModelError("StartDate", "Start Date Required");
+            }
+            if (this.AMSAEvent.EndDate == null) {
+                m.AddModelError("EndDate", "End Date Required");
+            }
+            if (this.AMSAEvent.JetNeedByDate == null && this.AMSAEvent.JetRequired) {
+                m.AddModelError("JetNeededByDate", "Jet Needed By Date Required");
+            }
+            if (this.AMSAEvent.CompositeNeedByDate == null && this.AMSAEvent.CompositeRequired){
+                m.AddModelError("CompositeNeededByDate", "Composite Needed By Date Required");                 
+            }
+            
+            //Event date -Must be later than end date
+            if(this.AMSAEvent.ReviewDate != null)
+            {
+                if (this.AMSAEvent.ReviewDate <= this.AMSAEvent.EndDate)
+                    m.AddModelError("EventDate", "Event Date must be later than end date");
+            }
+            //Start date - Before Event / Review date and the End date
+            if(this.AMSAEvent.StartDate != null)
+            {
+                if (this.AMSAEvent.StartDate >= this.AMSAEvent.ReviewDate || this.AMSAEvent.StartDate >= this.AMSAEvent.EndDate)
+                    m.AddModelError("StartDate", "Start Date must be before Event / Review Date and before End Date");
+            }
+            //End date - Should not be before the Stat Date and after the Event Date
+            if(this.AMSAEvent.EndDate != null)
+            {
+                if(this.AMSAEvent.EndDate <= this.AMSAEvent.StartDate || this.AMSAEvent.EndDate >= this.AMSAEvent.ReviewDate)
+                    m.AddModelError("EndDate", "End Date should not be before the Start Date and after the Event / Review Date");
+            }
+            //Jet Needed by Date - Should be later than the End Date
+            if(this.AMSAEvent.JetNeedByDate != null && this.AMSAEvent.JetRequired)
+                {
+                    if (this.AMSAEvent.JetNeedByDate <= this.AMSAEvent.EndDate)
+                        m.AddModelError("JetNeededByDate", "Jet Needed By Date should be later than the End Date");
+                }
+            //Composite Needed by Date -should be later than the End Date
+            if(this.AMSAEvent.CompositeNeedByDate != null && this.AMSAEvent.CompositeRequired)
+                {
+                if (this.AMSAEvent.CompositeNeedByDate <= this.AMSAEvent.EndDate)
+                    m.AddModelError("CompositeNeededByDate", "Composite Needed by Date should be later than the End Date");
+                }
         }
 
         //Gets organizations to show on first load for event creation
@@ -221,7 +274,9 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             ae.OrderBy = this.AMSAEvent.OrderBy;
             ae.JetRequired = this.AMSAEvent.JetRequired;
             ae.CompositeRequired = this.AMSAEvent.CompositeRequired;
+            ae.AMSAEventStatus = dbr.AMSAEventStatus.Where(m => m.Name.Equals("Invitation")).FirstOrDefault();
             dbr.AMSAEvent.Add(ae);
+            dbr.SaveChanges();
             dbr.Dispose();
         }
 

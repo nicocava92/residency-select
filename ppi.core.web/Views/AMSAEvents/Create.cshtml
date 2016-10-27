@@ -141,14 +141,12 @@
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-9">
                         <input type="submit" value="Next >" class="btn btn-success" />
+                        @Html.ActionLink("Back to List", "Index")
                     </div>
                 </div>
             </div>
         }
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
         </div></div>
 
 @section Scripts{
@@ -222,5 +220,12 @@
         }
 
     }
+</script>
+
+<script type="text/javascript">
+    //Scripts for top banner with current step of process
+    $(document).ready(function (e) {
+        $("#setupProjectli").addClass("active");
+    });
 </script>
 }

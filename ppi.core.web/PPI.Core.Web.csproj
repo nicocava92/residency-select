@@ -318,6 +318,14 @@
     <Compile Include="Migrations\201610262034579_Event1.Designer.cs">
       <DependentUpon>201610262034579_Event1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610271329134_Event2.cs" />
+    <Compile Include="Migrations\201610271329134_Event2.Designer.cs">
+      <DependentUpon>201610271329134_Event2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610271356491_Event3.cs" />
+    <Compile Include="Migrations\201610271356491_Event3.Designer.cs">
+      <DependentUpon>201610271356491_Event3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -3036,6 +3044,7 @@
     <Content Include="Views\AMSAEvents\Index.cshtml" />
     <Content Include="Views\AMSAEvents\CreateInsertDates.cshtml" />
     <Content Include="Views\AMSAEvents\PreviewCreate.cshtml" />
+    <Content Include="Views\AMSAEvents\Complete.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3109,6 +3118,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610262034579_Event1.resx">
       <DependentUpon>201610262034579_Event1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610271329134_Event2.resx">
+      <DependentUpon>201610271329134_Event2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610271356491_Event3.resx">
+      <DependentUpon>201610271356491_Event3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -52,6 +52,7 @@ namespace PPI.Core.Web.Controllers
         // GET: /AMSAEvents/Create
         public ActionResult Create()
         {
+            Session["ae"] = null;
             return View(new AMSAEventViewModel());
         }
 
@@ -75,6 +76,7 @@ namespace PPI.Core.Web.Controllers
                 Instaed of creating right away we should send them to a page where they can view what the entered, give them the opportunity
                 to come back or finish entering the Event
                 ***************/
+                Session["ae"] = ae;
                 return View("CreateInsertDates", ae);
             }
 
@@ -86,35 +88,60 @@ namespace PPI.Core.Web.Controllers
 
         [HttpGet]
         public ActionResult CreateInsertDates(AMSAEventViewModel ae) {
+            ae = (AMSAEventViewModel)Session["ae"];
             return View(ae);
         }
         //After dates are inserted show preview craete
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateInsertDatesPost(AMSAEventViewModel ae) {
-
-            return View("PreviewCreate",ae);
+            AMSAEventViewModel aeForInsert = (AMSAEventViewModel)Session["ae"];
+            //Assing the dates to the model that is stored in the session variable
+            aeForInsert.AMSAEvent.CompositeNeedByDate = ae.AMSAEvent.CompositeNeedByDate;
+            aeForInsert.AMSAEvent.CreateDate = ae.AMSAEvent.CreateDate;
+            aeForInsert.AMSAEvent.EndDate = ae.AMSAEvent.EndDate;
+            aeForInsert.AMSAEvent.JetNeedByDate = ae.AMSAEvent.JetNeedByDate;
+            aeForInsert.AMSAEvent.ReviewDate = ae.AMSAEvent.ReviewDate;
+            aeForInsert.AMSAEvent.StartDate = ae.AMSAEvent.StartDate;
+            Session["ae"] = aeForInsert;
+            ae.AMSAEvent.Name = aeForInsert.AMSAEvent.Name;
+            ae.AMSAEvent.defaultEmailAddress = aeForInsert.AMSAEvent.defaultEmailAddress;
+            ae.AMSAEvent.Description = aeForInsert.AMSAEvent.Description;
+           //If only 3 errors are present they are related to errors from other views
+            
+            if (ModelState.IsValid) { 
+                return RedirectToAction("PreviewCreate");
+            }
+            return View("CreateInsertDates",aeForInsert);
         }
 
         //Get page that shows a preview of the information that will be stored for the AMSA Event at hand (if accepted stores)
         [HttpGet]
-        public ActionResult PreviewCreate(AMSAEventViewModel ae)
+        public ActionResult PreviewCreate()
         {
+            AMSAEventViewModel ae = (AMSAEventViewModel)Session["ae"];
             return View(ae);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         //Stores the event in the database
-        public ActionResult FinishCreatingEvent(AMSAEventViewModel ae)
+        public ActionResult CompleteEventInsertion()
         {
+            //Gets value from the datbase for the event
+            AMSAEventViewModel ae = (AMSAEventViewModel)Session["ae"];
+            ae.AMSAEvent.CreateDate = DateTime.Now;
+            
             //Check all of it for errors, if no errors are found then store the Event in the db
-            if (ModelState.IsValid)
-            {
-                ae.saveNewEvent();
-                return RedirectToAction("Index");
-            }
-            return View(ae);
+            Session["ae"] = ae;
+            ae.saveNewEvent();
+            return View("Complete");
+        }
+
+        [HttpGet]
+        public ActionResult Complete()
+        {
+            return View();
         }
         
         [HttpGet]
