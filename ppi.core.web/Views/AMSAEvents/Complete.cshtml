@@ -10,9 +10,8 @@
             <div class="icon"><i class="fa fa-check"></i></div>
             <strong>Success!</strong> The event has been successfully created!.
         </div>
-        <p>
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+        @Html.ActionLink("Back to list", "Index", "AMSAEvents", new { @class = "btn btn-success" })
+        </div>
     </div>
 </div>
 
@@ -21,7 +20,7 @@
 <script type="text/javascript">
     //Scripts for top banner with current step of process
     $(document).ready(function (e) {
-        $("#setupProjectli").addClass("active");
+        $("#setupProjectli").addClass("complete");
         $("#scheduleProjectli").addClass("complete");
         $("#reviewProjectli").addClass("complete");
         $("#completeProjectli").addClass("active");

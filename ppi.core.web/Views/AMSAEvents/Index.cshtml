@@ -14,119 +14,78 @@
 <table class="table table-responsive table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Event
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartDate)
+            Start Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndDate)
+            End Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReviewDate)
+            Review Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
+            Status
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompositeNeedByDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JetNeedByDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Placement)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Billable)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalNumberOfParticipants)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.defaultEmailAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JetRequired)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompositeRequired)
-        </th>
+        <th>Type</th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(m => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @Html.DisplayFor(m => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
+            @Html.DisplayFor(m => item.StartDate))
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
+            @Html.DisplayFor(m => item.EndDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ReviewDate)
+            @Html.DisplayFor(m => item.ReviewDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreateDate)
+            @try { 
+                if (item.AMSAEventStatus.Name.Equals("Invitation"))
+                {
+                    <label class="label-success label label-large txt-white" style="width:100px;display:block ">Invitation</label>
+                }
+                else if (item.AMSAEventStatus.Name.Equals("InComplete"))
+                {
+                    <label class="label-warning label label-large txt-white" style="width:100px;display:block ">In Complete</label>
+                }
+                else if(item.AMSAEventStatus.Name.Equals("Not Started"))
+                {
+                    <label class="label-danger label label-large txt-white" style="width:100px;display:block ">Not Started</label>
+                }
+                else if (item.AMSAEventStatus.Name.Equals("Finished"))
+                {
+                    <label class="label-primary label label-large txt-white" style="width:100px;display:block ">Finished</label>
+                }
+            }
+            catch
+            {
+                <text>No Status</text>
+            }
+        </td>
+       
+        <td>
+            @Html.DisplayFor(m => item.AMSAEventType.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CompositeNeedByDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JetNeedByDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Placement)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Billable)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalNumberOfParticipants)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.defaultEmailAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JetRequired)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompositeRequired)
-        </td>
-        <td>            
-			<a href="@Url.Action("Edit", new { id = item.id })" class="table-link success">
-                        <span class="fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>                            
-                        </span>
-                    </a>            
-			<a href="@Url.Action("Details", new { id=item.id })" class="table-link">
-                        <span class="fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>            
-			<a href="@Url.Action("Delete", new { id=item.id })" class="table-link danger" onclick="return confirm('Are you sure you wish to delete');">
-                        <span class="fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                        </span>
-            </a>
+            <div class="groupbtn text-right">
+                @Html.ActionLink("Edit", "Edit", "AMSAEvents", new { id = @item.id}, new { @class = "btn btn-default btn-xs" })
+                @Html.ActionLink("Delete", "Delete", "AMSAEvents", new { id = @item.id }, new { @class = "btn btn-danger btn-xs" })
+                @Html.ActionLink("@ TPG", "EmailTpg", "AMSAEvents", new { id = @item.id }, new { @class = "btn btn-primary btn-xs" })
+            </div>
         </td>
     </tr>
 }

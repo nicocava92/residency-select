@@ -19,7 +19,7 @@ namespace PPI.Core.Web.Models.AmsaReports
         public string Description { get; set; } 
         //Users should be able to upload and administer event types
         [DisplayName("Event Type")]
-        public AMSAEventType AMSAEventType { get; set; }  //Event type
+        public virtual AMSAEventType AMSAEventType { get; set; }  //Event type
         
         /*******
         Need to check how to add errors here
@@ -42,7 +42,7 @@ namespace PPI.Core.Web.Models.AmsaReports
 
         //Users should be able to upload and administer event status
         [DisplayName("Event Status")]
-        public AMSAEventStatus AMSAEventStatus { get; set; }
+        public virtual AMSAEventStatus AMSAEventStatus { get; set; }
 
         public int Placement { get; set; }
         public bool Billable { get; set; } 
@@ -51,7 +51,7 @@ namespace PPI.Core.Web.Models.AmsaReports
         public AMSAOrganization AMSAOrganization { get; set; } //Organization
 
         [DisplayName("Survey Type")]
-        public AMSASurveyType AMSASurveyType { get; set; } // Survey Type
+        public virtual AMSASurveyType AMSASurveyType { get; set; } // Survey Type
 
         [DisplayName("Speciality")]
         public AMSAProgram AMSAProgram { get; set; } // Speciality

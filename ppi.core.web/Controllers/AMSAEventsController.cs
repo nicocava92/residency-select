@@ -52,8 +52,10 @@ namespace PPI.Core.Web.Controllers
         // GET: /AMSAEvents/Create
         public ActionResult Create()
         {
-            Session["ae"] = null;
-            return View(new AMSAEventViewModel());
+            AMSAEventViewModel ae = new AMSAEventViewModel();
+            if (Session["ae"] != null)
+                ae = (AMSAEventViewModel)Session["ae"];
+            return View(ae);
         }
 
         // POST: /AMSAEvents/Create
@@ -63,8 +65,11 @@ namespace PPI.Core.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AMSAEventViewModel ae)
         {
+            if (Session["ae"] != null)
+                ae = (AMSAEventViewModel)Session["ae"];
             //Check for select menus that are missing a selection
-            ae.selectMenusHaveValues(ModelState);
+            else
+                ae.selectMenusHaveValues(ModelState);
 
 
             if (ModelState.IsValid) //Need to change this because all information will not be present because of pagination
@@ -135,6 +140,7 @@ namespace PPI.Core.Web.Controllers
             //Check all of it for errors, if no errors are found then store the Event in the db
             Session["ae"] = ae;
             ae.saveNewEvent();
+            Session["ae"] = null;
             return View("Complete");
         }
 
