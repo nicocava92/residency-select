@@ -75,8 +75,7 @@ namespace PPI.Core.Web.Controllers
                 Instaed of creating right away we should send them to a page where they can view what the entered, give them the opportunity
                 to come back or finish entering the Event
                 ***************/
-
-                return RedirectToAction("CreateInsertDates","AMSAEvents",ae);
+                return View("CreateInsertDates", ae);
             }
 
             return View(ae);
