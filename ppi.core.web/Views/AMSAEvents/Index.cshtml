@@ -84,7 +84,7 @@
             <div class="groupbtn text-right">
                 @Html.ActionLink("Edit", "Edit", "AMSAEvents", new { id = @item.id }, new { @class = "btn btn-default btn-xs" })
                 @Html.ActionLink("Delete", "Delete", "AMSAEvents", new { id = @item.id }, new { @class = "btn btn-danger btn-xs" })
-                @Html.ActionLink("@ TPG", "EmailTpg", "AMSAEvents", new { id = @item.id }, new { @class = "btn btn-primary btn-xs" })
+                @Html.ActionLink("@ TPG", "EmailTpg", "AMSAEvents", new { id = @item.id }, new { @class = "btn btn-primary btn-xs", @disabled = "disabled" })
             </div>
         </td>
     </tr>
