@@ -205,13 +205,13 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
         public void loadSelectedData(int id)
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            AMSAEvent ae = dbr.AMSAEvent.Find(id);
-            idSelectedEventType = ae.AMSAEventType.id;
-            idSelectedEventStatus = ae.AMSAEventStatus.id;
-            idSelectedOrganization = ae.AMSAOrganization.id;
-            idSelectedProgram = ae.AMSAProgram.id;
-            idSelectedSurveyType = ae.AMSASurveyType.id;
-            idSelectedNotBillableReason = ae.AMSANotBillableReason.id;
+            this.AMSAEvent = dbr.AMSAEvent.Find(id);
+            idSelectedEventType = this.AMSAEvent.AMSAEventType.id;
+            idSelectedEventStatus = this.AMSAEvent.AMSAEventStatus.id;
+            idSelectedOrganization = this.AMSAEvent.AMSAOrganization.id;
+            idSelectedProgram = this.AMSAEvent.AMSAProgram.id;
+            idSelectedSurveyType = this.AMSAEvent.AMSASurveyType.id;
+            idSelectedNotBillableReason = this.AMSAEvent.AMSANotBillableReason.id;
             dbr.Dispose();
         }
         public void saveChanges()
@@ -242,7 +242,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             ae.OrderBy = this.AMSAEvent.OrderBy;
             ae.JetRequired = this.AMSAEvent.JetRequired;
             ae.CompositeRequired = this.AMSAEvent.CompositeRequired;
-            
+            ae.AMSAEventStatus = dbr.AMSAEventStatus.Where(m => m.Name.Equals("Invitation")).FirstOrDefault();
             dbr.SaveChanges();
             dbr.Dispose();
         }

@@ -326,6 +326,14 @@
     <Compile Include="Migrations\201610271356491_Event3.Designer.cs">
       <DependentUpon>201610271356491_Event3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610282040357_Event4.cs" />
+    <Compile Include="Migrations\201610282040357_Event4.Designer.cs">
+      <DependentUpon>201610282040357_Event4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610282106552_Event5.cs" />
+    <Compile Include="Migrations\201610282106552_Event5.Designer.cs">
+      <DependentUpon>201610282106552_Event5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -3124,6 +3132,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610271356491_Event3.resx">
       <DependentUpon>201610271356491_Event3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610282040357_Event4.resx">
+      <DependentUpon>201610282040357_Event4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610282106552_Event5.resx">
+      <DependentUpon>201610282106552_Event5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

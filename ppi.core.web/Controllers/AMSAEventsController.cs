@@ -112,8 +112,8 @@ namespace PPI.Core.Web.Controllers
             ae.AMSAEvent.Name = aeForInsert.AMSAEvent.Name;
             ae.AMSAEvent.defaultEmailAddress = aeForInsert.AMSAEvent.defaultEmailAddress;
             ae.AMSAEvent.Description = aeForInsert.AMSAEvent.Description;
-           //If only 3 errors are present they are related to errors from other views
-            
+            //If only 3 errors are present they are related to errors from other views
+            ae.checkDates(ModelState);
             if (ModelState.IsValid) { 
                 return RedirectToAction("PreviewCreate");
             }
@@ -166,9 +166,8 @@ namespace PPI.Core.Web.Controllers
         public ActionResult Edit(int id)
         {   
             //AMSAEvent aMSAEvent = db.AMSAEvent.Find(id);
-			var model = dbr.AMSAEvent.First(m => m.id == id);
+			AMSAEvent model = dbr.AMSAEvent.First(m => m.id == id);
             AMSAEventViewModel ae = new AMSAEventViewModel();
-            ae.AMSAEvent = model;
             ae.loadSelectedData(id);
             if (model == null)
             {
@@ -184,10 +183,13 @@ namespace PPI.Core.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AMSAEventViewModel ae)
         {
+            ae.checkDates(ModelState);
             if (ModelState.IsValid)
             {
                 // db.Entry(aMSAEvent).State = EntityState.Modified;
                 //db.SaveChanges();
+
+                //Storing changes performed to the ASMA Event
                 ae.saveChanges();
 				return RedirectToAction("Index");
             }

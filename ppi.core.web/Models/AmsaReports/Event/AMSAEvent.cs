@@ -25,19 +25,19 @@ namespace PPI.Core.Web.Models.AmsaReports
         Need to check how to add errors here
         *********/
         [DisplayName("Start Date")]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         [DisplayName("Event / Review Date")]
-        public DateTime ReviewDate { get; set; }
+        public DateTime? ReviewDate { get; set; }
         [DisplayName("Create Date")]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         [DisplayName("End Date")]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         //If Composite = true
         [DisplayName("Composite Needed By Date")]
-        public DateTime CompositeNeedByDate { get; set; }
+        public DateTime? CompositeNeedByDate { get; set; }
         //If JetNeedByDate = true
         [DisplayName("Jet Needed By Date")]
-        public DateTime JetNeedByDate { get; set; }
+        public DateTime? JetNeedByDate { get; set; }
 
 
         //Users should be able to upload and administer event status
@@ -48,16 +48,16 @@ namespace PPI.Core.Web.Models.AmsaReports
         public bool Billable { get; set; } 
 
         [DisplayName("Organization")]
-        public AMSAOrganization AMSAOrganization { get; set; } //Organization
+        public virtual AMSAOrganization AMSAOrganization { get; set; } //Organization
 
         [DisplayName("Survey Type")]
         public virtual AMSASurveyType AMSASurveyType { get; set; } // Survey Type
 
         [DisplayName("Speciality")]
-        public AMSAProgram AMSAProgram { get; set; } // Speciality
+        public virtual AMSAProgram AMSAProgram { get; set; } // Speciality
 
         [DisplayName("Department")]
-        public AMSASite AMSASite { get; set; } //Departement
+        public virtual AMSASite AMSASite { get; set; } //Departement
 
         [DisplayName("Total Number of Participants")]
         [Required(ErrorMessage = "Please insert number of participants")]
@@ -79,7 +79,7 @@ namespace PPI.Core.Web.Models.AmsaReports
 
         //If not billable select the reason
         [DisplayName("Not billable reason")]
-        public AMSANotBillableReason AMSANotBillableReason { get; set; }
+        public virtual AMSANotBillableReason AMSANotBillableReason { get; set; }
 
         //If an event is not billable change the menu and expand information to add in why the event is not billable
 
