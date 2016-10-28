@@ -334,6 +334,10 @@
     <Compile Include="Migrations\201610282106552_Event5.Designer.cs">
       <DependentUpon>201610282106552_Event5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610282248019_Event6.cs" />
+    <Compile Include="Migrations\201610282248019_Event6.Designer.cs">
+      <DependentUpon>201610282248019_Event6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -3138,6 +3142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610282106552_Event5.resx">
       <DependentUpon>201610282106552_Event5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610282248019_Event6.resx">
+      <DependentUpon>201610282248019_Event6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

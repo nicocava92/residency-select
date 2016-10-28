@@ -274,3 +274,4 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debu
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event3.resources
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event4.resources
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event5.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event6.resources

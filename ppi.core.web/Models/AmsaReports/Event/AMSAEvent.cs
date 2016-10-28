@@ -53,8 +53,8 @@ namespace PPI.Core.Web.Models.AmsaReports
         [DisplayName("Survey Type")]
         public virtual AMSASurveyType AMSASurveyType { get; set; } // Survey Type
 
-        [DisplayName("Speciality")]
-        public virtual AMSAProgram AMSAProgram { get; set; } // Speciality
+        [DisplayName("Specialty")]
+        public virtual AMSAProgram AMSAProgram { get; set; } // Specialty
 
         [DisplayName("Department")]
         public virtual AMSASite AMSASite { get; set; } //Departement
