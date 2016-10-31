@@ -169,10 +169,6 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\Syst
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\System.Web.WebPages.Razor.xml
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\HiQPdf.dep
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.csprojResolveAssemblyReference.cache
-C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.InitialCreate.resources
-C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.IdentityUpdate.resources
-C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.IdentityUpdate1.resources
-C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.csproj.GenerateResource.Cache
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.pdb
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.web\bin\PPI.Core.Web.dll.config
@@ -264,3 +260,17 @@ C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.csproj.GenerateResource.Cache
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.dll
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.StartingToAddEventsForAMSA.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.csproj.GenerateResource.Cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.RestraintsOnCrud.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.RemovingImageInformationForAmsaSite.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.UpdatingEvent.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.AddingNotBillableReason.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.AMSAEvent.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Events.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event1.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event2.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event3.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event4.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Event5.resources

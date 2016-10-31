@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+//Using related to AMSA Reports, getting data from different classes that participate with Events, Reports, Participants
+
 
 namespace PPI.Core.Web.Models
 {
@@ -20,7 +22,13 @@ namespace PPI.Core.Web.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<PPI.Core.Web.Models.AmsaReports.AMSAEventStatus> AMSAEventStatus { get; set; }
     }
+
+
+
+
     public class ApplicationDbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
     {        
         protected override void Seed(ApplicationDbContext context)

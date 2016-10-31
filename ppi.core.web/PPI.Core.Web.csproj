@@ -62,15 +62,15 @@
       <HintPath>..\packages\CsvHelper.2.7.1\lib\net40-client\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.MappingAPI">
       <HintPath>..\packages\EntityFramework.MappingAPI.6.1.0.9\lib\net45\EntityFramework.MappingAPI.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="HiQPdf, Version=8.10.0.0, Culture=neutral, PublicKeyToken=acd8b62594985b24, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -241,6 +241,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\AMSAEventsController.cs" />
+    <Compile Include="Controllers\AMSAEventStatusController.cs" />
+    <Compile Include="Controllers\AMSAEventTypesController.cs" />
+    <Compile Include="Controllers\AMSANotBillableReasonsController.cs" />
+    <Compile Include="Controllers\AMSAOrganizationsController.cs" />
+    <Compile Include="Controllers\AMSAProgramsController.cs" />
+    <Compile Include="Controllers\AMSAProgramSitesController.cs" />
+    <Compile Include="Controllers\AMSASitesController.cs" />
+    <Compile Include="Controllers\AMSASurveyTypesController.cs" />
     <Compile Include="Controllers\AssessmentController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
@@ -273,17 +282,57 @@
     <Compile Include="MatchPracticeReports.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201401152243236_InitialCreate.cs" />
-    <Compile Include="Migrations\201401152243236_InitialCreate.Designer.cs">
-      <DependentUpon>201401152243236_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201610202042549_StartingToAddEventsForAMSA.cs" />
+    <Compile Include="Migrations\201610202042549_StartingToAddEventsForAMSA.Designer.cs">
+      <DependentUpon>201610202042549_StartingToAddEventsForAMSA.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201405202058358_IdentityUpdate.cs" />
-    <Compile Include="Migrations\201405202058358_IdentityUpdate.Designer.cs">
-      <DependentUpon>201405202058358_IdentityUpdate.cs</DependentUpon>
+    <Compile Include="Migrations\201610211621026_RestraintsOnCrud.cs" />
+    <Compile Include="Migrations\201610211621026_RestraintsOnCrud.Designer.cs">
+      <DependentUpon>201610211621026_RestraintsOnCrud.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201405202254219_IdentityUpdate1.cs" />
-    <Compile Include="Migrations\201405202254219_IdentityUpdate1.Designer.cs">
-      <DependentUpon>201405202254219_IdentityUpdate1.cs</DependentUpon>
+    <Compile Include="Migrations\201610211632494_RemovingImageInformationForAmsaSite.cs" />
+    <Compile Include="Migrations\201610211632494_RemovingImageInformationForAmsaSite.Designer.cs">
+      <DependentUpon>201610211632494_RemovingImageInformationForAmsaSite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241355168_UpdatingEvent.cs" />
+    <Compile Include="Migrations\201610241355168_UpdatingEvent.Designer.cs">
+      <DependentUpon>201610241355168_UpdatingEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241435494_AddingNotBillableReason.cs" />
+    <Compile Include="Migrations\201610241435494_AddingNotBillableReason.Designer.cs">
+      <DependentUpon>201610241435494_AddingNotBillableReason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610251539458_AMSAEvent.cs" />
+    <Compile Include="Migrations\201610251539458_AMSAEvent.Designer.cs">
+      <DependentUpon>201610251539458_AMSAEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610251814438_Event.cs" />
+    <Compile Include="Migrations\201610251814438_Event.Designer.cs">
+      <DependentUpon>201610251814438_Event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610261911110_Events.cs" />
+    <Compile Include="Migrations\201610261911110_Events.Designer.cs">
+      <DependentUpon>201610261911110_Events.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610262034579_Event1.cs" />
+    <Compile Include="Migrations\201610262034579_Event1.Designer.cs">
+      <DependentUpon>201610262034579_Event1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610271329134_Event2.cs" />
+    <Compile Include="Migrations\201610271329134_Event2.Designer.cs">
+      <DependentUpon>201610271329134_Event2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610271356491_Event3.cs" />
+    <Compile Include="Migrations\201610271356491_Event3.Designer.cs">
+      <DependentUpon>201610271356491_Event3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610282040357_Event4.cs" />
+    <Compile Include="Migrations\201610282040357_Event4.Designer.cs">
+      <DependentUpon>201610282040357_Event4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610282106552_Event5.cs" />
+    <Compile Include="Migrations\201610282106552_Event5.Designer.cs">
+      <DependentUpon>201610282106552_Event5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
@@ -292,10 +341,23 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AmsaReports\AmsaReportsItems.cs" />
+    <Compile Include="Models\AMSAReportContext.cs" />
+    <Compile Include="Models\AmsaReports\AMSAReportsItems.cs" />
     <Compile Include="Models\AmsaReports\AmsaReportStudentData.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAEvent.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAEventStatus.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAEventType.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSANotBillableReason.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAOrganization.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAProgram.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSAProgramSite.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSASite.cs" />
+    <Compile Include="Models\AmsaReports\Event\AMSASurveyType.cs" />
     <Compile Include="Models\AmsaReports\AonItemsAF716AMSAVersionAB.cs" />
     <Compile Include="Models\AmsaReports\AonParagraphs.cs" />
+    <Compile Include="Models\AmsaReports\Event\ViewModel\AMSAEventViewModel.cs" />
+    <Compile Include="Models\AmsaReports\Event\ViewModel\AMSAProgramSiteViewModel.cs" />
+    <Compile Include="Models\AmsaReports\Event\ViewModel\AMSASiteViewModel.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
     <Compile Include="Models\AssessmentViewModel.cs" />
@@ -2943,6 +3005,54 @@
     <Content Include="Views\Reports\EditAmsaStudents.cshtml" />
     <Content Include="Views\Reports\IndexAmsaStudents.cshtml" />
     <Content Include="Views\Reports\AMSAReportToPDFTestDesign.cshtml" />
+    <Content Include="Views\AMSAEventStatus\Create.cshtml" />
+    <Content Include="Views\AMSAEventStatus\Delete.cshtml" />
+    <Content Include="Views\AMSAEventStatus\Details.cshtml" />
+    <Content Include="Views\AMSAEventStatus\Edit.cshtml" />
+    <Content Include="Views\AMSAEventStatus\Index.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Create.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Delete.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Details.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Edit.cshtml" />
+    <Content Include="Views\AMSAOrganizations\Index.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Create.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Delete.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Details.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Edit.cshtml" />
+    <Content Include="Views\AMSAEventTypes\Index.cshtml" />
+    <Content Include="Views\AMSAPrograms\Create.cshtml" />
+    <Content Include="Views\AMSAPrograms\Delete.cshtml" />
+    <Content Include="Views\AMSAPrograms\Details.cshtml" />
+    <Content Include="Views\AMSAPrograms\Edit.cshtml" />
+    <Content Include="Views\AMSAPrograms\Index.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Create.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Delete.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Details.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Edit.cshtml" />
+    <Content Include="Views\AMSASurveyTypes\Index.cshtml" />
+    <Content Include="Views\AMSASites\Create.cshtml" />
+    <Content Include="Views\AMSASites\Delete.cshtml" />
+    <Content Include="Views\AMSASites\Details.cshtml" />
+    <Content Include="Views\AMSASites\Edit.cshtml" />
+    <Content Include="Views\AMSASites\Index.cshtml" />
+    <Content Include="Views\AMSAProgramSites\Create.cshtml" />
+    <Content Include="Views\AMSAProgramSites\Delete.cshtml" />
+    <Content Include="Views\AMSAProgramSites\Details.cshtml" />
+    <Content Include="Views\AMSAProgramSites\Edit.cshtml" />
+    <Content Include="Views\AMSAProgramSites\Index.cshtml" />
+    <Content Include="Views\AMSANotBillableReasons\Create.cshtml" />
+    <Content Include="Views\AMSANotBillableReasons\Delete.cshtml" />
+    <Content Include="Views\AMSANotBillableReasons\Details.cshtml" />
+    <Content Include="Views\AMSANotBillableReasons\Edit.cshtml" />
+    <Content Include="Views\AMSANotBillableReasons\Index.cshtml" />
+    <Content Include="Views\AMSAEvents\Create.cshtml" />
+    <Content Include="Views\AMSAEvents\Delete.cshtml" />
+    <Content Include="Views\AMSAEvents\Details.cshtml" />
+    <Content Include="Views\AMSAEvents\Edit.cshtml" />
+    <Content Include="Views\AMSAEvents\Index.cshtml" />
+    <Content Include="Views\AMSAEvents\CreateInsertDates.cshtml" />
+    <Content Include="Views\AMSAEvents\PreviewCreate.cshtml" />
+    <Content Include="Views\AMSAEvents\Complete.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2982,21 +3092,53 @@
     <Content Include="Reports\TransistionPractice.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201401152243236_InitialCreate.resx">
-      <DependentUpon>201401152243236_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405202058358_IdentityUpdate.resx">
-      <DependentUpon>201405202058358_IdentityUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405202254219_IdentityUpdate1.resx">
-      <DependentUpon>201405202254219_IdentityUpdate1.cs</DependentUpon>
-    </EmbeddedResource>
     <Content Include="Reports\ManagePractice.rdlc" />
     <Content Include="Reports\RangeReport.rdlc" />
     <Content Include="Reports\MatchReport.rdlc" />
     <Content Include="Reports\CoachReport.rdlc" />
     <Content Include="Reports\GraphPractice.rdlc" />
     <Content Include="Reports\ScalesReport.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610202042549_StartingToAddEventsForAMSA.resx">
+      <DependentUpon>201610202042549_StartingToAddEventsForAMSA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610211621026_RestraintsOnCrud.resx">
+      <DependentUpon>201610211621026_RestraintsOnCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610211632494_RemovingImageInformationForAmsaSite.resx">
+      <DependentUpon>201610211632494_RemovingImageInformationForAmsaSite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241355168_UpdatingEvent.resx">
+      <DependentUpon>201610241355168_UpdatingEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241435494_AddingNotBillableReason.resx">
+      <DependentUpon>201610241435494_AddingNotBillableReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251539458_AMSAEvent.resx">
+      <DependentUpon>201610251539458_AMSAEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251814438_Event.resx">
+      <DependentUpon>201610251814438_Event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610261911110_Events.resx">
+      <DependentUpon>201610261911110_Events.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610262034579_Event1.resx">
+      <DependentUpon>201610262034579_Event1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610271329134_Event2.resx">
+      <DependentUpon>201610271329134_Event2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610271356491_Event3.resx">
+      <DependentUpon>201610271356491_Event3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610282040357_Event4.resx">
+      <DependentUpon>201610282040357_Event4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610282106552_Event5.resx">
+      <DependentUpon>201610282106552_Event5.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

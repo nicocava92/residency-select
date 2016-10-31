@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Complete";
+    Layout = "~/Views/Shared/_LayoutAdminOESSetup.cshtml";
+}
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        <h2>Complete</h2>
+        <div class="alert alert-success alert-white rounded">
+            <div class="icon"><i class="fa fa-check"></i></div>
+            <strong>Success!</strong> The event has been successfully created!.
+        </div>
+        @Html.ActionLink("Back to list", "Index", "AMSAEvents", new { @class = "btn btn-success" })
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+<script type="text/javascript">
+    //Scripts for top banner with current step of process
+    $(document).ready(function (e) {
+        $("#setupProjectli").addClass("complete");
+        $("#scheduleProjectli").addClass("complete");
+        $("#reviewProjectli").addClass("complete");
+        $("#completeProjectli").addClass("active");
+    });
+</script>
+}

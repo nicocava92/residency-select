@@ -1,0 +1,148 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.Event.ViewModel.AMSAEventViewModel
+
+@{
+    ViewBag.Title = "Insert Dates";
+    Layout = "~/Views/Shared/_LayoutAdminOESSetup.cshtml";
+}
+
+<h1>Edit</h1>
+
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        @using (Html.BeginForm("CreateInsertDatesPost", "AMSAEvents"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h2>AMSAEvent</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.AMSAEvent.id)
+                
+                @* Data added so validation of form items would be correct
+                    ae.AMSAEvent.Name = aeForInsert.AMSAEvent.Name;
+                    ae.AMSAEvent.defaultEmailAddress = aeForInsert.AMSAEvent.defaultEmailAddress;
+                    ae.AMSAEvent.Description = aeForInsert.AMSAEvent.Description;
+                *@
+                <div class="form-group" style="display:none;">
+                    @Html.LabelFor(model => model.AMSAEvent.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            @Html.TextBoxFor(model => model.AMSAEvent.Name, new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" })
+                            @Html.ValidationMessage("EventDate")
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="display:none;">
+                    @Html.LabelFor(model => model.AMSAEvent.defaultEmailAddress, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            @Html.TextBoxFor(model => model.AMSAEvent.defaultEmailAddress, new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" })
+                            @Html.ValidationMessage("EventDate")
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="display:none;">
+                    @Html.LabelFor(model => model.AMSAEvent.Description, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            @Html.TextBoxFor(model => model.AMSAEvent.Description, new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" })
+                            @Html.ValidationMessage("EventDate")
+                        </div>
+                    </div>
+                </div>
+
+    
+                @*
+                Form will be built depending on what values where selected on past form
+                *@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.ReviewDate, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            @Html.TextBoxFor(model => model.AMSAEvent.ReviewDate, new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" })
+                            @Html.ValidationMessage("EventDate")
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.StartDate, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            @Html.TextBoxFor(model => model.AMSAEvent.StartDate, new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" })
+                            @Html.ValidationMessage("StartDate")
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSAEvent.EndDate, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            @Html.TextBoxFor(model => model.AMSAEvent.EndDate, new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" })
+                            @Html.ValidationMessage("EndDate")
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.AMSAEvent.JetRequired)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAEvent.JetNeedByDate, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-5">
+                            <div class="checkbox">
+                                @Html.TextBoxFor(model => model.AMSAEvent.JetNeedByDate, new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" })
+                                @Html.ValidationMessage("JetNeededByDate")
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.AMSAEvent.CompositeRequired)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAEvent.CompositeNeedByDate, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-5">
+                            <div class="checkbox">
+                                @Html.TextBoxFor(model => model.AMSAEvent.CompositeNeedByDate, new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" })
+                                @Html.ValidationMessage("CompositeNeededByDate")
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-5">
+                        @Html.ActionLink("Back to Setup", "Create", "AMSAEvents", new { @class = "btn btn-default " })
+                        <input type="submit" value="Preview >" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+@section Scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#setupProjectli").addClass("complete");
+        $("#scheduleProjectli").addClass("active");
+        $('.datepicker').datepicker(
+            {
+                autoclose: true
+            });
+    })
+</script>
+
+<script type="text/javascript">
+    //Scripts for top banner with current step of process
+    $(document).ready(function (e) {
+        $("#setupProjectli").addClass("complete");
+        $("#scheduleProjectli").addClass("active");
+    });
+</script>
+    }

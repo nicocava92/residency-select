@@ -5,15 +5,14 @@ namespace PPI.Core.Web.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PPI.Core.Web.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PPI.Core.Web.Models.AMSAReportContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "PPI.Core.Web.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(PPI.Core.Web.Models.ApplicationDbContext context)
+        protected override void Seed(PPI.Core.Web.Models.AMSAReportContext context)
         {
             //  This method will be called after migrating to the latest version.
 

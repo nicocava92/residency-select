@@ -12,10 +12,6 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Debug\PPI.Core.Database.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Debug\PPI.Core.Database.pdb
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\bin\Debug\master.dacpac
-C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Debug\Model.xml
-C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Debug\refactor.xml
-C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Debug\postdeploy.sql
-C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Debug\predeploy.sql
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Debug\PPI.Core.Database.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Core.Database\obj\Debug\PPI.Core.Database.pdb
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Core.Database\bin\Debug\PPI.Core.Database.dacpac

@@ -99,7 +99,7 @@
                             {
 
                                 <a href="@Url.Action("Edit", new { id = item.Id })" title="Edit" class="btn btn-default btn-sm btn60">Edit</a>
-                                <a href="@Url.Action("Delete", new { id=item.Id })" class="btn btn-danger btn-sm btn60" title="Delete" onclick="return confirm('You will not be able to do this action. Are you sure you wish to delete this Event?\n\nClick \'OK\' to delete the Event.  Click \'Cancel\' to do nothing and close this alert.');">Delete</a>
+                                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger btn-sm btn60" title="Delete" onclick="return confirm('You will not be able to do this action. Are you sure you wish to delete this Event?\n\nClick \'OK\' to delete the Event.  Click \'Cancel\' to do nothing and close this alert.');">Delete</a>
                             }
                             @if (User.IsInRole("J3PAdmin") || User.IsInRole("Admin"))
                             {
