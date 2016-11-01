@@ -351,6 +351,14 @@
     <Compile Include="Migrations\201611011430138_Participant3.Designer.cs">
       <DependentUpon>201611011430138_Participant3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611011500235_Participant4.cs" />
+    <Compile Include="Migrations\201611011500235_Participant4.Designer.cs">
+      <DependentUpon>201611011500235_Participant4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611011503593_Participant5.cs" />
+    <Compile Include="Migrations\201611011503593_Participant5.Designer.cs">
+      <DependentUpon>201611011503593_Participant5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -3174,6 +3182,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611011430138_Participant3.resx">
       <DependentUpon>201611011430138_Participant3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611011500235_Participant4.resx">
+      <DependentUpon>201611011500235_Participant4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611011503593_Participant5.resx">
+      <DependentUpon>201611011503593_Participant5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

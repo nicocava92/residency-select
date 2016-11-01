@@ -76,6 +76,8 @@ namespace PPI.Core.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AMSAParticipantViewModel pvm)
         {
+            pvm.AMSAParticipant.AMSA_Password = "";
+            ModelState.Remove("AMSAParticipant.AMSA_Password");
             if (ModelState.IsValid)
             {
                 // db.Entry(aMSAParticipant).State = EntityState.Modified;

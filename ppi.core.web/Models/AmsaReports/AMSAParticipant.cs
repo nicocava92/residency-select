@@ -21,21 +21,22 @@ namespace PPI.Core.Web.Models.AmsaReports
         [EmailAddress(ErrorMessage = "Please insert a valid e-mail address")]
         [DisplayName("Primary E-mail address")]
         public string PrimaryEmail { get; set; }
-        [Required (ErrorMessage = "Please insert a Gender")]
         public string Gender { get; set; }
         [Required(ErrorMessage = "Please insert a Title")]
         public string Title { get; set; }
-        [Required (ErrorMessage = "Please select an event")]
         [DisplayName("Event")]
         public virtual AMSAEvent AMSAEvent { get; set; }
         [Required(ErrorMessage = "Please insert a AAMC Number")]
+        [DisplayName("AAMC Number")]
         public string AAMCNumber { get; set; }
 
         //Same as Hogan Code
+        [DisplayName("AMSA Code")]
         public string AMSACode { get; set; }
         //Password
         [Required]
         [PasswordPropertyText]
+        [DisplayName("Password")]
         public string AMSA_Password { get; set; }
 
     }

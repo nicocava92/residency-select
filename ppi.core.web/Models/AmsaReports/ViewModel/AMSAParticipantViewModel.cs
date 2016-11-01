@@ -53,8 +53,8 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             p.AMSAEvent = dbr.AMSAEvent.Find(this.idSelectedEvent);
             //Password -- Need to check if this is necesary and check for the password compared to how mvc identity takes care of passwords
             //p.AMSA_Password = this.AMSAParticipant.AMSA_Password;
-            IPasswordHasher passwordHasher = new PasswordHasher();
-            p.AMSA_Password = passwordHasher.HashPassword(this.AMSAParticipant.AMSA_Password);
+            //IPasswordHasher passwordHasher = new PasswordHasher();
+            //p.AMSA_Password = passwordHasher.HashPassword(this.AMSAParticipant.AMSA_Password);
             p.AAMCNumber = this.AMSAParticipant.AAMCNumber;
             p.FirstName = this.AMSAParticipant.FirstName;
             p.LastName = this.AMSAParticipant.LastName;
