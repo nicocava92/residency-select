@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using PPI.Core.Web.Models;
 using PPI.Core.Web.Models.AmsaReports;
+using PPI.Core.Web.Models.AmsaReports.ViewModel;
 
 namespace PPI.Core.Web.Controllers
 {
@@ -28,26 +29,19 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /AMSAParticipants/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-			//replace scafolding
-            //AMSAParticipant aMSAParticipant = db.AMSAParticipant.Find(id);
-			var model = dbr.AMSAParticipant.First(m => m.Id == id);
-            if (model == null)
-            {
-                return HttpNotFound();
-            }
+            //Get data to show on view model
+            var model = dbr.AMSAParticipant.First(m => m.Id == id);
+            AMSAParticipantViewModel pvm = new AMSAParticipantViewModel();
+            pvm.loadSelectedData(id);
             return View(model);
         }
 
         // GET: /AMSAParticipants/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new AMSAParticipantViewModel());
         }
 
         // POST: /AMSAParticipants/Create
@@ -55,34 +49,24 @@ namespace PPI.Core.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,FirstName,LastName,PrimaryEmail,Gender,Title,AMSACode")] AMSAParticipant aMSAParticipant)
+        public ActionResult Create(AMSAParticipantViewModel pvm)
         {
             if (ModelState.IsValid)
             {
                 //db.AMSAParticipant.Add(aMSAParticipant);
                 //db.SaveChanges();
-				dbr.AMSAParticipant.Add(aMSAParticipant);
-                dbr.SaveChanges();		
+                pvm.saveNewParticipant();
                 return RedirectToAction("Index");
             }
-
-            return View(aMSAParticipant);
+            return View(pvm);
         }
 
         // GET: /AMSAParticipants/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            //AMSAParticipant aMSAParticipant = db.AMSAParticipant.Find(id);
-			var model = dbr.AMSAParticipant.First(m => m.Id == id);
-            if (model == null)
-            {
-                return HttpNotFound();
-            }
-            return View(model);
+            AMSAParticipantViewModel pvm = new AMSAParticipantViewModel();
+            pvm.loadSelectedData(id);
+            return View(pvm);
         }
 
         // POST: /AMSAParticipants/Edit/5
@@ -90,23 +74,16 @@ namespace PPI.Core.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,FirstName,LastName,PrimaryEmail,Gender,Title,AMSACode")] AMSAParticipant aMSAParticipant)
+        public ActionResult Edit(AMSAParticipantViewModel pvm)
         {
             if (ModelState.IsValid)
             {
                 // db.Entry(aMSAParticipant).State = EntityState.Modified;
                 //db.SaveChanges();
-                AMSAParticipant p = dbr.AMSAParticipant.Find(aMSAParticipant.Id);
-                p.FirstName = aMSAParticipant.FirstName;
-                p.LastName = aMSAParticipant.LastName;
-                p.Gender = aMSAParticipant.Gender;
-                p.PrimaryEmail = aMSAParticipant.PrimaryEmail;
-                p.Title = aMSAParticipant.Title;
-                p.AMSACode = aMSAParticipant.AMSACode;
-                dbr.SaveChanges();
+                pvm.saveChanges();
                 return RedirectToAction("Index");
             }
-            return View(aMSAParticipant);
+            return View(pvm);
         }
 
         // GET: /AMSAParticipants/Delete/5

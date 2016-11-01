@@ -347,6 +347,10 @@
     <Compile Include="Migrations\201611011332431_Participant2.Designer.cs">
       <DependentUpon>201611011332431_Participant2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611011430138_Participant3.cs" />
+    <Compile Include="Migrations\201611011430138_Participant3.Designer.cs">
+      <DependentUpon>201611011430138_Participant3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -3167,6 +3171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611011332431_Participant2.resx">
       <DependentUpon>201611011332431_Participant2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611011430138_Participant3.resx">
+      <DependentUpon>201611011430138_Participant3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

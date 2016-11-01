@@ -48,6 +48,28 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         {
             AMSAReportContext dbr = new AMSAReportContext();
             //Get selected Event
+            AMSAParticipant p = dbr.AMSAParticipant.Find(this.AMSAParticipant.Id);
+            p.AMSACode = this.AMSAParticipant.AMSACode;
+            p.AMSAEvent = dbr.AMSAEvent.Find(this.idSelectedEvent);
+            //Password -- Need to check if this is necesary and check for the password compared to how mvc identity takes care of passwords
+            //p.AMSA_Password = this.AMSAParticipant.AMSA_Password;
+            IPasswordHasher passwordHasher = new PasswordHasher();
+            p.AMSA_Password = passwordHasher.HashPassword(this.AMSAParticipant.AMSA_Password);
+            p.AAMCNumber = this.AMSAParticipant.AAMCNumber;
+            p.FirstName = this.AMSAParticipant.FirstName;
+            p.LastName = this.AMSAParticipant.LastName;
+            p.PrimaryEmail = this.AMSAParticipant.PrimaryEmail;
+            p.Title = this.AMSAParticipant.Title;
+            p.Gender = this.stringSelectedGender;
+            dbr.SaveChanges();
+            dbr.Dispose();
+        }
+
+        //Save new participant inside the database
+        public void saveNewParticipant()
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            //Get selected Event
             AMSAParticipant p = new AMSAParticipant();
             p.AMSACode = this.AMSAParticipant.AMSACode;
             p.AMSAEvent = dbr.AMSAEvent.Find(this.idSelectedEvent);
@@ -61,8 +83,11 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             p.PrimaryEmail = this.AMSAParticipant.PrimaryEmail;
             p.Title = this.AMSAParticipant.Title;
             p.Gender = this.stringSelectedGender;
+            dbr.AMSAParticipant.Add(p);
+            dbr.SaveChanges();
             dbr.Dispose();
         }
+
         //Need a random password generator
         public string generatePassword()
         {
@@ -78,10 +103,35 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 IPasswordHasher passwordHasher = new PasswordHasher();
                 PasswordVerificationResult res = passwordHasher.VerifyHashedPassword(p.AMSA_Password,insertedPassword);
                 //if 0 then its not if 1 then it is
-                
+                if (res == PasswordVerificationResult.Success) { 
+                    dbr.Dispose();
+                    return true;
+                }
+                else if (res == PasswordVerificationResult.Failed) { 
+                    dbr.Dispose();
+                    return false;
+                }
             }
-            else
+            dbr.Dispose();
+            return false;
+        }
+        //Change password
+        public bool changePassword(string newPassword)
+        {
+            try
+            {
+                AMSAReportContext dbr = new AMSAReportContext();
+                AMSAParticipant p = dbr.AMSAParticipant.Find(this.AMSAParticipant.Id);
+                IPasswordHasher passwordHasher = new PasswordHasher();
+                p.AMSA_Password = passwordHasher.HashPassword(newPassword);
+                dbr.SaveChanges();
+                dbr.Dispose();
+                return true;
+            }
+            catch
+            {
                 return false;
+            }
         }
     }
 
