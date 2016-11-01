@@ -246,6 +246,7 @@
     <Compile Include="Controllers\AMSAEventTypesController.cs" />
     <Compile Include="Controllers\AMSANotBillableReasonsController.cs" />
     <Compile Include="Controllers\AMSAOrganizationsController.cs" />
+    <Compile Include="Controllers\AMSAParticipantsController.cs" />
     <Compile Include="Controllers\AMSAProgramsController.cs" />
     <Compile Include="Controllers\AMSAProgramSitesController.cs" />
     <Compile Include="Controllers\AMSASitesController.cs" />
@@ -334,6 +335,18 @@
     <Compile Include="Migrations\201610282106552_Event5.Designer.cs">
       <DependentUpon>201610282106552_Event5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610311908582_Participant.cs" />
+    <Compile Include="Migrations\201610311908582_Participant.Designer.cs">
+      <DependentUpon>201610311908582_Participant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610311920326_Participant1.cs" />
+    <Compile Include="Migrations\201610311920326_Participant1.Designer.cs">
+      <DependentUpon>201610311920326_Participant1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611011332431_Participant2.cs" />
+    <Compile Include="Migrations\201611011332431_Participant2.Designer.cs">
+      <DependentUpon>201611011332431_Participant2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -342,6 +355,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AMSAReportContext.cs" />
+    <Compile Include="Models\AmsaReports\AMSAParticipant.cs" />
     <Compile Include="Models\AmsaReports\AMSAReportsItems.cs" />
     <Compile Include="Models\AmsaReports\AmsaReportStudentData.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEvent.cs" />
@@ -360,6 +374,7 @@
     <Compile Include="Models\AmsaReports\Event\ViewModel\AMSASiteViewModel.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantViewModel.cs" />
     <Compile Include="Models\AssessmentViewModel.cs" />
     <Compile Include="Models\Base\ReportViewModel.cs" />
     <Compile Include="Models\BillingReportViewModel.cs" />
@@ -3053,6 +3068,11 @@
     <Content Include="Views\AMSAEvents\CreateInsertDates.cshtml" />
     <Content Include="Views\AMSAEvents\PreviewCreate.cshtml" />
     <Content Include="Views\AMSAEvents\Complete.cshtml" />
+    <Content Include="Views\AMSAParticipants\Create.cshtml" />
+    <Content Include="Views\AMSAParticipants\Delete.cshtml" />
+    <Content Include="Views\AMSAParticipants\Details.cshtml" />
+    <Content Include="Views\AMSAParticipants\Edit.cshtml" />
+    <Content Include="Views\AMSAParticipants\Index.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3138,6 +3158,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610282106552_Event5.resx">
       <DependentUpon>201610282106552_Event5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610311908582_Participant.resx">
+      <DependentUpon>201610311908582_Participant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610311920326_Participant1.resx">
+      <DependentUpon>201610311920326_Participant1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611011332431_Participant2.resx">
+      <DependentUpon>201611011332431_Participant2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
