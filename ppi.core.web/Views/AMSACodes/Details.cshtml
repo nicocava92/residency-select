@@ -1,0 +1,37 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.AMSACode
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Details</h1>
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        <div>
+            <h2>AMSACode</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Code)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Code)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Used)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Used)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+</div></div>

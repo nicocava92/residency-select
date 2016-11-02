@@ -18,11 +18,18 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         public List<Gender> LstGender { get; set; }
         public string stringSelectedGender { get; set; }
 
+        //Event list
+        public List<AMSAEvent> LstEvents { get; set; }
+
         public AMSAParticipantViewModel()
         {
             loadGenders();
             AMSAReportContext dbr = new AMSAReportContext();
-            AMSAEvents = new SelectList(dbr.AMSAEvent.ToList(), "id", "Name");
+            //List of events is used later on and can't get the data from select this, to 
+            //stop double loading the events are loaded into a list and then used for different things such as assigning them to select lists
+            LstEvents = dbr.AMSAEvent.ToList();
+
+            AMSAEvents = new SelectList(LstEvents, "id", "Name");
             dbr.Dispose();
         }
 
@@ -71,13 +78,40 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             AMSAReportContext dbr = new AMSAReportContext();
             //Get selected Event
             AMSAParticipant p = new AMSAParticipant();
-            p.AMSACode = this.AMSAParticipant.AMSACode;
+            
             p.AMSAEvent = dbr.AMSAEvent.Find(this.idSelectedEvent);
             //Password -- Need to check if this is necesary and check for the password compared to how mvc identity takes care of passwords
             //p.AMSA_Password = this.AMSAParticipant.AMSA_Password;
-            IPasswordHasher passwordHasher = new PasswordHasher();
-            p.AMSA_Password = passwordHasher.HashPassword(this.AMSAParticipant.AMSA_Password);
-            p.AAMCNumber = this.AMSAParticipant.AAMCNumber;
+
+            //If password is not empty then assign the one that was set
+            if (p.AMSA_Password != null)
+            {
+                //assign the password that was generated
+                IPasswordHasher passwordHasher = new PasswordHasher();
+                p.AMSA_Password = passwordHasher.HashPassword(this.AMSAParticipant.AMSA_Password);
+            }
+            else
+            {
+                this.assignAMSAPassword();
+                p.AMSA_Password = this.AMSAParticipant.AMSA_Password;
+            }
+            //If AAMC Number
+            if (p.AAMCNumber != null)
+                p.AAMCNumber = this.AMSAParticipant.AAMCNumber;
+            else
+            {
+                this.assignAAMCNumer();
+                p.AAMCNumber = this.AMSAParticipant.AAMCNumber;
+            }
+
+
+            if (p.AMSACode != null)
+                p.AMSACode = this.AMSAParticipant.AMSACode;
+            else
+            {
+                this.assignAMSACode();
+                p.AMSACode = this.AMSAParticipant.AMSACode;
+            }
             p.FirstName = this.AMSAParticipant.FirstName;
             p.LastName = this.AMSAParticipant.LastName;
             p.PrimaryEmail = this.AMSAParticipant.PrimaryEmail;
@@ -87,12 +121,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             dbr.SaveChanges();
             dbr.Dispose();
         }
-
-        //Need a random password generator
-        public string generatePassword()
-        {
-            throw new NotImplementedException();
-        }
+        
         //Verify if the password is correct
         public bool checkPassword(string emailOrAMSACode, string insertedPassword)
         {
@@ -133,6 +162,60 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 return false;
             }
         }
+        //Generate AMSA Number
+        public void assignAAMCNumer()
+        {
+            string name = this.AMSAParticipant.FirstName;
+            string last = this.AMSAParticipant.LastName;
+            string number = "";
+            number += name.Substring(0,2);
+            number += DateTime.Now.ToString();
+            number += last.Substring(0, 2);
+            this.AMSAParticipant.AAMCNumber = number;
+        }
+
+        //Generate AMSA Code (need to setup amsa codes first to be able to get them from the database)
+        public void assignAMSACode()
+        {
+            //Get the first amsa code 
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSACode c = dbr.AMSACodes.Where(m => !m.Used).FirstOrDefault();
+            if(c != null) {
+                try { 
+                    this.AMSAParticipant.AMSACode = c.Code;
+                    c.markAsUsed();
+                    dbr.SaveChanges();
+                }
+                catch (Exception e){
+                    Console.Write(e);
+                }
+            }
+            dbr.Dispose();
+        }
+
+        //Generate AMSA Password
+        public void assignAMSAPassword()
+        {
+            string name = this.AMSAParticipant.FirstName;
+            string last = this.AMSAParticipant.LastName;
+            string number = "";
+            number += name.Substring(0, 2);
+            number += DateTime.Now.ToString();
+            number += last.Substring(0, 2);
+            IPasswordHasher passwordHasher = new PasswordHasher();
+            this.AMSAParticipant.AMSA_Password = passwordHasher.HashPassword(number);
+        }
+
+        public int AMASCodeCount()
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            //Get the the event on first 
+            int eventId = LstEvents[0].id;
+            List<AMSACode> lstCodes = dbr.AMSACodes.Where(m => !m.Used && m.AMSAEvent.id == eventId).ToList();
+            int ammountOfCodes = lstCodes.Count();
+            dbr.Dispose();
+            return ammountOfCodes;
+        }
     }
 
     public class Gender
@@ -145,6 +228,10 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             Name = n;
             Value = f;
         }
-
     }
+
+    
+
+
+   
 }

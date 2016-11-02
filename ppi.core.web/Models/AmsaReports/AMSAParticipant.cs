@@ -32,11 +32,12 @@ namespace PPI.Core.Web.Models.AmsaReports
 
         //Same as Hogan Code
         [DisplayName("AMSA Code")]
+        [Required (ErrorMessage = "AMSA Code is Required")]
         public string AMSACode { get; set; }
         //Password
-        [Required]
         [PasswordPropertyText]
         [DisplayName("Password")]
+        [Required (ErrorMessage = "Password is Required")]
         public string AMSA_Password { get; set; }
 
     }

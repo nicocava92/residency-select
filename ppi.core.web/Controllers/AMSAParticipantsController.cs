@@ -51,6 +51,9 @@ namespace PPI.Core.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AMSAParticipantViewModel pvm)
         {
+            ModelState.Remove("AMSAParticipant.AAMCNumber");
+            ModelState.Remove("AMSAParticipant.AMSACode");
+            ModelState.Remove("AMSAParticipant.AMSA_Password");
             if (ModelState.IsValid)
             {
                 //db.AMSAParticipant.Add(aMSAParticipant);
@@ -113,6 +116,31 @@ namespace PPI.Core.Web.Controllers
 		    dbr.AMSAParticipant.Remove(model);
             dbr.SaveChanges();	
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult getAmmountOfCodes(int eventId)
+        {
+            try { 
+                AMSAReportContext dbr = new AMSAReportContext();
+                List<AMSACode> lstCodes = dbr.AMSACodes.Where(m => !m.Used && m.AMSAEvent.id == eventId).ToList();
+                int ammountOfCodes = lstCodes.Count();
+                dbr.Dispose();
+                return Json(new
+                {
+                    error = false,
+                    ammount = ammountOfCodes,
+                },
+                JsonRequestBehavior.AllowGet);
+            }
+            catch{
+                return Json(new
+                {
+                    error = true,
+                    ammount = 0,
+                }, 
+                JsonRequestBehavior.AllowGet);
+            }
         }
 
         protected override void Dispose(bool disposing)

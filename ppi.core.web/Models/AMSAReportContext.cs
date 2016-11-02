@@ -23,6 +23,8 @@ namespace PPI.Core.Web.Models
         public DbSet<AMSASurveyType> AMSASurveySiteType { get; set; }
         public DbSet<AMSANotBillableReason> AMSANotBillableReason { get; set; }
         public DbSet<AMSAParticipant> AMSAParticipant { get; set; }
+        //AMSA Codes - this list is also checked to see if the ammount of AMSA Codes in the application is too low
+        public DbSet<AMSACode> AMSACodes { get; set; }
         public AMSAReportContext()
             : base("DefaultConnection")
         {
