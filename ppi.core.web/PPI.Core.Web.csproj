@@ -388,6 +388,10 @@
     <Compile Include="Migrations\201611022107019_AMSACode2.Designer.cs">
       <DependentUpon>201611022107019_AMSACode2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611031918037_UploadPaticipant.cs" />
+    <Compile Include="Migrations\201611031918037_UploadPaticipant.Designer.cs">
+      <DependentUpon>201611031918037_UploadPaticipant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -398,6 +402,7 @@
     <Compile Include="Models\AMSAReportContext.cs" />
     <Compile Include="Models\AmsaReports\AMSACode.cs" />
     <Compile Include="Models\AmsaReports\AMSAParticipant.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\AMSAReportsItems.cs" />
     <Compile Include="Models\AmsaReports\AmsaReportStudentData.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEvent.cs" />
@@ -3243,6 +3248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611022107019_AMSACode2.resx">
       <DependentUpon>201611022107019_AMSACode2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611031918037_UploadPaticipant.resx">
+      <DependentUpon>201611031918037_UploadPaticipant.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
