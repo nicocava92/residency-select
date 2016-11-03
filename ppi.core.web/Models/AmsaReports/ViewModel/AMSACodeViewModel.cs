@@ -50,5 +50,17 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             dbr.Dispose();
         }
 
+        public void checkIfCodeExists(ModelStateDictionary m)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSACode c = dbr.AMSACodes.Where(r => r.Code.Equals(this.AMSACode.Code)).FirstOrDefault();
+
+            if(c != null)
+            {
+                m.AddModelError("AMSACode", "AMSA Code already exists, please insert a non-existing AMSA Code");
+            }
+            dbr.Dispose();
+        }
+
     }
 }

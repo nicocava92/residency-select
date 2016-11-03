@@ -54,6 +54,9 @@ namespace PPI.Core.Web.Controllers
             ModelState.Remove("AMSAParticipant.AAMCNumber");
             ModelState.Remove("AMSAParticipant.AMSACode");
             ModelState.Remove("AMSAParticipant.AMSA_Password");
+            if(pvm.AMSAParticipant.AMSACode != null)
+                pvm.checkAMSACode(ModelState);
+            pvm.checkIfUserAlreadyAssignedtoEvent(ModelState);
             if (ModelState.IsValid)
             {
                 //db.AMSAParticipant.Add(aMSAParticipant);

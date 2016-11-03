@@ -17,6 +17,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         public SelectList Genders { get; set; }
         public List<Gender> LstGender { get; set; }
         public string stringSelectedGender { get; set; }
+        
 
         //Event list
         public List<AMSAEvent> LstEvents { get; set; }
@@ -106,7 +107,10 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
 
 
             if (p.AMSACode != null)
+            {
                 p.AMSACode = this.AMSAParticipant.AMSACode;
+                this.markCodeAsChecked(p.AMSACode);
+            }
             else
             {
                 this.assignAMSACode();
@@ -216,8 +220,47 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             dbr.Dispose();
             return ammountOfCodes;
         }
-    }
 
+        //Check if the amsa code exists and if it isn't assigned to something else
+        public void checkAMSACode(ModelStateDictionary m) { 
+            AMSAReportContext dbr = new AMSAReportContext();
+            //Check if inserted code exists and is not used
+            AMSACode c = dbr.AMSACodes.Where(r => r.Code.Equals(this.AMSAParticipant.AMSACode) && !r.Used).FirstOrDefault();
+            //If value is not null then the code will be assigned to the user, do so and mark the code as used
+            if (c == null)
+            {
+                m.AddModelError("AMSACode", "AMSA Code does not exist or is already assigned to another participant");
+            }
+            dbr.Dispose();
+        }
+
+        //Check if the user is not already 
+        //Check by email and amsa event id
+        public void checkIfUserAlreadyAssignedtoEvent(ModelStateDictionary m)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSAParticipant p = dbr.AMSAParticipant.Where(r => r.PrimaryEmail.Equals(this.AMSAParticipant.PrimaryEmail) && r.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
+            if(p != null) {
+                m.AddModelError("AMSAParticipantExists", "ERROR! Participant with this e-mail address is already assigned to the selected event");
+            }
+            dbr.Dispose();
+        }
+
+
+
+        //Receives Code and markes it as used, used when the amsa code is not automatically assigned
+        public void markCodeAsChecked(string code)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSACode c = dbr.AMSACodes.Where(m => m.Code.Equals(code)).FirstOrDefault();
+            if(c != null)
+            {
+                c.markAsUsed();
+            }
+        }
+    }
+    
+    //Class used for gender selection in Participant insertion view
     public class Gender
     {
         public string Value { get; set; }

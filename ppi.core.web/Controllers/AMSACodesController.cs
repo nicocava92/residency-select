@@ -60,6 +60,7 @@ namespace PPI.Core.Web.Controllers
             {
                 ModelState.Remove("AMSACode.AMSAEvent");
             }
+            acvm.checkIfCodeExists(ModelState);
             if (ModelState.IsValid)
             {
                 acvm.saveNewCode();
