@@ -402,7 +402,6 @@
     <Compile Include="Models\AMSAReportContext.cs" />
     <Compile Include="Models\AmsaReports\AMSACode.cs" />
     <Compile Include="Models\AmsaReports\AMSAParticipant.cs" />
-    <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\AMSAReportsItems.cs" />
     <Compile Include="Models\AmsaReports\AmsaReportStudentData.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEvent.cs" />
@@ -422,6 +421,7 @@
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantViewModel.cs" />
     <Compile Include="Models\AssessmentViewModel.cs" />
     <Compile Include="Models\Base\ReportViewModel.cs" />
@@ -3124,6 +3124,7 @@
     <Content Include="Views\AMSACodes\Create.cshtml" />
     <Content Include="Views\AMSACodes\Details.cshtml" />
     <Content Include="Views\AMSACodes\Index.cshtml" />
+    <Content Include="Views\AMSAParticipants\Upload.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

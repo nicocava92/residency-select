@@ -146,6 +146,18 @@ namespace PPI.Core.Web.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Upload()
+        {
+            return View(new AMSAParticipantUploadViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Upload(AMSAParticipantUploadViewModel pvm)
+        {
+            return View(pvm);
+        }
+
         protected override void Dispose(bool disposing)
         {
             //if (disposing)

@@ -6,27 +6,31 @@ using System.Web.Mvc;
 using System.IO;
 using System.Xml.Linq;
 using System.Text;
+using System.ComponentModel;
 
-namespace PPI.Core.Web.Models.AmsaReports
+namespace PPI.Core.Web.Models.AmsaReports.ViewModel
 {
     public class AMSAParticipantUploadViewModel
     {
+        [DisplayName("Event")]
         public SelectList Events { get; set; }
         public int idSelectedEvent { get; set; }
+        [DisplayName("Upload CSV For Event")]
         public HttpPostedFile csvFile { get; set; }
         public AMSAEvent selectedEvent { get; set; }
 
-        public List<AMSAEvent> lstEvents { get; set; }
+        public List<AMSAEvent> LstEvents { get; set; }
 
         public AMSAParticipantUploadViewModel()
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            lstEvents = dbr.AMSAEvent.ToList();
-            Events = new SelectList(lstEvents, "id", "Name");
+            LstEvents = dbr.AMSAEvent.ToList();
+            Events = new SelectList(LstEvents, "id", "Name");
         }
 
         //Check the inserted information (Event selected and file uploaded)
-        public void checkData(ModelStateDictionary m) {
+        public void checkData(ModelStateDictionary m)
+        {
             //Check file type to make sure that its .csv
             if (!this.csvFile.GetType().Equals(".csv"))
             {
@@ -35,7 +39,7 @@ namespace PPI.Core.Web.Models.AmsaReports
             }
             AMSAReportContext dbr = new AMSAReportContext();
             AMSAEvent e = dbr.AMSAEvent.Where(r => r.id == this.idSelectedEvent).FirstOrDefault();
-            if(e == null)
+            if (e == null)
             {
                 m.AddModelError("AMSAEvent", "Please select a valid event");
             }
@@ -57,10 +61,22 @@ namespace PPI.Core.Web.Models.AmsaReports
 
 
             csvErrors.AppendLine("Error");
-            
+
             //Add a new line if there is an error
 
             return csvErrors;
+        }
+
+
+        public int AMASCodeCount()
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            //Get the the event on first 
+            int eventId = LstEvents[0].id;
+            List<AMSACode> lstCodes = dbr.AMSACodes.Where(m => !m.Used && m.AMSAEvent.id == eventId).ToList();
+            int ammountOfCodes = lstCodes.Count();
+            dbr.Dispose();
+            return ammountOfCodes;
         }
     }
 }
