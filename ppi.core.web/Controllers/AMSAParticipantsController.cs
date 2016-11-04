@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using PPI.Core.Web.Models;
 using PPI.Core.Web.Models.AmsaReports;
 using PPI.Core.Web.Models.AmsaReports.ViewModel;
+using System.IO;
 
 namespace PPI.Core.Web.Controllers
 {
@@ -154,7 +155,18 @@ namespace PPI.Core.Web.Controllers
 
         [HttpPost]
         public ActionResult Upload(AMSAParticipantUploadViewModel pvm)
-        {
+        {   
+            
+            ReportUtilities.checkUploadCSV(Request, ModelState);
+            if (ModelState.IsValid)
+            {
+                pvm.PerformUserInsertionts(Request, ModelState);
+                if (ModelState.IsValid)
+                {
+                    return View("Index", dbr.AMSAParticipant.ToList()); //Retun from when file is actually correct
+                }
+                else return View(pvm);
+            }
             return View(pvm);
         }
 

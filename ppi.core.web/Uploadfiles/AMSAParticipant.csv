@@ -1,2 +1,2 @@
-FirstName,LastName,PrimaryEmail,HoganId,AAMCNumber,Gender,Title,AMSACode
-John,Sample,john@domain.com,HC999999,,Male,Dr.,
+FirstName,LastName,PrimaryEmail,AMSACode,AAMCNumber,Gender,Title
+John,Sample,john@domain.com,HC999999,N292h,Male,Dr.

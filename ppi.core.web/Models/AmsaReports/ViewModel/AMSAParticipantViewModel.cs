@@ -121,6 +121,8 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             p.PrimaryEmail = this.AMSAParticipant.PrimaryEmail;
             p.Title = this.AMSAParticipant.Title;
             p.Gender = this.stringSelectedGender;
+            if (p.Gender == null)
+                p.Gender = this.AMSAParticipant.Gender;
             dbr.AMSAParticipant.Add(p);
             dbr.SaveChanges();
             dbr.Dispose();
@@ -185,14 +187,9 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             AMSAReportContext dbr = new AMSAReportContext();
             AMSACode c = dbr.AMSACodes.Where(m => !m.Used).FirstOrDefault();
             if(c != null) {
-                try { 
-                    this.AMSAParticipant.AMSACode = c.Code;
-                    c.markAsUsed();
-                    dbr.SaveChanges();
-                }
-                catch (Exception e){
-                    Console.Write(e);
-                }
+                this.AMSAParticipant.AMSACode = c.Code;
+                c.markAsUsed();
+                dbr.SaveChanges();
             }
             dbr.Dispose();
         }

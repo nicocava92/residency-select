@@ -9,11 +9,11 @@
 
 <div class="main-box clearfix">
     <div class="main-box-body">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Upload", "AMSAParticipants",FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.AntiForgeryToken()
+                @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
+                <div class="form-horizontal">
                 <h2>AMSAParticipant</h2>
                 <hr />
                 <p>
@@ -47,6 +47,9 @@
                         </div>
 
                     </div>
+                    <br />
+                    @Html.ValidationMessage("Participant")<br/>
+                    @Html.ValidationMessage("AMSAParticipantExists")<br />
                     
                 </div>
 
@@ -60,13 +63,18 @@
                     <div class="alert-info" display="display">
                         <a href="~/Uploadfiles/AMSAParticipant.csv"><label><i class="fa fa-file-excel-o fa-2x"></i></label>  View and download a sample upload file.</a>
                     </div>
-                    <br />
+                    <br />  
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="row">
-                        @Html.LabelFor(model => model.csvFile, htmlAttributes: new { @class = "col-md-2 bold" })
                         <div class="col-md-9">
-                            <input  type="file" name="file" id="file" class="form-control" multiple/>
-                            @Html.ValidationMessage("UploadError")
+                            @Html.LabelFor(model => model.csvFile, htmlAttributes: new { @class = "col-md-2 bold" })
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input type="file" name="file" id="file" multiple="" placeholder="select 1 or multiple files">
+                                @Html.ValidationMessage("Upload")
+                                
+                            </div>
                         </div>
                     </div>
                     <div class="row">
