@@ -37,7 +37,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             if (!this.csvFile.GetType().Equals(".csv"))
             {
                 //If fyle type is not .csv let the user now that they need to upload a .csv to the form for it to work correctly
-                m.AddModelError("UploadError", "Please upload a .CSV file");
+                m.AddModelError("UploadError", "Please upload a .CSV file" + System.Environment.NewLine);
             }
             AMSAReportContext dbr = new AMSAReportContext();
             AMSAEvent e = dbr.AMSAEvent.Where(r => r.id == this.idSelectedEvent).FirstOrDefault();
@@ -87,10 +87,12 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         Check if data was inserted correctly for the different
             */
         public void PerformUserInsertionts(HttpRequestBase request, ModelStateDictionary m) {
+            List<AMSAParticipant> lstParticipants = new List<AMSAParticipant>();
             int i = 0;
             while (i < request.Files.Count)
             {
                 HttpPostedFileBase UploadedFile = request.Files[0];
+                //WHere participants to be inserted into the database will be added
                 
                 // Use the InputStream to get the actual stream sent.
                 StreamReader csvreader = new StreamReader(UploadedFile.InputStream);
@@ -102,7 +104,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     //If not on first element 
                     if (c > 0) { 
                         //Try to save if there are errors let user know the participants that where not uploaded.. store the participants e-mail address and line number to let the user know
-                        AMSAParticipantViewModel pvm = new AMSAParticipantViewModel();
+                        
                         AMSAParticipant p = new AMSAParticipant();
                         p.FirstName = values[0];
                         p.LastName = values[1];
@@ -111,60 +113,99 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                         p.AAMCNumber = values[4];
                         p.Gender = values[5];
                         p.Title = values[6];
-                        pvm.AMSAParticipant = p;
-                        pvm.idSelectedEvent = this.idSelectedEvent;
-                        this.checkModelState(p, m);
-                        if (m.IsValid)
-                        {
-                            //We where able to store the participant
-                            try {
-                                //Check if the participant already exists in the database
-                                this.checkAlreadyAssignedToEvent(p);
-                                if (this.Errors != "") {
-                                    pvm.saveNewParticipant();
-                                }
-                                else
-                                    m.AddModelError("Participant", this.Errors);
-                            }
-                            catch
-                            {
-                                //If we go into catch if because there where not enough amsa codes to store the 
-                                m.AddModelError("Participant", "From participant with e-mail address " + p.PrimaryEmail + "in line " + c + "no participants were inserted, not enough codes available");
-                            }
-                        }
-
+                        lstParticipants.Add(p);
                     }
                     c++;
                 }
                 //After first line - which is the description file - add participant
                 i++;
             }
+
+            //After all of the Participants that we are tryign to insert into the database are added into the list, then we try to add them or return errors if there are problems
+
+            bool finished = false; //Checks if we are done with all users, used to return errors in case that we have to go through all of them with errors in some of the insertions.
+            int position = 1;
+            int ammountOfParticipants = lstParticipants.Count;
+            foreach(AMSAParticipant p in lstParticipants) {
+
+
+                if (position == ammountOfParticipants)
+                    finished = true;
+
+                AMSAParticipantViewModel pvm = new AMSAParticipantViewModel();
+                pvm.AMSAParticipant = p;
+                pvm.idSelectedEvent = this.idSelectedEvent;
+
+                this.checkModelState(p, m);
+                
+                    //We where able to store the participant
+                    try
+                    {
+                        //Check if the participant already exists in the database
+                        this.checkAlreadyAssignedToEvent(p,m);
+                        if (this.Errors == "" || this.Errors == null)
+                        {
+                            //If participant has all of its information present then try adding him in
+                            pvm.saveNewParticipant();
+                        }
+                    }
+                    catch
+                    {
+                        //If we go into catch if because there where not enough amsa codes to store the 
+                        m.AddModelError("Participant", "From Participant with e-mail address " + p.PrimaryEmail + "in line #" + position + " File #" + i + " forward no participants were inserted after this row as well, not enough codes available. Please insert more codes to upload Participants" + System.Environment.NewLine);
+                        this.Errors += " From participant with e-mail address " + p.PrimaryEmail + "in line #" + position + " File #" + i + " forward no participants were inserted after this row as well, not enough codes available. Please insert more codes to upload Participants";
+                    }
+                
+                position++;
+                this.Errors = ""; //Clear out error check for next participant
+            }
+
         }
         //Check if the model state is valid or not
         public void checkModelState(AMSAParticipant p, ModelStateDictionary m)
         {
-            if (p.PrimaryEmail == null)
-                this.Errors += " Primary e-mail missing for " + p.FirstName;
-            if (p.PrimaryEmail != null) { 
+            if (p.PrimaryEmail == null) {
+                this.Errors += " Primary e - mail missing for " + p.FirstName;
+                m.AddModelError("Participant", "Primary e - mail missing for " + p.FirstName);
+            }
+               
+            if (p.PrimaryEmail != null) {
                 if (p.FirstName == null)
-                    this.Errors+= " Name missing for " + p.PrimaryEmail;
+                {
+                    this.Errors += " Name missing for " + p.PrimaryEmail;
+                    m.AddModelError("Participant", " Name missing for " + p.PrimaryEmail);
+                }
+                    
                 if (p.LastName == null)
+                {
                     this.Errors += " Last name missing for " + p.PrimaryEmail;
+                    m.AddModelError("Participant", " Last name missing for " + p.PrimaryEmail);
+                }
+                    
                 if (p.Gender == null)
+                {
                     this.Errors += " Gender missing for " + p.PrimaryEmail;
+                    m.AddModelError("Participant", " Gender missing for " + p.PrimaryEmail);
+                }
+                  
                 if (p.Title == null)
+                {
                     this.Errors += " Title missing for " + p.PrimaryEmail;
+                    m.AddModelError("Participant", " Title missing for " + p.PrimaryEmail);
+                }
+                    
             }
 
         }
 
-        public void checkAlreadyAssignedToEvent(AMSAParticipant pa)
+        public void checkAlreadyAssignedToEvent(AMSAParticipant pa, ModelStateDictionary m)
         {
             AMSAReportContext dbr = new AMSAReportContext();
             AMSAParticipant p = dbr.AMSAParticipant.Where(r => r.PrimaryEmail.Equals(pa.PrimaryEmail) && r.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
             if (p != null)
             {
-                this.Errors += "Participant with e-mail address " + pa.PrimaryEmail + "already assigned to the selected event";
+                this.Errors += " Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event";
+                m.AddModelError("Participant", "Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event");
             }
             dbr.Dispose();
         }

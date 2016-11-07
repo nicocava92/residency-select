@@ -22,8 +22,9 @@ namespace PPI.Core.Web.Models.AmsaReports
         {
             AMSAReportContext dbr = new AMSAReportContext();
             changeToTrue(dbr);
+            int eventId = this.AMSAEvent.id;
             //Check if the ammount of codes is lower than 4, if it is then send perform user an e-mail
-            List<AMSACode> lstCodes = dbr.AMSACodes.Where(m => m.AMSAEvent == this.AMSAEvent && m.Used).ToList();
+            List<AMSACode> lstCodes = dbr.AMSACodes.Where(m => m.AMSAEvent.id == eventId && !m.Used).ToList();
             if(lstCodes.Count < 4)
             {
                 //Send e-mail letting the user know that the event is low on AMSA Codes

@@ -44,6 +44,7 @@
       <mvcSiteMapNode title="Participants" action="#">
         <mvcSiteMapNode title="All Participants" controller="AMSAParticipants" action="Index" />
       <mvcSiteMapNode title="Add Participants" controller="AMSAParticipants" action="Create" />
+      <mvcSiteMapNode title="Participant Upload" controller="AMSAParticipants" action="Upload" />
       </mvcSiteMapNode>
       <mvcSiteMapNode title="Codes" action="#">
         <mvcSiteMapNode title="View Codes" controller ="AMSACodes" action="Index" />

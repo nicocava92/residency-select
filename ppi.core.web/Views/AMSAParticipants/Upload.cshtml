@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Upload Participant";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    
 }
 
 <h1>Create</h1>
@@ -17,11 +18,20 @@
                 <h2>AMSAParticipant</h2>
                 <hr />
                 <p>
-                    1.  PLEASE MAKE SURE THAT YOU ONLY USE THE TEMPLATE IN ITS EXISTING FORM WITHOUT MODIFYING IT. IF THE TEMPLATE IS NOT UPLOADED IN THE EXACT FORMAT IN A CSV FILE, YOUR UPLOAD WILL NOT COMPLETE
-                    <br />
-                    2.  IF A PARTICIPANT HAS BEEN ADDED TO SYSTEM BY ANOTHER PROGRAM/ORGANIZATION THE NOTIFIER WILL SHOW "UPDATED ROWS”
-                    <br />
-                    3.  PLEASE MAKE SURE YOU ARE UPLOADING YOUR LIST TO THE CORRECT EVENT
+                    <ol>
+                        <li>
+                            PLEASE MAKE SURE THAT YOU ONLY USE THE TEMPLATE IN ITS EXISTING FORM WITHOUT MODIFYING IT. IF THE TEMPLATE IS NOT UPLOADED IN THE EXACT FORMAT IN A CSV FILE, YOUR UPLOAD WILL NOT COMPLETE
+                        </li>
+                        <li>
+                            IF A PARTICIPANT HAS BEEN ADDED TO SYSTEM AND THE SPECIFIC EVENT BY ANOTHER PROGRAM/ORGANIZATION THE NOTIFIER WILL INFORM YOU THAT THE PARTICIPANT HAS ALREADY BEEN ASSIGNED TO THE EVENT
+                        </li>
+                        <li>
+                            IF THERE ARE NOT ENOUGH CODES TO ASSIGN ONTO THE PARTICIPANTS THAT ARE BEING UPLOADED, THE SYSTEM WILL STOP THE OUPLOAD AND INFORM YOU OF THE LINE NUMBER AND FILE NUMBER WHERE THE UPLOAD WAS STOPED
+                        </li>
+                        <li>
+                            PLEASE MAKE SURE YOU ARE UPLOADING YOUR LIST TO THE CORRECT EVENT
+                        </li>
+                    </ol>
                 </p>
 
                 <hr />  
@@ -48,8 +58,7 @@
 
                     </div>
                     <br />
-                    @Html.ValidationMessage("Participant")<br/>
-                    @Html.ValidationMessage("AMSAParticipantExists")<br />
+                    @Html.ValidationSummary("Participant")
                     
                 </div>
 
@@ -84,6 +93,7 @@
                     </div>
                 </div>
             </div>
+            
         }
 
         <div>

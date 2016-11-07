@@ -57,19 +57,22 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             AMSAReportContext dbr = new AMSAReportContext();
             //Get selected Event
             AMSAParticipant p = dbr.AMSAParticipant.Find(this.AMSAParticipant.Id);
-            p.AMSACode = this.AMSAParticipant.AMSACode;
             p.AMSAEvent = dbr.AMSAEvent.Find(this.idSelectedEvent);
             //Password -- Need to check if this is necesary and check for the password compared to how mvc identity takes care of passwords
-            //p.AMSA_Password = this.AMSAParticipant.AMSA_Password;
             //IPasswordHasher passwordHasher = new PasswordHasher();
             //p.AMSA_Password = passwordHasher.HashPassword(this.AMSAParticipant.AMSA_Password);
-            p.AAMCNumber = this.AMSAParticipant.AAMCNumber;
             p.FirstName = this.AMSAParticipant.FirstName;
             p.LastName = this.AMSAParticipant.LastName;
-            p.PrimaryEmail = this.AMSAParticipant.PrimaryEmail;
-            p.Title = this.AMSAParticipant.Title;
             p.Gender = this.stringSelectedGender;
             dbr.SaveChanges();
+
+            /*
+            ModelState.Remove("AMSAParticipant.AMSA_Password");
+            ModelState.Remove("AMSAParticipant.Title");
+            ModelState.Remove("AMSAParticipant.AAMCNumber");
+            ModelState.Remove("AMSAParticipant.AMSACode");
+            */
+
             dbr.Dispose();
         }
 
@@ -128,6 +131,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             dbr.Dispose();
         }
         
+
         //Verify if the password is correct
         public bool checkPassword(string emailOrAMSACode, string insertedPassword)
         {
