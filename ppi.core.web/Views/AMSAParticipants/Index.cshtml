@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PPI.Core.Web.Models.AmsaReports.AMSAParticipant>
+﻿@model IEnumerable<PPI.Core.Web.Models.AmsaReports.ViewModel.ParticipantListViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -20,27 +20,36 @@
                 </a>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Search will go here
+            </div>
+            <div class="col-lg-6">
+                Select list
+            </div>
+        </div>
         <br />
         <div>
             <table class="table table-responsive table-striped">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.FirstName)
+                        Title
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.LastName)
+                        First Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.PrimaryEmail)
+                        Last Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Gender)
+                        Primary E-mail
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Title)
+                        Gender
                     </th>
+                    
                     <th>
-                        @Html.DisplayNameFor(model => model.AMSACode)
+                        AMSA Code
                     </th>
                     <th></th>
                 </tr>
@@ -48,6 +57,9 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FirstName)
                         </td>
@@ -60,9 +72,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Gender)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
+                       
                         <td>
                             @Html.DisplayFor(modelItem => item.AMSACode)
                         </td>

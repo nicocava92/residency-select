@@ -16,7 +16,7 @@ namespace PPI.Core.Web.Controllers
     public class AMSAParticipantsController : Controller
     {
         public AMSAReportContext dbr { get; set; }
-                                 
+
         public AMSAParticipantsController()
         {
             dbr = new AMSAReportContext();
@@ -26,7 +26,7 @@ namespace PPI.Core.Web.Controllers
         public ActionResult Index()
         {
             var model = dbr.AMSAParticipant.ToList();
-			return View(model);
+            return View(model);
         }
 
         // GET: /AMSAParticipants/Details/5
@@ -55,7 +55,7 @@ namespace PPI.Core.Web.Controllers
             ModelState.Remove("AMSAParticipant.AAMCNumber");
             ModelState.Remove("AMSAParticipant.AMSACode");
             ModelState.Remove("AMSAParticipant.AMSA_Password");
-            if(pvm.AMSAParticipant.AMSACode != null)
+            if (pvm.AMSAParticipant.AMSACode != null)
                 pvm.checkAMSACode(ModelState);
             pvm.checkIfUserAlreadyAssignedtoEvent(ModelState);
             if (ModelState.IsValid)
@@ -107,7 +107,7 @@ namespace PPI.Core.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //AMSAParticipant aMSAParticipant = db.AMSAParticipant.Find(id);
-			var model = dbr.AMSAParticipant.First(m => m.Id == id);
+            var model = dbr.AMSAParticipant.First(m => m.Id == id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -121,15 +121,15 @@ namespace PPI.Core.Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var model = dbr.AMSAParticipant.First(m => m.Id == id);
-		    dbr.AMSAParticipant.Remove(model);
-            dbr.SaveChanges();	
+            dbr.AMSAParticipant.Remove(model);
+            dbr.SaveChanges();
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult getAmmountOfCodes(int eventId)
         {
-            try { 
+            try {
                 AMSAReportContext dbr = new AMSAReportContext();
                 List<AMSACode> lstCodes = dbr.AMSACodes.Where(m => !m.Used && m.AMSAEvent.id == eventId).ToList();
                 int ammountOfCodes = lstCodes.Count();
@@ -141,12 +141,12 @@ namespace PPI.Core.Web.Controllers
                 },
                 JsonRequestBehavior.AllowGet);
             }
-            catch{
+            catch {
                 return Json(new
                 {
                     error = true,
                     ammount = 0,
-                }, 
+                },
                 JsonRequestBehavior.AllowGet);
             }
         }
@@ -159,8 +159,8 @@ namespace PPI.Core.Web.Controllers
 
         [HttpPost]
         public ActionResult Upload(AMSAParticipantUploadViewModel pvm)
-        {   
-            
+        {
+
             ReportUtilities.checkUploadCSV(Request, ModelState);
             if (ModelState.IsValid)
             {
@@ -174,6 +174,31 @@ namespace PPI.Core.Web.Controllers
             return View(pvm);
         }
 
+        //Return participant list by the id that is selected
+        [HttpPost]
+        public ActionResult GetParticipantsByEvent(ParticipantListViewModel pvm)
+        {
+            //Get the listing of information that needs to be shown on the view
+            List<AMSAParticipant> participantsInEvent = dbr.AMSAParticipant.Where(r => r.AMSAEvent.id == pvm.idSelectedEvent).ToList();
+            pvm.LstParticipants = participantsInEvent;
+            return View("Index", pvm);
+        }
+
+        //Receives a search string from view and searches for participants who have the inserted values
+        [HttpPost]
+        public ActionResult GetParticipantsBySearch(string s)
+        {
+            s = s.ToUpper();
+            //Serach participants by Last Name, Name, Email, AAMC Number and or AMSACode
+            List<AMSAParticipant> participantsFoundInSearch = dbr.AMSAParticipant.Where(r => r.LastName.ToUpper().Equals(s) || r.FirstName.ToUpper().Equals(s) || r.PrimaryEmail.ToUpper().Equals(s) || r.AAMCNumber.ToUpper().Equals(s) || r.AMSACode.ToUpper().Equals(s)).ToList();
+            ParticipantListViewModel pvm = new ParticipantListViewModel();
+            pvm.LstParticipants = participantsFoundInSearch;
+
+            return View("Index",pvm);
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             //if (disposing)
@@ -182,5 +207,6 @@ namespace PPI.Core.Web.Controllers
             //}
            // base.Dispose(disposing);
         }
+
     }
 }
