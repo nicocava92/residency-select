@@ -25,8 +25,8 @@ namespace PPI.Core.Web.Controllers
         // GET: /AMSAParticipants/
         public ActionResult Index()
         {
-            var model = dbr.AMSAParticipant.ToList();
-            return View(model);
+            ParticipantListViewModel pvm = new ParticipantListViewModel();
+            return View(pvm);
         }
 
         // GET: /AMSAParticipants/Details/5
@@ -176,25 +176,47 @@ namespace PPI.Core.Web.Controllers
 
         //Return participant list by the id that is selected
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult GetParticipantsByEvent(ParticipantListViewModel pvm)
         {
-            //Get the listing of information that needs to be shown on the view
-            List<AMSAParticipant> participantsInEvent = dbr.AMSAParticipant.Where(r => r.AMSAEvent.id == pvm.idSelectedEvent).ToList();
-            pvm.LstParticipants = participantsInEvent;
-            return View("Index", pvm);
+            try {
+                List<AMSAParticipant> participantsInEvent = new List<AMSAParticipant>();
+                //if the id != to 0 then filter
+                if (pvm.idSelectedEvent != 0) {
+                    //Get the listing of information that needs to be shown on the view
+                    participantsInEvent = dbr.AMSAParticipant.Where(r => r.AMSAEvent.id == pvm.idSelectedEvent).ToList();
+                }
+                else
+                {
+                    //If it is == 0 then what we are need to show is all of the participants
+                    participantsInEvent = dbr.AMSAParticipant.ToList();
+                }
+                pvm.LstParticipants = participantsInEvent;
+                return View("Index", pvm);
+            }
+            catch
+            {
+                return View("Index", pvm);
+            }
         }
 
         //Receives a search string from view and searches for participants who have the inserted values
         [HttpPost]
-        public ActionResult GetParticipantsBySearch(string s)
+        [ValidateAntiForgeryToken]
+        public ActionResult GetParticipantsBySearch(ParticipantListViewModel pvm)
         {
-            s = s.ToUpper();
-            //Serach participants by Last Name, Name, Email, AAMC Number and or AMSACode
-            List<AMSAParticipant> participantsFoundInSearch = dbr.AMSAParticipant.Where(r => r.LastName.ToUpper().Equals(s) || r.FirstName.ToUpper().Equals(s) || r.PrimaryEmail.ToUpper().Equals(s) || r.AAMCNumber.ToUpper().Equals(s) || r.AMSACode.ToUpper().Equals(s)).ToList();
-            ParticipantListViewModel pvm = new ParticipantListViewModel();
-            pvm.LstParticipants = participantsFoundInSearch;
-
-            return View("Index",pvm);
+            try {
+                string s = pvm.Search.ToUpper();
+                //Serach participants by Last Name, Name, Email, AAMC Number and or AMSACode
+                List<AMSAParticipant> participantsFoundInSearch = dbr.AMSAParticipant.Where(r => r.LastName.ToUpper().Equals(s) || r.FirstName.ToUpper().Equals(s) || r.PrimaryEmail.ToUpper().Equals(s) || r.AAMCNumber.ToUpper().Equals(s) || r.AMSACode.ToUpper().Equals(s)).ToList();
+                ParticipantListViewModel retPvm = new ParticipantListViewModel();
+                retPvm.LstParticipants = participantsFoundInSearch;
+                return View("Index", retPvm);
+            }
+            catch
+            {
+                return View("Index", pvm);
+            }
         }
 
 

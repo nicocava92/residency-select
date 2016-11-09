@@ -427,6 +427,7 @@
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\ParticipantListViewModel.cs" />
     <Compile Include="Models\AssessmentViewModel.cs" />
     <Compile Include="Models\Base\ReportViewModel.cs" />
     <Compile Include="Models\BillingReportViewModel.cs" />
