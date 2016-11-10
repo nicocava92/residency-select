@@ -26,9 +26,7 @@
         <mvcSiteMapNode title="Setup" controller="Emails" action="Index"/>        
       </mvcSiteMapNode>
       <mvcSiteMapNode title="Hogan User Upload" controller="Hogan" action="HoganUsers"/>
-      <mvcSiteMapNode title="Users" controller="Account" action="Index">
-        <mvcSiteMapNode title="Add User" controller="Account" action="Register"/>  
-      </mvcSiteMapNode>      
+        
     </mvcSiteMapNode>
     <mvcSiteMapNode title="Reports" controller="Reports" action="#">
       <mvcSiteMapNode title="Manage Text" controller="Reports" action="ManageText"/>
@@ -38,9 +36,11 @@
     </mvcSiteMapNode>
     <mvcSiteMapNode title="Billing" controller="Billing" action="Index"/>
     </mvcSiteMapNode>
-    <mvcSiteMapNode title="AmsaReports" controller="Reports" action="#">
-      <mvcSiteMapNode title="Generate Reports" controller="Reports" action="IndexAmsaStudents"/>
-      <mvcSiteMapNode title="Add Student Data" controller="Reports" action="CreateAmsaStudents"/>
+    <mvcSiteMapNode title="Amsa Reports" controller="Reports" action="IndexAmsaStudents">
+      <mvcSiteMapNode title="Reports" controller="Reports" action="#">
+        <mvcSiteMapNode title="Generate Reports" controller="Reports" action="IndexAmsaStudents"/>
+        <mvcSiteMapNode title="Add Student Data" controller="Reports" action="CreateAmsaStudents"/>
+      </mvcSiteMapNode>
       <mvcSiteMapNode title="Participants" action="#">
         <mvcSiteMapNode title="All Participants" controller="AMSAParticipants" action="Index" />
       <mvcSiteMapNode title="Add Participants" controller="AMSAParticipants" action="Create" />
@@ -49,6 +49,7 @@
       <mvcSiteMapNode title="Codes" action="#">
         <mvcSiteMapNode title="View Codes" controller ="AMSACodes" action="Index" />
         <mvcSiteMapNode title="Add Codes" controller ="AMSACodes" action="Create" />
+        <mvcSiteMapNode title="Code Upload" controller ="AMSACodes" action="Upload" />
       </mvcSiteMapNode>
     <mvcSiteMapNode title="Events" action="#">
       <mvcSiteMapNode title="AMSA Event" controller="AMSAEvents" action="Index"/>
@@ -62,10 +63,15 @@
         <mvcSiteMapNode title="Program Sites" controller="AMSAProgramSites" action="Index"/>
         <mvcSiteMapNode title="Not Billable Reason" controller="AMSANotBillableReasons" action="Index"/>
       </mvcSiteMapNode>
-    </mvcSiteMapNode>
     
     </mvcSiteMapNode>
+      
     
+    </mvcSiteMapNode>
     
+    <mvcSiteMapNode title="Users" controller="Account" action="Index">
+    <mvcSiteMapNode title="Add User" controller="Account" action="Register"/>  
+  </mvcSiteMapNode>    
   </mvcSiteMapNode>
+  
 </mvcSiteMap>

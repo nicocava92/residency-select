@@ -25,7 +25,14 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Used)
+                    @if (Model.Used)
+                    {
+                        <text>True</text>
+                    }
+                    else
+                    {
+                        <text>False</text>
+                    }
                 </dd>
 
             </dl>

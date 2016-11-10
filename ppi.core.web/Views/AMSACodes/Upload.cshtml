@@ -1,21 +1,21 @@
-﻿@model PPI.Core.Web.Models.AmsaReports.ViewModel.AMSAParticipantUploadViewModel
+﻿@model PPI.Core.Web.Models.AmsaReports.ViewModel.AMSACodeUploadViewModel
 
 @{
-    ViewBag.Title = "Upload Participant";
+    ViewBag.Title = "Upload AMSA Code";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    
+
 }
 
 <h1>Create</h1>
 
 <div class="main-box clearfix">
     <div class="main-box-body">
-        @using (Html.BeginForm("Upload", "AMSAParticipants",FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Upload", "AMSACodes", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-                @Html.AntiForgeryToken()
+            @Html.AntiForgeryToken()
 
-                <div class="form-horizontal">
-                <h2>AMSAParticipant</h2>
+            <div class="form-horizontal">
+                <h2>AMSA Code</h2>
                 <hr />
                 <p>
                     <ol>
@@ -23,10 +23,7 @@
                             PLEASE MAKE SURE THAT YOU ONLY USE THE TEMPLATE IN ITS EXISTING FORM WITHOUT MODIFYING IT. IF THE TEMPLATE IS NOT UPLOADED IN THE EXACT FORMAT IN A CSV FILE, YOUR UPLOAD WILL NOT COMPLETE
                         </li>
                         <li>
-                            IF A PARTICIPANT HAS BEEN ADDED TO SYSTEM AND THE SPECIFIC EVENT BY ANOTHER PROGRAM/ORGANIZATION THE NOTIFIER WILL INFORM YOU THAT THE PARTICIPANT HAS ALREADY BEEN ASSIGNED TO THE EVENT
-                        </li>
-                        <li>
-                            IF THERE ARE NOT ENOUGH CODES TO ASSIGN ONTO THE PARTICIPANTS THAT ARE BEING UPLOADED, THE SYSTEM WILL STOP THE OUPLOAD AND INFORM YOU OF THE LINE NUMBER AND FILE NUMBER WHERE THE UPLOAD WAS STOPED
+                            IF THE CODE IS ALREADY IN THE SISTEM IT WILL NOT BE ADDED IN, YOU WILL GET AN ERROR MESSAGE INFORMING YOU OF THIS
                         </li>
                         <li>
                             PLEASE MAKE SURE YOU ARE UPLOADING YOUR LIST TO THE CORRECT EVENT
@@ -34,7 +31,7 @@
                     </ol>
                 </p>
 
-                <hr />  
+                <hr />
 
                 @*Upload participants via CSV*@
                 <div id="eventSelection">
@@ -43,6 +40,7 @@
                         <div class="col-md-5">
                             @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @onChange = "checkAmmountOfCodes()", @id = "eventId" })
                             @Html.ValidationMessage("AMSAEvent")
+                            
                         </div>
                         <div class="col-md-1">
                             <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
@@ -58,21 +56,21 @@
 
                     </div>
                     <br />
-                    @Html.ValidationSummary("Participant")
-                    
+                    @Html.ValidationSummary("Code")
+
                 </div>
 
                 @*Show this pannel when there are no codes*@
                 <div id="errorEvent" class="alert alert-danger" style="display:none;">
-                    
+
                 </div>
 
                 <div id="uploadParticipant" style="display:none;">
                     <br />
                     <div class="alert-info" display="display">
-                        <a href="~/Uploadfiles/AMSAParticipant.csv"><label><i class="fa fa-file-excel-o fa-2x"></i></label>  View and download a sample upload file.</a>
+                        <a href="~/Uploadfiles/AMSACode.csv"><label><i class="fa fa-file-excel-o fa-2x"></i></label>  View and download a sample upload file.</a>
                     </div>
-                    <br />  
+                    <br />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="row">
                         <div class="col-md-9">
@@ -81,18 +79,18 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <input type="file" name="file" id="file" multiple="" placeholder="select 1 or multiple files">
-                                
+
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div  class="mt20 mb20">
+                        <div class="mt20 mb20">
                             <input type="submit" id="btnsubmit" name="submit" class="btn btn-primary btn200" value="Submit" /><br />
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         }
 
         <div>
@@ -105,7 +103,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             checkAmmountOfCodes();
-            
+
         });
         function checkAmmountOfCodes() {
             //Get e-mail address
@@ -130,8 +128,8 @@
                                 if (data.ammount == 0) {
                                     $("#uploadParticipant").fadeOut();
                                     $("#errorEvent").html('<h2>' +
-                                        'Error! There are no codes for this event, participants can\'t be added if codes are not available to be assigned.<br />' +
-                                        'Please insert / upload new codes to add new participants.' +
+                                        'Error! There are no codes for this event, it\'s recommended  that codes are added in so Participants can be assigned to the event if desired.<br />' +
+                                        'Insert new codes permitting the insertion of Participants in the future.' +
                                         '</h2>' + button);
                                     $("#errorEvent").fadeIn();
 

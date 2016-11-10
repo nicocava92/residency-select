@@ -25,7 +25,6 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             AMSAReportContext dbr = new AMSAReportContext();
             LstParticipants = dbr.AMSAParticipant.ToList();
             loadAllEvents(dbr);
-            
             dbr.Dispose();
         }
 

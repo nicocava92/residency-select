@@ -40,5 +40,15 @@ namespace PPI.Core.Web.Models.AmsaReports
         [Required (ErrorMessage = "Password is Required")]
         public string AMSA_Password { get; set; }
 
+        public string getSurveyType()
+        {
+            string s = "";
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSAParticipant p = dbr.AMSAParticipant.Find(this.Id);
+            return p.AMSAEvent.AMSASurveyType.Name;
+            dbr.Dispose();
+        }
+
+
     }
 }

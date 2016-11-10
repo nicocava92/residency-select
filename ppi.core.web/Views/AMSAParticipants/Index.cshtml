@@ -9,16 +9,15 @@
     <div class="main-box-body">
 
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="col-lg-7 col-md-7 col-sm-12">
                 <h2>AMSA Participants</h2>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
-               
+            <div class="col-lg-2 col-md-2 col-sm-12 pull-right">
                 <a href="@Url.Action("Upload","AMSAParticipants")" class="btn btn-primary btn200 pull-right mt20">
                     <i class="fa fa-upload fa-lg"></i> Upload Participants
                 </a>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
+            <div class="col-lg-2 col-md-2 col-sm-12 pull-right">
                 <a href="@Url.Action("Create","AMSAParticipants")" class="btn btn-primary btn200 pull-right mt20 ml20">
                     <i class="fa fa-plus-circle fa-lg"></i> Add Person
                 </a>
@@ -62,19 +61,25 @@
                         Last Name
                     </th>
                     <th>
+                        Gender
+                    </th>
+                    <th>
+                        ID Number / AAMC Number
+                    </th>
+                    <th>
                         Primary E-mail
                     </th>
                     <th>
-                        Gender
+                        Survey Type
                     </th>
                     
-                    <th>
+                    <th style="word-wrap:break-word; max-width:80px;">
                         AMSA Code
                     </th>
                     <th></th>
                 </tr>
 
-                @foreach (var item in Model.LstParticipants)
+                @foreach (PPI.Core.Web.Models.AmsaReports.AMSAParticipant item in Model.LstParticipants)
                 {
                     <tr>
                         <td>
@@ -87,13 +92,25 @@
                             @Html.DisplayFor(modelItem => item.LastName)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AAMCNumber)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.PrimaryEmail)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Gender)
+                            @try {
+                            @item.getSurveyType()
+                            }
+                            catch
+                            {
+                                <text>No event to show here</text>
+                            }
                         </td>
                        
-                        <td>
+                        <td style="word-wrap:break-word; max-width:80px;">
                             @Html.DisplayFor(modelItem => item.AMSACode)
                         </td>
                         <td>

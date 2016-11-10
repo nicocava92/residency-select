@@ -167,7 +167,7 @@ namespace PPI.Core.Web.Controllers
                 pvm.PerformUserInsertionts(Request, ModelState);
                 if (ModelState.IsValid)
                 {
-                    return View("Index", dbr.AMSAParticipant.ToList()); //Retun from when file is actually correct
+                    return View("Index", new ParticipantListViewModel()); //Retun from when file is actually correct
                 }
                 else return View(pvm);
             }

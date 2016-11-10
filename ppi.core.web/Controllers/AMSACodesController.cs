@@ -69,6 +69,28 @@ namespace PPI.Core.Web.Controllers
 
             return View(acvm);
         }
+
+        [HttpGet]
+        public ActionResult Upload()
+        {
+            return View(new AMSACodeUploadViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Upload(AMSACodeUploadViewModel cvm)
+        {
+            ReportUtilities.checkUploadCSV(Request, ModelState);
+            if (ModelState.IsValid)
+            {
+                cvm.PerformCodeInsertions(Request, ModelState);
+                if (ModelState.IsValid)
+                {
+                    return View("Index", dbr.AMSACodes.ToList()); //Retun from when file is actually correct
+                }
+                else return View(cvm);
+            }
+            return View(cvm);
+        }
         
         protected override void Dispose(bool disposing)
         {

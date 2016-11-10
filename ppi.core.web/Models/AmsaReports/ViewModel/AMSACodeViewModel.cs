@@ -53,7 +53,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         public void checkIfCodeExists(ModelStateDictionary m)
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            AMSACode c = dbr.AMSACodes.Where(r => r.Code.Equals(this.AMSACode.Code)).FirstOrDefault();
+            AMSACode c = dbr.AMSACodes.Where(r => r.Code.ToUpper().Equals(this.AMSACode.Code.ToUpper())).FirstOrDefault();
 
             if(c != null)
             {

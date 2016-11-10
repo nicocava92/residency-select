@@ -396,6 +396,10 @@
     <Compile Include="Migrations\201611041811041_ParticipantUpload.Designer.cs">
       <DependentUpon>201611041811041_ParticipantUpload.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611092130217_Participants.cs" />
+    <Compile Include="Migrations\201611092130217_Participants.Designer.cs">
+      <DependentUpon>201611092130217_Participants.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -424,6 +428,7 @@
     <Compile Include="Models\AmsaReports\Event\ViewModel\AMSASiteViewModel.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSACodeUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantViewModel.cs" />
@@ -3130,6 +3135,7 @@
     <Content Include="Views\AMSACodes\Details.cshtml" />
     <Content Include="Views\AMSACodes\Index.cshtml" />
     <Content Include="Views\AMSAParticipants\Upload.cshtml" />
+    <Content Include="Views\AMSACodes\Upload.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3260,6 +3266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611041811041_ParticipantUpload.resx">
       <DependentUpon>201611041811041_ParticipantUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611092130217_Participants.resx">
+      <DependentUpon>201611092130217_Participants.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
