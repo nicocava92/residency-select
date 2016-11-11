@@ -179,7 +179,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             string last = this.AMSAParticipant.LastName;
             string number = "";
             number += name.Substring(0,2);
-            number += DateTime.Now.ToString();
+            number += DateTime.UtcNow.ToString("yyMMddHHmmssfff");
             number += last.Substring(0, 2);
             this.AMSAParticipant.AAMCNumber = number;
         }
@@ -205,7 +205,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             string last = this.AMSAParticipant.LastName;
             string number = "";
             number += name.Substring(0, 2);
-            number += DateTime.Now.ToString();
+            number += DateTime.UtcNow.ToString("yyMMddHHmmssfff");
             number += last.Substring(0, 2);
             IPasswordHasher passwordHasher = new PasswordHasher();
             this.AMSAParticipant.AMSA_Password = passwordHasher.HashPassword(number);
