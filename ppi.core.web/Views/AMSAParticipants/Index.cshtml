@@ -1,0 +1,133 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.ViewModel.ParticipantListViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-box clearfix">
+    <div class="main-box-body">
+
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12">
+                <h2>AMSA Participants</h2>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 pull-right">
+                <a href="@Url.Action("Upload","AMSAParticipants")" class="btn btn-primary btn200 pull-right mt20">
+                    <i class="fa fa-upload fa-lg"></i> Upload Participants
+                </a>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 pull-right">
+                <a href="@Url.Action("Create","AMSAParticipants")" class="btn btn-primary btn200 pull-right mt20 ml20">
+                    <i class="fa fa-plus-circle fa-lg"></i> Add Person
+                </a>
+            </div>
+        </div>
+    <br/>
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <strong>Search:</strong>
+                @using (Html.BeginForm("GetParticipantsBySearch", "AMSAParticipants"))
+                {
+                            @Html.AntiForgeryToken()
+                        
+                            @Html.EditorFor(m=>m.Search, null, new { htmlAttributes = new { @class = "form-control", @placeholder = "Search Last Name, Email, AAMC, or AMSACode", @ID = "searchsubmit" } }  )
+                     
+                    <button class="btn btn-primary" style="margin-top:10px;" onclick="this.form.submit();">Search</button>
+                }
+            </div>
+            <div class="col-lg-5 col-lg-offset-2 col-md-offset-2 col-sm-12 col-xs-12">
+                <strong>Events:</strong><br>
+                @using (Html.BeginForm("GetParticipantsByEvent","AMSAParticipants"))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @onChange = "this.form.submit();", @Id = "selectEvent" })
+                    @Html.ValidationMessage("FilterByEvent")
+                }
+            </div>
+        </div>
+            
+        <br />
+        <div>
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        ID Number / AAMC Number
+                    </th>
+                    <th>
+                        Primary E-mail
+                    </th>
+                    <th>
+                        Survey Type
+                    </th>
+                    
+                    <th style="word-wrap:break-word; max-width:80px;">
+                        AMSA Code
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (PPI.Core.Web.Models.AmsaReports.AMSAParticipant item in Model.LstParticipants)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AAMCNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrimaryEmail)
+                        </td>
+                        <td>
+                            @try {
+                            @item.getSurveyType()
+                            }
+                            catch
+                            {
+                                <text>No event to show here</text>
+                            }
+                        </td>
+                       
+                        <td style="word-wrap:break-word; max-width:80px;">
+                            @Html.DisplayFor(modelItem => item.AMSACode)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default">
+                                Edit
+                            </a>
+                            <a href="@Url.Action("Details", new { id=item.Id })" class="btn btn-primary" disabled>
+                                Profile
+                            </a>
+                            <a href="@Url.Action("Delete", new { id=item.Id })" class="btn btn-danger" onclick="return confirm('Are you sure you wish to delete?');">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        </div></div>
+

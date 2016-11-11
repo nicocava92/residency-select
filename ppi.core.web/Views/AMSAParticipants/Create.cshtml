@@ -1,0 +1,205 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.ViewModel.AMSAParticipantViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Create</h1>
+
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h2>AMSAParticipant</h2>
+                <hr />
+                <div id="eventSection">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAParticipant.AMSAEvent, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-5">
+                            @Html.DropDownListFor(model => model.idSelectedEvent, Model.AMSAEvents, new { @class = "form-control", @onChange = "checkAmmountOfCodes()", @id = "eventId" })
+                            @Html.ValidationMessageFor(model => model.AMSAParticipant.AMSAEvent, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-1">
+                            <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
+                                @Model.AMASCodeCount()
+                            </div>
+
+                             Available AMSA Codes 
+                        </div>
+
+                        <div class="col-md-1">
+                           
+                        </div>
+                        
+                    </div>
+                </div>
+
+                @*Show this pannel when there are no codes*@
+                <div id="errorEvent" class="alert alert-danger" style="display:none;">
+                    
+                </div>
+
+                @*Show this pannel if all is good and there are enough codes to insert new participants in*@
+
+                <div id="insertParticipant" style="display:none;">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAParticipant.FirstName, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.AMSAParticipant.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AMSAParticipant.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAParticipant.LastName, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.AMSAParticipant.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AMSAParticipant.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAParticipant.PrimaryEmail, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.AMSAParticipant.PrimaryEmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AMSAParticipant.PrimaryEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAParticipant.Gender, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(model => model.stringSelectedGender, Model.Genders, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AMSAParticipant.Gender, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAParticipant.Title, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.AMSAParticipant.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AMSAParticipant.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAParticipant.AAMCNumber, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.AMSAParticipant.AAMCNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AMSAParticipant.AAMCNumber, "", new { @class = "text-danger" })
+                            <br />
+                            <i class="fa fa-info-circle fa-fw fa-lg red"></i> <strong class="red">Note</strong> <span class="red">Leave Blank to Auto Assign New AAMC Number</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAParticipant.AMSACode, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.AMSAParticipant.AMSACode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AMSAParticipant.AMSACode, "", new { @class = "text-danger" })
+                            @Html.ValidationMessage("AMSACode")<br />
+                            <i class="fa fa-info-circle fa-fw fa-lg red"></i> <strong class="red">Note</strong> <span class="red">Leave Blank to Auto Assign New AMSA Code</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AMSAParticipant.AMSA_Password, htmlAttributes: new { @class = "control-label col-md-3 bold" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.AMSAParticipant.AMSA_Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                            @Html.ValidationMessageFor(model => model.AMSAParticipant.AMSA_Password, "", new { @class = "text-danger" })
+                            <br />
+                            <i class="fa fa-info-circle fa-fw fa-lg red"></i> <strong class="red">Note</strong> <span class="red">Leave Blank to Auto Assign Password</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="submit" value="Create" class="btn btn-success" /><br />
+                            @Html.ValidationMessage("AMSAParticipantExists")
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        }
+        
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        </div></div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            checkAmmountOfCodes();
+        });
+        function checkAmmountOfCodes() {
+            //Get e-mail address
+            var eventId = $("#eventId").val();
+            $("#modalMessage").modal('show');
+                $('.alert').fadeOut();
+                $.ajax({
+                    contentType: "application/json; charset=utf-8",
+                    type: "GET",
+                    url: "../AMSAParticipants/getAmmountOfCodes",
+                    data: { eventId : eventId },
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+                        var button = '<br />@Html.ActionLink("Insert Codes", "Create", "AMSACodes", null, new { @class = "btn btn-primary" })';
+                        if (!data.error) {
+                            //There is no error
+                            $("#errorEvent").fadeOut();
+                            //Check first if the ammount of amsa codes is greater than 0, if it is show the participant insert, if it isn't then show error message
+                            $("#amsaCodeCount").html(data.ammount); //Show ammount of AMSA codes that are available
+                            setTimeout(function () {
+                                if (data.ammount == 0) {
+                                    $("#insertParticipant").fadeOut();
+                                    $("#errorEvent").html('<h2>' +
+                                        'Error! There are no codes for this event, participants can\'t be added if codes are not available to be assigned.<br />' +
+                                        'Please insert / upload new codes to add new participants.' +
+                                        '</h2>' + button);
+                                    $("#errorEvent").fadeIn();
+                                    
+                                } else {
+                                    //Fade in participant insert 
+                                    $("#insertParticipant").fadeIn();
+                                }
+                            }, 500);
+                            //insertParticipant, eventSection, errorEvent
+                        }
+                        else {
+                            $("#insertParticipant").fadeOut();
+                            //Wait for the other div to dissapear and show the error message
+                            setTimeout(function () {
+                                $("#errorEvent").html('<h2>' +
+                                    'ERROR! System error, please reload page, if problem persists contact system administrator'+
+                                    '</h2>');
+                                $("#errorEvent").fadeIn();
+                            }, 500);
+                            //There is error, show error message
+
+                            /*
+                            <h2>
+                        Error! There are no codes for this event, participants can't be added if codes are not available to be assigned.<br />
+                        Please insert / upload new codes to add new participants.
+                    </h2>
+
+                        
+                    
+                            */
+                        }
+                    },
+                    error: function (data) {
+                        $('.alert').fadeIn();
+                        $('.alert').html("<p>ERROR - Please try again or contact system administrator.</p>");
+                        console.log(data);
+                    }
+                });
+        }
+    </script>
+}

@@ -1,0 +1,45 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.ViewModel.AMSACodeViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Create</h1>
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h2>AMSACode</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSACode.Code, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AMSACode.Code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AMSACode.Code, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("AMSACode")
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSACode.AMSAEvent, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @id = "EventDepartmentId", @onChange = "getSpeciality()" })
+                        @Html.ValidationMessageFor(model => model.AMSACode.AMSAEvent, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+</div></div>

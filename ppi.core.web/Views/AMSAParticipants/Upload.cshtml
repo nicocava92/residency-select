@@ -1,0 +1,175 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.ViewModel.AMSAParticipantUploadViewModel
+
+@{
+    ViewBag.Title = "Upload Participant";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    
+}
+
+<h1>Create</h1>
+
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        @using (Html.BeginForm("Upload", "AMSAParticipants",FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                <h2>AMSAParticipant</h2>
+                <hr />
+                <p>
+                    <ol>
+                        <li>
+                            PLEASE MAKE SURE THAT YOU ONLY USE THE TEMPLATE IN ITS EXISTING FORM WITHOUT MODIFYING IT. IF THE TEMPLATE IS NOT UPLOADED IN THE EXACT FORMAT IN A CSV FILE, YOUR UPLOAD WILL NOT COMPLETE
+                        </li>
+                        <li>
+                            IF A PARTICIPANT HAS BEEN ADDED TO SYSTEM AND THE SPECIFIC EVENT BY ANOTHER PROGRAM/ORGANIZATION THE NOTIFIER WILL INFORM YOU THAT THE PARTICIPANT HAS ALREADY BEEN ASSIGNED TO THE EVENT
+                        </li>
+                        <li>
+                            IF THERE ARE NOT ENOUGH CODES TO ASSIGN ONTO THE PARTICIPANTS THAT ARE BEING UPLOADED, THE SYSTEM WILL STOP THE OUPLOAD AND INFORM YOU OF THE LINE NUMBER AND FILE NUMBER WHERE THE UPLOAD WAS STOPED
+                        </li>
+                        <li>
+                            PLEASE MAKE SURE YOU ARE UPLOADING YOUR LIST TO THE CORRECT EVENT
+                        </li>
+                    </ol>
+                </p>
+
+                <hr />  
+
+                @*Upload participants via CSV*@
+                <div id="eventSelection">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Events, htmlAttributes: new { @class = "col-md-1 bold" })
+                        <div class="col-md-5">
+                            @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @onChange = "checkAmmountOfCodes()", @id = "eventId" })
+                            @Html.ValidationMessage("AMSAEvent")
+                        </div>
+                        <div class="col-md-1">
+                            <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
+                                @Model.AMASCodeCount()
+                            </div>
+
+                            Available AMSA Codes
+                        </div>
+
+                        <div class="col-md-1">
+
+                        </div>
+
+                    </div>
+                    <br />
+                    @Html.ValidationSummary("Participant")
+                    
+                </div>
+
+                @*Show this pannel when there are no codes*@
+                <div id="errorEvent" class="alert alert-danger" style="display:none;">
+                    
+                </div>
+
+                <div id="uploadParticipant" style="display:none;">
+                    <br />
+                    <div class="alert-info" display="display">
+                        <a href="~/Uploadfiles/AMSAParticipant.csv"><label><i class="fa fa-file-excel-o fa-2x"></i></label>  View and download a sample upload file.</a>
+                    </div>
+                    <br />  
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-9">
+                            @Html.LabelFor(model => model.csvFile, htmlAttributes: new { @class = "col-md-2 bold" })
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input type="file" name="file" id="file" multiple="" placeholder="select 1 or multiple files">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div  class="mt20 mb20">
+                            <input type="submit" id="btnsubmit" name="submit" class="btn btn-primary btn200" value="Submit" /><br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            checkAmmountOfCodes();
+            
+        });
+        function checkAmmountOfCodes() {
+            //Get e-mail address
+            var eventId = $("#eventId").val();
+            $("#modalMessage").modal('show');
+                $('.alert').fadeOut();
+                $.ajax({
+                    contentType: "application/json; charset=utf-8",
+                    type: "GET",
+                    url: "../AMSAParticipants/getAmmountOfCodes",
+                    data: { eventId : eventId },
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+                        var button = '<br />@Html.ActionLink("Insert Codes", "Create", "AMSACodes", null, new { @class = "btn btn-primary" })';
+                        if (!data.error) {
+                            //There is no error
+                            $("#errorEvent").fadeOut();
+                            //Check first if the ammount of amsa codes is greater than 0, if it is show the participant insert, if it isn't then show error message
+                            $("#amsaCodeCount").html(data.ammount); //Show ammount of AMSA codes that are available
+                            setTimeout(function () {
+                                if (data.ammount == 0) {
+                                    $("#uploadParticipant").fadeOut();
+                                    $("#errorEvent").html('<h2>' +
+                                        'Error! There are no codes for this event, participants can\'t be added if codes are not available to be assigned.<br />' +
+                                        'Please insert / upload new codes to add new participants.' +
+                                        '</h2>' + button);
+                                    $("#errorEvent").fadeIn();
+
+                                } else {
+                                    //Fade in participant insert
+                                    $("#uploadParticipant").fadeIn();
+                                }
+                            }, 500);
+                            //uploadParticipant, eventSection, errorEvent
+                        }
+                        else {
+                            $("#uploadParticipant").fadeOut();
+                            //Wait for the other div to dissapear and show the error message
+                            setTimeout(function () {
+                                $("#errorEvent").html('<h2>' +
+                                    'ERROR! System error, please reload page, if problem persists contact system administrator'+
+                                    '</h2>');
+                                $("#errorEvent").fadeIn();
+                            }, 500);
+                            //There is error, show error message
+
+                            /*
+                            <h2>
+                        Error! There are no codes for this event, participants can't be added if codes are not available to be assigned.<br />
+                        Please insert / upload new codes to add new participants.
+                    </h2>
+
+
+
+                            */
+                        }
+                    },
+                    error: function (data) {
+                        $('.alert').fadeIn();
+                        $('.alert').html("<p>ERROR - Please try again or contact system administrator.</p>");
+                        console.log(data);
+                    }
+                });
+        }
+    </script>
+}

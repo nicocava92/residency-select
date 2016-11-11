@@ -241,11 +241,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\AMSACodesController.cs" />
     <Compile Include="Controllers\AMSAEventsController.cs" />
     <Compile Include="Controllers\AMSAEventStatusController.cs" />
     <Compile Include="Controllers\AMSAEventTypesController.cs" />
     <Compile Include="Controllers\AMSANotBillableReasonsController.cs" />
     <Compile Include="Controllers\AMSAOrganizationsController.cs" />
+    <Compile Include="Controllers\AMSAParticipantsController.cs" />
     <Compile Include="Controllers\AMSAProgramsController.cs" />
     <Compile Include="Controllers\AMSAProgramSitesController.cs" />
     <Compile Include="Controllers\AMSASitesController.cs" />
@@ -334,6 +336,70 @@
     <Compile Include="Migrations\201610282106552_Event5.Designer.cs">
       <DependentUpon>201610282106552_Event5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610311908582_Participant.cs" />
+    <Compile Include="Migrations\201610311908582_Participant.Designer.cs">
+      <DependentUpon>201610311908582_Participant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610311920326_Participant1.cs" />
+    <Compile Include="Migrations\201610311920326_Participant1.Designer.cs">
+      <DependentUpon>201610311920326_Participant1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611011332431_Participant2.cs" />
+    <Compile Include="Migrations\201611011332431_Participant2.Designer.cs">
+      <DependentUpon>201611011332431_Participant2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611011430138_Participant3.cs" />
+    <Compile Include="Migrations\201611011430138_Participant3.Designer.cs">
+      <DependentUpon>201611011430138_Participant3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611011500235_Participant4.cs" />
+    <Compile Include="Migrations\201611011500235_Participant4.Designer.cs">
+      <DependentUpon>201611011500235_Participant4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611011503593_Participant5.cs" />
+    <Compile Include="Migrations\201611011503593_Participant5.Designer.cs">
+      <DependentUpon>201611011503593_Participant5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611021212530_Participant6.cs" />
+    <Compile Include="Migrations\201611021212530_Participant6.Designer.cs">
+      <DependentUpon>201611021212530_Participant6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611021219474_Participant7.cs" />
+    <Compile Include="Migrations\201611021219474_Participant7.Designer.cs">
+      <DependentUpon>201611021219474_Participant7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611021317591_Participant8.cs" />
+    <Compile Include="Migrations\201611021317591_Participant8.Designer.cs">
+      <DependentUpon>201611021317591_Participant8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611021350324_Participant9.cs" />
+    <Compile Include="Migrations\201611021350324_Participant9.Designer.cs">
+      <DependentUpon>201611021350324_Participant9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611021913474_AMSACode.cs" />
+    <Compile Include="Migrations\201611021913474_AMSACode.Designer.cs">
+      <DependentUpon>201611021913474_AMSACode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611022058175_AMSACode1.cs" />
+    <Compile Include="Migrations\201611022058175_AMSACode1.Designer.cs">
+      <DependentUpon>201611022058175_AMSACode1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611022107019_AMSACode2.cs" />
+    <Compile Include="Migrations\201611022107019_AMSACode2.Designer.cs">
+      <DependentUpon>201611022107019_AMSACode2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611031918037_UploadPaticipant.cs" />
+    <Compile Include="Migrations\201611031918037_UploadPaticipant.Designer.cs">
+      <DependentUpon>201611031918037_UploadPaticipant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611041811041_ParticipantUpload.cs" />
+    <Compile Include="Migrations\201611041811041_ParticipantUpload.Designer.cs">
+      <DependentUpon>201611041811041_ParticipantUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611092130217_Participants.cs" />
+    <Compile Include="Migrations\201611092130217_Participants.Designer.cs">
+      <DependentUpon>201611092130217_Participants.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -342,6 +408,8 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AMSAReportContext.cs" />
+    <Compile Include="Models\AmsaReports\AMSACode.cs" />
+    <Compile Include="Models\AmsaReports\AMSAParticipant.cs" />
     <Compile Include="Models\AmsaReports\AMSAReportsItems.cs" />
     <Compile Include="Models\AmsaReports\AmsaReportStudentData.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEvent.cs" />
@@ -360,6 +428,11 @@
     <Compile Include="Models\AmsaReports\Event\ViewModel\AMSASiteViewModel.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSACodeUploadViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSACodeViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantUploadViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\ParticipantListViewModel.cs" />
     <Compile Include="Models\AssessmentViewModel.cs" />
     <Compile Include="Models\Base\ReportViewModel.cs" />
     <Compile Include="Models\BillingReportViewModel.cs" />
@@ -3053,6 +3126,16 @@
     <Content Include="Views\AMSAEvents\CreateInsertDates.cshtml" />
     <Content Include="Views\AMSAEvents\PreviewCreate.cshtml" />
     <Content Include="Views\AMSAEvents\Complete.cshtml" />
+    <Content Include="Views\AMSAParticipants\Create.cshtml" />
+    <Content Include="Views\AMSAParticipants\Delete.cshtml" />
+    <Content Include="Views\AMSAParticipants\Details.cshtml" />
+    <Content Include="Views\AMSAParticipants\Edit.cshtml" />
+    <Content Include="Views\AMSAParticipants\Index.cshtml" />
+    <Content Include="Views\AMSACodes\Create.cshtml" />
+    <Content Include="Views\AMSACodes\Details.cshtml" />
+    <Content Include="Views\AMSACodes\Index.cshtml" />
+    <Content Include="Views\AMSAParticipants\Upload.cshtml" />
+    <Content Include="Views\AMSACodes\Upload.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3138,6 +3221,54 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610282106552_Event5.resx">
       <DependentUpon>201610282106552_Event5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610311908582_Participant.resx">
+      <DependentUpon>201610311908582_Participant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610311920326_Participant1.resx">
+      <DependentUpon>201610311920326_Participant1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611011332431_Participant2.resx">
+      <DependentUpon>201611011332431_Participant2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611011430138_Participant3.resx">
+      <DependentUpon>201611011430138_Participant3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611011500235_Participant4.resx">
+      <DependentUpon>201611011500235_Participant4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611011503593_Participant5.resx">
+      <DependentUpon>201611011503593_Participant5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611021212530_Participant6.resx">
+      <DependentUpon>201611021212530_Participant6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611021219474_Participant7.resx">
+      <DependentUpon>201611021219474_Participant7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611021317591_Participant8.resx">
+      <DependentUpon>201611021317591_Participant8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611021350324_Participant9.resx">
+      <DependentUpon>201611021350324_Participant9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611021913474_AMSACode.resx">
+      <DependentUpon>201611021913474_AMSACode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611022058175_AMSACode1.resx">
+      <DependentUpon>201611022058175_AMSACode1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611022107019_AMSACode2.resx">
+      <DependentUpon>201611022107019_AMSACode2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611031918037_UploadPaticipant.resx">
+      <DependentUpon>201611031918037_UploadPaticipant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611041811041_ParticipantUpload.resx">
+      <DependentUpon>201611041811041_ParticipantUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611092130217_Participants.resx">
+      <DependentUpon>201611092130217_Participants.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

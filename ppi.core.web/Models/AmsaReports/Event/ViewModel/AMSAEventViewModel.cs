@@ -300,6 +300,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             dbr.Dispose();
             return ret;
         }
+
     }
     public class YesNo
     {
@@ -308,4 +309,5 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
 
         public YesNo() { }
     }
+
 }
