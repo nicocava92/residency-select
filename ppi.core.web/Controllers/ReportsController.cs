@@ -1072,7 +1072,18 @@ namespace PPI.Core.Web.Controllers
         [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
         public void getPdfReports(List<int> lstParticipantIds)
         {
-            if(lstParticipantIds.Count > 0) { 
+            //Get e-mail of the user that is performing the task right away, just in case 
+            //he or she decides to close the application and we can't reach this data later on
+
+
+            //Get all users for reports
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            string to = System.Web.HttpContext.Current.User.Identity.Name;
+            to = db.Users.Where(m => m.UserName == to).FirstOrDefault().Email;
+
+
+            if (lstParticipantIds.Count > 0) { 
                 var FilePath = Server.MapPath("~/Reports");
                 string timeStamp = DateTime.Now.ToString("yyyyMMdd");
                 Guid fileName = Guid.NewGuid();
@@ -1081,8 +1092,6 @@ namespace PPI.Core.Web.Controllers
                 var FilePathZip = System.IO.Path.Combine(FilePath, fName + ".zip");
                 ZipFile _Zip = new ZipFile(FilePathZip);
            
-                //Get all users for reports
-                ApplicationDbContext db = new ApplicationDbContext();
                 //Find users that are selected for report generation
                 List<AmsaReportStudentData> lstStudents = new List<AmsaReportStudentData>();
                 //Loop through users and generate the final list (remove non selected users from the list)
@@ -1143,16 +1152,15 @@ namespace PPI.Core.Web.Controllers
                 //string requestUrl = this.uri(Request.Url.ToString());
                 string requestUrl = Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.UriEscaped);
 
-                string to = System.Web.HttpContext.Current.User.Identity.Name;
-                to = db.Users.Where(m => m.UserName == to).FirstOrDefault().Email;
+               
                 //After pdf is created we send over the e-mail
 
                 var emailmessage = new System.Net.Mail.MailMessage();
                 emailmessage.From = new System.Net.Mail.MailAddress("noreply@j3personica.com");
-                emailmessage.Subject = "Your AON Reports are ready";
+                emailmessage.Subject = "Your AMSA Reports are ready";
                 emailmessage.IsBodyHtml = true;
                 var filename = fileName.ToString();
-                emailmessage.Body = "<p>Your aon reports have been generated successfully!</p>";
+                emailmessage.Body = "<p>Your AMSA reports have been generated successfully!</p>";
                 emailmessage.Body += "<p>Please click the 'Requested Reports' link to view and download the reports.</p>";
                 emailmessage.Body += "<p><a href='" + requestUrl + "/Reports/" + fileNameEmail + "'>Requested Reports</a></p>";
                 //MailClass.SendEmail(emailmessage.Subject, emailmessage.Body, "noreply@j3personica.com", "nicocava92@live.com");
@@ -1177,6 +1185,8 @@ namespace PPI.Core.Web.Controllers
                 Mail.Subject = emailmessage.Subject;
                 Mail.Html = emailmessage.Body;
                 try { 
+                //We use a try catch here just in case the user doesn't have an e-mail in the system, making sure 
+                //reports are still completely generated and app continues working correctly even tho this issue is present.
                 transportWeb.Deliver(Mail);
                 }
                 catch
