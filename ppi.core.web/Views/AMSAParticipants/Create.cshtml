@@ -23,7 +23,7 @@
                             @Html.DropDownListFor(model => model.idSelectedEvent, Model.AMSAEvents, new { @class = "form-control", @onChange = "checkAmmountOfCodes()", @id = "eventId" })
                             @Html.ValidationMessageFor(model => model.AMSAParticipant.AMSAEvent, "", new { @class = "text-danger" })
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
                                 @Model.AMASCodeCount()
                             </div>
@@ -31,10 +31,6 @@
                              Available AMSA Codes 
                         </div>
 
-                        <div class="col-md-1">
-                           
-                        </div>
-                        
                     </div>
                 </div>
 
