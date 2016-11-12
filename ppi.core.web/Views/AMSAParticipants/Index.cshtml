@@ -12,13 +12,15 @@
             <div class="col-lg-5 col-md-5 col-sm-12">
                 <h2>AMSA Participants</h2>
             </div>
+        </div>
+        <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-12 pull-right" >
-                <a href="@Url.Action("Upload","AMSAParticipants")" class="btn btn-primary btn200 pull-right mt20">
+                <a href="@Url.Action("Upload","AMSAParticipants")" class="btn btn-primary pull-right btn-block">
                     <i class="fa fa-upload fa-lg"></i> Upload Participants
                 </a>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 pull-right" style="margin-right:10px;">
-                <a href="@Url.Action("Create","AMSAParticipants")" class="btn btn-primary btn200 pull-right mt20 ml20">
+                <a href="@Url.Action("Create","AMSAParticipants")" class="btn btn-primary pull-right btn-block">
                     <i class="fa fa-plus-circle fa-lg"></i> Add Person
                 </a>
             </div>
@@ -36,7 +38,7 @@
                     <button class="btn btn-primary" style="margin-top:10px;" onclick="this.form.submit();">Search</button>
                 }
             </div>
-            <div class="col-lg-5 col-lg-offset-2 col-md-offset-2 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-lg-offset-1 col-md-offset-2 col-sm-12 col-xs-12">
                 <strong>Events:</strong><br>
                 @using (Html.BeginForm("GetParticipantsByEvent","AMSAParticipants"))
                 {
