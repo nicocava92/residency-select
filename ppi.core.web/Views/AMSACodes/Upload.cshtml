@@ -122,18 +122,8 @@
                             //Check first if the ammount of amsa codes is greater than 0, if it is show the participant insert, if it isn't then show error message
                             $("#amsaCodeCount").html(data.ammount); //Show ammount of AMSA codes that are available
                             setTimeout(function () {
-                                if (data.ammount == 0) {
-                                    $("#uploadParticipant").fadeOut();
-                                    $("#errorEvent").html('<h2>' +
-                                        'Error! There are no codes for this event, it\'s recommended  that codes are added in so Participants can be assigned to the event if desired.<br />' +
-                                        'Insert new codes permitting the insertion of Participants in the future.' +
-                                        '</h2>' + button);
-                                    $("#errorEvent").fadeIn();
-
-                                } else {
                                     //Fade in participant insert
                                     $("#uploadParticipant").fadeIn();
-                                }
                             }, 500);
                             //uploadParticipant, eventSection, errorEvent
                         }
