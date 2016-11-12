@@ -44,22 +44,13 @@
                             @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @onChange = "checkAmmountOfCodes()", @id = "eventId" })
                             @Html.ValidationMessage("AMSAEvent")
                         </div>
-<<<<<<< HEAD
-                        <div class="col-md-1">
-=======
                         <div class="col-md-2">
->>>>>>> refs/remotes/origin/adding-participant-upload
+
                             Available AMSA Codes
                             <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
                                 @Model.AMASCodeCount()
                             </div>
-<<<<<<< HEAD
-                        </div>
 
-                        <div class="col-md-1">
-
-=======
->>>>>>> refs/remotes/origin/adding-participant-upload
                         </div>
 
                     </div>
