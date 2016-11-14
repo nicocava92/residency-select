@@ -1297,10 +1297,45 @@ namespace PPI.Core.Web.Controllers
         [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
         public ActionResult IndexAmsaStudents()
         {
-            AMSAReportContext db = new AMSAReportContext();
-            List<AmsaReportStudentData> lst_students = db.lstStudentsForReport.OrderBy(m => m.LastName).ToList();
-            return View(lst_students);
+            return View(new ReportStudentDataListViewModel());
         }
+
+        //Return participant list by the id that is selected
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GetParticipantsByEvent(ReportStudentDataListViewModel pvm)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            try
+            {
+                List<AmsaReportStudentData> participantsInEvent = new List<AmsaReportStudentData>();
+                //if the id != to 0 then filter
+                if (pvm.idSelectedEvent != 0)
+                {
+                    //Get the listing of information that needs to be shown on the view
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == pvm.idSelectedEvent).ToList();
+                }
+                else
+                {
+                    //If it is == 0 then what we are need to show is all of the participants
+                    participantsInEvent = dbr.lstStudentsForReport.ToList();
+                }
+                pvm.LstStudentData = participantsInEvent;
+                return View("IndexAmsaStudents", pvm);
+            }
+            catch
+            {
+                return View("IndexAmsaStudents", pvm);
+            }
+        }
+
+        //Get view to add csv for datafeed
+        [HttpGet]
+        public ActionResult UploadAMSADataFeed()
+        {
+            return View();
+        }
+
 
     }
 
