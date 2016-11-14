@@ -1,5 +1,4 @@
-@model PPI.Core.Web.Models.AmsaReports.AmsaReportStudentData
-
+@model PPI.Core.Web.Models.AmsaReports.ViewModel.AMSAParticipantStudentDataViewModel
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -13,158 +12,167 @@
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(model => model.Data.Id)
                     <div class="form-group">
-                        @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Events, htmlAttributes: new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.FirstName)
+                            @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @id = "EventDepartmentId", @onChange = "getSpeciality()" })
+                            @Html.ValidationMessageFor(model => model.Events, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Data.FirstName, new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.LastName)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PersonId, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.PersonId, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.PersonId)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.RegistrationDate, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.RegistrationDate, new { htmlAttributes = new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" } })
-                            @Html.ValidationMessageFor(model => model.RegistrationDate)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CompletionDate, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.CompletionDate, new { htmlAttributes = new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" } })
-                            @Html.ValidationMessageFor(model => model.CompletionDate)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Ambition, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Ambition, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Ambition)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Assertiveness, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Assertiveness, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Assertiveness)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Awareness, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Awareness, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Awareness)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Composure, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Composure, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Composure)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Conceptual, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Conceptual, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Conceptual)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Cooperativeness, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Cooperativeness, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Cooperativeness)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Drive, new { @class = "control-label col-md-2 bold" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Drive, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Drive)
+                            @Html.EditorFor(model => model.Data.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.FirstName)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Flexibility, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Data.LastName, new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Flexibility, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Flexibility)
+                            @Html.EditorFor(model => model.Data.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.LastName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.PersonId, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.PersonId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.PersonId)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.RegistrationDate, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.RegistrationDate, new { htmlAttributes = new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" } })
+                            @Html.ValidationMessageFor(model => model.Data.RegistrationDate)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.CompletionDate, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.CompletionDate, new { htmlAttributes = new { @class = "form-control datepicker cursor_pointer", data_date_format = "mm-dd-yyyy" } })
+                            @Html.ValidationMessageFor(model => model.Data.CompletionDate)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.Stanine_Ambition, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.Stanine_Ambition, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Ambition)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.Stanine_Assertiveness, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.Stanine_Assertiveness, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Assertiveness)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.Stanine_Awareness, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.Stanine_Awareness, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Awareness)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.Stanine_Composure, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.Stanine_Composure, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Composure)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.Stanine_Conceptual, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.Stanine_Conceptual, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Conceptual)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.Stanine_Cooperativeness, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.Stanine_Cooperativeness, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Cooperativeness)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.Stanine_Drive, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.Stanine_Drive, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Drive)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Humility, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Data.Stanine_Flexibility, new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Humility, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Humility)
+                            @Html.EditorFor(model => model.Data.Stanine_Flexibility, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Flexibility)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data.Stanine_Humility, new { @class = "control-label col-md-2 bold" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data.Stanine_Humility, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Humility)
                         </div>
                     </div>
 
 
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Liveliness, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Data.Stanine_Liveliness, new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Liveliness, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Liveliness)
+                            @Html.EditorFor(model => model.Data.Stanine_Liveliness, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Liveliness)
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Mastery, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Data.Stanine_Mastery, new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Mastery, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Mastery)
+                            @Html.EditorFor(model => model.Data.Stanine_Mastery, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Mastery)
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Positivity, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Data.Stanine_Positivity, new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Positivity, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Positivity)
+                            @Html.EditorFor(model => model.Data.Stanine_Positivity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Positivity)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Power, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Data.Stanine_Power, new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Power, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Power)
+                            @Html.EditorFor(model => model.Data.Stanine_Power, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Power)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Sensitivity, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Data.Stanine_Sensitivity, new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Sensitivity, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Sensitivity)
+                            @Html.EditorFor(model => model.Data.Stanine_Sensitivity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Sensitivity)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Stanine_Structure, new { @class = "control-label col-md-2 bold" })
+                        @Html.LabelFor(model => model.Data.Stanine_Structure, new { @class = "control-label col-md-2 bold" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Stanine_Structure, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Stanine_Structure)
+                            @Html.EditorFor(model => model.Data.Stanine_Structure, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Data.Stanine_Structure)
                         </div>
                     </div>
                     <div class="form-group">

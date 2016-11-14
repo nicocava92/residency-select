@@ -85,24 +85,11 @@ namespace PPI.Core.Web.Models.AmsaReports
         [System.ComponentModel.DisplayName("Stanine Structure")]
         [Range(1, 9, ErrorMessage = "Must be between 1 and 9")]
         public virtual int Stanine_Structure { get; set; }
+
         /****************
-            
+        AMSA Event that is related to the data    
         ****************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public AMSAEvent AMSAEvent { get; set; }
 
     }
 }

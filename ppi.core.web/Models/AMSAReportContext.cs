@@ -25,6 +25,13 @@ namespace PPI.Core.Web.Models
         public DbSet<AMSAParticipant> AMSAParticipant { get; set; }
         //AMSA Codes - this list is also checked to see if the ammount of AMSA Codes in the application is too low
         public DbSet<AMSACode> AMSACodes { get; set; }
+
+        //Datasets utilized for the genration of reports
+        public DbSet<AmsaReports.AonItemsAF716AMSAVersionAB> lstReportItems { get; set; }
+        public DbSet<AmsaReports.AmsaReportStudentData> lstStudentsForReport { get; set; }
+        public DbSet<AmsaReports.AonParagraphs> lstAonParagraphs { get; set; }
+
+
         public AMSAReportContext()
             : base("DefaultConnection")
         {

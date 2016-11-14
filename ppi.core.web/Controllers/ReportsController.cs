@@ -14,6 +14,7 @@ using HiQPdf;
 using PPI.Core.Web.Models.AmsaReports;
 //Zip files
 using System.IO.Compression;
+using PPI.Core.Web.Models.AmsaReports.ViewModel;
 
 
 namespace PPI.Core.Web.Controllers
@@ -1057,7 +1058,7 @@ namespace PPI.Core.Web.Controllers
         [HttpGet]
         public ActionResult AMSAReportToPDFTestDesign()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            AMSAReportContext db = new AMSAReportContext();
             //Instead of getting all users we will only get the ints that are passed through
             //When needed to buid reports only for the users they send through
             List<AmsaReportStudentData> lstStudents = db.lstStudentsForReport.ToList();
@@ -1200,7 +1201,7 @@ namespace PPI.Core.Web.Controllers
         private List<AmsaReportStudentData> getFinalListOfParticipantsForReport(List<int> lstParticipantIds)
         {
             List<AmsaReportStudentData> lstS = new List<AmsaReportStudentData>();
-            ApplicationDbContext dbr = new ApplicationDbContext();
+            AMSAReportContext dbr = new AMSAReportContext();
             foreach(int i in lstParticipantIds)
             {
                 AmsaReportStudentData s = dbr.lstStudentsForReport.Where(m => m.PersonId == i.ToString()).FirstOrDefault();
@@ -1251,99 +1252,52 @@ namespace PPI.Core.Web.Controllers
         [HttpGet]
         public ActionResult CreateAmsaStudents()
         {
-            AmsaReportStudentData student = new AmsaReportStudentData();
-            return View(student);
+            return View(new AMSAParticipantStudentDataViewModel());
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateAmsaStudents(AmsaReportStudentData student)
+        public ActionResult CreateAmsaStudents(AMSAParticipantStudentDataViewModel pvm)
         {
             if (ModelState.IsValid)
             {
-                ApplicationDbContext db = new ApplicationDbContext();
-                //student.UploadDate = DateTime.Now;
-                
-                AmsaReportStudentData s = new AmsaReportStudentData();
-                s.CompletionDate = student.CompletionDate;
-                s.RegistrationDate = student.RegistrationDate;
-                s.PersonId = student.PersonId;
-                s.FirstName = student.FirstName;
-                s.LastName = student.LastName;
-                s.Stanine_Drive = student.Stanine_Drive;
-                s.Stanine_Structure = student.Stanine_Structure;
-                s.Stanine_Conceptual = student.Stanine_Conceptual;
-                s.Stanine_Flexibility = student.Stanine_Flexibility;
-                s.Stanine_Mastery = student.Stanine_Mastery;
-                s.Stanine_Ambition = student.Stanine_Ambition;
-                s.Stanine_Power = student.Stanine_Power;
-                s.Stanine_Assertiveness = student.Stanine_Assertiveness;
-                s.Stanine_Liveliness = student.Stanine_Liveliness;
-                s.Stanine_Composure = student.Stanine_Composure;
-                s.Stanine_Positivity = student.Stanine_Positivity;
-                s.Stanine_Awareness = student.Stanine_Awareness;
-                s.Stanine_Cooperativeness = student.Stanine_Cooperativeness;
-                s.Stanine_Sensitivity = student.Stanine_Sensitivity;
-                s.Stanine_Humility = student.Stanine_Humility;
-                db.lstStudentsForReport.Add(s);
-                db.SaveChanges();
+                //If all is good then save the model to the database
+                pvm.SaveNew();
                 return RedirectToAction("IndexAmsaStudents");
             }
 
-            return View(student);
+            return View(pvm);
             
         }
 
         [HttpGet]
         [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
         public ActionResult EditAmsaStudents(int id) {
-            ApplicationDbContext db = new ApplicationDbContext();
-            AmsaReportStudentData student = db.lstStudentsForReport.Find(id);
-            return View(student);
+            AMSAParticipantStudentDataViewModel svm = new AMSAParticipantStudentDataViewModel();
+            svm.loadStudentData(id);
+            return View(svm);
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAmsaStudents(AmsaReportStudentData student)
+        public ActionResult EditAmsaStudents(AMSAParticipantStudentDataViewModel svm)
         {
             if (ModelState.IsValid)
             {
-                ApplicationDbContext db = new ApplicationDbContext();
-                AmsaReportStudentData studentInDb = db.lstStudentsForReport.Find(student.Id);
-                studentInDb.CompletionDate = student.CompletionDate;
-                studentInDb.RegistrationDate = student.RegistrationDate;
-                studentInDb.PersonId = student.PersonId;
-                studentInDb.FirstName = student.FirstName;
-                studentInDb.LastName = student.LastName;
-                studentInDb.Stanine_Drive = student.Stanine_Drive;
-                studentInDb.Stanine_Structure = student.Stanine_Structure;
-                studentInDb.Stanine_Conceptual = student.Stanine_Conceptual;
-                studentInDb.Stanine_Flexibility = student.Stanine_Flexibility;
-                studentInDb.Stanine_Mastery = student.Stanine_Mastery;
-                studentInDb.Stanine_Ambition = student.Stanine_Ambition;
-                studentInDb.Stanine_Power = student.Stanine_Power;
-                studentInDb.Stanine_Assertiveness = student.Stanine_Assertiveness;
-                studentInDb.Stanine_Liveliness = student.Stanine_Liveliness;
-                studentInDb.Stanine_Composure = student.Stanine_Composure;
-                studentInDb.Stanine_Positivity = student.Stanine_Positivity;
-                studentInDb.Stanine_Awareness = student.Stanine_Awareness;
-                studentInDb.Stanine_Cooperativeness = student.Stanine_Cooperativeness;
-                studentInDb.Stanine_Sensitivity = student.Stanine_Sensitivity;
-                studentInDb.Stanine_Humility = student.Stanine_Humility;
-                db.SaveChanges();
+                svm.updateStudentData();
                 return RedirectToAction("IndexAmsaStudents");
             }
 
-            return View(student);
+            return View(svm);
         }
 
         [HttpGet]
         [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
         public ActionResult IndexAmsaStudents()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            AMSAReportContext db = new AMSAReportContext();
             List<AmsaReportStudentData> lst_students = db.lstStudentsForReport.OrderBy(m => m.LastName).ToList();
             return View(lst_students);
         }

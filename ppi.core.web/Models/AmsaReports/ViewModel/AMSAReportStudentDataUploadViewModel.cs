@@ -91,8 +91,8 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     //If not on first element 
                     if (c > 0)
                     {
-                        //Try to save if there are errors let user know the participants that where not uploaded.. store the participants e-mail address and line number to let the user know
-
+                        //Try to save if there are errors let the user know
+                        
                         AMSAParticipant p = new AMSAParticipant();
                         p.FirstName = values[0];
                         p.LastName = values[1];
