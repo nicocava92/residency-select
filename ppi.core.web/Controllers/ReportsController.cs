@@ -1204,7 +1204,7 @@ namespace PPI.Core.Web.Controllers
             AMSAReportContext dbr = new AMSAReportContext();
             foreach(int i in lstParticipantIds)
             {
-                AmsaReportStudentData s = dbr.lstStudentsForReport.Where(m => m.PersonId == i.ToString()).FirstOrDefault();
+                AmsaReportStudentData s = dbr.lstStudentsForReport.Find(i);
                 lstS.Add(s);
             }
             //Order students by lastname for reports to be ordered alphabetifcally
