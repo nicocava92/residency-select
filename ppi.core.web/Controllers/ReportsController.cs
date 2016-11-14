@@ -1333,10 +1333,30 @@ namespace PPI.Core.Web.Controllers
         [HttpGet]
         public ActionResult UploadAMSADataFeed()
         {
-            return View();
+            return View(new AMSAReportStudentDataUploadViewModel());
         }
 
 
+        //Load uploaded data
+        [HttpPost]
+        public ActionResult Upload(AMSAReportStudentDataUploadViewModel pvm)
+        {
+
+            ReportUtilities.checkUploadCSV(Request, ModelState);
+            /*************************
+            IMPORTANT: Remember to check validations from the model class
+            *************************/
+            if (ModelState.IsValid)
+            {
+                pvm.PerformStudentDataInertions(Request, ModelState);
+                if (ModelState.IsValid)
+                {
+                    return View("Index", new ParticipantListViewModel()); //Retun from when file is actually correct
+                }
+                else return View(pvm);
+            }
+            return View(pvm);
+        }
     }
 
     
