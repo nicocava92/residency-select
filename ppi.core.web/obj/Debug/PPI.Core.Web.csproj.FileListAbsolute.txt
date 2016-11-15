@@ -262,3 +262,7 @@ C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.pdb
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.Report.resources
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.csproj.GenerateResource.Cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.ChangesForDashboard.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.ChangesForDashboard1.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.ChangesForDashboard2.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.ChangesForDashboard3.resources

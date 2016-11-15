@@ -1329,6 +1329,36 @@ namespace PPI.Core.Web.Controllers
             }
         }
 
+        //Used to get list from Dashboard
+        public ActionResult GetParticipantsByEvent(int? eventId)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            ReportStudentDataListViewModel pvm = new ReportStudentDataListViewModel();
+            pvm.idSelectedEvent = eventId ?? 0;
+            List<AmsaReportStudentData> participantsInEvent = new List<AmsaReportStudentData>();
+            try
+            {
+                //if the id != to 0 then filter
+                if (eventId != 0)
+                {
+                    //Get the listing of information that needs to be shown on the view
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == eventId).ToList();
+                }
+                else
+                {
+                    //If it is == 0 then what we are need to show is all of the participants
+                    participantsInEvent = dbr.lstStudentsForReport.ToList();
+                }
+                pvm.LstStudentData = participantsInEvent;
+                return View("IndexAmsaStudents", pvm);
+            }
+            catch
+            {
+                return View("IndexAmsaStudents", pvm);
+            }
+
+        }
+
         //Get view to add csv for datafeed
         [HttpGet]
         public ActionResult UploadAMSADataFeed()

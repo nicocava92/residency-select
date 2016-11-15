@@ -288,6 +288,22 @@
     <Compile Include="Migrations\201611141838163_Report.Designer.cs">
       <DependentUpon>201611141838163_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611151354012_ChangesForDashboard.cs" />
+    <Compile Include="Migrations\201611151354012_ChangesForDashboard.Designer.cs">
+      <DependentUpon>201611151354012_ChangesForDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611151356150_ChangesForDashboard1.cs" />
+    <Compile Include="Migrations\201611151356150_ChangesForDashboard1.Designer.cs">
+      <DependentUpon>201611151356150_ChangesForDashboard1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611151747539_ChangesForDashboard2.cs" />
+    <Compile Include="Migrations\201611151747539_ChangesForDashboard2.Designer.cs">
+      <DependentUpon>201611151747539_ChangesForDashboard2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611151821464_ChangesForDashboard3.cs" />
+    <Compile Include="Migrations\201611151821464_ChangesForDashboard3.Designer.cs">
+      <DependentUpon>201611151821464_ChangesForDashboard3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -3028,6 +3044,9 @@
     <Content Include="Views\AMSAParticipants\Upload.cshtml" />
     <Content Include="Views\AMSACodes\Upload.cshtml" />
     <Content Include="Views\Reports\UploadAMSADataFeed.cshtml" />
+    <Content Include="Views\Administration\AMSADashboard.cshtml" />
+    <Content Include="Views\Administration\AMSAAssessmentsCompleted.cshtml" />
+    <Content Include="Views\Administration\AMSAAssessmentsUnCompleted.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3077,6 +3096,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611141838163_Report.resx">
       <DependentUpon>201611141838163_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611151354012_ChangesForDashboard.resx">
+      <DependentUpon>201611151354012_ChangesForDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611151356150_ChangesForDashboard1.resx">
+      <DependentUpon>201611151356150_ChangesForDashboard1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611151747539_ChangesForDashboard2.resx">
+      <DependentUpon>201611151747539_ChangesForDashboard2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611151821464_ChangesForDashboard3.resx">
+      <DependentUpon>201611151821464_ChangesForDashboard3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

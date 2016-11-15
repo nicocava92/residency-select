@@ -40,13 +40,15 @@ namespace PPI.Core.Web.Models.AmsaReports
         [Required (ErrorMessage = "Password is Required")]
         public string AMSA_Password { get; set; }
 
+        //Status in which the user is (Incomplet,InProcess, Invited) Need to get exact data for here from Sonya
+        public string Status { get; set; }
+
         public string getSurveyType()
         {
             string s = "";
             AMSAReportContext dbr = new AMSAReportContext();
             AMSAParticipant p = dbr.AMSAParticipant.Find(this.Id);
             return p.AMSAEvent.AMSASurveyType.Name;
-            dbr.Dispose();
         }
 
 

@@ -200,6 +200,35 @@ namespace PPI.Core.Web.Controllers
             }
         }
 
+        //Used to get events by id from dashboard
+        public ActionResult GetParticipantsByEvent(int? eventId)
+        {
+            ParticipantListViewModel pvm = new ParticipantListViewModel();
+            pvm.idSelectedEvent = eventId ?? 0;
+            try
+            {
+                List<AMSAParticipant> participantsInEvent = new List<AMSAParticipant>();
+                //if the id != to 0 then filter
+                if (eventId != 0 && eventId != -1 && eventId != null)
+                {
+                    //Get the listing of information that needs to be shown on the view
+                    participantsInEvent = dbr.AMSAParticipant.Where(r => r.AMSAEvent.id == eventId).ToList();
+                }
+                else
+                {
+                    //If it is == 0 then what we are need to show is all of the participants
+                    participantsInEvent = dbr.AMSAParticipant.ToList();
+                }
+                
+                pvm.LstParticipants = participantsInEvent;
+                return View("Index", pvm);
+            }
+            catch
+            {
+                return View("Index", pvm);
+            }
+        }
+
         //Receives a search string from view and searches for participants who have the inserted values
         [HttpPost]
         [ValidateAntiForgeryToken]
