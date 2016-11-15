@@ -3027,6 +3027,7 @@
     <Content Include="Views\AMSACodes\Index.cshtml" />
     <Content Include="Views\AMSAParticipants\Upload.cshtml" />
     <Content Include="Views\AMSACodes\Upload.cshtml" />
+    <Content Include="Views\Reports\UploadAMSADataFeed.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
