@@ -17,8 +17,14 @@
                 <a href="@Url.Action("Send", "AMSAEmails", new { eventId = Model.eventId })" class="btn btn-primary btn200" disabled>
                     <i class="fa fa-mail-reply-all fa-lg mr5"></i> Send Emails
                 </a>
+                
+            </div>
+            <div class="groupdashboardbtns">
                 <a href="@Url.Action("GetParticipantsByEvent", "Reports", new { eventId = Model.eventId })" class="btn btn-primary btn200">
                     <i class="fa fa-book fa-lg mr5"></i> Get Reports
+                </a>
+                <a href="@Url.Action("UploadAMSADataFeedByEvent", "Reports", new { eventId = Model.eventId })" class="btn btn-primary btn200">
+                    <i class="fa fa-upload fa-lg mr5"></i> Upload Data Feed
                 </a>
             </div>
         </div>

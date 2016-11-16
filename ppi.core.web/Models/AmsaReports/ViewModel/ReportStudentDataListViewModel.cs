@@ -18,7 +18,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         {
             AMSAReportContext dbr = new AMSAReportContext();
             loadEvents(dbr);
-            LstStudentData = dbr.lstStudentsForReport.ToList();
+            LstStudentData = dbr.lstStudentsForReport.Where(r => r.Status.ToUpper().Equals("COMPLETED")).ToList();
             dbr.Dispose();
         }
 

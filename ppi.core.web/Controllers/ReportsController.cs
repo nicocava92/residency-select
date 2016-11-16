@@ -1313,12 +1313,12 @@ namespace PPI.Core.Web.Controllers
                 if (pvm.idSelectedEvent != 0)
                 {
                     //Get the listing of information that needs to be shown on the view
-                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == pvm.idSelectedEvent).ToList();
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == pvm.idSelectedEvent && r.Status.ToUpper().Equals("COMPLETED")).ToList();
                 }
                 else
                 {
                     //If it is == 0 then what we are need to show is all of the participants
-                    participantsInEvent = dbr.lstStudentsForReport.ToList();
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.Status.ToUpper().Equals("COMPLETED")).ToList();
                 }
                 pvm.LstStudentData = participantsInEvent;
                 return View("IndexAmsaStudents", pvm);
@@ -1342,12 +1342,12 @@ namespace PPI.Core.Web.Controllers
                 if (eventId != 0)
                 {
                     //Get the listing of information that needs to be shown on the view
-                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == eventId).ToList();
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == eventId && r.Status.ToUpper().Equals("COMPLETED")).ToList();
                 }
                 else
                 {
                     //If it is == 0 then what we are need to show is all of the participants
-                    participantsInEvent = dbr.lstStudentsForReport.ToList();
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.Status.ToUpper().Equals("COMPLETED")).ToList();
                 }
                 pvm.LstStudentData = participantsInEvent;
                 return View("IndexAmsaStudents", pvm);
@@ -1371,22 +1371,42 @@ namespace PPI.Core.Web.Controllers
         [HttpPost]
         public ActionResult Upload(AMSAReportStudentDataUploadViewModel pvm)
         {
+            if(pvm.idSelectedEvent != 0) { 
 
-            ReportUtilities.checkUploadCSV(Request, ModelState);
-            /*************************
-            IMPORTANT: Remember to check validations from the model class
-            *************************/
-            if (ModelState.IsValid)
-            {
-                pvm.PerformStudentDataInertions(Request, ModelState);
+                ReportUtilities.checkUploadCSV(Request, ModelState);
+                
                 if (ModelState.IsValid)
                 {
-                    return View("Index", new ParticipantListViewModel()); //Retun from when file is actually correct
+                    pvm.PerformStudentDataInertions(Request, ModelState);
+                    //After data insertions are done we update the event date update
+                    pvm.updateEventUpdate();
+                    if (ModelState.IsValid)
+                    {
+                        return View("IndexAmsaStudents", new ReportStudentDataListViewModel()); //Retun from when file is actually correct
+                    }
+                    else
+                        return View("UploadAMSADataFeed", pvm);
                 }
-                else return View(pvm);
+                return View("UploadAMSADataFeed", pvm);
             }
-            return View(pvm);
+            else
+            {
+                ModelState.AddModelError("Participant", "Please select an event");
+                return View("UploadAMSADataFeed",pvm);
+            }
         }
+
+        //Load data from a specific data feed
+        public ActionResult UploadAMSADataFeedByEvent(int? eventId)
+        {
+            int id = eventId ?? 0;
+            if (id == -1)
+                id = 0;
+            return View("UploadAMSADataFeed", new AMSAReportStudentDataUploadViewModel { idSelectedEvent = id});
+        }
+
+
+
     }
 
     

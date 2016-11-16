@@ -176,14 +176,14 @@ namespace PPI.Core.Web.Controllers
         public ActionResult AMSAAssessmentsCompleted(int eventId)
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => r.Status.ToUpper().Equals("Completed")).ToList();
+            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => r.Status.ToUpper().Equals("COMPLETED")).ToList();
             return PartialView("AMSAAssessmentsCompleted", lst);
         }
         [Log]
         public ActionResult AMSAAssessmentsUncompleted(int eventId)
         {
            AMSAReportContext dbr = new AMSAReportContext();
-            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => !r.Status.ToUpper().Equals("Completed")).ToList();
+            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => !r.Status.ToUpper().Equals("COMPLETED")).ToList();
             return PartialView("AMSAAssessmentsUnCompleted", lst);
         }
         [Log]
@@ -281,8 +281,8 @@ namespace PPI.Core.Web.Controllers
 
                 //Load total ammount of people
                 TotalPeople = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == e.id).ToList().Count;
-                TodayCompleted = dbr.lstStudentsForReport.Where(r => r.Updated == ThisRun && r.Status.ToUpper().Equals("COMPLETE") && r.AMSAEvent.id == e.id).ToList().Count();
-                UsersCompleted = dbr.lstStudentsForReport.Where(r => r.Updated < ThisRun && r.Status.ToUpper().Equals("COMPLETE") && r.AMSAEvent.id == e.id).ToList().Count();
+                TodayCompleted = dbr.lstStudentsForReport.Where(r => r.Updated == ThisRun && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList().Count();
+                UsersCompleted = dbr.lstStudentsForReport.Where(r => r.Updated < ThisRun && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList().Count();
                 /*
                 Need e-mails to code in:
                     Total Invitations 

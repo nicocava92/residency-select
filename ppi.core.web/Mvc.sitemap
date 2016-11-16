@@ -41,6 +41,7 @@
       <mvcSiteMapNode title="Reports" controller="Reports" action="#">
         <mvcSiteMapNode title="Generate Reports" controller="Reports" action="IndexAmsaStudents"/>
         <mvcSiteMapNode title="Add Student Data" controller="Reports" action="CreateAmsaStudents"/>
+        <mvcSiteMapNode title="Upload Data Feed" controller="Reports" action="UploadAMSADataFeed"/>
       </mvcSiteMapNode>
       <mvcSiteMapNode title="Participants" action="#">
         <mvcSiteMapNode title="All Participants" controller="AMSAParticipants" action="Index" />

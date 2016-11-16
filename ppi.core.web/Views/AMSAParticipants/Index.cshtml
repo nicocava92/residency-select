@@ -70,6 +70,9 @@
                         Primary E-mail
                     </th>
                     <th>
+                        Status
+                    </th>
+                    <th>
                         Survey Type
                     </th>
                     
@@ -99,6 +102,25 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.PrimaryEmail)
+                        </td>
+                        <td>
+                            @*Show different colors depending on the status of the participant*@
+                            @if (item.Status.ToUpper().Equals("INVITED"))
+                            {
+                                <label class="label-warning label label-large txt-white" style="width:100px;display:block ">Invited</label>
+                            }
+                            else if (item.Status.ToUpper().Equals("NEW"))
+                            {
+                                <label class="label-warning label label-large txt-white" style="width:100px;display:block ">New Participant</label>
+                            }
+                            else if (item.Status.ToUpper().Equals("COMPLETED"))
+                            {
+                                <label class="label-success label label-large txt-white" style="width:100px;display:block ">Completed</label>
+                                }
+                            else if (item.Status.ToUpper().Equals("INPROGRESS"))
+                            {
+                                <label class="label-primary label label-large txt-white" style="width:100px;display:block ">In Progress</label>
+                            }
                         </td>
                         <td>
                             @try {

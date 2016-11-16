@@ -79,14 +79,14 @@ namespace PPI.Core.Web.Models.AmsaReports
                    
                     string name_without_extention = Path.GetFileNameWithoutExtension(hpf.FileName);
                     string get_extention = Path.GetExtension(hpf.FileName);
-                    if (get_extention.Equals(".csv"))
+                    if (get_extention.Equals(".xlsx"))
                     {
-                        //Continue the file is of the correct type
-                        Console.WriteLine("aaaa");
+                        m.AddModelError("Upload", "ERROR! File is .xlsx and needs to be .csv. File Number: " + n);
+                        m.AddModelError("Upload", "You can easily convert form .xlsx to .csv by opening the .xlsx file in Excel and Clicking on Save > Save As > (on type select CSV) > Save");
                     }
-                    else
+                    else if (!get_extention.Equals(".csv"))
                     {
-                        m.AddModelError("Upload", "ERROR! File needs to be .csv, please make sure you are uploading the correct file type. File number: " + n);
+                        m.AddModelError("Upload", "ERROR! File needs to be .csv, please make sure you are uploading the correct file type. | File number: " + n);
                     }
                     string file_name = name_without_extention + DateTime.Now.ToString("yyyyMMddHHmmssfff") + get_extention;
                 }

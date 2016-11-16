@@ -58,6 +58,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             s.Stanine_Cooperativeness = this.Data.Stanine_Cooperativeness;
             s.Stanine_Sensitivity = this.Data.Stanine_Sensitivity;
             s.Stanine_Humility = this.Data.Stanine_Humility;
+            s.Status = this.Data.Status;
             s.AMSAEvent = e;
             db.lstStudentsForReport.Add(s);
             db.SaveChanges();

@@ -48,9 +48,15 @@ namespace PPI.Core.Web.Models.AmsaReports
             string s = "";
             AMSAReportContext dbr = new AMSAReportContext();
             AMSAParticipant p = dbr.AMSAParticipant.Find(this.Id);
+            dbr.Dispose();
             return p.AMSAEvent.AMSASurveyType.Name;
         }
 
-
+        //When a new participant is created their status should be automatically 
+        //set to new and changed when specified (used for listing)
+        public AMSAParticipant()
+        {
+            Status = "NEW";
+        }
     }
 }
