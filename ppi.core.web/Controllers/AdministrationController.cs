@@ -15,6 +15,7 @@ namespace PPI.Core.Web.Controllers
     using PPI.Core.Web.Models;
     using CsvHelper;
     using Models.AmsaReports;
+    using System.Data.Entity;
     [Authorize(Roles = "SiteCordinator,Admin,J3PAdmin")]
     public class AdministrationController : BaseController
     {
@@ -176,14 +177,14 @@ namespace PPI.Core.Web.Controllers
         public ActionResult AMSAAssessmentsCompleted(int eventId)
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => r.Status.ToUpper().Equals("COMPLETED")).ToList();
+            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == eventId).ToList();
             return PartialView("AMSAAssessmentsCompleted", lst);
         }
         [Log]
         public ActionResult AMSAAssessmentsUncompleted(int eventId)
         {
            AMSAReportContext dbr = new AMSAReportContext();
-            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => !r.Status.ToUpper().Equals("COMPLETED")).ToList();
+            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => !r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == eventId).ToList();
             return PartialView("AMSAAssessmentsUnCompleted", lst);
         }
         [Log]
@@ -260,6 +261,7 @@ namespace PPI.Core.Web.Controllers
             int TotalInvitations = 0;
             int TotalReminders = 0;
             int TotalAssess = 0;
+            int assesmentsToday = 0;
             DateTime UpdatedTime = DateTime.Now;
             DateTime ThisRun = DateTime.Now;
             DateTime LastUpdated = DateTime.Now;
@@ -281,8 +283,16 @@ namespace PPI.Core.Web.Controllers
 
                 //Load total ammount of people
                 TotalPeople = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == e.id).ToList().Count;
-                TodayCompleted = dbr.lstStudentsForReport.Where(r => r.Updated == ThisRun && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList().Count();
+                List<AmsaReportStudentData> lstReports = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == eventId).ToList();
+                foreach (AmsaReportStudentData item in lstReports)
+                {
+                    if (item.CompletionDate.Date == ThisRun.Date)
+                        TodayCompleted++;
+                }
+
+                //TodayCompleted = dbr.lstStudentsForReport.Where(r => DbFunctions.TruncateTime(r.Updated) == ThisRun.Date && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList().Count();
                 UsersCompleted = dbr.lstStudentsForReport.Where(r => r.Updated < ThisRun && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList().Count();
+                
                 /*
                 Need e-mails to code in:
                     Total Invitations 
@@ -314,6 +324,9 @@ namespace PPI.Core.Web.Controllers
             model.InvitationsTotal = TotalInvitations;
             model.RemindersTotal = TotalReminders;
             
+            
+
+
             return View(model);
         }
     }

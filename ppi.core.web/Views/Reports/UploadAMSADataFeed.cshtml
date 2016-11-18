@@ -15,12 +15,12 @@
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h2>AMSAParticipant</h2>
+                <h2>Upload Data Feed</h2>
                 <hr />
                 <p>
                     <ol>
                         <li>
-                            PLEASE MAKE SURE YOU UPLOAD THE DATA FEED AS RECEIVED WITHOUT MODIFYING IT AND AS A .CSV FILE
+                            PLEASE MAKE SURE YOU UPLOAD THE DATA FEED AS RECEIVED WITHOUT MODIFYING IT AND AS A .CSV / .XLSX / .XLS FILE
                         </li>
                         <li>
                             PLEASE MAKE SURE YOU ARE UPLOADING YOUR DATA FEED TO THE CORRECT EVENT
@@ -46,14 +46,14 @@
 
                 @*Show this pannel when there are no codes*@
                 <div id="errorEvent" class="alert alert-danger" style="display:none;">
-
+                    
                 </div>
 
                 <div id="uploadParticipant">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="row">
                         <div class="col-md-9">
-                            @Html.LabelFor(model => model.csvFile, htmlAttributes: new { @class = "col-md-2 bold" })
+                            <label for="file" class="col-md-5 bold"><strong>Upload .CSV, .XLSX, .XLS for Event</strong></label>
                         </div>
                         <div class="row">
                             <div class="col-md-9">

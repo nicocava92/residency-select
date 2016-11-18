@@ -39,6 +39,8 @@ namespace PPI.Core.Web.Models.AmsaReports
         [DisplayName("Password")]
         [Required (ErrorMessage = "Password is Required")]
         public string AMSA_Password { get; set; }
+        
+
 
         //Status in which the user is (Incomplet,InProcess, Invited) Need to get exact data for here from Sonya
         public string Status { get; set; }

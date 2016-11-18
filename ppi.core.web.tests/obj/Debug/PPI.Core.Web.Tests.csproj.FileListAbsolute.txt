@@ -199,3 +199,5 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bi
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Debug\Microsoft.Owin.Security.xml
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Debug\HiQPdf.dep
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Debug\Excel.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Debug\Excel.pdb

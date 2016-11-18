@@ -7,6 +7,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
+using Excel;
+
 using PPI.Core.Web.Models.AmsaReports.Event;
 
 namespace PPI.Core.Web.Models.AmsaReports.ViewModel
@@ -81,104 +83,60 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             int i = 0;
             while (i < request.Files.Count)
             {
-                HttpPostedFileBase UploadedFile = request.Files[0];
-                //WHere participants to be inserted into the database will be added
+                try { 
+                    //Read files and get array
+                    List<string[]> values = ReportUtilities.getDataFromCsvXlsxORXL(request.Files[i]);
+                    //WHere participants to be inserted into the database will be added
 
-                // Use the InputStream to get the actual stream sent.
-                StreamReader csvreader = new StreamReader(UploadedFile.InputStream,Encoding.Default,true);
-                var c = 0;
-                while (!csvreader.EndOfStream)
+                    //Get list of participants from va
+                    lstParticipantResults = ReportUtilities.arrayToParticipantResultsList(values);
+                    //After all of the Participants that we are tryign to insert into the database are added into the list, then we try to add them or return errors if there are problems
+                    i++;
+                }
+                catch
                 {
-                    var line = csvreader.ReadLine();
-                    var values = line.Split(',');
-                    //If not on first element 
-                    if (c > 0)
+                    m.AddModelError("Participant", "Data load failed for file # " + i);
+                    i++;
+                }
+            }
+
+            if (m.IsValid) { 
+
+                int position = 1;
+                int ammountOfResults = lstParticipantResults.Count;
+                foreach (AmsaReportStudentData p in lstParticipantResults)
+                {
+                    AMSAParticipantStudentDataViewModel pvm = new AMSAParticipantStudentDataViewModel();
+                    pvm.Data = p;
+                    pvm.idSelectedEvent = this.idSelectedEvent;
+
+                    this.checkModelState(p, m);
+
+                    //We where able to store the participant
+                    try
                     {
-                        //Try to save if there are errors let the user know
-                        
-                        AmsaReportStudentData p = new AmsaReportStudentData();
-                        p.FirstName = values[0];
-                        p.LastName = values[1];
-                        p.PersonId = values[2];
-                        //Only do date conversions if the dates exist 
-                        if (values[3] != "")
-                            p.RegistrationDate = Convert.ToDateTime(values[3]);
-                        if (values[4] != "")
-                            p.CompletionDate = Convert.ToDateTime(values[4]);
-                        //Depending on the status we are going to either save the result or update the participant status
-                        p.Status = values[5].Trim();
-                        if(p.Status != "")
+                        //Check if the participant already exists in the database
+                        this.checkAlreadyAssignedToEvent(p, m);
+                        if (this.Errors == "" || this.Errors == null)
                         {
-                            if (p.Status.ToUpper().Equals("COMPLETED"))
-                            {
-                                p.Stanine_Ambition = Convert.ToInt32(values[6]);
-                                p.Stanine_Assertiveness = Convert.ToInt32(values[7]);
-                                p.Stanine_Awareness = Convert.ToInt32(values[8]);
-                                p.Stanine_Composure = Convert.ToInt32(values[9]);
-                                p.Stanine_Conceptual = Convert.ToInt32(values[10]);
-                                p.Stanine_Cooperativeness = Convert.ToInt32(values[11]);
-                                p.Stanine_Drive = Convert.ToInt32(values[12]);
-                                p.Stanine_Flexibility = Convert.ToInt32(values[13]);
-                                p.Stanine_Humility = Convert.ToInt32(values[14]);
-                                p.Stanine_Liveliness = Convert.ToInt32(values[15]);
-                                p.Stanine_Mastery = Convert.ToInt32(values[16]);
-                                p.Stanine_Positivity = Convert.ToInt32(values[17]);
-                                p.Stanine_Power = Convert.ToInt32(values[18]);
-                                p.Stanine_Sensitivity = Convert.ToInt32(values[19]);
-                                p.Stanine_Structure = Convert.ToInt32(values[20]);
-                            }
+                            //If participant has all of its information present then try adding him in
+                            pvm.SaveNew();
                         }
-                        lstParticipantResults.Add(p);
                     }
-                    c++;
-                }
-                //After first line - which is the description file - add participant
-                i++;
-            }
-
-            //After all of the Participants that we are tryign to insert into the database are added into the list, then we try to add them or return errors if there are problems
-
-            bool finished = false; //Checks if we are done with all users, used to return errors in case that we have to go through all of them with errors in some of the insertions.
-            int position = 1;
-            int ammountOfResults = lstParticipantResults.Count;
-            foreach (AmsaReportStudentData p in lstParticipantResults)
-            {
-
-
-                if (position == ammountOfResults)
-                    finished = true;
-
-                AMSAParticipantStudentDataViewModel pvm = new AMSAParticipantStudentDataViewModel();
-                pvm.Data = p;
-                pvm.idSelectedEvent = this.idSelectedEvent;
-
-                this.checkModelState(p, m);
-
-                //We where able to store the participant
-                try
-                {
-                    //Check if the participant already exists in the database
-                    this.checkAlreadyAssignedToEvent(p, m);
-                    if (this.Errors == "" || this.Errors == null)
+                    catch (Exception e)
                     {
-                        //If participant has all of its information present then try adding him in
-                        pvm.SaveNew();
+                        Console.WriteLine(e);
+                        //If we go into catch if because there where not enough amsa codes to store the 
+                        m.AddModelError("Participant", "From Participant with id " + p.PersonId + "in line #" + position + " File #" + i + " forward no data was inserted, problem storing to the datbase (please check data feed file and try again)" + System.Environment.NewLine);
+                        this.Errors += "From Participant with id " + p.PersonId + " in line #" + position + " File #" + i + " forward no data was inserted, problem storing to the datbase (please check data feed file and try again)";
+                        //If all fails then we need to return with an error to the view
+                        return;
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    //If we go into catch if because there where not enough amsa codes to store the 
-                    m.AddModelError("Participant", "From Participant with id " + p.PersonId + "in line #" + position + " File #" + i + " forward no data was inserted, problem storing to the datbase (please check data feed file and try again)" + System.Environment.NewLine);
-                    this.Errors += "From Participant with id " + p.PersonId + " in line #" + position + " File #" + i + " forward no data was inserted, problem storing to the datbase (please check data feed file and try again)";
-                    //If all fails then we need to return with an error to the view
-                    return;
-                }
 
-                position++;
-                this.Errors = ""; //Clear out error check for next participant
+                    position++;
+                    this.Errors = ""; //Clear out error check for next participant
+                }
             }
-
         }
         //Check if the model state is valid or not
         public void checkModelState(AmsaReportStudentData p, ModelStateDictionary m)
@@ -383,7 +341,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             AMSAParticipant aParticipant = dbr.AMSAParticipant.Where(o => o.AMSACode.ToUpper().Equals(pa.PersonId) && o.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
             if (aParticipant != null)
             {
-                //If participant exists then update his status
+                //If participant exists then update his status | if his status goes from something different
                 aParticipant.Status = pa.Status;
                 dbr.SaveChanges();
             }
