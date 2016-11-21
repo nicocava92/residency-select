@@ -248,6 +248,12 @@ namespace PPI.Core.Web.Controllers
             }
         }
 
+        //Show participant profile
+        [HttpGet]
+        public ActionResult Profile(int id)
+        {
+            return View(new AMSAParticipantProfileViewModel(id));
+        }
 
 
         protected override void Dispose(bool disposing)
