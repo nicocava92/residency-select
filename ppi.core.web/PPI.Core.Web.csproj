@@ -334,6 +334,7 @@
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantProfileViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantStudentDataViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantViewModel.cs" />
@@ -3047,6 +3048,7 @@
     <Content Include="Views\Administration\AMSADashboard.cshtml" />
     <Content Include="Views\Administration\AMSAAssessmentsCompleted.cshtml" />
     <Content Include="Views\Administration\AMSAAssessmentsUnCompleted.cshtml" />
+    <Content Include="Views\AMSAParticipants\Profile.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
