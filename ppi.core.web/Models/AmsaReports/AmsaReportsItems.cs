@@ -127,7 +127,7 @@ namespace PPI.Core.Web.Models.AmsaReports
             this.Compassion = new Compassion();
             this.Humility = new Humility();
             //Now load Version a and Version b onto Low, Med, High
-            ApplicationDbContext db = new ApplicationDbContext();
+            AMSAReportContext db = new AMSAReportContext();
             List<AonItemsAF716AMSAVersionAB> lstReportItems = new List<AonItemsAF716AMSAVersionAB>();
             lstReportItems = db.lstReportItems.ToList();
             Console.WriteLine("Hello");

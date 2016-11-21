@@ -1,0 +1,83 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.ViewModel.AMSAReportStudentDataUploadViewModel
+
+@{
+    ViewBag.Title = "Upload Data Feed";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<h1>Create</h1>
+
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        @using (Html.BeginForm("Upload", "Reports", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h2>AMSAParticipant</h2>
+                <hr />
+                <p>
+                    <ol>
+                        <li>
+                            PLEASE MAKE SURE YOU UPLOAD THE DATA FEED AS RECEIVED WITHOUT MODIFYING IT AND IN AS A .CSV FILE
+                        </li>
+                        <li>
+                            THE DATA FOR PARTICIPANTS WHO HAVE ALREADY BEEN UPLOADED TO THE SYSTEM WILL NOT BE LOADED AGAIN, IF YOU WHISH TO EDIT DATA FOR STUDENTS SEARCH FOR THE STUDENT AND CLICK ON EDIT BUTTON IN MAIN LISTING
+                        </li>
+                        <li>
+                            PLEASE MAKE SURE YOU ARE UPLOADING YOUR LIST TO THE CORRECT EVENT
+                        </li>
+                    </ol>
+                </p>
+
+                <hr />
+
+                @*Upload participants via CSV*@
+                <div id="eventSelection">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Events, htmlAttributes: new { @class = "col-md-1 bold" })
+                        <div class="col-md-5">
+                            @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @id = "eventId" })
+                            @Html.ValidationMessage("AMSAEvent")
+                        </div>
+                    </div>
+                    <br />
+                    @Html.ValidationSummary("Participant")
+
+                </div>
+
+                @*Show this pannel when there are no codes*@
+                <div id="errorEvent" class="alert alert-danger" style="display:none;">
+
+                </div>
+
+                <div id="uploadParticipant">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-9">
+                            @Html.LabelFor(model => model.csvFile, htmlAttributes: new { @class = "col-md-2 bold" })
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input type="file" name="file" id="file" multiple="" placeholder="select 1 or multiple files">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mt20 mb20">
+                            <input type="submit" id="btnsubmit" name="submit" class="btn btn-primary btn200" value="Submit" /><br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+

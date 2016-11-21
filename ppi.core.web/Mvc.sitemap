@@ -37,6 +37,7 @@
     <mvcSiteMapNode title="Billing" controller="Billing" action="Index"/>
     </mvcSiteMapNode>
     <mvcSiteMapNode title="Amsa Reports" controller="Reports" action="IndexAmsaStudents">
+      <mvcSiteMapNode title="Dashboard" controller="Administration" action="AMSADashboard" />
       <mvcSiteMapNode title="Reports" controller="Reports" action="#">
         <mvcSiteMapNode title="Generate Reports" controller="Reports" action="IndexAmsaStudents"/>
         <mvcSiteMapNode title="Add Student Data" controller="Reports" action="CreateAmsaStudents"/>

@@ -72,9 +72,9 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         /*
         Check if data was inserted correctly for the different
             */
-        public void Perform(HttpRequestBase request, ModelStateDictionary m)
+        public void PerformStudentDataInertions(HttpRequestBase request, ModelStateDictionary m)
         {
-            List<AMSAParticipant> lstParticipants = new List<AMSAParticipant>();
+            List<AmsaReportStudentData> lstParticipantResults = new List<AmsaReportStudentData>();
             int i = 0;
             while (i < request.Files.Count)
             {
@@ -91,17 +91,30 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     //If not on first element 
                     if (c > 0)
                     {
-                        //Try to save if there are errors let user know the participants that where not uploaded.. store the participants e-mail address and line number to let the user know
-
-                        AMSAParticipant p = new AMSAParticipant();
+                        //Try to save if there are errors let the user know
+                        
+                        AmsaReportStudentData p = new AmsaReportStudentData();
                         p.FirstName = values[0];
                         p.LastName = values[1];
-                        p.PrimaryEmail = values[2];
-                        p.AMSACode = values[3];
-                        p.AAMCNumber = values[4];
-                        p.Gender = values[5];
-                        p.Title = values[6];
-                        lstParticipants.Add(p);
+                        p.PersonId = values[2];
+                        p.RegistrationDate = Convert.ToDateTime(values[3]);
+                        p.CompletionDate = Convert.ToDateTime(values[4]);
+                        p.Stanine_Ambition = Convert.ToInt32(values[5]);
+                        p.Stanine_Assertiveness = Convert.ToInt32(values[7]);
+                        p.Stanine_Awareness = Convert.ToInt32(values[6]);
+                        p.Stanine_Composure = Convert.ToInt32(values[7]);
+                        p.Stanine_Conceptual = Convert.ToInt32(values[8]);
+                        p.Stanine_Cooperativeness = Convert.ToInt32(values[9]);
+                        p.Stanine_Drive = Convert.ToInt32(values[10]);
+                        p.Stanine_Flexibility = Convert.ToInt32(values[11]);
+                        p.Stanine_Humility = Convert.ToInt32(values[12]);
+                        p.Stanine_Liveliness = Convert.ToInt32(values[13]);
+                        p.Stanine_Mastery = Convert.ToInt32(values[14]);
+                        p.Stanine_Positivity = Convert.ToInt32(values[15]);
+                        p.Stanine_Power = Convert.ToInt32(values[16]);
+                        p.Stanine_Sensitivity = Convert.ToInt32(values[17]);
+                        p.Stanine_Structure = Convert.ToInt32(values[18]);
+                        lstParticipantResults.Add(p);
                     }
                     c++;
                 }
@@ -113,16 +126,16 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
 
             bool finished = false; //Checks if we are done with all users, used to return errors in case that we have to go through all of them with errors in some of the insertions.
             int position = 1;
-            int ammountOfParticipants = lstParticipants.Count;
-            foreach (AMSAParticipant p in lstParticipants)
+            int ammountOfResults = lstParticipantResults.Count;
+            foreach (AmsaReportStudentData p in lstParticipantResults)
             {
 
 
-                if (position == ammountOfParticipants)
+                if (position == ammountOfResults)
                     finished = true;
 
-                AMSAParticipantViewModel pvm = new AMSAParticipantViewModel();
-                pvm.AMSAParticipant = p;
+                AMSAParticipantStudentDataViewModel pvm = new AMSAParticipantStudentDataViewModel();
+                pvm.Data = p;
                 pvm.idSelectedEvent = this.idSelectedEvent;
 
                 this.checkModelState(p, m);
@@ -135,14 +148,14 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     if (this.Errors == "" || this.Errors == null)
                     {
                         //If participant has all of its information present then try adding him in
-                        pvm.saveNewParticipant();
+                        pvm.SaveNew();
                     }
                 }
                 catch
                 {
                     //If we go into catch if because there where not enough amsa codes to store the 
-                    m.AddModelError("Participant", "From Participant with e-mail address " + p.PrimaryEmail + "in line #" + position + " File #" + i + " forward no participants were inserted after this row as well, not enough codes available. Please insert more codes to upload Participants" + System.Environment.NewLine);
-                    this.Errors += " From participant with e-mail address " + p.PrimaryEmail + "in line #" + position + " File #" + i + " forward no participants were inserted after this row as well, not enough codes available. Please insert more codes to upload Participants";
+                    m.AddModelError("Participant", "From Participant with id " + p.PersonId + "in line #" + position + " File #" + i + " forward no data was inserted, problem storing to the datbase (please check data feed file and try again)" + System.Environment.NewLine);
+                    this.Errors += "From Participant with id " + p.PersonId + "in line #" + position + " File #" + i + " forward no data was inserted, problem storing to the datbase (please check data feed file and try again)";
                     //If all fails then we need to return with an error to the view
                     return;
                 }
@@ -153,70 +166,143 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
 
         }
         //Check if the model state is valid or not
-        public void checkModelState(AMSAParticipant p, ModelStateDictionary m)
+        public void checkModelState(AmsaReportStudentData p, ModelStateDictionary m)
         {
-            if (p.PrimaryEmail == null)
+            
+            if (p.PersonId == null)
             {
-                this.Errors += " Primary e - mail missing for " + p.FirstName;
-                m.AddModelError("Participant", "Primary e - mail missing for " + p.FirstName);
+                this.Errors += " Id missing for " + p.FirstName;
+                m.AddModelError("Participant", "Id missing for" + p.FirstName);
             }
 
-            if (p.PrimaryEmail != null)
+            if (p.PersonId != null)
             {
                 if (p.FirstName == null)
                 {
-                    this.Errors += " Name missing for " + p.PrimaryEmail;
-                    m.AddModelError("Participant", " Name missing for " + p.PrimaryEmail);
+                    this.Errors += " Name missing for " + p.PersonId;
+                    m.AddModelError("Participant", " Name missing for " + p.PersonId);
                 }
                 else
                 {
                     //Check size of name
                     if (p.FirstName.Length >= 3)
                     {
-                        this.Errors += " First name needs to have 3 letters or more" + p.FirstName;
-                        m.AddModelError("Participant", "First name needs to have 3 letters or more" + p.FirstName);
+                        this.Errors += " First name needs to have 3 letters or more" + p.PersonId;
+                        m.AddModelError("Participant", "First name needs to have 3 letters or more" + p.PersonId);
                     }
                 }
 
                 if (p.LastName == null)
                 {
-                    this.Errors += " Last name missing for " + p.PrimaryEmail;
-                    m.AddModelError("Participant", " Last name missing for " + p.PrimaryEmail);
+                    this.Errors += " Last name missing for " + p.PersonId;
+                    m.AddModelError("Participant", " Last name missing for " + p.PersonId);
                 }
                 else
                 {
                     //Check length of last name
                     if (p.LastName.Length >= 3)
                     {
-                        this.Errors += " Last name needs to have 3 letters or more" + p.LastName;
-                        m.AddModelError("Participant", "last name needs to have 3 letters or more" + p.LastName);
+                        this.Errors += " Last name needs to have 3 letters or more" + p.PersonId;
+                        m.AddModelError("Participant", "last name needs to have 3 letters or more" + p.PersonId);
                     }
                 }
-
-                if (p.Gender == null)
+                if(p.RegistrationDate == null) {
+                    this.Errors += " Registration date missing for" + p.PersonId;
+                    m.AddModelError("Participant", "registration date missing for" + p.PersonId);
+                }
+                if (p.CompletionDate == null)
                 {
-                    this.Errors += " Gender missing for " + p.PrimaryEmail;
-                    m.AddModelError("Participant", " Gender missing for " + p.PrimaryEmail);
+                    this.Errors += " Completion date missing for" + p.PersonId;
+                    m.AddModelError("Participant", "Completion date missing for" + p.PersonId);
+                }
+                if (p.Stanine_Ambition > 9 || p.Stanine_Ambition < 1)
+                {
+                    this.Errors += " Stanine Ambition needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Ambition needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Assertiveness> 9 || p.Stanine_Assertiveness  < 1)
+                {
+                    this.Errors += " Stanine Assertiveness needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Assertiveness needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Awareness > 9 || p.Stanine_Awareness < 1)
+                {
+                    this.Errors += " Stanine Awareness needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Awareness needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Composure > 9 || p.Stanine_Composure < 1)
+                {
+                    this.Errors += " Stanine Composure needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Composure needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Conceptual > 9 || p.Stanine_Conceptual < 1)
+                {
+                    this.Errors += " Stanine Conceptual needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Conceptual needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Cooperativeness > 9 || p.Stanine_Cooperativeness < 1)
+                {
+                    this.Errors += " Stanine Cooperativeness needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Cooperativeness needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Drive > 9 || p.Stanine_Drive < 1)
+                {
+                    this.Errors += " Stanine Drive needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Drive needs to be greater than 1 and smaller than 9" + p.PersonId);
                 }
 
-                if (p.Title == null)
+                if (p.Stanine_Flexibility > 9 || p.Stanine_Flexibility < 1)
                 {
-                    this.Errors += " Title missing for " + p.PrimaryEmail;
-                    m.AddModelError("Participant", " Title missing for " + p.PrimaryEmail);
+                    this.Errors += " Stanine Flexibility needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Flexibility needs to be greater than 1 and smaller than 9" + p.PersonId);
                 }
-
+                if (p.Stanine_Humility > 9 || p.Stanine_Humility < 1)
+                {
+                    this.Errors += " Stanine Humility needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Humility needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Liveliness > 9 || p.Stanine_Liveliness < 1)
+                {
+                    this.Errors += " Stanine Liveliness needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Liveliness needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Mastery > 9 || p.Stanine_Mastery < 1)
+                {
+                    this.Errors += " Stanine Mastery needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Mastery needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Positivity > 9 || p.Stanine_Positivity < 1)
+                {
+                    this.Errors += " Stanine Positivity needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Positivity needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Power > 9 || p.Stanine_Power < 1)
+                {
+                    this.Errors += " Stanine Power needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Power needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Sensitivity > 9 || p.Stanine_Sensitivity < 1)
+                {
+                    this.Errors += " Stanine Sensitivity needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Sensitivity needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
+                if (p.Stanine_Structure > 9 || p.Stanine_Structure < 1)
+                {
+                    this.Errors += " Stanine Structure needs to be greater than 1 and smaller than 9" + p.PersonId;
+                    m.AddModelError("Participant", "Stanine Structure needs to be greater than 1 and smaller than 9" + p.PersonId);
+                }
             }
 
         }
 
-        public void checkAlreadyAssignedToEvent(AMSAParticipant pa, ModelStateDictionary m)
+        public void checkAlreadyAssignedToEvent(AmsaReportStudentData pa, ModelStateDictionary m)
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            AMSAParticipant p = dbr.AMSAParticipant.Where(r => r.PrimaryEmail.Equals(pa.PrimaryEmail) && r.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
+            AmsaReportStudentData p = dbr.lstStudentsForReport.Where(r => r.PersonId.ToUpper().Equals(pa.PersonId.ToUpper()) && r.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
             if (p != null)
             {
-                this.Errors += " Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event";
-                m.AddModelError("Participant", "Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event");
+                this.Errors += " Participant with id" + pa.PersonId + " already assigned to the selected event";
+                m.AddModelError("Participant", "Participant with id " + pa.PersonId+ " already assigned to the selected event");
             }
             dbr.Dispose();
         }

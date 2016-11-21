@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.IO;
+//Using amsa event classes to show data on view
+using PPI.Core.Web.Models.AmsaReports.Event;
+
 
 namespace PPI.Core.Web.Controllers
 {
@@ -11,7 +14,7 @@ namespace PPI.Core.Web.Controllers
     using PPI.Core.Domain.Entities;
     using PPI.Core.Web.Models;
     using CsvHelper;
-
+    using Models.AmsaReports;
     [Authorize(Roles = "SiteCordinator,Admin,J3PAdmin")]
     public class AdministrationController : BaseController
     {
@@ -21,6 +24,11 @@ namespace PPI.Core.Web.Controllers
         public ActionResult DashboardSendSwitch(int? SelectedProgramSiteEventId)
         {
             return RedirectToAction("Index", new { eventId = SelectedProgramSiteEventId });
+            //Clear the Session information if you switch events           
+        }
+        public ActionResult AMSADashboardSendSwitch(int? SelectedProgramSiteEventId)
+        {
+            return RedirectToAction("AMSADashboard", new { eventId = SelectedProgramSiteEventId });
             //Clear the Session information if you switch events           
         }
         //
@@ -165,6 +173,20 @@ namespace PPI.Core.Web.Controllers
             return PartialView("AssessmentsCompleted",model);
         }
         [Log]
+        public ActionResult AMSAAssessmentsCompleted(int eventId)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => r.Status.ToUpper().Equals("Completed")).ToList();
+            return PartialView("AMSAAssessmentsCompleted", lst);
+        }
+        [Log]
+        public ActionResult AMSAAssessmentsUncompleted(int eventId)
+        {
+           AMSAReportContext dbr = new AMSAReportContext();
+            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => !r.Status.ToUpper().Equals("Completed")).ToList();
+            return PartialView("AMSAAssessmentsUnCompleted", lst);
+        }
+        [Log]
         public ActionResult AssessmentsUncompleted(int eventId)
         {
             IEnumerable<vDashboard> model = GetAssessmentList(eventId, "UnCompleted");
@@ -211,6 +233,88 @@ namespace PPI.Core.Web.Controllers
                     }
             }
             return File(streamoutput, "text/csv", exportName);
+        }
+
+
+
+        public ActionResult AMSADashboard(int? eventId)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            List<AMSAEvent> lstE = dbr.AMSAEvent.ToList();
+            lstE.Insert(0, new AMSAEvent { id = -1, Name = "-- No Event Selected --" });
+            if (eventId == null || eventId == -1) { 
+                ViewData["EventList"] = new SelectList(lstE, "id", "Name");
+            }
+            else
+            { 
+                ViewData["EventList"] = new SelectList(lstE, "id", "Name",eventId);
+            }
+            var model = new DashboardViewModel();
+            var Events = this.Events;
+            int TotalPeople = 0;
+            int HPIComplete = 0;
+            int HDSComplete = 0;
+            int MVPIComplete = 0;
+            int UsersCompleted = 0;
+            int TodayCompleted = 0;
+            int TotalInvitations = 0;
+            int TotalReminders = 0;
+            int TotalAssess = 0;
+            DateTime UpdatedTime = DateTime.Now;
+            DateTime ThisRun = DateTime.Now;
+            DateTime LastUpdated = DateTime.Now;
+            if (eventId != 0 && eventId != -1 && eventId != null)
+            {
+                AMSAEvent e = dbr.AMSAEvent.Find(eventId);
+                model.EventName = e.Name;
+                //Calculations 
+                //Date in which the event was last updated
+
+                //Set in the updated date time if there is no date for the updated date time then set in the current time, dealing with possible nulls in date time
+                UpdatedTime = e.Updated ?? DateTime.Now;
+
+
+                ThisRun = DateTime.Now;
+                //Get date when data for the event was alst uploaded
+                LastUpdated = e.Updated ?? DateTime.Now;
+
+
+                //Load total ammount of people
+                TotalPeople = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == e.id).ToList().Count;
+                TodayCompleted = dbr.lstStudentsForReport.Where(r => r.Updated == ThisRun && r.Status.ToUpper().Equals("COMPLETE") && r.AMSAEvent.id == e.id).ToList().Count();
+                UsersCompleted = dbr.lstStudentsForReport.Where(r => r.Updated < ThisRun && r.Status.ToUpper().Equals("COMPLETE") && r.AMSAEvent.id == e.id).ToList().Count();
+                /*
+                Need e-mails to code in:
+                    Total Invitations 
+                    TotalReminders
+                    TotalAssess    | Need to have invitations to know the ammount of participants that need to be taking this
+                */
+            }
+            if (eventId == null)
+                model.eventId = -1;
+            else
+                model.eventId = eventId;
+
+            model.AssessmentComplete = new ValueRatio();
+            model.AssessmentComplete.NumberCompleted = UsersCompleted;
+            model.AssessmentComplete.TotalNumber = TotalPeople;
+            model.AssessmentNotComplete = new ValueRatio();
+            model.AssessmentNotComplete.AsOfDate = LastUpdated;
+            model.AssessmentNotComplete.NumberCompleted =  TotalPeople - UsersCompleted;
+
+            if(TotalPeople != 0) {
+                model.AssessmentComplete.PercentComplete = (model.AssessmentComplete.NumberCompleted * 100) / TotalPeople;
+                model.AssessmentNotComplete.PercentComplete = (model.AssessmentNotComplete.NumberCompleted * 100) / TotalPeople;
+            }
+            model.AssessmentNotComplete.TotalNumber = TotalPeople;
+            model.AssessmentNotComplete.AsOfDate = LastUpdated;
+
+            model.AsOfDate = LastUpdated;
+            model.AssessmentsToday = TodayCompleted;
+            model.InvitationsTotal = TotalInvitations;
+            model.RemindersTotal = TotalReminders;
+            
+            return View(model);
         }
     }
 }

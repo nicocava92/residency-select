@@ -84,8 +84,13 @@ namespace PPI.Core.Web.Models.AmsaReports
         //If an event is not billable change the menu and expand information to add in why the event is not billable
 
 
-        //Events start with a value of not started
+        //Keeps track of when the event is upadted
         
+        public DateTime? Updated { get; set; }
 
+        public AMSAEvent()
+        {
+            Updated = DateTime.Now;
+        }
     }
 }

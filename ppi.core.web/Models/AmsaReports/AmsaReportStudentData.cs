@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PPI.Core.Web.Models.AmsaReports
 {
@@ -85,24 +88,22 @@ namespace PPI.Core.Web.Models.AmsaReports
         [System.ComponentModel.DisplayName("Stanine Structure")]
         [Range(1, 9, ErrorMessage = "Must be between 1 and 9")]
         public virtual int Stanine_Structure { get; set; }
+
+        //Current status
+        public string Status { get; set; }
+
         /****************
-            
+        AMSA Event that is related to the data    
         ****************/
+        public AMSAEvent AMSAEvent { get; set; }
 
+        //Date that the report is stored into the database
+        public DateTime? Updated { get; set; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public AmsaReportStudentData()
+        {
+            Updated = DateTime.Now;
+            Status = "Not Started";
+        }
     }
 }

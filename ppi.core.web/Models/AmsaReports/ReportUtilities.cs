@@ -50,7 +50,7 @@ namespace PPI.Core.Web.Models.AmsaReports
             //Get gateField value for the paragaraph related to the scale and dominante and secondary scales
             string gateFieldP = gateFieldMatrix[dominant,secondary];
             //Search for values in string loaded from database
-            ApplicationDbContext dbo = new ApplicationDbContext();
+            AMSAReportContext dbo = new AMSAReportContext();
             AonParagraphs a = dbo.lstAonParagraphs.Where(m => m.GATEField.Equals(gateFieldP) && m.scale.Equals(scale)).FirstOrDefault();
             return a.paragraph;
         }
