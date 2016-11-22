@@ -10,7 +10,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
     //Student data class used to create new student data and upload to the database
     public class AMSAParticipantStudentDataViewModel
     {
-        public AmsaReportStudentData Data { get; set; }
+        public virtual AmsaReportStudentData Data { get; set; }
         public int idSelectedEvent { get; set; }
         public SelectList Events{ get; set; }
         public List<AMSAEvent> LstEvents { get; set; }
@@ -99,10 +99,10 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         {
             AMSAReportContext dbr = new AMSAReportContext();
             AmsaReportStudentData s = dbr.lstStudentsForReport.Find(id);
-            AMSAParticipantStudentDataViewModel svm = new AMSAParticipantStudentDataViewModel();
-            svm.Data = s;
-            svm.idSelectedEvent = s.AMSAEvent.id;
+            this.Data = s;
+            this.idSelectedEvent = s.AMSAEvent.id;
             dbr.Dispose();
+
         }
 
     }

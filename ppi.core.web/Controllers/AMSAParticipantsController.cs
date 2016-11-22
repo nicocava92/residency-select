@@ -52,9 +52,9 @@ namespace PPI.Core.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AMSAParticipantViewModel pvm)
         {
-            ModelState.Remove("AMSAParticipant.AAMCNumber");
-            ModelState.Remove("AMSAParticipant.AMSACode");
-            ModelState.Remove("AMSAParticipant.AMSA_Password");
+            ModelState["AMSAParticipant.AAMCNumber"].Errors.Clear() ;
+            ModelState["AMSAParticipant.AMSACode"].Errors.Clear();
+            ModelState["AMSAParticipant.AMSA_Password"].Errors.Clear();
             if (pvm.AMSAParticipant.AMSACode != null)
                 pvm.checkAMSACode(ModelState);
             pvm.checkIfUserAlreadyAssignedtoEvent(ModelState);

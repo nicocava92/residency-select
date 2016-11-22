@@ -90,10 +90,15 @@
                           
                                     @foreach (var p in Model.AmsaStudentData)
                                     {
-                                            <h4>@p.AMSAEvent.AMSAProgram.Name</h4> <button class="btn btn-primary getReport" onclick="getPdfReport(@p.Id);">Get PDF Report</button>
+                                        <div class="row">
+                                            <h4 class="col-lg-6 cpl-md-6 col-sm-12 col-xs-12">
+                                                @p.getProgram().Name
+                                            </h4>
+                                            <button class="col-lg-6 cpl-md-6 col-sm-12 col-xs-12 btn btn-primary getReport" onclick="getPdfReport(@p.Id);" style="display:inline-block;">Get Report PDF</button>
+                                        </div>
                                     }
-                                
-                            </div>
+
+                                        </div>
 
                                     <div id="emails" class="tab-pane fade in">
                                         <div>

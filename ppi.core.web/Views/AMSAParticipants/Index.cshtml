@@ -111,7 +111,7 @@
                             }
                             else if (item.Status.ToUpper().Equals("NEW"))
                             {
-                                <label class="label-warning label label-large txt-white" style="width:100px;display:block ">New Participant</label>
+                                <label class="label-warning label label-large txt-white" style="width:100px;display:block ">New</label>
                             }
                             else if (item.Status.ToUpper().Equals("COMPLETED"))
                             {
@@ -120,6 +120,10 @@
                             else if (item.Status.ToUpper().Equals("INPROGRESS"))
                             {
                                 <label class="label-primary label label-large txt-white" style="width:100px;display:block ">In Progress</label>
+                            }
+                            else
+                            {
+                                <label class="label-primary label label-large txt-white" style="width:100px;display:block ">@item.Status</label>
                             }
                         </td>
                         <td>
