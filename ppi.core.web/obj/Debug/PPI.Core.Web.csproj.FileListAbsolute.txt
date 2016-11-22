@@ -271,3 +271,5 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\ICSh
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\Excel.pdb
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.changeToParticipant.resources
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.AMSAEmails.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.AMSAEmails1.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.AMSAEmails2.resources

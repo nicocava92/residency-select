@@ -1,0 +1,105 @@
+﻿@model IEnumerable<PPI.Core.Web.Models.AmsaReports.Email.AMSAEmail>
+
+@{
+    ViewBag.Title = "Setup";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        <h2>Setup E-mails</h2>
+        <br />
+
+        <div>
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DefaultFrom)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subject)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Introduction)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Closing)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AMSAEvent.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DefaultFrom)
+                        </td>
+                        <td>
+                            @if (item.Subject != null && item.Subject.Length >= 60)
+                            {
+                                @Html.Raw(item.Subject.ToString().Substring(0, 60)) <text>...</text>
+                            }
+                            else
+                            {
+                                @Html.Raw(item.Subject)
+                            }
+                        </td>
+                        <td>
+                            @if (item.Introduction != null && item.Introduction.Length >= 60)
+                            {
+                                @Html.Raw(item.Introduction.ToString().Substring(0, 60)) <text>...</text>
+                            }
+                            else
+                            {
+                                @Html.Raw(item.Introduction)
+                            }
+                        </td>
+                        <td>
+                            @if (item.Closing != null && item.Closing.Length >= 60)
+                            {
+                                @Html.Raw(item.Closing.ToString().Substring(0, 60)) <text>...</text>
+                            }
+                            else
+                            {
+                                @Html.Raw(item.Closing)
+                            }
+                        </td>
+                        <td>
+                            @if (item.AMSAEvent.Name != null && item.AMSAEvent.Name.Length >= 60)
+                            {
+                                @Html.Raw(item.AMSAEvent.Name.ToString().Substring(0, 60)) <text>...</text>
+                            }
+                            else
+                            {
+                                @Html.Raw(item.Type)
+                            }
+                        </td>
+                        <td>
+                            @if(item.Type != null && item.Type.Length >= 60) { 
+                                @Html.Raw(item.Type.ToString().Substring(0,60)) <text>...</text>
+                            }
+                            else
+                            {
+                                @Html.Raw(item.Type)
+                            }
+                        </td>
+                        <td style="min-width:150px;">
+                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default">
+                                Edit
+                            </a>
+                            <a href="@Url.Action("Preview", new { id=item.Id })" class="btn btn-primary">
+                                Preview
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,167 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.Email.ViewModel.AMSAEmailSendViewModel
+    @{
+        ViewBag.Title = "Send";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    <div class="main-box clearfix">
+        <div class="main-box-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-inviatation">Invitation</a></li>
+                        <li><a data-toggle="tab" href="#tab-reminder">Reminder</a></li>
+                    </ul>
+                    @using (Html.BeginForm("GetSendEvent", "AMSAEmails"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group col-lg-4 col-lg-offset-2 col-md-offset-2 col-md-4 col-sm-12 col-xs-12">
+                            @Html.LabelFor(model => model.Events, htmlAttributes: new { @class = "control-label col-md-3 bold"})
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @onChange = "this.form.submit();" })
+                                @Html.ValidationMessageFor(model => model.Events, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="tab-content">
+
+                        @if (Model.idSelectedEvent != 0)
+                        {
+
+                            <div id="tab-inviatation" class="tab-pane fade in active">
+                                <h2>Participants</h2>
+                                #search
+                                @* Participants that need to be sent an invitation *@
+                                <table class="table table-responsive table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                First Name
+                                            </th>
+                                            <th>
+                                                Last Name
+                                            </th>
+                                            <th>
+                                                AAMC Number
+                                            </th>
+                                            <th>
+                                                Primary E-mail
+                                            </th>
+                                            <th>
+                                                AMSA Code
+                                            </th>
+                                            <th>
+                                                <input type="checkbox" id="selectAllInvitation" /> Select All
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    @foreach (var item in Model.lstParticipantsForInvitation)
+                {
+                                        <tr>
+                                            <td>
+                                                <text>
+                                                    @item.FirstName
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <text>
+                                                    @item.LastName
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <text>
+                                                    @item.AAMCNumber
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <text>
+                                                    @item.PrimaryEmail
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <text>
+                                                    @item.AMSACode
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <input class="" type="checkbox" />
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                            @* Participants that need to be sent a reminder *@
+                            <div id="tab-reminder" class="tab-pane fade in">
+                                <h2>Participants</h2>
+                                #search
+                                <table class="table table-responsive table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                First Name
+                                            </th>
+                                            <th>
+                                                Last Name
+                                            </th>
+                                            <th>
+                                                AAMC Number
+                                            </th>
+                                            <th>
+                                                Primary E-mail
+                                            </th>
+                                            <th>
+                                                AMSA Code
+                                            </th>
+                                            <th>
+                                                <input type="checkbox" id="selectAllInvitation" /> Select All
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var item in Model.lstParticipantForReminder)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <text>
+                                                    @item.FirstName
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <text>
+                                                    @item.LastName
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <text>
+                                                    @item.AAMCNumber
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <text>
+                                                    @item.PrimaryEmail
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <text>
+                                                    @item.AMSACode
+                                                </text>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" />
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>

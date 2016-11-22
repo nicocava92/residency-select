@@ -39,8 +39,15 @@ namespace PPI.Core.Web.Models.AmsaReports
         [DisplayName("Password")]
         [Required (ErrorMessage = "Password is Required")]
         public string AMSA_Password { get; set; }
-        
 
+
+        /*
+        Datas for E-mails:
+            If Invitation_date is null it means that the user was not invited
+            If Reminder_date is null it means that the user was not reminded of their invitation
+        */
+        public DateTime? Invitation_date { get; set; }
+        public DateTime? Reminder_date { get; set; }
 
         //Status in which the user is (Incomplet,InProcess, Invited) Need to get exact data for here from Sonya
         public string Status { get; set; }
@@ -59,6 +66,8 @@ namespace PPI.Core.Web.Models.AmsaReports
         public AMSAParticipant()
         {
             Status = "NEW";
+            Invitation_date = null;
+            Reminder_date = null;
         }
     }
 }

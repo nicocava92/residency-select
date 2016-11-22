@@ -1,0 +1,62 @@
+﻿@model PPI.Core.Web.Models.AmsaReports.Email.AMSAEmail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        <div>
+            <h2>AMSAEmail</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.Raw(Model.Type)
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.Type)
+                </dd>
+
+                <dt>
+                    @Html.Raw(Model.DefaultFrom)
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.DefaultFrom)
+                </dd>
+
+                <dt>
+                    @Html.Raw(Model.Subject)
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.Subject)
+                </dd>
+
+                <dt>
+                    @Html.Raw(Model.Introduction)
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.Introduction)
+                </dd>
+
+                <dt>
+                    @Html.Raw(Model.Closing)
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.Closing)
+                </dd>
+
+            </dl>
+        </div>
+        <p class="col-lg-offset-2 col-md-offset-2">
+            @Html.ActionLink("Back to List", "Setup", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary"}) 
+            
+        </p>
+</div></div>
