@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using PPI.Core.Web.Models;
 using PPI.Core.Web.Models.AmsaReports.Email;
 using PPI.Core.Web.Models.AmsaReports.Email.ViewModel;
-
+using PPI.Core.Web.Models.AmsaReports;
 
 
 namespace PPI.Core.Web.Controllers
@@ -76,7 +76,69 @@ namespace PPI.Core.Web.Controllers
             AMSAEmail e = dbr.AMSAEmail.Find(id);
             return View(e);
         }
-        
+
+        //Send E-mail
+
+        /*
+        SendEmail receives:
+            lstId : id of users that will receive the e-mail
+            eventId : id of the event the users are related to
+            type : type of e-mail (Invitation or reminder) - depending on the type of e-mail and event what e-mail the constructor will get.
+              can either be invite or reminder
+            */
+        [HttpPost]
+        public ActionResult SendEmail(List<int> lstId, int eventId, string type)
+        {
+            AMSAEmail email = AMSAEmail.getEmail(eventId, type);
+            List<string> lstEmailsErrors = new List<string>();
+            List<AMSAParticipant> lstParticipants = new List<AMSAParticipant>();
+            //Get list of participants we need to send e-mail to 
+            foreach (int i in lstId)
+            {
+                lstParticipants.Add(dbr.AMSAParticipant.Where(m => m.Id == i && m.AMSAEvent.id == eventId).FirstOrDefault());
+            }
+            foreach(AMSAParticipant p in lstParticipants)
+            {
+                try
+                {
+                    email.send(p);
+                    //Mark reminder and invitation date for participant
+                    p.emailReceived(email.Type);
+                }
+                catch
+                {
+                    lstEmailsErrors.Add(p.PrimaryEmail);
+                }   
+            }
+            //Return list of e-mails that we were not able to send to 
+            if(lstEmailsErrors.Count > 0)
+            {
+                return Json(new
+                {
+                    error = false,
+                    message = "All e-mails where sent correctly!"
+                });
+            }
+
+            //If there were no issues sending e-mails to the entire list then return errors = false
+            if(lstEmailsErrors.Count == 0)
+            {
+                return Json(new
+                {
+                    error = true,
+                    message = "Error sending e-mails to:",
+                    lstEmails = lstEmailsErrors
+                });
+            }
+
+            //Error 
+            return Json(new
+            {
+                error = true,
+                message = "System error please try again or inform IT department.",
+                lstEmails = lstEmailsErrors
+            });
+        }
 
     }
 }

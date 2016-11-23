@@ -28,6 +28,25 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
         //parameterless constructor added for EF to load data from the database
         public AMSAEmail() { }
 
+        //Used to get e-mail that will be sent
+        public static AMSAEmail getEmail(int eventId, string type)
+        {
+            AMSAEmail ret = new AMSAEmail();
+            AMSAReportContext dbr = new AMSAReportContext();
+            if (type.ToUpper().Equals("INVITE"))
+            {
+                //Get invitation message
+                ret = dbr.AMSAEmail.Where(m => m.AMSAEvent.id == eventId && m.Type.ToUpper().Equals("INVITATION")).FirstOrDefault();
+            }
+            if (type.ToUpper().Equals("Reminder"))
+            {
+                //Get reminder message
+                ret = dbr.AMSAEmail.Where(m => m.AMSAEvent.id == eventId && m.Type.ToUpper().Equals("REMINDER")).FirstOrDefault();
+            }
+            dbr.Dispose();
+            return ret;
+        }
+
         public AMSAEmail(AMSAEvent e, string type, string defaultFrom, AMSAReportContext dbr)
         {
             this.AMSAEvent = e;
@@ -53,6 +72,10 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             dbr.SaveChanges();
             dbr.Dispose();
         }
-        
+
+        internal void send(AMSAParticipant p)
+        {
+            
+        }
     }
 }

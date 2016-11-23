@@ -30,14 +30,6 @@ namespace PPI.Core.Web.Models.AmsaReports.Email.ViewModel
             getListParticipantsForReminder();
         }
 
-        public void SendInvitations(List<int> lstId)
-        {
-            
-        }
-        public void SendReminders(List<int> lstId)
-        {
-
-        }
         //Call before get list for Reminder
         public void getListParticipantsForInvitation() {
             if(idSelectedEvent > 0) { 
@@ -58,8 +50,12 @@ namespace PPI.Core.Web.Models.AmsaReports.Email.ViewModel
                 //Get list of participants to delete
                 foreach (AMSAParticipant p in lstParticipantForReminder)
                 {
-                    if (lstParticipantsForInvitation.Contains(p))
-                        auxLstParticipantToDelete.Add(p);
+                    //Contains not working need to perform the loop through manuall
+                    foreach (AMSAParticipant pWaitingInvitation in lstParticipantsForInvitation)
+                    {
+                        if (p.Id == pWaitingInvitation.Id)
+                            auxLstParticipantToDelete.Add(p);
+                    }
                 }
                 //Remove participants that are on the invitation list from the reminder list
                 foreach (AMSAParticipant pa in auxLstParticipantToDelete)

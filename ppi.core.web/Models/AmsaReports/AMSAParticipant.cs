@@ -69,5 +69,38 @@ namespace PPI.Core.Web.Models.AmsaReports
             Invitation_date = null;
             Reminder_date = null;
         }
+
+        //marks the date when reminder and invitation e-mails where sent
+        internal void emailReceived(string type)
+        {
+            if (type.ToUpper().Equals("INVITATION")) {
+                this.Invitation_date = DateTime.Now;
+            }
+            if (type.ToUpper().Equals("REMINDER"))
+            {
+                this.Reminder_date = DateTime.Now;
+            }
+            this.saveChanges();
+        }
+
+        //Saves changes performed to the participant
+        internal void saveChanges() {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSAParticipant p = dbr.AMSAParticipant.Find(this.Id);
+            //set all data for the participant and store
+            p.FirstName = this.FirstName;
+            p.LastName = this.LastName;
+            p.PrimaryEmail = this.PrimaryEmail;
+            p.Gender = this.Gender;
+            p.Title = this.Title;
+            p.AMSAEvent = this.AMSAEvent;
+            p.AAMCNumber = this.AAMCNumber;
+            p.AMSACode = this.AMSACode;
+            p.AMSA_Password = this.AMSA_Password;
+            p.Invitation_date = this.Invitation_date;
+            p.Reminder_date = this.Reminder_date;
+            dbr.SaveChanges();
+            dbr.Dispose();
+        }
     }
 }

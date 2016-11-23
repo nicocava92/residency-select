@@ -3,28 +3,36 @@
         ViewBag.Title = "Send";
         Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     }
-
+<div class="tabs-wrapper" style="border:4px solid #d0d8de;">
     <div class="main-box clearfix">
         <div class="main-box-body">
+           
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#tab-inviatation">Invitation</a></li>
-                        <li><a data-toggle="tab" href="#tab-reminder">Reminder</a></li>
-                    </ul>
+                    @if (Model.idSelectedEvent != 0)
+                    {
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#tab-inviatation">Invitation</a></li>
+                            <li><a data-toggle="tab" href="#tab-reminder">Reminder</a></li>
+                        </ul>
+                    }
+                    </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     @using (Html.BeginForm("GetSendEvent", "AMSAEmails"))
                     {
                         @Html.AntiForgeryToken()
-                        <div class="form-group col-lg-4 col-lg-offset-2 col-md-offset-2 col-md-4 col-sm-12 col-xs-12">
-                            @Html.LabelFor(model => model.Events, htmlAttributes: new { @class = "control-label col-md-3 bold"})
-                            <div class="col-md-9">
+                        <div class="form-group" style="margin-top:0px;margin-bottom:10px;">
+                            @Html.LabelFor(model => model.Events, htmlAttributes: new { @class = "control-label  col-md-2  bold" })
+                            <div class="col-md-4 col-lg-4">
                                 @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @onChange = "this.form.submit();" })
                                 @Html.ValidationMessageFor(model => model.Events, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
                     }
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="tab-content">
@@ -33,9 +41,12 @@
                         {
 
                             <div id="tab-inviatation" class="tab-pane fade in active">
-                                <h2>Participants</h2>
-                                #search
+                                <h2>Participants waiting for Invitation</h2>
+                                <hr />
                                 @* Participants that need to be sent an invitation *@
+                                
+                                @if (Model.lstParticipantsForInvitation.Count > 0)
+                                {
                                 <table class="table table-responsive table-striped">
                                     <thead>
                                         <tr>
@@ -55,7 +66,10 @@
                                                 AMSA Code
                                             </th>
                                             <th>
-                                                <input type="checkbox" id="selectAllInvitation" /> Select All
+                                                <div class="checkbox-nice">
+                                                    <input id="checkbox-selectAll-invite" name="checkbox" type="checkbox">
+                                                    <label for="checkbox-selectAll-invite"></label>
+                                                </div>
                                             </th>
                                         </tr>
                                     </thead>
@@ -89,79 +103,282 @@
                                                 </text>
                                             </td>
                                             <td>
-                                                <input class="" type="checkbox" />
+                                                <div class="checkbox-nice">
+                                                    <input id="@item.Id" class="selected-person-invite" name="checkbox" type="checkbox" data-participant="@item.Id" />
+                                                    <label for="@item.Id"></label>
+                                                </div>
                                             </td>
                                         </tr>
                                     }
                                 </table>
+                               
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col-lg-offset-9 col-md-offset-9">
+                                            <button class="btn btn-success" id="sendInvitation" data-eventid="@Model.idSelectedEvent">Send Invitation</button>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <h4>
+                                        There are no participants waiting for invitations.
+                                    </h4>
+                                }
                             </div>
-                            @* Participants that need to be sent a reminder *@
-                            <div id="tab-reminder" class="tab-pane fade in">
-                                <h2>Participants</h2>
-                                #search
-                                <table class="table table-responsive table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                First Name
-                                            </th>
-                                            <th>
-                                                Last Name
-                                            </th>
-                                            <th>
-                                                AAMC Number
-                                            </th>
-                                            <th>
-                                                Primary E-mail
-                                            </th>
-                                            <th>
-                                                AMSA Code
-                                            </th>
-                                            <th>
-                                                <input type="checkbox" id="selectAllInvitation" /> Select All
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    @foreach (var item in Model.lstParticipantForReminder)
+                                @* Participants that need to be sent a reminder *@
+                                <div id="tab-reminder" class="tab-pane fade in">
+                                    <h2>Participants waiting for Reminder</h2>
+                                    <hr />
+                                    @if (Model.lstParticipantForReminder.Count > 0)
                                     {
-                                        <tr>
-                                            <td>
-                                                <text>
-                                                    @item.FirstName
-                                                </text>
-                                            </td>
-                                            <td>
-                                                <text>
-                                                    @item.LastName
-                                                </text>
-                                            </td>
-                                            <td>
-                                                <text>
-                                                    @item.AAMCNumber
-                                                </text>
-                                            </td>
-                                            <td>
-                                                <text>
-                                                    @item.PrimaryEmail
-                                                </text>
-                                            </td>
-                                            <td>
-                                                <text>
-                                                    @item.AMSACode
-                                                </text>
-                                            </td>
-                                            <td>
-                                                <input type="checkbox" />
-                                            </td>
-                                        </tr>
+                                    <table class="table table-responsive table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    First Name
+                                                </th>
+                                                <th>
+                                                    Last Name
+                                                </th>
+                                                <th>
+                                                    AAMC Number
+                                                </th>
+                                                <th>
+                                                    Primary E-mail
+                                                </th>
+                                                <th>
+                                                    AMSA Code
+                                                </th>
+                                                <th>
+                                                    <div class="checkbox-nice">
+                                                        <input id="checkbox-selectAll-reminder" name="checkbox" type="checkbox">
+                                                        <label for="checkbox-selectAll-reminder"></label>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model.lstParticipantForReminder)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <text>
+                                                        @item.FirstName
+                                                    </text>
+                                                </td>
+                                                <td>
+                                                    <text>
+                                                        @item.LastName
+                                                    </text>
+                                                </td>
+                                                <td>
+                                                    <text>
+                                                        @item.AAMCNumber
+                                                    </text>
+                                                </td>
+                                                <td>
+                                                    <text>
+                                                        @item.PrimaryEmail
+                                                    </text>
+                                                </td>
+                                                <td>
+                                                    <text>
+                                                        @item.AMSACode
+                                                    </text>
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox-nice">
+                                                        <input id="@item.Id" class="selected-person-reminder" name="checkbox" type="checkbox" data-participant="@item.Id"/>
+                                                        <label for="@item.Id"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col-lg-offset-9 col-md-offset-9">
+                                            <button class="btn btn-success" id="sendReminder" data-eventid="@Model.idSelectedEvent">Send Reminder</button>
+                                        </div>
+                                    </div>
                                     }
-                                </table>
-                            </div>
+                                    else
+                                    {
+                                        <h4>
+                                            There are no participants waiting for reminders.
+                                        </h4>
+                                    }
+                                </div>
 
 
                         }
                     </div>
+
                 </div>
             </div>
+        </div>
+        <!-- Show error messages here -->
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                <div class="error text-danger alert alert-danger" style="display:none;">
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //On click for select all of invitation then select all for invitation
+            $("#checkbox-selectAll-invite").unbind("click");
+
+            $("#checkbox-selectAll-invite").on("click", function () {
+                var box = $(this);
+                if ($(this).is(":checked")) {
+                    //check all boxes
+                    changeValuesOfCheckbox("checked", "invite");
+                }
+                else {
+                    changeValuesOfCheckbox("unchecked", "invite");
+                }
+            });
+            //On click for select all of reminder then select all for reminder
+            $("#checkbox-selectAll-reminder").unbind("click");
+
+            $("#checkbox-selectAll-reminder").on("click", function () {
+                var box = $(this);
+                if ($(this).is(":checked")) {
+                    //check all boxes
+                    changeValuesOfCheckbox("checked", "reminder");
+                }
+                else {
+                    changeValuesOfCheckbox("unchecked", "reminder");
+                }
+            });
+
+
+            /**************************
+                    BUTTON ACTIONS
+            ***************************/
+            //Send reminder e-mail (get al ids selected and then build then call the method in the controler
+            $("#sendReminder").unbind("click");
+            $("#sendReminder").on("click", function () {
+                var lstId = [];
+                lstId = getlstId("reminder");
+                //Call send invite
+                eventId = $(this).data("eventid");
+                send(lstId,eventId,"REMINDER");
+            });
+
+            //Send reminder e-mail (get al ids selected and then build then call the method in the controler
+            $("#sendInvitation").unbind("click");
+            $("#sendInvitation").on("click", function () {
+                var lstId = [];
+                lstId = getlstId("invite");
+                //Call send reminder
+                eventId = $(this).data("eventid");
+                send(lstId,eventId,"INVITE");
+            });
+
+
+        });
+
+        //Receives type of e-mail that will be sent and returns listing of ids that are selected
+        function getlstId(s) {
+            var ret = [];
+            //Check list for invite
+            if (s == "invite") {
+                $(".selected-person-invite").each(function (index) {
+                    if ($(this).is(":checked")) {
+                        ret.push($(this).data("participant"));
+                    }
+                });
+            }
+
+            //Get list for reminder
+            else if (s == "reminder") {
+                $(".selected-person-reminder").each(function (index) {
+                    if ($(this).is(":checked")) {
+                        ret.push($(this).data("participant"));
+                    }
+                });
+            }
+            return ret;
+        }
+
+        //Status = value that needs to be set, action = invite || reminder
+        function changeValuesOfCheckbox(status, action) {
+
+            if(action == "invite"){
+                $(".selected-person-invite").each(function (index) {
+                    if (status == "checked") {
+                        $(this).prop("checked", true);
+                    }
+                    if (status == "unchecked") {
+                        $(this).prop("checked", false);
+                    }
+                });
+            }
+            else if (action == "reminder") {
+                $(".selected-person-reminder").each(function (index) {
+                    if (s == "checked") {
+                        $(this).prop("checked", true);
+                    }
+                    if (s == "unchecked") {
+                        $(this).prop("checked", false);
+                    }
+                });
+            }
+        }
+
+        //Send reminder e-mails
+        function send(lstId, eventId,type) {
+            $(".error").fadeOut();
+            if (lstId.length > 0) {
+                $.ajax({
+                    contentType: "application/json; charset=utf-8",
+                    type: "POST",
+                    url: "../AMSAEmails/SendEmail",
+                    datatype: "json",
+                    data: JSON.stringify({
+                        lstId : lstId,
+                        eventId: eventId,
+                        type : type
+                    }),
+                    traditional: true,
+                    success: function (data) {
+                        if (data.error) {
+                            //Show error
+                            var message = "<p>" +
+                                data.message + "<br />";
+                            //Loop through e-mails and add them to the error message
+                            for (var i = 0; i < data.lstEmails.length; i++) {
+                                message += lstEmais[i] + "<br />";
+                            }
+                            message += "</p>";
+                            //Show error message somwhere
+
+                        }
+                        else {
+                            //Show message on success (modal?)
+                        }
+                    },
+                    error: function (data) {
+                        $(".error").html("<p>Error processing request, please try again. If problem persists please contact IT department.</p>");
+                        $(".error").fadeIn();
+                    }
+                });
+
+
+
+            }
+            else {
+                $(".error").html("<p> One or more participants need to be selected to send reminder e-mail. </p>");
+                $(".error").fadeIn();
+            }
+
+        }
+
+
+    </script>
+    }
