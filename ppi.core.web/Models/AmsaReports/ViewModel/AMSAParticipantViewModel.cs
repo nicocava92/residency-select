@@ -201,7 +201,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         {
             //Get the first amsa code 
             AMSAReportContext dbr = new AMSAReportContext();
-            AMSACode c = dbr.AMSACodes.Where(m => !m.Used).FirstOrDefault();
+            AMSACode c = dbr.AMSACodes.Where(m => !m.Used && m.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
             if(c != null) {
                 this.AMSAParticipant.AMSACode = c.Code;
                 c.markAsUsed();

@@ -101,27 +101,27 @@ namespace PPI.Core.Web.Controllers
             {
                 try
                 {
-                    email.send(p);
+                    //email.send(p);
                     //Mark reminder and invitation date for participant
                     p.emailReceived(email.Type);
                 }
-                catch
+                catch(Exception e)
                 {
                     lstEmailsErrors.Add(p.PrimaryEmail);
                 }   
             }
             //Return list of e-mails that we were not able to send to 
-            if(lstEmailsErrors.Count > 0)
+            if(lstEmailsErrors.Count == 0)
             {
                 return Json(new
                 {
                     error = false,
-                    message = "All e-mails where sent correctly!"
+                    message = "All e-mails were sent correctly!"
                 });
             }
 
             //If there were no issues sending e-mails to the entire list then return errors = false
-            if(lstEmailsErrors.Count == 0)
+            if(lstEmailsErrors.Count > 0)
             {
                 return Json(new
                 {

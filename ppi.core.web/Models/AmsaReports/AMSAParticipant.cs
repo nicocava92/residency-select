@@ -75,10 +75,12 @@ namespace PPI.Core.Web.Models.AmsaReports
         {
             if (type.ToUpper().Equals("INVITATION")) {
                 this.Invitation_date = DateTime.Now;
+                this.Status = "Invited";
             }
             if (type.ToUpper().Equals("REMINDER"))
             {
                 this.Reminder_date = DateTime.Now;
+                this.Status = "Reminded";
             }
             this.saveChanges();
         }
@@ -93,12 +95,13 @@ namespace PPI.Core.Web.Models.AmsaReports
             p.PrimaryEmail = this.PrimaryEmail;
             p.Gender = this.Gender;
             p.Title = this.Title;
-            p.AMSAEvent = this.AMSAEvent;
+            p.AMSAEvent = dbr.AMSAEvent.Find(this.AMSAEvent.id);
             p.AAMCNumber = this.AAMCNumber;
             p.AMSACode = this.AMSACode;
             p.AMSA_Password = this.AMSA_Password;
             p.Invitation_date = this.Invitation_date;
             p.Reminder_date = this.Reminder_date;
+            p.Status = this.Status;
             dbr.SaveChanges();
             dbr.Dispose();
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 
 namespace PPI.Core.Web.Models.AmsaReports.Email
@@ -73,8 +74,44 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             dbr.Dispose();
         }
 
+        //Sending e-mails to participants
         internal void send(AMSAParticipant p)
         {
+            /***********************************
+            MISSING INFORMATION THAT NEEDS TO BE SET FOR THE CONTENT OF THE E-MAIL
+            ***********************************/
+        
+
+            var emailmessage = new System.Net.Mail.MailMessage();
+            emailmessage.From = new System.Net.Mail.MailAddress(this.DefaultFrom);
+            emailmessage.Subject = this.Subject;
+            emailmessage.IsBodyHtml = true;
+            emailmessage.Body = this.Introduction + this.Closing;
+            //MailClass.SendEmail(emailmessage.Subject, emailmessage.Body, "noreply@j3personica.com", "nicocava92@live.com");
+
+
+            //Send Grid example code
+            var Credentials = new System.Net.NetworkCredential(
+                    PPI.Core.Web.Properties.Settings.Default.SMTPUSER,
+                    PPI.Core.Web.Properties.Settings.Default.SMTPPASSWORD
+                    );
+
+            var transportWeb = new SendGrid.Web(Credentials);
+
+            var Mail = new SendGrid.SendGridMessage();
+
+            MailAddress from = emailmessage.From;
+
+            Mail.AddTo(p.PrimaryEmail);
+            Mail.From = from;
+
+
+            Mail.Subject = emailmessage.Subject;
+            Mail.Html = emailmessage.Body;
+
+            //We don't worry for errors at this point since if this raises an issue the top method has a try catch
+            //That will return a message via json informing the encountered issues
+            transportWeb.Deliver(Mail);
             
         }
     }
