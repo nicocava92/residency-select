@@ -16,6 +16,7 @@
             <div class="form-horizontal">
                 <h2>AMSAParticipant</h2>
                 <hr />
+                <div id="event" data-id="@Model.idSelectedEvent" style="display:none;"></div>
                 <div id="eventSection">
                     <div class="form-group">
                         @Html.LabelFor(model => model.AMSAParticipant.AMSAEvent, htmlAttributes: new { @class = "control-label col-md-3 bold" })
@@ -119,7 +120,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         }
         
@@ -146,7 +146,8 @@
                     datatype: "json",
                     traditional: true,
                     success: function (data) {
-                        var button = '<br />@Html.ActionLink("Insert Codes", "Create", "AMSACodes", null, new { @class = "btn btn-primary" })';
+                        var eId = $("#eventId").val();
+                        var button = '<br />@Html.ActionLink("Insert Codes", "Create", "AMSACodes", new { id = Model.idSelectedEvent }, new { @class = "btn btn-primary" })';
                         if (!data.error) {
                             //There is no error
                             $("#errorEvent").fadeOut();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
@@ -25,6 +26,10 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
         public string Subject { get; set; }
         public string Introduction { get; set; }
         public string Closing { get; set; }
+        //Only for REMINDER Type e-mail
+        //Amount of days to wait before sending automatic reminder
+        [Display(Name = "Days before reminder")]
+        public int automaticReminderDays { get; set; }
 
         //parameterless constructor added for EF to load data from the database
         public AMSAEmail() { }
@@ -39,7 +44,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
                 //Get invitation message
                 ret = dbr.AMSAEmail.Where(m => m.AMSAEvent.id == eventId && m.Type.ToUpper().Equals("INVITATION")).FirstOrDefault();
             }
-            if (type.ToUpper().Equals("Reminder"))
+            if (type.ToUpper().Equals("REMINDER"))
             {
                 //Get reminder message
                 ret = dbr.AMSAEmail.Where(m => m.AMSAEvent.id == eventId && m.Type.ToUpper().Equals("REMINDER")).FirstOrDefault();
@@ -56,6 +61,11 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             Subject = "";
             Introduction = "";
             Closing = "";
+            //Set automatic reminder to 7 days for REMINDER type e-mails, this can be changed from edit page
+            if (this.Type.ToUpper().Equals("REMINDER"))
+                automaticReminderDays = 7;
+            else
+                automaticReminderDays = 0;
             dbr.AMSAEmail.Add(this);
             dbr.SaveChanges();
         }
@@ -70,6 +80,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             e.Subject = this.Subject;
             e.Introduction = this.Introduction;
             e.Closing = this.Closing;
+            e.automaticReminderDays = this.automaticReminderDays;
             dbr.SaveChanges();
             dbr.Dispose();
         }
@@ -114,5 +125,27 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             transportWeb.Deliver(Mail);
             
         }
+
+        internal void sendReminders()
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            //Generate list of users that need to be sent the e-mail reminder for the event
+            List<AMSAParticipant> lstParticipants = dbr.AMSAParticipant.Where(r => r.AMSAEvent.id == this.AMSAEvent.id).ToList();
+            //Check if e-mail needs to be sent to the participant or not and send e-mail
+            foreach (AMSAParticipant p in lstParticipants)
+            {
+                if (p.timeToSendReminder(this)) {
+                    try { 
+                        this.send(p);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Let the user know that this e-mail was not sent correctly");
+                    }
+                }
+            }
+
+        }
+
     }
 }

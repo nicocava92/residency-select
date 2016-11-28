@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Excel;
 using System.Data;
+using PPI.Core.Web.Models.AmsaReports.Email;
 
 namespace PPI.Core.Web.Models.AmsaReports
 {
@@ -264,6 +265,20 @@ namespace PPI.Core.Web.Models.AmsaReports
             return get_extention.Equals(".csv");
         }
         
+
+        //Check all e-mail reminders and see if any need to be sent - send e-mail reminders
+        internal async static void sendReminders()
+        {
+            //Get all reminder e-mails
+            AMSAReportContext dbr = new AMSAReportContext();
+            List<AMSAEmail> lstReminderEmails = dbr.AMSAEmail.Where(m => m.Type.ToUpper().Equals("REMINDER")).ToList();
+            //On each e-mail execute method to send e-mails
+            foreach(AMSAEmail e in lstReminderEmails)
+            {
+                e.sendReminders();
+            }
+            dbr.Dispose();
+        }
 
     }
 }

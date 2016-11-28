@@ -329,6 +329,10 @@
     <Compile Include="Migrations\201611222047464_AMSAEmails2.Designer.cs">
       <DependentUpon>201611222047464_AMSAEmails2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611251529379_AMSAEmails3.cs" />
+    <Compile Include="Migrations\201611251529379_AMSAEmails3.Designer.cs">
+      <DependentUpon>201611251529379_AMSAEmails3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -343,6 +347,7 @@
     <Compile Include="Models\AmsaReports\AmsaReportStudentData.cs" />
     <Compile Include="Models\AmsaReports\Email\AMSAEmail.cs" />
     <Compile Include="Models\AmsaReports\Email\ViewModel\AMSAEmailSendViewModel.cs" />
+    <Compile Include="Models\AmsaReports\Email\ViewModel\EmailListingViewModel.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEvent.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEventStatus.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEventType.cs" />
@@ -3153,6 +3158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611222047464_AMSAEmails2.resx">
       <DependentUpon>201611222047464_AMSAEmails2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611251529379_AMSAEmails3.resx">
+      <DependentUpon>201611251529379_AMSAEmails3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

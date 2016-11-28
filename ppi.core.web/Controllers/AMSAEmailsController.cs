@@ -30,8 +30,20 @@ namespace PPI.Core.Web.Controllers
         [HttpGet]
         public ActionResult Setup()
         {
-            List<AMSAEmail> lstEmails = dbr.AMSAEmail.OrderBy(m => m.AMSAEvent.id).ToList();
-            return View(lstEmails);
+            EmailListingViewModel elvm = new EmailListingViewModel();
+            return View(elvm);
+        }
+
+        //Get page by id
+        [HttpPost]
+        public ActionResult Setup(EmailListingViewModel elvm)
+        {
+            if(elvm.idSelectedEvent > 0)
+            {
+                elvm.changeEvent();
+                return View(elvm);
+            }
+            return View(elvm);
         }
 
 
@@ -101,7 +113,7 @@ namespace PPI.Core.Web.Controllers
             {
                 try
                 {
-                    //email.send(p);
+                    email.send(p);
                     //Mark reminder and invitation date for participant
                     p.emailReceived(email.Type);
                 }
@@ -116,7 +128,7 @@ namespace PPI.Core.Web.Controllers
                 return Json(new
                 {
                     error = false,
-                    message = "All e-mails were sent correctly!"
+                    message = "All e-mails sent correctly!"
                 });
             }
 
@@ -126,7 +138,7 @@ namespace PPI.Core.Web.Controllers
                 return Json(new
                 {
                     error = true,
-                    message = "Error sending e-mails to:",
+                    message = "Please make sure E-mail is setup with content and a subject. <br />Error sending e-mails to:",
                     lstEmails = lstEmailsErrors
                 });
             }

@@ -19,12 +19,13 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-12">
+                <br />
                 <a href="@Url.Action("Create","AMSACodes")" class="btn btn-primary pull-left btn-block">
                     <i class="fa fa-plus-circle fa-lg"></i> Add Code
                 </a>
             </div>
         </div>
-        <br />
+        
         <div>
             <table class="table table-responsive table-striped">
                 <tr>
@@ -54,11 +55,8 @@
                             }
                         </td>
                         <td>
-                            <a href="@Url.Action("Details", new { id=item.Id })" class="table-link">
-                                <span class="fa-stack">
-                                    <i class="fa fa-square fa-stack-2x"></i>
-                                    <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                </span>
+                            <a href="@Url.Action("Details", new { id=item.Id })" class="btn btn-primary">
+                                Details
                             </a>
                         </td>
                     </tr>

@@ -44,9 +44,16 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /AMSACodes/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            return View(new AMSACodeViewModel());
+            int eventId = id ?? 0;
+            AMSACodeViewModel acvm = new AMSACodeViewModel();
+            if(id > 0)
+            {
+                acvm.idSelectedEvent = eventId;
+            }
+
+            return View(acvm);
         }
 
         // POST: /AMSACodes/Create
@@ -69,6 +76,7 @@ namespace PPI.Core.Web.Controllers
 
             return View(acvm);
         }
+        
 
         [HttpGet]
         public ActionResult Upload()
