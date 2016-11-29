@@ -193,3 +193,6 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\Antlr3.Runtime.pdb
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\Newtonsoft.Json.xml
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\HiQPdf.dep
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\Excel.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\Excel.pdb

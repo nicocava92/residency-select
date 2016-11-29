@@ -95,7 +95,7 @@ namespace PPI.Core.Web.Models.AmsaReports
         /****************
         AMSA Event that is related to the data    
         ****************/
-        public AMSAEvent AMSAEvent { get; set; }
+        public virtual AMSAEvent AMSAEvent { get; set; }
 
         //Date that the report is stored into the database
         public DateTime? Updated { get; set; }
@@ -104,6 +104,17 @@ namespace PPI.Core.Web.Models.AmsaReports
         {
             Updated = DateTime.Now;
             Status = "Not Started";
+        }
+
+        //Method used in profile section of the application
+        //Get Program from a Data
+        public AMSAProgram getProgram()
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSAEvent e = dbr.AMSAEvent.Find(this.AMSAEvent.id);
+            AMSAProgram p = dbr.AMSAProgram.Find(e.AMSAProgram.id);
+            dbr.Dispose();
+            return p;
         }
     }
 }

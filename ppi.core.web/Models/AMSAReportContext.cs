@@ -6,6 +6,7 @@ using System.Web;
 using PPI.Core.Web.Models.AmsaReports;
 using System.Data.Entity;
 using PPI.Core.Web.Models.AmsaReports.Event;
+using PPI.Core.Web.Models.AmsaReports.Email;
 
 namespace PPI.Core.Web.Models
 {
@@ -25,6 +26,8 @@ namespace PPI.Core.Web.Models
         public DbSet<AMSAParticipant> AMSAParticipant { get; set; }
         //AMSA Codes - this list is also checked to see if the ammount of AMSA Codes in the application is too low
         public DbSet<AMSACode> AMSACodes { get; set; }
+        //AMSA E-mails to be sent
+        public DbSet<AMSAEmail> AMSAEmail { get; set; }
 
         //Datasets utilized for the genration of reports
         public DbSet<AmsaReports.AonItemsAF716AMSAVersionAB> lstReportItems { get; set; }

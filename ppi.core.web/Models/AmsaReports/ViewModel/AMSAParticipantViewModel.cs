@@ -88,7 +88,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             //p.AMSA_Password = this.AMSAParticipant.AMSA_Password;
 
             //If password is not empty then assign the one that was set
-            if (p.AMSA_Password != null)
+            if (this.AMSAParticipant.AMSA_Password != null)
             {
                 //assign the password that was generated
                 IPasswordHasher passwordHasher = new PasswordHasher();
@@ -100,7 +100,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 p.AMSA_Password = this.AMSAParticipant.AMSA_Password;
             }
             //If AAMC Number
-            if (p.AAMCNumber != null)
+            if (this.AMSAParticipant.AAMCNumber != null)
                 p.AAMCNumber = this.AMSAParticipant.AAMCNumber;
             else
             {
@@ -109,7 +109,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             }
 
 
-            if (p.AMSACode != null)
+            if (this.AMSAParticipant.AMSACode != null)
             {
                 p.AMSACode = this.AMSAParticipant.AMSACode;
                 this.markCodeAsChecked(p.AMSACode);
@@ -126,11 +126,23 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             p.Gender = this.stringSelectedGender;
             if (p.Gender == null)
                 p.Gender = this.AMSAParticipant.Gender;
+            checkIfStatusExists(p);
+            //Check if the are results in the database for the participant if there are update status to the participant status
             dbr.AMSAParticipant.Add(p);
             dbr.SaveChanges();
             dbr.Dispose();
         }
-        
+
+        private void checkIfStatusExists(AMSAParticipant p)
+        {
+            AMSAReportContext dbo = new AMSAReportContext();
+            //Check if there are results already for this participant
+            AmsaReportStudentData auxData = dbo.lstStudentsForReport.Where(m => m.PersonId.ToUpper().Equals(this.AMSAParticipant.AMSACode) && m.AMSAEvent.id == p.AMSAEvent.id).FirstOrDefault();
+            if (auxData != null)
+                p.Status = auxData.Status;
+            dbo.Dispose();
+        }
+
 
         //Verify if the password is correct
         public bool checkPassword(string emailOrAMSACode, string insertedPassword)
@@ -189,7 +201,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         {
             //Get the first amsa code 
             AMSAReportContext dbr = new AMSAReportContext();
-            AMSACode c = dbr.AMSACodes.Where(m => !m.Used).FirstOrDefault();
+            AMSACode c = dbr.AMSACodes.Where(m => !m.Used && m.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
             if(c != null) {
                 this.AMSAParticipant.AMSACode = c.Code;
                 c.markAsUsed();

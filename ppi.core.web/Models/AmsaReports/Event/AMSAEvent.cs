@@ -5,6 +5,7 @@ using System.Web;
 using PPI.Core.Web.Models.AmsaReports.Event;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using PPI.Core.Web.Models.AmsaReports.Email;
 
 namespace PPI.Core.Web.Models.AmsaReports
 {
@@ -92,5 +93,24 @@ namespace PPI.Core.Web.Models.AmsaReports
         {
             Updated = DateTime.Now;
         }
+
+
+        //Create e-mails related to the event
+        public void createEmails(AMSAEvent e, string eMail, AMSAReportContext dbr)
+        {
+            List<string> emailTypes = new List<string>();
+            emailTypes.Add("INVITATION");
+            emailTypes.Add("REMINDER");
+            emailTypes.Add("REPORT");
+            emailTypes.Add("ASSESSMENT");
+            foreach(string s in emailTypes)
+            {
+                AMSAEmail auxEmail = new AMSAEmail(e, s, eMail, dbr);
+            }
+            
+            
+        }
+
+
     }
 }

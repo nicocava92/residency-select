@@ -277,7 +277,8 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             ae.AMSAEventStatus = dbr.AMSAEventStatus.Where(m => m.Name.Equals("Invitation")).FirstOrDefault();
             dbr.AMSAEvent.Add(ae);
             dbr.SaveChanges();
-            dbr.Dispose();
+            //Create e-mails for the event
+            ae.createEmails(ae, ae.defaultEmailAddress, dbr);
         }
 
         //Return possible departments to the view
