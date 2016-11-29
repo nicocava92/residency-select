@@ -59,9 +59,6 @@ namespace PPI.Core.Web.Controllers
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
-                    //If user logs in then send e-mail messages to all users
-                    PPI.Core.Web.Models.AmsaReports.ReportUtilities.sendReminders();
-                    //Continue with romal course of action
                     await SignInAsync(user, model.RememberMe);                    
                     //Look up the site associated with this user and set the cookie,                                                            
                     return RedirectToLocal(returnUrl);

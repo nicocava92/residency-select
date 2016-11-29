@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
+using PPI.Core.Web.Controllers;
+using System.Web.Mvc;
 
 namespace PPI.Core.Web.Models.AmsaReports.Email
 {
@@ -84,22 +86,36 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             dbr.SaveChanges();
             dbr.Dispose();
         }
-
-        //Sending e-mails to participants
-        internal void send(AMSAParticipant p)
-        {
-            /***********************************
-            MISSING INFORMATION THAT NEEDS TO BE SET FOR THE CONTENT OF THE E-MAIL
-            ***********************************/
         
 
-            var emailmessage = new System.Net.Mail.MailMessage();
-            emailmessage.From = new System.Net.Mail.MailAddress(this.DefaultFrom);
-            emailmessage.Subject = this.Subject;
-            emailmessage.IsBodyHtml = true;
-            emailmessage.Body = this.Introduction + this.Closing;
-            //MailClass.SendEmail(emailmessage.Subject, emailmessage.Body, "noreply@j3personica.com", "nicocava92@live.com");
+        internal void send(AMSAParticipant p, AMSAEmailsController controller)
+        {
+            /*******************************************************************************************
+                Static text is set on the template for _PartialEmailInvitation or _PartialEmailReminder
+            ********************************************************************************************/
 
+            /*
+                SEND E-MAIL USING PARTIAL E-MAIL FORMAT ALREADY CRAETED FOR HOGAN REPORTS
+            */
+
+            var EmailTemplate = new EmailTemplateModel();
+            EmailTemplate.subject = this.Subject;
+            EmailTemplate.closing = this.Closing;
+            EmailTemplate.introduction = this.Introduction;
+            var Email = new EmailModel();
+            Email.to = p.PrimaryEmail;
+            Email.from = this.DefaultFrom;
+            Email.subject = this.Subject;
+            //Get data from the view reusing code form Emails controller created for Hogan reports
+            
+            if (this.Type.ToUpper().Equals("INVITATION"))
+            {
+                Email.body = controller.RenderPartialToString("_PartialEmailInvitation", EmailTemplate);
+            }
+            else if (this.Type.ToUpper().Equals("REMINDER"))
+            {
+                Email.body = controller.RenderPartialToString("_PartialEmailReminder", EmailTemplate);
+            }
 
             //Send Grid example code
             var Credentials = new System.Net.NetworkCredential(
@@ -111,22 +127,18 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
 
             var Mail = new SendGrid.SendGridMessage();
 
-            MailAddress from = emailmessage.From;
-
-            Mail.AddTo(p.PrimaryEmail);
-            Mail.From = from;
+            Mail.AddTo(Email.to);
+            Mail.From = new MailAddress(Email.from);
 
 
-            Mail.Subject = emailmessage.Subject;
-            Mail.Html = emailmessage.Body;
+            Mail.Subject = Email.subject;
+            Mail.Html = Email.body;
 
-            //We don't worry for errors at this point since if this raises an issue the top method has a try catch
-            //That will return a message via json informing the encountered issues
+
             transportWeb.Deliver(Mail);
-            
         }
 
-        internal void sendReminders()
+        internal void sendReminders(AMSAEmailsController controller)
         {
             AMSAReportContext dbr = new AMSAReportContext();
             //Generate list of users that need to be sent the e-mail reminder for the event
@@ -136,7 +148,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             {
                 if (p.timeToSendReminder(this)) {
                     try { 
-                        this.send(p);
+                        this.send(p, controller);
                     }
                     catch
                     {
@@ -147,5 +159,6 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
 
         }
 
+        
     }
 }

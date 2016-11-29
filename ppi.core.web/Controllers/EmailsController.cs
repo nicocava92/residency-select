@@ -258,7 +258,7 @@ namespace PPI.Core.Web.Controllers
         /// <param name="name">Name of the view, that is, its path.</param>
         /// <param name="data">Data to pass to the view, a model or something like that.</param>
         /// <returns>A string with the (HTML of) view.</returns>
-        protected string RenderPartialToString(string viewName, object model)
+        public string RenderPartialToString(string viewName, object model)
         {
             if (string.IsNullOrEmpty(viewName))
                 viewName = ControllerContext.RouteData.GetRequiredString("action");
@@ -282,7 +282,7 @@ namespace PPI.Core.Web.Controllers
             : base(unitOfWork)
         {
         }
-
+        
         // GET: /Emails/
         [Authorize(Roles = "Admin,J3PAdmin")]
         public ActionResult Index()

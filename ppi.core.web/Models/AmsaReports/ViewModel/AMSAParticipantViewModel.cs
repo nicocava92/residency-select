@@ -271,8 +271,9 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 c.markAsUsed();
             }
         }
+      
     }
-    
+
     //Class used for gender selection in Participant insertion view
     public class Gender
     {
@@ -289,5 +290,6 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
     
 
 
-   
+
+
 }

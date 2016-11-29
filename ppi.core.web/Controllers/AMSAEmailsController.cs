@@ -10,7 +10,7 @@ using PPI.Core.Web.Models;
 using PPI.Core.Web.Models.AmsaReports.Email;
 using PPI.Core.Web.Models.AmsaReports.Email.ViewModel;
 using PPI.Core.Web.Models.AmsaReports;
-
+using System.IO;
 
 namespace PPI.Core.Web.Controllers
 {
@@ -113,7 +113,7 @@ namespace PPI.Core.Web.Controllers
             {
                 try
                 {
-                    email.send(p);
+                    email.send(p,this);
                     //Mark reminder and invitation date for participant
                     p.emailReceived(email.Type);
                 }
@@ -151,6 +151,58 @@ namespace PPI.Core.Web.Controllers
                 lstEmails = lstEmailsErrors
             });
         }
+
+        /// <summary>
+        /// Render a view into a string. It's a hack, it may fail badly.
+        /// </summary>
+        /// <param name="name">Name of the view, that is, its path.</param>
+        /// <param name="data">Data to pass to the view, a model or something like that.</param>
+        /// <returns>A string with the (HTML of) view.</returns>
+        public string RenderPartialToString(string viewName, object model)
+        {
+            if (string.IsNullOrEmpty(viewName))
+                viewName = ControllerContext.RouteData.GetRequiredString("action");
+
+            ViewData.Model = model;
+
+            using (StringWriter sw = new StringWriter())
+            {
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+
+                return sw.GetStringBuilder().ToString();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult sendReminder()
+        {
+            try { 
+                //Get all reminder e-mails
+                AMSAReportContext dbr = new AMSAReportContext();
+                List<AMSAEmail> lstReminderEmails = dbr.AMSAEmail.Where(m => m.Type.ToUpper().Equals("REMINDER")).ToList();
+                    //On each e-mail execute method to send e-mails
+                    foreach(AMSAEmail e in lstReminderEmails)
+                    {
+                        e.sendReminders(this);
+                    }
+                dbr.Dispose();
+                return Json(new
+                {
+                    error = false,
+                    message = "emails sent"
+                });
+            }
+            catch { 
+                return Json(new
+                {
+                    error = true,
+                    message = "error sending message"
+                });
+            }
+        }
+
 
     }
 }

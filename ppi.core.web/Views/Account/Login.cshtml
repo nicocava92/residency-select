@@ -38,7 +38,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button type="submit" class="btn btn-success col-xs-12">Login</button>
+                                    <button type="submit" id="login" class="btn btn-success col-xs-12">Login</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -50,4 +50,42 @@
                     @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
                 }
 
+@section Scripts{
     
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#login").unbind("click");
+            $("#login").click(function () {
+                //Call async method to send reminders
+                sendReminders();
+                //Submit the form
+                $(this).submit();
+            });
+        });
+
+        //Async method to send reminders to users
+        function sendReminders() {
+            //Get e-mail address
+            $.ajax({
+                contentType: "application/json; charset=utf-8",
+                type: "POST",
+                url: "../AMSAEmails/sendReminder",
+                datatype: "json",
+                success: function (data) {
+                    console.log("Reminders correctly sent");
+                },
+                error: function (data) {
+                    console.log("Error sending reminder");
+                }
+            });
+        }
+
+    </script>
+    
+}
+
+
+
+
+
