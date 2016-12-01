@@ -117,6 +117,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                         //lstParticipants.Add(p);
                         AMSACode auxCode = new AMSACode();
                         auxCode.Code = values[0];
+                        auxCode.Pin = values[1];
                         lstCodes.Add(auxCode);
                     }
                     c++;

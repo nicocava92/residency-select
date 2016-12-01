@@ -9,7 +9,7 @@ namespace PPI.Core.Web.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(PPI.Core.Web.Models.AMSAReportContext context)

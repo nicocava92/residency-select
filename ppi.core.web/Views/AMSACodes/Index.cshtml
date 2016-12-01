@@ -32,6 +32,9 @@
                         @Html.DisplayNameFor(model => model.Code)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.Pin)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Used)
                     </th>
                     <th></th>
@@ -42,6 +45,9 @@
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pin)
                         </td>
                         <td>
                             @if (@item.Used)
