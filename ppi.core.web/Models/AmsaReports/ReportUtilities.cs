@@ -71,6 +71,7 @@ namespace PPI.Core.Web.Models.AmsaReports
             return ret;
         }
 
+        //Used to check when only CSV files can be uploaded
         internal static void checkUploadCSV(HttpRequestBase request, ModelStateDictionary m)
         {
             int i = 0;
@@ -81,6 +82,88 @@ namespace PPI.Core.Web.Models.AmsaReports
                 if (hpf.ContentLength != 0)
                 {
                    
+                    string name_without_extention = Path.GetFileNameWithoutExtension(hpf.FileName);
+                    string get_extention = Path.GetExtension(hpf.FileName);
+                    if (!get_extention.Equals(".csv"))
+                    {
+                        m.AddModelError("Upload", "ERROR! File needs to be .csv. Please make sure you are uploading the correct file type. | File number: " + n);
+                    }
+                    string file_name = name_without_extention + DateTime.Now.ToString("yyyyMMddHHmmssfff") + get_extention;
+                }
+                else
+                {
+                    m.AddModelError("Upload", "ERROR! Upload of file not correct File number:" + n);
+                }
+                i++;
+            }
+        }
+
+        internal static List<string[]> getDataFromCsvXlsxORXLAMSACodes(HttpPostedFileBase httpPostedFileBase)
+        {
+            return getDataFromCsvXlsxORXL(httpPostedFileBase, "AMSACODE");
+        }
+
+        internal static List<string[]> getDataFromCsvXlsxORXLAMSAParticipants(HttpPostedFileBase httpPostedFileBase)
+        {
+            return getDataFromCsvXlsxORXL(httpPostedFileBase, "AMSAPARTICIPANTS");
+        }
+
+        //Returns a list of AMSAparticipants
+        internal static List<AMSAParticipant> arrayToAMSAParticipants(List<string[]> lstValues)
+        {
+            List<AMSAParticipant> lstParticipants = new List<AMSAParticipant>();
+            int c = 0;
+            foreach(string[] values in lstValues) { 
+                if (c > 0)
+                {
+                    //Try to save if there are errors let user know the participants that where not uploaded.. store the participants e-mail address and line number to let the user know
+                    AMSAParticipant p = new AMSAParticipant();
+                    p.FirstName = values[0];
+                    p.LastName = values[1];
+                    p.PrimaryEmail = values[2];
+                    p.AMSACode = values[3];
+                    p.AAMCNumber = values[4];
+                    p.Gender = values[5];
+                    p.Title = values[6];
+                    lstParticipants.Add(p);
+                }
+                c++;
+            }
+            return lstParticipants;
+        }
+
+        //Converts string generated from excel to list of AMSA Codes to be inserted in the database
+        internal static List<AMSACode> arrayToAMSACodes(List<string[]> values)
+        {
+            List<AMSACode> lstCodes = new List<AMSACode>();
+            int c = 0;
+            foreach (string[] v in values)
+            {
+                if (c > 0)
+                {
+                    //Get the amsa code present on each line (skip the first since the tytles for the rows are there)
+                    AMSACode auxCode = new AMSACode();
+                    auxCode.Code = v[0];
+                    auxCode.Pin = v[1];
+                    lstCodes.Add(auxCode);
+                }
+                c++;
+            }
+            return lstCodes;
+        }
+        
+
+        //Used to check when CSV and Excel files can be uploaded
+        internal static void checkUploadCSVandExcel(HttpRequestBase request, ModelStateDictionary m)
+        {
+            int i = 0;
+            while (i < request.Files.Count)
+            {
+                var n = i + 1;
+                HttpPostedFileBase hpf = request.Files[i] as HttpPostedFileBase;
+                if (hpf.ContentLength != 0)
+                {
+
                     string name_without_extention = Path.GetFileNameWithoutExtension(hpf.FileName);
                     string get_extention = Path.GetExtension(hpf.FileName);
                     if (!get_extention.Equals(".csv") && !get_extention.Equals(".xlsx") && !get_extention.Equals(".xls"))
@@ -153,33 +236,44 @@ namespace PPI.Core.Web.Models.AmsaReports
             return lstParticipants;
         }
 
-        internal static List<string[]> getDataFromCsvXlsxORXL(HttpPostedFileBase httpPostedFileBase)
+        internal static List<string[]> getDataFromCsvXlsxORXLReportData(HttpPostedFileBase httpPostedFileBase)
+        {
+            return getDataFromCsvXlsxORXL(httpPostedFileBase, "REPORTDATA");
+        }
+
+        internal static List<string[]> getDataFromCsvXlsxORXL(HttpPostedFileBase httpPostedFileBase, string type)
         {
             //if file is CSV then read csv
             if (checkIfCSV(httpPostedFileBase))
             {
-                return getDataFromCSV(httpPostedFileBase);
+                return getDataFromCSVReportData(httpPostedFileBase);
             }
             else if (checkIfXLSX(httpPostedFileBase))
             {
-                return getDataFromXLSX(httpPostedFileBase);
+                return getDataFromXLSX(httpPostedFileBase,type);
             }
             else if (checkIfXLS(httpPostedFileBase))
             {
-                return getDataFromXLS(httpPostedFileBase);
+                return getDataFromXLS(httpPostedFileBase,type);
             }
             //If none of them work return a list with empty strings
             return new List<string[]>();
         }
 
-        private static List<string[]> getDataFromXLS(HttpPostedFileBase httpPostedFileBase)
+        //Type = tells the method the type of data feed we are dealing with so we can deal with dates accordingly
+        private static List<string[]> getDataFromXLS(HttpPostedFileBase httpPostedFileBase, string type)
         {
             IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(httpPostedFileBase.InputStream, false, ReadOption.Loose);
-            return readAnyExcel(excelReader);
+            return readAnyExcel(excelReader, type);
         }
 
-        //Reads any excel
-        private static List<string[]> readAnyExcel(IExcelDataReader excelReader)
+        /// <summary>
+        /// Returns List of string for any excel, dates have to be dealt with in specific manner, because of this Type is added (tell the method the type and adapt it to deal with dates for the specific type of file)
+        /// </summary>
+        /// <param name="excelReader"></param>
+        /// <param name="Type">Gives the oportunity to deal with files in different ways to developers</param>
+        /// <returns></returns>
+        private static List<string[]> readAnyExcel(IExcelDataReader excelReader, string Type)
         {
             List<string[]> ret = new List<string[]>();
             DataSet result = excelReader.AsDataSet();
@@ -187,30 +281,47 @@ namespace PPI.Core.Web.Models.AmsaReports
             while (excelReader.Read())
             {
                 List<string> auxList = new List<string>();
-                //Add values for columns into the file
-                //Loop through the columns in the row 
-                for (int i = 0; i <= 20; i++)
-                {
+                if (Type.ToUpper().Equals("REPORTDATA")) { 
+                    //Add values for columns into the file
+                    //Loop through the columns in the row 
+                    for (int i = 0; i <= 20; i++)
+                    {
 
-                    //For .xls reading dates is different, because of this we try for each column to read a date
-                    //if there is a date present then we read it and convert it to a string to store it on the list
-                    //this lets us read dats from .xls files
+                        //For .xls reading dates is different, because of this we try for each column to read a date
+                        //if there is a date present then we read it and convert it to a string to store it on the list
+                        //this lets us read dats from .xls files
 
-                    //specific for upload of data feed, will need to change this 
-                    //depending on what we are reading (dealing with dates in .xls makes us have this extra step).
-                    if (i == 3 || i == 4) { 
-                        try
-                        {
-                            DateTime d = excelReader.GetDateTime(i);
-                            string date = d.ToString();
-                            auxList.Add(date);
+                        //specific for upload of data feed, will need to change this 
+                        //depending on what we are reading (dealing with dates in .xls makes us have this extra step).
+                        if (i == 3 || i == 4) { 
+                            try
+                            {
+                                DateTime d = excelReader.GetDateTime(i);
+                                string date = d.ToString();
+                                auxList.Add(date);
+                            }
+                            catch
+                            {
+                                auxList.Add(excelReader.GetString(i));
+                            }
                         }
-                        catch
+                        else
                         {
                             auxList.Add(excelReader.GetString(i));
                         }
                     }
-                    else
+                }
+                if (Type.ToUpper().Equals("AMSACODE"))
+                {
+                    //Simply add strings, no dates to worry about
+                    for (int i = 0; i <= 1; i++)
+                    {
+                        auxList.Add(excelReader.GetString(i)); 
+                    }
+                }
+                if (Type.ToUpper().Equals("AMSAPARTICIPANTS")) {
+                    //Simply add strings, no dates to worry about
+                    for (int i = 0; i <= 7; i++)
                     {
                         auxList.Add(excelReader.GetString(i));
                     }
@@ -224,13 +335,15 @@ namespace PPI.Core.Web.Models.AmsaReports
 
         //Read xlsx files (Microsoft Excel 2007 and above) and return a list of string arrays
         //If our excel has more than 21 columns then we should change the capacity of the ammount of columns that are checked
-        private static List<string[]> getDataFromXLSX(HttpPostedFileBase httpPostedFileBase)
+        //Type == tells the method they type of excel we are reading so we can deal with dates accordingly
+        private static List<string[]> getDataFromXLSX(HttpPostedFileBase httpPostedFileBase, string type)
         {
             IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(httpPostedFileBase.InputStream);
-            return readAnyExcel(excelReader);
+            return readAnyExcel(excelReader, type);
         }
 
-        private static List<string[]> getDataFromCSV(HttpPostedFileBase httpPostedFileBase)
+        //No need for type since CSV doesn't have problems storing dates from CSV to an array (split happens correctly without any special requirements). 
+        private static List<string[]> getDataFromCSVReportData(HttpPostedFileBase httpPostedFileBase)
         {
             // Use the InputStream to get the actual stream sent.
             StreamReader csvreader = new StreamReader(httpPostedFileBase.InputStream, Encoding.Default, true);

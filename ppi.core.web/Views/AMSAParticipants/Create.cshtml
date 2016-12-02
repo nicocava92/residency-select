@@ -25,11 +25,11 @@
                             @Html.ValidationMessageFor(model => model.AMSAParticipant.AMSAEvent, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-2">
-                            <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
+                            <div id="amsaCodeCount" class="badge badge-success pull-left" style="">
                                 @Model.AMASCodeCount()
                             </div>
 
-                             Available AMSA Codes 
+                              Available AMSA Codes 
                         </div>
 
                     </div>
@@ -138,7 +138,7 @@
                     traditional: true,
                     success: function (data) {
                         var eId = $("#eventId").val();
-                        var button = '<br />@Html.ActionLink("Insert Codes", "Create", "AMSACodes", new { id = Model.idSelectedEvent }, new { @class = "btn btn-primary" })';
+                        var button = '<br /><a id="btnRedirect" class="btn btn-primary" href="../../AMSACodes/Create/' + eventId + '">Insert Codes</a>';
                         if (!data.error) {
                             //There is no error
                             $("#errorEvent").fadeOut();
@@ -152,9 +152,9 @@
                                         'Please insert / upload new codes to add new participants.' +
                                         '</h2>' + button);
                                     $("#errorEvent").fadeIn();
-                                    
+
                                 } else {
-                                    //Fade in participant insert 
+                                    //Fade in participant insert
                                     $("#insertParticipant").fadeIn();
                                 }
                             }, 500);
@@ -177,8 +177,8 @@
                         Please insert / upload new codes to add new participants.
                     </h2>
 
-                        
-                    
+
+
                             */
                         }
                     },

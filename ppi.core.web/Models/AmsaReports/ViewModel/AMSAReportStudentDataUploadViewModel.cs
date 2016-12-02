@@ -18,7 +18,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         [DisplayName("Event")]
         public SelectList Events { get; set; }
         public int idSelectedEvent { get; set; }
-        [DisplayName("Upload CSV For Event")]
+        [DisplayName("Upload .csv, .xls, .xlsx For Event")]
         public HttpPostedFile csvFile { get; set; }
         public AMSAEvent selectedEvent { get; set; }
         //Store errors on upload so further users are added even if other users generated errors, inform multiple errors at once without stopping the application form finishing its normal course
@@ -85,7 +85,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             {
                 try { 
                     //Read files and get array
-                    List<string[]> values = ReportUtilities.getDataFromCsvXlsxORXL(request.Files[i]);
+                    List<string[]> values = ReportUtilities.getDataFromCsvXlsxORXLReportData(request.Files[i]);
                     //WHere participants to be inserted into the database will be added
 
                     //Get list of participants from va

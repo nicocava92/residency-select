@@ -162,5 +162,13 @@ namespace PPI.Core.Web.Models.AmsaReports
                 Console.WriteLine("Problem sending e-mail to default e-mail address provided");
             }
         }
+        //Used to getAmmountOfCodes for the Event
+        public int getAmmountCodes()
+        {
+            AMSAReportContext dbf = new AMSAReportContext();
+            int ret = dbf.AMSACodes.Where(m => !m.Used && m.AMSAEvent.id == this.id).ToList().Count;
+            dbf.Dispose();
+            return ret;
+        }
     }
 }

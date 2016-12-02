@@ -70,8 +70,9 @@
         <mvcSiteMapNode title="Program Sites" controller="AMSAProgramSites" action="Index"/>
         <mvcSiteMapNode title="Not Billable Reason" controller="AMSANotBillableReasons" action="Index"/>
       </mvcSiteMapNode>
-    </mvcSiteMapNode>
       
+    </mvcSiteMapNode>
+      <mvcSiteMapNode title="AMSA User Upload" controller="AMSAParticipants" action="Upload"/>
     
     </mvcSiteMapNode>
     

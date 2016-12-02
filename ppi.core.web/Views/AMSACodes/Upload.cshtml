@@ -20,7 +20,7 @@
                 <p>
                     <ol>
                         <li>
-                            PLEASE MAKE SURE THAT YOU ONLY USE THE TEMPLATE IN ITS EXISTING FORM WITHOUT MODIFYING IT. IF THE TEMPLATE IS NOT UPLOADED IN THE EXACT FORMAT IN A CSV FILE, YOUR UPLOAD WILL NOT COMPLETE
+                            PLEASE MAKE SURE THAT YOU ONLY USE THE TEMPLATE IN ITS EXISTING FORM WITHOUT MODIFYING IT AND MAKE SURE THE FILE IS .CSV, .XLSX, XLS.
                         </li>
                         <li>
                             IF THE CODE IS ALREADY IN THE SISTEM IT WILL NOT BE ADDED IN, YOU WILL GET AN ERROR MESSAGE INFORMING YOU OF THIS
@@ -110,7 +110,7 @@
                 $.ajax({
                     contentType: "application/json; charset=utf-8",
                     type: "GET",
-                    url: "../AMSAParticipants/getAmmountOfCodes",
+                    url: "../../AMSAParticipants/getAmmountOfCodes",
                     data: { eventId : eventId },
                     datatype: "json",
                     traditional: true,
