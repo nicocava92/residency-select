@@ -100,7 +100,10 @@
                 <h2>Available AMSA Codes per Event</h2>
                 <ul class="list-group">
                     @foreach(PPI.Core.Web.Models.AmsaReports.AMSAEvent e in Model.LstEvents) {
-                    <li class="list-group-item">
+                    if (e.id > 0)
+                    {
+
+                        <li class="list-group-item">
                         @{ int code = @e.getAmmountCodes();}
                         @if (code == 0) { 
                         <span class="badge badge-default" style="width:40px; font-size:14px;">@e.getAmmountCodes()</span>
@@ -110,8 +113,10 @@
                             <span class="badge badge-success" style="width:40px; font-size:14px;">@e.getAmmountCodes()</span>
                         }
                         @e.Name
+
                     </li>
-                    }
+                        }
+                                            }
                 </ul>
             </div>
     </div>

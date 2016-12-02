@@ -280,7 +280,6 @@ namespace PPI.Core.Web.Controllers
                 //Get date when data for the event was alst uploaded
                 LastUpdated = e.Updated ?? DateTime.Now;
 
-
                 //Load total ammount of people
                 TotalPeople = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == e.id).ToList().Count;
                 List<AmsaReportStudentData> lstReports = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == eventId).ToList();
@@ -292,13 +291,17 @@ namespace PPI.Core.Web.Controllers
 
                 //TodayCompleted = dbr.lstStudentsForReport.Where(r => DbFunctions.TruncateTime(r.Updated) == ThisRun.Date && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList().Count();
                 UsersCompleted = dbr.lstStudentsForReport.Where(r => r.Updated < ThisRun && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList().Count();
-                
-                /*
-                Need e-mails to code in:
-                    Total Invitations 
-                    TotalReminders
-                    TotalAssess    | Need to have invitations to know the ammount of participants that need to be taking this
-                */
+
+                //Get list of people
+                List<AMSAParticipant> listAllParticipants = dbr.AMSAParticipant.Where(r => r.AMSAEvent.id == e.id).ToList();
+                TotalInvitations = listAllParticipants.Where(r => r.Invitation_date != null).ToList().Count();
+                TotalReminders = listAllParticipants.Where(r => r.Reminder_date != null).ToList().Count();
+                List<AmsaReportStudentData> lstAllData = dbr.lstStudentsForReport.Where(r => r.CompletionDate != null && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList();
+                //After we get the list of reports we check for the ammount completed today
+                foreach (AmsaReportStudentData sd in lstAllData) {
+                    if (sd.CompletionDate.Date == DateTime.Now.Date)
+                        TodayCompleted++;
+                }
             }
             if (eventId == null)
                 model.eventId = -1;
@@ -308,6 +311,7 @@ namespace PPI.Core.Web.Controllers
             model.AssessmentComplete = new ValueRatio();
             model.AssessmentComplete.NumberCompleted = UsersCompleted;
             model.AssessmentComplete.TotalNumber = TotalPeople;
+
             model.AssessmentNotComplete = new ValueRatio();
             model.AssessmentNotComplete.AsOfDate = LastUpdated;
             model.AssessmentNotComplete.NumberCompleted =  TotalPeople - UsersCompleted;
@@ -323,8 +327,10 @@ namespace PPI.Core.Web.Controllers
             model.AssessmentsToday = TodayCompleted;
             model.InvitationsTotal = TotalInvitations;
             model.RemindersTotal = TotalReminders;
-            
-            
+
+            model.AssessmentsToday = TodayCompleted;
+            model.InvitationsTotal = TotalInvitations;
+            model.RemindersTotal = TotalReminders;
 
 
             return View(model);

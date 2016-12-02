@@ -18,6 +18,9 @@
                                 </ul>
                             }
                         </div>
+                        <!-- Hidden div to store the id of the event -->
+                        <div id="idOfEvent" data-eventid="@Model.idSelectedEvent" style="display:none">
+                        </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             @using (Html.BeginForm("GetSendEvent", "AMSAEmails"))
                             {
@@ -36,7 +39,10 @@
 
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
-                            <div class="tab-content">
+                            
+
+
+                            <div id="participantsToReceiveMail" class="tab-content" style="display:none;">
 
                                 @if (Model.idSelectedEvent != 0)
                                 {
@@ -237,7 +243,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">E-mails</h4>
+            <h1 class="modal-title">E-mails</h1>
         </div>
         <div class="modal-body modal-message">
         </div>
@@ -249,8 +255,30 @@
 </div><!-- /.modal -->
 
 
+
+<div id="emailsNotSetUp" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1 class="modal-title">E-mails Not Setup</h1>
+            </div>
+            <div class="modal-body modal-message">
+                
+                <p>E-mails for this Event are not setup yet.<br />You will need to setup e-mails before they can be sent.</p>
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Setup E-mails","Setup", "AmsaEmails", new { id = Model.idSelectedEvent }, new { @class = "btn btn-primary" })
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 @section Scripts{
     <script type="text/javascript">
+        var emailsSetUp = false; //Global variable used to check if e-mails are set up or not
         $(document).ready(function () {
             //On click for select all of invitation then select all for invitation
             $("#checkbox-selectAll-invite").unbind("click");
@@ -265,6 +293,12 @@
                     changeValuesOfCheckbox("unchecked", "invite");
                 }
             });
+
+            //When loading the pag check if there are e-mails set up for the event and if they have text
+            //If there arent send the user to the specific page so they can make the necessary changes
+            emailsSetUp = checkSanityEmailsForEvent();
+
+
             //On click for select all of reminder then select all for reminder
             $("#checkbox-selectAll-reminder").unbind("click");
 
@@ -357,6 +391,8 @@
         //Send reminder e-mails
         function send(lstId, eventId,type) {
             $(".error").fadeOut();
+            $("#sendInvitation").attr("disabled", "disabled");
+            $("#sendReminder").attr("disabled", "disabled");
             if (lstId.length > 0) {
                 $.ajax({
                     contentType: "application/json; charset=utf-8",
@@ -398,15 +434,54 @@
                     error: function (data) {
                         $(".error").html("<p>Error processing request, please try again. If problem persists please contact IT department.</p>");
                         $(".error").fadeIn();
+                        $("#sendInvitation").removeAttr("disabled");
+                        $("#sendReminder").removeAttr("disabled");
                     }
                 });
 
             }
             else {
+                $("#sendInvitation").removeAttr("disabled");
+                $("#sendReminder").removeAttr("disabled");
                 $(".error").html("<p> One or more participants need to be selected to send reminder e-mail. </p>");
                 $(".error").fadeIn();
             }
 
+        }
+
+        //Checking sanity of e-mails for the event
+        /*****
+        Method returns true or false depending if the event has e-mails set up or not
+        *****/
+        function checkSanityEmailsForEvent() {
+            var eventId = $("#idOfEvent").data("eventid");
+            if(eventId > 0){
+            $.ajax({
+                contentType: "application/json; charset=utf-8",
+                type: "POST",
+                url: "../AMSAEmails/checkSanityForEvent",
+                datatype: "json",
+                data: JSON.stringify({ eventId: eventId }),
+                traditional: true,
+                success: function (data) {
+                    var m = "";
+                    if (data.error) {
+                        //E-mails need to be set up
+                        $("#emailsNotSetUp").modal("show");
+                        return false;
+                    }
+                    else {
+                        $("#participantsToReceiveMail").fadeIn();
+                        return true;
+                    }
+                },
+                error: function (data) {
+                    $(".error").html("<p>Error processing request, please try again. If problem persists please contact IT department.</p>");
+                    $(".error").fadeIn();
+                    console.log(data);
+                }
+            });
+            }
         }
 
 

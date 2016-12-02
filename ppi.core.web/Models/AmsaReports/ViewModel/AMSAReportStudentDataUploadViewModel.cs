@@ -338,7 +338,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             }
 
             //After updating the results then update the participant
-            AMSAParticipant aParticipant = dbr.AMSAParticipant.Where(o => o.AMSACode.ToUpper().Equals(pa.PersonId) && o.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
+            AMSAParticipant aParticipant = dbr.AMSAParticipant.Where(o => o.AMSACode.ToUpper().Equals(pa.PersonId.ToUpper()) && o.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
             if (aParticipant != null)
             {
                 //If participant exists then update his status | if his status goes from something different

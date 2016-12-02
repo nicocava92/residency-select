@@ -17,6 +17,8 @@ namespace PPI.Core.Web.Models.AmsaReports
         //Matrix used to get data for Scale paragraphs
         public static string[,] gateFieldMatrix { get; set; }
         private static ReportUtilities getReportUtilities;
+        //Used to check if the reminder has been sent today
+        public static DateTime DateReminderSent { get; set; }
 
         public static ReportUtilities GetReportUtilities
         {
@@ -376,6 +378,21 @@ namespace PPI.Core.Web.Models.AmsaReports
         {
             string get_extention = Path.GetExtension(uploadedFile.FileName);
             return get_extention.Equals(".csv");
+        }
+
+        //Check if the reminder has been sent today
+        internal static bool reminderSentToday()
+        {
+            if (DateReminderSent != null)
+                return DateReminderSent.Date == DateTime.Now.Date;
+            else
+                return false;
+        }
+
+        //Set todays date as reminder sent date
+        internal static void setReminderSentToday()
+        {
+            DateReminderSent = DateTime.Now;
         }
         
     }

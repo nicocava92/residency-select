@@ -18,7 +18,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Email.ViewModel
         public EmailListingViewModel()
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            lstEmails = dbr.AMSAEmail.ToList();
+            lstEmails = dbr.AMSAEmail.OrderBy(m => m.AMSAEvent.id).ToList();
             getListEvents(dbr);
             dbr.Dispose();
         }
