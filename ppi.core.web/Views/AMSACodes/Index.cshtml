@@ -32,6 +32,9 @@
                         @Html.DisplayNameFor(model => model.Code)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.Pin)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Used)
                     </th>
                     <th></th>
@@ -44,6 +47,9 @@
                             @Html.DisplayFor(modelItem => item.Code)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.Pin)
+                        </td>
+                        <td>
                             @if (@item.Used)
                             {
                                 <text>True</text>
@@ -54,11 +60,8 @@
                             }
                         </td>
                         <td>
-                            <a href="@Url.Action("Details", new { id=item.Id })" class="table-link">
-                                <span class="fa-stack">
-                                    <i class="fa fa-square fa-stack-2x"></i>
-                                    <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                </span>
+                            <a href="@Url.Action("Details", new { id=item.Id })" class="btn btn-primary">
+                                Details
                             </a>
                         </td>
                     </tr>

@@ -24,6 +24,15 @@
                         @Html.ValidationMessage("AMSACode")
                     </div>
                 </div>
+                <!-- PIN used as password for AON -->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AMSACode.Pin, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AMSACode.Pin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AMSACode.Pin, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("AMSACode")
+                    </div>
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.AMSACode.AMSAEvent, htmlAttributes: new { @class = "control-label col-md-2 bold" })
                     <div class="col-md-10">

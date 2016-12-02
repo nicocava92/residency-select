@@ -10,6 +10,8 @@ using PPI.Core.Web.Models;
 using PPI.Core.Web.Models.AmsaReports;
 using PPI.Core.Web.Models.AmsaReports.Event.ViewModel;
 using System.Web.Mvc;
+using System.IO;
+using System.Net.Mail;
 
 namespace PPI.Core.Web.Controllers
 {
@@ -140,8 +142,82 @@ namespace PPI.Core.Web.Controllers
             //Check all of it for errors, if no errors are found then store the Event in the db
             Session["ae"] = ae;
             ae.saveNewEvent();
+            sendEventCreatedEmails(ae.AMSAEvent);
+            //ae.AMSAEvent.sendEventCreatedEmail(this);
             Session["ae"] = null;
             return View("Complete");
+        }
+
+        private void sendEventCreatedEmails(AMSAEvent e)
+        {
+            try
+            {
+
+                /*
+                SEND E-MAIL USING PARTIAL E-MAIL FORMAT ALREADY CRAETED FOR HOGAN REPORTS
+                */
+
+                var EmailTemplate = new EmailTemplateModel();
+                EmailTemplate.subject = "Your event " + e.Name + " has been created";
+                EmailTemplate.closing = "You can now manage this event through the J3P Residency Select Administration portal.";
+                EmailTemplate.introduction = "This email is to inform you that your event is now active. ";
+                var Email = new EmailModel();
+                Email.to = e.defaultEmailAddress;
+                Email.from = "surveys@perfprog.com";
+                Email.subject = EmailTemplate.subject;
+                //Get data from the view reusing code form Emails controller created for Hogan reports
+                Email.body = RenderPartialToString("_PartialEmailForAdministrators", EmailTemplate);
+
+                //MailClass.SendEmail(emailmessage.Subject, emailmessage.Body, "noreply@j3personica.com", "nicocava92@live.com");
+
+
+                //Send Grid example code
+                var Credentials = new System.Net.NetworkCredential(
+                        PPI.Core.Web.Properties.Settings.Default.SMTPUSER,
+                        PPI.Core.Web.Properties.Settings.Default.SMTPPASSWORD
+                        );
+
+                var transportWeb = new SendGrid.Web(Credentials);
+
+                var Mail = new SendGrid.SendGridMessage();
+
+                Mail.AddTo(Email.to);
+                Mail.From = new MailAddress(Email.from);
+
+
+                Mail.Subject = Email.subject;
+                Mail.Html = Email.body;
+
+
+                transportWeb.Deliver(Mail);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+        /// <summary>
+        /// Render a view into a string. It's a hack, it may fail badly.
+        /// </summary>
+        /// <param name="name">Name of the view, that is, its path.</param>
+        /// <param name="data">Data to pass to the view, a model or something like that.</param>
+        /// <returns>A string with the (HTML of) view.</returns>
+        public string RenderPartialToString(string viewName, object model)
+        {
+            if (string.IsNullOrEmpty(viewName))
+                viewName = ControllerContext.RouteData.GetRequiredString("action");
+
+            ViewData.Model = model;
+
+            using (StringWriter sw = new StringWriter())
+            {
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+
+                return sw.GetStringBuilder().ToString();
+            }
         }
 
         [HttpGet]

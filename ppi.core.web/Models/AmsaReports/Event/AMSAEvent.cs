@@ -6,6 +6,8 @@ using PPI.Core.Web.Models.AmsaReports.Event;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using PPI.Core.Web.Models.AmsaReports.Email;
+using System.Net.Mail;
+using PPI.Core.Web.Controllers;
 
 namespace PPI.Core.Web.Models.AmsaReports
 {
@@ -110,7 +112,55 @@ namespace PPI.Core.Web.Models.AmsaReports
             
             
         }
+        //Once an Event is created an e-mail is sent to the defaul e-mail for the event informing that this event
+        //Has been created, this is where that e-mail is sent
+        internal void sendEventCreatedEmail(AMSAEventsController aMSAEventsController)
+        {
+            try
+            {
+
+                /*
+                SEND E-MAIL USING PARTIAL E-MAIL FORMAT ALREADY CRAETED FOR HOGAN REPORTS
+                */
+
+                var EmailTemplate = new EmailTemplateModel();
+                EmailTemplate.subject = "Your event " + this.Name + " has been created";
+                EmailTemplate.closing = "You can now manage this event through the J3P Residency Select Administration portal.";
+                EmailTemplate.introduction = "This email is to inform you that your event is now active. ";
+                var Email = new EmailModel();
+                Email.to = this.defaultEmailAddress;
+                Email.from = "surveys@perfprog.com";
+                Email.subject = EmailTemplate.subject;
+                //Get data from the view reusing code form Emails controller created for Hogan reports
+                Email.body = aMSAEventsController.RenderPartialToString("_PartialEmailFormat", EmailTemplate);
+
+                //MailClass.SendEmail(emailmessage.Subject, emailmessage.Body, "noreply@j3personica.com", "nicocava92@live.com");
 
 
+                //Send Grid example code
+                var Credentials = new System.Net.NetworkCredential(
+                        PPI.Core.Web.Properties.Settings.Default.SMTPUSER,
+                        PPI.Core.Web.Properties.Settings.Default.SMTPPASSWORD
+                        );
+
+                var transportWeb = new SendGrid.Web(Credentials);
+
+                var Mail = new SendGrid.SendGridMessage();
+
+                Mail.AddTo(Email.to);
+                Mail.From = new MailAddress(Email.from);
+
+
+                Mail.Subject = Email.subject;
+                Mail.Html = Email.body;
+
+
+                transportWeb.Deliver(Mail);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Problem sending e-mail to default e-mail address provided");
+            }
+        }
     }
 }

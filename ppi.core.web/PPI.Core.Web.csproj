@@ -329,6 +329,18 @@
     <Compile Include="Migrations\201611222047464_AMSAEmails2.Designer.cs">
       <DependentUpon>201611222047464_AMSAEmails2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611251529379_AMSAEmails3.cs" />
+    <Compile Include="Migrations\201611251529379_AMSAEmails3.Designer.cs">
+      <DependentUpon>201611251529379_AMSAEmails3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612011425513_AMSACodes.cs" />
+    <Compile Include="Migrations\201612011425513_AMSACodes.Designer.cs">
+      <DependentUpon>201612011425513_AMSACodes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612011429576_AMSACodes1.cs" />
+    <Compile Include="Migrations\201612011429576_AMSACodes1.Designer.cs">
+      <DependentUpon>201612011429576_AMSACodes1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -343,6 +355,7 @@
     <Compile Include="Models\AmsaReports\AmsaReportStudentData.cs" />
     <Compile Include="Models\AmsaReports\Email\AMSAEmail.cs" />
     <Compile Include="Models\AmsaReports\Email\ViewModel\AMSAEmailSendViewModel.cs" />
+    <Compile Include="Models\AmsaReports\Email\ViewModel\EmailListingViewModel.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEvent.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEventStatus.cs" />
     <Compile Include="Models\AmsaReports\Event\AMSAEventType.cs" />
@@ -357,6 +370,7 @@
     <Compile Include="Models\AmsaReports\Event\ViewModel\AMSAEventViewModel.cs" />
     <Compile Include="Models\AmsaReports\Event\ViewModel\AMSAProgramSiteViewModel.cs" />
     <Compile Include="Models\AmsaReports\Event\ViewModel\AMSASiteViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewExtensions.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeUploadViewModel.cs" />
@@ -3080,6 +3094,11 @@
     <Content Include="Views\AMSAEmails\Edit.cshtml" />
     <Content Include="Views\AMSAEmails\Setup.cshtml" />
     <Content Include="Views\AMSAEmails\Send.cshtml" />
+    <Content Include="Views\AMSAEvents\_PartialEmailFormat.cshtml" />
+    <Content Include="Views\AMSAEvents\_PartialEmailFormatJ3P.cshtml" />
+    <Content Include="Views\AMSAEvents\_PartialEmailForAdministrators.cshtml" />
+    <Content Include="Views\AMSAEmails\_PartialEmailReminder.cshtml" />
+    <Content Include="Views\AMSAEmails\_PartialEmailInvitation.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3153,6 +3172,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611222047464_AMSAEmails2.resx">
       <DependentUpon>201611222047464_AMSAEmails2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611251529379_AMSAEmails3.resx">
+      <DependentUpon>201611251529379_AMSAEmails3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612011425513_AMSACodes.resx">
+      <DependentUpon>201612011425513_AMSACodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612011429576_AMSACodes1.resx">
+      <DependentUpon>201612011429576_AMSACodes1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

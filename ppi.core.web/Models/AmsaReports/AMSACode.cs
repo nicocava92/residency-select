@@ -12,7 +12,12 @@ namespace PPI.Core.Web.Models.AmsaReports
     {
         public int Id { get; set; }
         [Required (ErrorMessage = "AMSA Code is required")]
+        [Display (Name = "AMSA Code (User Id for AON)")]
         public string Code { get; set; }
+        //Store the PIN (Password)t
+        [Required (ErrorMessage = "PING Required")]
+        [Display(Name = "PIN (Password)")]
+        public string Pin { get; set; }
         //Check if the AMSA Code is used
         public bool Used { get; set; }
         //AMSA Codes are related to an event
@@ -64,7 +69,7 @@ namespace PPI.Core.Web.Models.AmsaReports
                 }
                 catch
                 {
-                    Console.WriteLine("Error producing message to that needs to be sent");
+                    Console.WriteLine("Error producing message that will be sent");
                 }
 
             }

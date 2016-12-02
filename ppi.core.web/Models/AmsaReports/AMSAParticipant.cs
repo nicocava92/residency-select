@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using PPI.Core.Web.Models.AmsaReports.Email;
 
 namespace PPI.Core.Web.Models.AmsaReports
 {
@@ -104,6 +105,21 @@ namespace PPI.Core.Web.Models.AmsaReports
             p.Status = this.Status;
             dbr.SaveChanges();
             dbr.Dispose();
+        }
+
+        internal bool timeToSendReminder(AMSAEmail email)
+        {
+            if(this.Invitation_date != null)
+            {
+                DateTime invitation = Invitation_date ?? DateTime.Now;
+                TimeSpan i = (DateTime.Now - invitation);
+                int numOfDays = Convert.ToInt32(i.TotalDays);
+                return numOfDays >= email.automaticReminderDays;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -139,14 +139,14 @@
                         <td style="word-wrap:break-word; max-width:80px;">
                             @Html.DisplayFor(modelItem => item.AMSACode)
                         </td>
-                        <td>
-                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default">
+                        <td style="min-width:200px;">
+                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default btn-xs">
                                 Edit
                             </a>
-                            <a href="@Url.Action("Profile", new { id=item.Id })" class="btn btn-primary">
+                            <a href="@Url.Action("Profile", new { id=item.Id })" class="btn btn-primary btn-xs">
                                 Profile
                             </a>
-                            <a href="@Url.Action("Delete", new { id=item.Id })" class="btn btn-danger" onclick="return confirm('Are you sure you wish to delete?');">
+                            <a href="@Url.Action("Delete", new { id=item.Id })" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you wish to delete?');">
                                 Delete
                             </a>
                         </td>

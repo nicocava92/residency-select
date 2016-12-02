@@ -34,6 +34,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             ac.AMSAEvent = e;
             ac.Code = this.AMSACode.Code;
             ac.Used = this.AMSACode.Used;
+            ac.Pin = this.AMSACode.Pin;
             dbr.SaveChanges();
             dbr.Dispose();
         }
@@ -43,6 +44,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             AMSACode ac = new AMSACode();
             ac.Code = this.AMSACode.Code;
             ac.Used = false;
+            ac.Pin = this.AMSACode.Pin;
             AMSAEvent e = dbr.AMSAEvent.Find(this.idSelectedEvent);
             ac.AMSAEvent = e;
             dbr.AMSACodes.Add(ac);

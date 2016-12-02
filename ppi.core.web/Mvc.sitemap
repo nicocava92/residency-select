@@ -59,6 +59,7 @@
       </mvcSiteMapNode>
       <mvcSiteMapNode title="Events" action="#">
       <mvcSiteMapNode title="AMSA Event" controller="AMSAEvents" action="Index"/>
+      <mvcSiteMapNode title="OES" controller="AMSAEvents" action="Create"/>
       <mvcSiteMapNode title="Event Config" action="#">
         <mvcSiteMapNode title="Status" controller="AMSAEventStatus" action="Index"/>
         <mvcSiteMapNode title="Organizations" controller="AMSAOrganizations" action="Index"/>

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Excel;
 using System.Data;
+using PPI.Core.Web.Models.AmsaReports.Email;
 
 namespace PPI.Core.Web.Models.AmsaReports
 {
@@ -264,6 +265,5 @@ namespace PPI.Core.Web.Models.AmsaReports
             return get_extention.Equals(".csv");
         }
         
-
     }
 }
