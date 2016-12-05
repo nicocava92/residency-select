@@ -117,6 +117,9 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     {
                         //Check if the participant already exists in the database
                         this.checkAlreadyAssignedToEvent(p, m);
+                        //Check if the Participant is added into the participant list
+                        //If the participant does not exist then thell the user that he needs to add the participant in
+                        this.checkParticipantExists(p,m);
                         if (this.Errors == "" || this.Errors == null)
                         {
                             //If participant has all of its information present then try adding him in
@@ -138,6 +141,19 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 }
             }
         }
+        //Show error if Participant is not added to the event, making sure whomever is uploading data onto the event makes sure to add the participant onto the event
+        private void checkParticipantExists(AmsaReportStudentData p, ModelStateDictionary m)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSAParticipant auxParticipant = dbr.AMSAParticipant.Where(r => r.AMSACode.ToUpper().Equals(p.PersonId)).FirstOrDefault();
+            if(auxParticipant == null)
+            {
+                // Let the user know that this participant needs to be added before this can move on forward
+                this.Errors += "Please add " + p.FirstName + " " + p.LastName + " " + p.PersonId + " as a Participant for the event. Data for participants that is uploaded without having the participant inserted into the event will generate inconsistency in the data for Participants that can be seen in the AMSA Dashboard. Remember that you will need to add the AMSA Code and PIN (Password) before you can assign an AMSA Code to an AMSA Participant";
+                m.AddModelError("Participant", "Please add " + p.FirstName + " " + p.LastName + " " + p.PersonId + " as a Participant for the event. Data for participants that is uploaded without having the participant inserted into the event will generate inconsistency in the data for Participants that can be seen in the AMSA Dashboard. Remember that you will need to add the AMSA Code and PIN (Password) before you can assign an AMSA Code to an AMSA Participant.");
+            }
+        }
+
         //Check if the model state is valid or not
         public void checkModelState(AmsaReportStudentData p, ModelStateDictionary m)
         {
