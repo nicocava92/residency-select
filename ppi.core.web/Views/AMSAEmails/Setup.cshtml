@@ -89,6 +89,10 @@
                             @if (item.Type.ToUpper().Equals("REMINDER")) { 
                                 @item.automaticReminderDays
                             }
+                            else
+                            {
+                                <text>N/A</text>
+                            }
                         </td>
                         <td>
                             @if (item.AMSAEvent.Name != null && item.AMSAEvent.Name.Length >= 60)

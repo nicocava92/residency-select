@@ -43,13 +43,14 @@
                 <dd>
                     @Html.Raw(Model.Introduction)
                 </dd>
-
+                @if (Model.Type.ToUpper().Equals("REMINDER")) { 
                 <dt>
                     @Html.DisplayNameFor(m=> Model.automaticReminderDays)
                 </dt>
                 <dd>
                     @Html.DisplayFor(m => Model.automaticReminderDays)
                 </dd>
+                }
                 <dt>
                     @Html.DisplayNameFor(m => m.Closing)
                 </dt>

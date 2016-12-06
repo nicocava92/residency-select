@@ -167,7 +167,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 //Make sure the e-mail is longer than 3 characters
                 if(p.PrimaryEmail.Length <= 3)
                 {
-                    this.Errors += " Primary e-mail needs to be longer than 3 characters" + p.PrimaryEmail;
+                    this.Errors += "Primary e-mail needs to be longer than 3 characters" + p.PrimaryEmail;
                     m.AddModelError("Participant", " Primary e-mail needs to be longer than 3 characters" + p.PrimaryEmail);
                 }
             }
@@ -175,7 +175,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             if (p.PrimaryEmail != null) {
                 if (p.FirstName == null)
                 {
-                    this.Errors += " Name missing for " + p.PrimaryEmail;
+                    this.Errors += "Name missing for " + p.PrimaryEmail;
                     m.AddModelError("Participant", " Name missing for " + p.PrimaryEmail);
                 }
                 else
@@ -183,14 +183,14 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     //Check size of name
                     if(p.FirstName.Length <= 3)
                     {
-                        this.Errors += " First name needs to have 3 letters or more" + p.FirstName;
+                        this.Errors += "First name needs to have 3 letters or more" + p.FirstName;
                         m.AddModelError("Participant", "First name needs to have 3 letters or more" + p.FirstName);
                     }
                 }
                     
                 if (p.LastName == null)
                 {
-                    this.Errors += " Last name missing for " + p.PrimaryEmail;
+                    this.Errors += "Last name missing for " + p.PrimaryEmail;
                     m.AddModelError("Participant", " Last name missing for " + p.PrimaryEmail);
                 }
                 else
@@ -198,20 +198,20 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     //Check length of last name
                     if(p.LastName.Length <= 3)
                     {
-                        this.Errors += " Last name needs to have 3 letters or more" + p.LastName;
+                        this.Errors += "Last name needs to have 3 letters or more" + p.LastName;
                         m.AddModelError("Participant", "last name needs to have 3 letters or more" + p.LastName);
                     }
                 }
                     
                 if (p.Gender == null)
                 {
-                    this.Errors += " Gender missing for " + p.PrimaryEmail;
+                    this.Errors += "Gender missing for " + p.PrimaryEmail;
                     m.AddModelError("Participant", " Gender missing for " + p.PrimaryEmail);
                 }
                   
                 if (p.Title == null)
                 {
-                    this.Errors += " Title missing for " + p.PrimaryEmail;
+                    this.Errors += "Title missing for " + p.PrimaryEmail;
                     m.AddModelError("Participant", " Title missing for " + p.PrimaryEmail);
                 }
                   
@@ -225,7 +225,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             AMSAParticipant p = dbr.AMSAParticipant.Where(r => r.PrimaryEmail.Equals(pa.PrimaryEmail) && r.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
             if (p != null)
             {
-                this.Errors += " Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event";
+                this.Errors += "Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event";
                 m.AddModelError("Participant", "Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event");
             }
             dbr.Dispose();

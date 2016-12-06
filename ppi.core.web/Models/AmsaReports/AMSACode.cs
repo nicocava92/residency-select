@@ -35,12 +35,11 @@ namespace PPI.Core.Web.Models.AmsaReports
                 //Send e-mail letting the user know that the event is low on AMSA Codes
 
                 var emailmessage = new System.Net.Mail.MailMessage();
-                emailmessage.From = new System.Net.Mail.MailAddress("noreply@j3personica.com");
+                emailmessage.From = new System.Net.Mail.MailAddress("noreply@performanceprograms.com");
                 emailmessage.Subject = "Running low on AMSA Codes for " + this.AMSAEvent.Name;
                 emailmessage.IsBodyHtml = true;
-                emailmessage.Body = "<p>Less than 4 AMSA Codes available for the event"+this.AMSAEvent.Name+"</p>";
+                emailmessage.Body = "<p>Less than 4 AMSA Codes available for the event - "+this.AMSAEvent.Name+" - Ammount of AMAS codes left: "+lstCodes.Count+". <br />To add more codes onto the event please login to the system and go to AMSA Reports > Codes > Add Codes or Code Upload and select "+this.AMSAEvent.Name+" as the Event.</p>";
                 //MailClass.SendEmail(emailmessage.Subject, emailmessage.Body, "noreply@j3personica.com", "nicocava92@live.com");
-
 
                 //Send Grid example code
                 var Credentials = new NetworkCredential(
@@ -55,7 +54,7 @@ namespace PPI.Core.Web.Models.AmsaReports
                 MailAddress from = new MailAddress("noreply@j3personica.com");
 
                 ApplicationDbContext db = new ApplicationDbContext();
-                string to = db.Users.Where(m => m.UserName.Equals("perform")).FirstOrDefault().Email;
+                string to = AMSAEvent.defaultEmailAddress;
                 
                 Mail.AddTo(to);
                 Mail.From = from;
