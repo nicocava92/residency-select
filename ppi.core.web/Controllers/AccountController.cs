@@ -9,6 +9,8 @@ using PPI.Core.Web.Models;
 using PPI.Core.Domain.Entities;
 using PPI.Core.Domain.Abstract;
 using PPI.Core.Web.Infrastructure;
+using System.Linq;
+using PPI.Core.Web.Models.ViewModel;
 
 namespace PPI.Core.Web.Controllers
 {
@@ -57,11 +59,19 @@ namespace PPI.Core.Web.Controllers
                 model.RememberMe = Rem;
                 ///
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
+                
                 if (user != null)
                 {
-                    await SignInAsync(user, model.RememberMe);                    
-                    //Look up the site associated with this user and set the cookie,                                                            
-                    return RedirectToLocal(returnUrl);
+                    //If the user exists check if the account is active or not
+                    if (user.Active) { 
+                        await SignInAsync(user, model.RememberMe);                    
+                        //Look up the site associated with this user and set the cookie,                                                            
+                        return RedirectToLocal(returnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "User is not active, please contact a system administrator.");
+                    }
                 }
                 else
                 {
@@ -390,6 +400,57 @@ namespace PPI.Core.Web.Controllers
                 UserManager = null;
             }
             base.Dispose(disposing);
+        }
+
+        //Receives a user id and an action (deactivate, activate) and performs the action
+        public ActionResult changeStatusUser(int id, string action)
+        {
+            try { 
+                ApplicationDbContext idb = new ApplicationDbContext();
+                ApplicationUser u = idb.Users.Find(id);
+                if(action.ToUpper().Equals("DEACTIVATE"))
+                    u.Active = false;
+                if (action.ToUpper().Equals("ACTIVATE"))
+                    u.Active = true;
+
+                idb.SaveChanges();
+                idb.Dispose();
+                return Json(new
+                {
+                    error = false,
+                    message = "User " + u.UserName + " has been " + action
+                });
+            }
+            catch
+            {
+                return Json(new
+                {
+                    error = true,
+                    message = "Error " + action + " user"
+                });
+            }
+        }
+
+        //Return a list of all users in a view
+        public ActionResult AdministerUsers(int? id) {
+            AdministerUsersViewModel avm = new AdministerUsersViewModel();
+            int idRole = id ?? -1;
+            if(idRole > 0)
+            {
+                avm.changeSelectedRole(idRole);
+            }
+            return View(avm);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id) {
+            return View(new EditUserViewModel(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditUserViewModel euvm) {
+            euvm.saveChanges();
+            return View("AdministerUsers");
         }
 
         #region Helpers

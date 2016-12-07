@@ -114,9 +114,16 @@ namespace PPI.Core.Web.Controllers
         //since they all do
         //Shows Invitation && Reminder
         [HttpGet]
-        public ActionResult Send()
+        public ActionResult Send(int? eventId)
         {
-            return View(new AMSAEmailSendViewModel());
+            AMSAEmailSendViewModel esvm = new AMSAEmailSendViewModel();
+            int id = eventId ?? 0;
+            if(id > 0)
+            {
+                esvm.idSelectedEvent = id;
+                esvm.loadParticipants();
+            }
+            return View(esvm);
         }
 
         [HttpPost]

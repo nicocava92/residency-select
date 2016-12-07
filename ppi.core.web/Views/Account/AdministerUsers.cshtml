@@ -1,0 +1,147 @@
+﻿@model PPI.Core.Web.Models.ViewModel.AdministerUsersViewModel
+
+@{
+    ViewBag.Title = "Administer Users";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-box clearfix">
+    <div class="main-box-body">
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <h2>Administer Users</h2>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12" style="margin-top:20px;">
+                <a href="@Url.Action("Create","AMSAParticipants")" class="btn btn-primary btn-block">
+                    <i class="fa fa-plus-circle fa-lg"></i> Create User
+                </a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-6 col-md-offset-6 col-sm-12 col-xs-12">
+                <strong>Events:</strong><br>
+                @using (Html.BeginForm("AdministerUsers", "Account"))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.DropDownListFor(model => model.idSelectedRole, Model.Roles, new { @class = "form-control", @onChange = "this.form.submit("+Model.idSelectedRole+");", @Id = "selectEvent" })
+                    @Html.ValidationMessage("FilterByEvent")
+                }
+            </div>
+        </div>
+
+        <br />
+        <div>
+            <table class="table table-responsive table-striped">
+                <tr>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        E-mail
+                    </th>
+                    <th>
+                        Active / Inactive
+                    </th>
+                    <th>
+                        Activate / Deactivate
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                </tr>
+
+                @foreach (var u in Model.LstUsers)
+                {
+                    <tr>
+                        <td>
+                            @u.UserName
+                        </td>
+                        <td>
+                            @u.Email
+                        </td>
+                        
+                        <td class="status" id="@u.Id">
+                            @if (u.Active)
+                            {
+                                <text>Active</text>
+                            }
+                            else
+                            {
+                                <text>Inactive</text>
+                            }
+                        </td>
+                        <td style="min-width:200px;" class="buttons" id="@u.Id">
+                            @if (u.Active)
+                            {
+                                <button class="btn btn-success changeStatus" data-userid="@u.Id">Activate</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-danger changeStatus" data-userid="@u.Id">Deactivate</button>
+                            }
+                        </td>
+                        <td style="min-width:200px;">
+                            <a href="@Url.Action("Edit", new { id = u.Id })" class="btn btn-default btn-xs">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(location).load(function () {
+            
+            $(".changeStatus").unbind("click");
+            $(".changeStatus").on("click", function () {
+                var userId = $(this).data("userid");
+                var action = $(this).text();
+                changeStatusAjax(userId, action,$(this));
+            });
+
+        });
+        /*
+        Receives: userId, action to be performed, button to fade out and dissable
+        */
+        function changeStatusAjax(userId, action, btn){
+            btn.attr("disabled", "disabled");
+                var eventId = $("#idOfEvent").data("eventid");
+                    $.ajax({
+                        contentType: "application/json; charset=utf-8",
+                        type: "POST",
+                        url: "../AMSAEmails/changeStatus",
+                        datatype: "json",
+                        data: JSON.stringify({
+                            userId: userId,
+                            action: action
+                        }),
+                        traditional: true,
+                        success: function (data) {
+                            var m = "";
+                            if (data.error) {
+                                $(".error").html("<p>Error making changes to the user, please refresh page and try again</p>")
+                                $(".error").fadeIn();
+                            }
+                            else {
+                                $(".error").fadeOut();
+                                //If change was performed correctly show the correspond
+
+                                return true;
+                            }
+                        },
+                        error: function (data) {
+                            $(".error").html("<p>Error processing request, please try again. If problem persists please contact IT department.</p>");
+                            $(".error").fadeIn();
+                        }
+                    });
+        }
+
+    </script>
+}

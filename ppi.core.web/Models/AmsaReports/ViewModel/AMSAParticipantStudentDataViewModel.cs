@@ -14,14 +14,26 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         public int idSelectedEvent { get; set; }
         public SelectList Events{ get; set; }
         public List<AMSAEvent> LstEvents { get; set; }
-        
+        //Options for Status
+        public SelectList Status { get; set; }
+
         public AMSAParticipantStudentDataViewModel()
         {
             //Load data to show on view and to make selections
             AMSAReportContext dbr = new AMSAReportContext();
             this.addEvents(dbr);
-
+            addPossibleStatus();
             dbr.Dispose();
+        }
+
+        private void addPossibleStatus()
+        {
+            Status = new SelectList(new[]
+                       {
+                           new SelectListItem {Text = "NEW", Value = "NEW"},
+                           new SelectListItem {Text = "COMPLETED", Value = "COMPLETED"},
+                           new SelectListItem {Text = "INPROGRESS", Value = "INPROGRESS"},
+                       }, "Text", "Value");
         }
 
         public void addEvents(AMSAReportContext dbr)
@@ -59,6 +71,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             s.Stanine_Sensitivity = this.Data.Stanine_Sensitivity;
             s.Stanine_Humility = this.Data.Stanine_Humility;
             s.Status = this.Data.Status;
+            s.Updated = DateTime.Now;
             s.AMSAEvent = e;
             db.lstStudentsForReport.Add(s);
             db.SaveChanges();
@@ -90,6 +103,8 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             s.Stanine_Cooperativeness = this.Data.Stanine_Cooperativeness;
             s.Stanine_Sensitivity = this.Data.Stanine_Sensitivity;
             s.Stanine_Humility = this.Data.Stanine_Humility;
+            s.Updated = DateTime.Now;
+            s.Status = this.Data.Status;
             s.AMSAEvent = e;
             db.SaveChanges();
             db.Dispose();

@@ -425,6 +425,8 @@
     <Compile Include="Models\SiteMVPIViewModel.cs" />
     <Compile Include="Models\SiteViewModel.cs" />
     <Compile Include="Models\UploadFileModel.cs" />
+    <Compile Include="Models\ViewModel\AdministerUsersViewModel.cs" />
+    <Compile Include="Models\ViewModel\EditUserViewModel.cs" />
     <Compile Include="Models\ZCOExportConfigViewModel.cs" />
     <Compile Include="PracticeReports.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -3099,6 +3101,8 @@
     <Content Include="Views\AMSAEvents\_PartialEmailForAdministrators.cshtml" />
     <Content Include="Views\AMSAEmails\_PartialEmailReminder.cshtml" />
     <Content Include="Views\AMSAEmails\_PartialEmailInvitation.cshtml" />
+    <Content Include="Views\Account\AdministerUsers.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
