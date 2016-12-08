@@ -33,7 +33,7 @@ namespace PPI.Core.Web.Models.ViewModel
         }
 
         //Changes the list of users to only show the users in a specific role
-        internal void changeSelectedRole(int idRole)
+        internal void changeSelectedRole(string idRole)
         {
             //Get role that has the id
             ApplicationDbContext db = new ApplicationDbContext();

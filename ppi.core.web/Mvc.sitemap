@@ -78,6 +78,7 @@
     
     <mvcSiteMapNode title="Users" controller="Account" action="Index">
     <mvcSiteMapNode title="Add User" controller="Account" action="Register"/>  
+    <mvcSiteMapNode title="Administer Users" controller="Account" action="AdministerUsers"/>  
   </mvcSiteMapNode>    
   </mvcSiteMapNode>
   

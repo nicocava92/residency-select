@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace PPI.Core.Web.Models.ViewModel
 {
     public class EditUserViewModel
@@ -17,11 +18,14 @@ namespace PPI.Core.Web.Models.ViewModel
         //List roles for the user to become a part of
         public List<string> LstNewUserRoles { get; set; }
 
-        public EditUserViewModel(int id)
+        public EditUserViewModel() { }
+
+        public EditUserViewModel(string id)
         {
             ApplicationDbContext db = new ApplicationDbContext();
             LstRoles = db.Roles.ToList();
-            ApplicationUser u = db.Users.Find(id);
+            ApplicationUser u = db.Users.Where(r => r.Id.Equals(id)).FirstOrDefault();
+            User = u;
             //Get id for roles the user is in
             List<IdentityRole> auxLstRoles = new List<IdentityRole>();
             //First check the user against each role and see which ones he is in
@@ -40,29 +44,40 @@ namespace PPI.Core.Web.Models.ViewModel
         }
 
         //Save changes to the user
-        internal void saveChanges()
+        internal static void saveChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userId,string usersite)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            ApplicationUser u = db.Users.Find(this.User.Id);
+            ApplicationUser u = db.Users.Find(userId);
+            u.Email = email;
+
+            
+            
+            
+
             removeAllRoles(u);
-            addSelectedRoles(LstNewUserRoles,db,u);
+            addSelectedRoles(selectedRoles, db,u);
             db.SaveChanges();
         }
 
         //Add new roles to the user
-        private void addSelectedRoles(List<string> lstNewUserRoles,ApplicationDbContext db,ApplicationUser u)
+        private static void addSelectedRoles(List<string> lstNewUserRoles,ApplicationDbContext db,ApplicationUser u)
         {
             foreach (var s in lstNewUserRoles)
             {
                 IdentityRole r = db.Roles.Where(m => m.Id.Equals(s)).FirstOrDefault();
                 if (r != null)
-                    User.Roles.Add(new IdentityUserRole { RoleId = s });
+                    u.Roles.Add(new IdentityUserRole { RoleId = s });
             }
         }
         //Remove all roles the user currenlty has
-        public void removeAllRoles(IdentityUser u)
+        public static void removeAllRoles(IdentityUser u)
         {
-            User.Roles.Clear();
+            u.Roles.Clear();
+        }
+
+        public string[] getArrayCurrentRoles()
+        {
+            return UserInRoles.ToArray();
         }
     }
 }

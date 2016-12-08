@@ -4,16 +4,24 @@
 }
 <div class="main-box clearfix">
     <div class="main-box-body">
+
+@using (Html.BeginForm("Account", "Register", FormMethod.Post, new { id = "_CRSFform" }))
+{
+    @Html.AntiForgeryToken()
         <h2>Create New Account</h2>
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
             <hr />
+        <div class="form-horizontal">
             @Html.ValidationSummary()
             <div class="form-group">
                 @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label bold" })
                 <div class="col-md-10">
                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label bold" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
@@ -29,33 +37,206 @@
                 </div>
             </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserRole, new { @class = "col-md-2 control-label bold" })
-        <div class="col-md-10">
-            @Html.DropDownList("UserRole", (SelectList)ViewData["UserRole"], "Select", new { @class = "form-control" })
-        </div>
-    </div>
+            <div class="form-group">
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Site, new { @class = "col-md-2 control-label bold" })
-        <div class="col-md-10">
-            @Html.DropDownList("Site", (SelectList)ViewData["Site"], "Select Site for Site Cordinator Role", new { @class = "form-control", @data_val = "false" })
-        </div>
-    </div>
+                <label for="roleCheckboxes" class="control-label col-md-2 bold">
+                    Roles:
+                </label>
+                <fieldset>
+
+                    @foreach (var r in Model.lstRoles)
+                    {
+                        <div class="checkbox-nice">
+                            <input id="@r.Id" class="roleCheckbox" type="checkbox" name="roleCheckboxes" value="@r.Id" />
+                            <label for="@r.Id">@r.Name</label>
+                        </div>
+                    }
+
+                </fieldset>
+
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Site, new { @class = "col-md-2 control-label bold" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Site", (SelectList)ViewData["Site"], "Select Site for Site Cordinator Role", new { @class = "form-control", @data_val = "false" })
+                </div>
+            </div>
+
+            <!-- Show error messages -->
+            <div class="error alert alert-danger" style="display:none;">
+
+            </div>
+            <!-- Show success message -->
+            <div class="success alert alert-success" style="display:none;">
+
+            </div>
+
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" class="btn btn-success btn200" value="Register" />
+                    <button class="btn btn-success btn200" value="Register" id="register">Register</button>
                 </div>
             </div>
-        }
+            
+        </div>
+}
         </div>
     </div>
 
         @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        <script>
-                                    
+            @Scripts.Render("~/bundles/jqueryval");
+        <script type="text/javascript">
+            var errors = "<ul>";
+            $(document).ready(function () {
+                /*
+                    Email *
+                    UserName 
+                    Password *
+                    ConfirmPassword *
+                    Roles
+                    
+                */
+                $("#register").unbind("click");
+                $("#register").on("click", function (e) {
+                    e.preventDefault();
+                    var email = "";
+                    var userName = "";
+                    var password = "";
+                    var password2 = "";
+                    var roles = [];
+                    var usersite = "";
+                    errors = "<ul>";
+
+                    email = $("#Email").val();
+                    userName = $("#UserName").val();
+                    password = $("#Password").val();
+                    password2 = $("#ConfirmPassword").val();
+                    roles = getRoles();
+                    usersite = $("#Site").val();
+                    var errorsPresent = false;
+                    //Check if emails are valid
+                    if (!validateEmail(email)) {
+                        errors += "<li>Please insert a valid e-mail address.</li>";
+                        errorsPresent = true;
+                    }
+                    if (!passwordsMatch(password, password2)) {
+                        errors += "<li>Passwords do not match.</li>";
+                        errorsPresent = true;
+                    }
+                    if (userName == "") {
+                        errors += "<li>Please insert a username.</li>";
+                        errorsPresent = true;
+                    }
+                    if (roles.length == 0) {
+                        errors += "<li>Please select at least 1 role for the user.</li>";
+                        errorsPresent = true;
+                    }
+                    if (usersite = "" || usersite.length == 0) {
+                        errors += "<li>Please select a user site.</li>";
+                        errorsPresent = true;
+                    }
+                    errors += "</ul>";
+
+                    if (!errorsPresent) {
+                        //Go to the backend and continue testing data there
+                        $(".error").fadeOut();
+                        registerUser(email,userName,password,password2,usersite,roles);
+                    }
+                    else {
+                        $(".success").fadeOut();
+                        setTimeout(function () {
+                            $(".error").html(errors);
+                            $(".error").fadeIn();
+                        }, 800);
+                    }
+                })
+            });
+
+
+            //Validate e-mail regex
+            function validateEmail(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
+
+            function passwordsMatch(p1, p2) {
+                return p1 == p2;
+            }
+
+            function getRoles() {
+                //class="roleCheckbox"
+                var selectedRoles = [];
+                $(".roleCheckbox").each(function (index) {
+                    if ($(this).is(":checked")) {
+                        var r = $(this).val();
+                        selectedRoles.push(r);
+                    }
+                });
+                return selectedRoles;
+            }
+
+            /*
+                string email, string userName, string password, string confirmPassword, 
+                string usersite, List<string> roles
+            */
+            function registerUser(email,userName,password,confirmPassword,usersite,roles) {
+                $("#register").attr("disabled", "disabled");
+                // console.log(lstAnswers);
+                var token = $('#_CRSFform input[name="__RequestVerificationToken"]').val();
+                usersite = $("#Site").val();
+                var headers = {};
+                headers['__RequestVerificationToken'] = token;
+                $.ajax({
+                    contentType: "application/json; charset=utf-8",
+                    type: "POST",
+                    url: "/Account/Register",
+                    datatype: "json",
+                    traditional: true,
+                    headers: headers,
+                    data: JSON.stringify({
+                        __RequestVerificationToken: token,
+                        email: email,
+                        userName: userName,
+                        password: password,
+                        confirmPassword: confirmPassword,
+                        usersite: usersite,
+                        roles:roles
+                    }),
+                    success: function (data) {
+                        $("#register").removeAttr("disabled");
+                        if (data.error) {
+                            $(".success").fadeOut();
+                            setTimeout(function () {
+                                $(".error").html("<p>" + data.message + "</p>");
+                                $(".error").fadeIn();
+                            }, 800);
+                        }
+                        else {
+                            //No error
+                            $(".error").fadeOut();
+                            $("#register").removeAttr("disabled");
+                            setTimeout(function () {
+                                $(".success").html("<p>User registered successfully! Page will reload in 4 seconds.</p>");
+                                $(".success").fadeIn();
+                            }, 800);
+                            setTimeout(function () {
+                                location.reload();
+                            }, 4000);
+                        }
+                    },
+                    error: function (error) {
+                        $(".success").fadeOut();
+                        setTimeout(function () {
+                            $("#register").removeAttr("disabled");
+                            $('.error').fadeIn();
+                            $('.error').html("<p> System error, please make sure you are connected to the internet. If problem persists contact IT department.</p>");
+                        }, 800);
+                    }
+                });
+            }
+            
         </script>
 
 

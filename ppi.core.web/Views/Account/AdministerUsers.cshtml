@@ -12,27 +12,32 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <h2>Administer Users</h2>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-12" style="margin-top:20px;">
-                <a href="@Url.Action("Create","AMSAParticipants")" class="btn btn-primary btn-block">
-                    <i class="fa fa-plus-circle fa-lg"></i> Create User
+            <div class="col-lg-3 col-md-3 col-sm-12 pull-right" style="margin-top:20px;">
+                <a href="@Url.Action("Register","Account")" class="btn btn-primary btn-block">
+                    <i class="fa fa-plus-circle fa-lg"></i> Add User
                 </a>
             </div>
         </div>
         <br />
         <div class="row">
             <div class="col-lg-6 col-lg-offset-6 col-md-offset-6 col-sm-12 col-xs-12">
-                <strong>Events:</strong><br>
+                <strong>Filter by Role:</strong><br>
                 @using (Html.BeginForm("AdministerUsers", "Account"))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.DropDownListFor(model => model.idSelectedRole, Model.Roles, new { @class = "form-control", @onChange = "this.form.submit("+Model.idSelectedRole+");", @Id = "selectEvent" })
+                    @Html.DropDownListFor(model => model.idSelectedRole, Model.Roles, new { @class = "form-control", @onChange = "this.form.submit();", @Id = "selectEvent" })
                     @Html.ValidationMessage("FilterByEvent")
                 }
             </div>
         </div>
 
+
         <br />
         <div>
+            <!-- Show errors here -->
+            <div class="error alert alert-danger" style="display:none;">
+
+            </div>
             <table class="table table-responsive table-striped">
                 <tr>
                     <th>
@@ -54,6 +59,9 @@
 
                 @foreach (var u in Model.LstUsers)
                 {
+                    string status = "status" + @u.Id;
+                    string activate = "activate" + @u.Id;
+                    string deactivate = "deactivate" + @u.Id;
                     <tr>
                         <td>
                             @u.UserName
@@ -62,7 +70,7 @@
                             @u.Email
                         </td>
                         
-                        <td class="status" id="@u.Id">
+                        <td id="@status">
                             @if (u.Active)
                             {
                                 <text>Active</text>
@@ -72,20 +80,21 @@
                                 <text>Inactive</text>
                             }
                         </td>
-                        <td style="min-width:200px;" class="buttons" id="@u.Id">
-                            @if (u.Active)
+                        <!-- Done this way so buttons are always loaded on the dom and we don't have problems with them executing functions-->
+                        <td style="min-width:200px;">
+                            @if (!u.Active)
                             {
-                                <button class="btn btn-success changeStatus" data-userid="@u.Id">Activate</button>
+                                <button id="@activate" class="btn btn-success changeStatus" data-userid="@u.Id">Activate</button>
+                                <button id="@deactivate" class="btn btn-danger changeStatus" style="display:none;" data-userid="@u.Id">Deactivate</button>
                             }
                             else
                             {
-                                <button class="btn btn-danger changeStatus" data-userid="@u.Id">Deactivate</button>
+                                <button id="@activate" class="btn btn-success changeStatus" id="" data-userid="@u.Id" style="display:none;">Activate</button>
+                                <button id="@deactivate" class="btn btn-danger changeStatus" data-userid="@u.Id">Deactivate</button>
                             }
                         </td>
                         <td style="min-width:200px;">
-                            <a href="@Url.Action("Edit", new { id = u.Id })" class="btn btn-default btn-xs">
-                                Edit
-                            </a>
+                            @Html.ActionLink("Edit", "Edit", new { id = u.Id },new { @class = "btn btn-default"})
                         </td>
                     </tr>
                 }
@@ -97,51 +106,73 @@
 
 @section Scripts{
     <script type="text/javascript">
-        $(location).load(function () {
-            
+        $(document).ready(function () {
             $(".changeStatus").unbind("click");
             $(".changeStatus").on("click", function () {
                 var userId = $(this).data("userid");
                 var action = $(this).text();
-                changeStatusAjax(userId, action,$(this));
+                changeStatusAjax(userId, action, $(this));
             });
 
         });
         /*
         Receives: userId, action to be performed, button to fade out and dissable
         */
-        function changeStatusAjax(userId, action, btn){
+        function changeStatusAjax(userId, action, btn) {
             btn.attr("disabled", "disabled");
-                var eventId = $("#idOfEvent").data("eventid");
-                    $.ajax({
-                        contentType: "application/json; charset=utf-8",
-                        type: "POST",
-                        url: "../AMSAEmails/changeStatus",
-                        datatype: "json",
-                        data: JSON.stringify({
-                            userId: userId,
-                            action: action
-                        }),
-                        traditional: true,
-                        success: function (data) {
-                            var m = "";
-                            if (data.error) {
-                                $(".error").html("<p>Error making changes to the user, please refresh page and try again</p>")
-                                $(".error").fadeIn();
-                            }
-                            else {
-                                $(".error").fadeOut();
-                                //If change was performed correctly show the correspond
-
-                                return true;
-                            }
-                        },
-                        error: function (data) {
-                            $(".error").html("<p>Error processing request, please try again. If problem persists please contact IT department.</p>");
-                            $(".error").fadeIn();
+            $.ajax({
+                contentType: "application/json; charset=utf-8",
+                type: "POST",
+                url: "../../Account/changeStatus",
+                datatype: "json",
+                data: JSON.stringify({
+                    userId: userId,
+                    action: action
+                }),
+                traditional: true,
+                success: function (data) {
+                    btn.removeAttr("disabled");
+                    var m = "";
+                    if (data.error) {
+                        $(".error").html("<p>Error making changes to the user, please refresh page and try again</p>")
+                        $(".error").fadeIn();
+                    }
+                    else {
+                        $(".error").fadeOut();
+                        //If change was performed correctly show the corresponding data 
+                        if (action == "Activate") {
+                            $("#status" + userId).html("<text>Active</text>");
+                            btn.fadeOut();
+                            changeButton(action, userId);
                         }
-                    });
-        }
+                        if (action == "Deactivate") {
+                            $("#status" + userId).html("<text>Inactive</text>");
+                            btn.fadeOut();
+                            changeButton(action, userId);
+                        }
+                    }
+                },
+                error: function (data) {
+                    $(".error").html("<p>Error processing request, please try again. If problem persists please contact IT department.</p>");
+                    $(".error").fadeIn();
+                    btn.removeAttr("disabled");
+                }
+            });
+        };
+
+        //Changes button that is shown on the view depending on the action taken (waits 0.7 seconds to show button after the other button finishes fading out)
+        function changeButton(action, userId) {
+            setTimeout(function () {
+                if (action == "Activate") {
+                    $("#deactivate" + userId).fadeIn();
+                }
+                if (action == "Deactivate") {
+                    $("#activate" + userId).fadeIn();
+                }
+            }, 800)
+            
+        };
+
 
     </script>
 }

@@ -25,3 +25,4 @@ C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContr
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.csprojResolveAssemblyReference.cache
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.dll
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Debug\OwinContrib.Security.LinkedIn.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Debug\MvcHaack.Ajax.dll
