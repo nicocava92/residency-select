@@ -43,12 +43,14 @@
                             
                         </div>
 
-                        <div class="col-md-2">
-                            <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
-                                @Model.AMASCodeCount()
+                        @if(Model.idSelectedEvent > 0) { 
+                            <div class="col-md-2">
+                                <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
+                                    @Model.AMASCodeCount()
+                                </div>
+                                Available AMSA Codes
                             </div>
-                            Available AMSA Codes
-                        </div>
+                        }
 
 
                     </div>
@@ -105,6 +107,7 @@
         function checkAmmountOfCodes() {
             //Get e-mail address
             var eventId = $("#eventId").val();
+            if(eventId > 0){
             $("#modalMessage").modal('show');
                 $('.alert').fadeOut();
                 $.ajax({
@@ -155,6 +158,7 @@
                         console.log(data);
                     }
                 });
+            }
         }
     </script>
 }
