@@ -35,18 +35,24 @@ namespace PPI.Core.Web.Controllers
         [HttpPost]
         public ActionResult Review(string datepickerDateRange)
         {
-            var model = new BillingViewModel();
-            var startDate = DateTime.Parse(datepickerDateRange.Substring(0, datepickerDateRange.IndexOf("-") - 1));
-            var endDate = DateTime.Parse(datepickerDateRange.Substring(datepickerDateRange.IndexOf("-") + 1));
-            model.Events = UnitOfWork.IEventRepository.AsQueryable().Where(m => DbFunctions.TruncateTime(m.CreateDate) >= startDate && DbFunctions.TruncateTime(m.CreateDate) <= endDate && m.Billable == true).ToList();
-            model.PracticeReports = UnitOfWork.IPersonPracticeReportRepository.AsQueryable()
-                .Where(m => DbFunctions.TruncateTime(m.RunDate) >= startDate && DbFunctions.TruncateTime(m.RunDate) <= endDate)
-                .Where(m => m.Event.EventTypeId != 1) // ignore match events match
-                .OrderBy(m => m.PracticeReportId).ToList();
+            try { 
+                var model = new BillingViewModel();
+                var startDate = DateTime.Parse(datepickerDateRange.Substring(0, datepickerDateRange.IndexOf("-") - 1));
+                var endDate = DateTime.Parse(datepickerDateRange.Substring(datepickerDateRange.IndexOf("-") + 1));
+                model.Events = UnitOfWork.IEventRepository.AsQueryable().Where(m => DbFunctions.TruncateTime(m.CreateDate) >= startDate && DbFunctions.TruncateTime(m.CreateDate) <= endDate && m.Billable == true).ToList();
+                model.PracticeReports = UnitOfWork.IPersonPracticeReportRepository.AsQueryable()
+                    .Where(m => DbFunctions.TruncateTime(m.RunDate) >= startDate && DbFunctions.TruncateTime(m.RunDate) <= endDate)
+                    .Where(m => m.Event.EventTypeId != 1) // ignore match events match
+                    .OrderBy(m => m.PracticeReportId).ToList();
             
 
-            //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));            
-            return View("Index",model);
+                //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));            
+                return View("Index",model);
+            }
+            catch
+            {
+                return View("Index");
+            }
         }       
         public ActionResult Participants(int eventId)
         {

@@ -64,25 +64,69 @@
                                 {
                                 <tr>
                                     <td>
+                                        @try { 
                                         @Html.DisplayFor(m => item.Name)
+                                        }
+                                        catch
+                                        {
+                                            <text>Null value</text>
+                                        }
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.Description)
+                                        @try
+                                        {
+                                            @Html.DisplayFor(m => item.Description)
+                                        }
+                                        catch
+                                        {
+                                            <text>Null value</text>
+                                        }
                                     </td>
                                     <td>
+                                        @try { 
                                         @Html.DisplayFor(m => item.StartDate, "ShortDateTime")
+                                        }
+                                        catch
+                                        {
+                                            <text> Null Value</text>
+                                        }
                                     </td>
                                     <td>
+                                        @try { 
                                         @Html.DisplayFor(m => item.EndDate, "ShortDateTime")
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>
                                     <td>
+                                        @try { 
                                         @item.EventType.NameResx.ResxValues.FirstOrDefault(m => m.CultureId == ViewBag.CultureId).Value
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>
                                     <td>
+                                        @try { 
                                         @item.EventStatus.NameResx.ResxValues.FirstOrDefault(m => m.CultureId == ViewBag.CultureId).Value
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(m => item.Placement)
+                                        @try
+                                        {
+                                            @Html.DisplayFor(m => item.Placement)
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>
                                     <td>
                                         <a href="#" onclick="ParticipantsPopup(@item.Id)" class="table-link success" id="Participants">
@@ -155,49 +199,91 @@
                                 <tr>
                                     <!-- Event Name-->
                                     <td style="word-wrap:break-word">
+                                        @try { 
                                         @Html.DisplayFor(m => item.Event.Name)
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>
                                     <!-- Description -->
                                     <td  style="word-wrap:break-word">
+                                        @try { 
                                         @Html.DisplayFor(m => item.Event.Description)
+                                        }
+                                        catch { <text>Null Value</text>}
                                     </td>
                                     <!-- Type -->
                                     <td style="word-wrap:break-word">
-                                        @if (item.Event != null)
-                                        {
+                                        @try { 
                                             @item.Event.EventType.NameResx.ResxValues.FirstOrDefault(m => m.CultureId == ViewBag.CultureId).Value
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
                                         }
                                     </td>
                                     <!-- Billable / Non-Billable -->
                                     <td style="word-wrap:break-word">
-                                        @if (item.Event == null) {
-                                            <text>No set</text>
-                                        }
-                                        else {
+                                        @try
+                                        {
+
                                             if ((Boolean)item.Event.Billable)
                                             {
-                                            <text>Yes</text>
+                                                <text>Yes</text>
                                             }
                                             else {
                                                 <text>No</text>
                                             }
                                         }
+                                        catch
+                                        {
+                                            <text>Not set</text>
+                                        }
                                     </td>
                                     <!-- Report -->
                                     <td style="word-wrap:break-word">
+                                        @try { 
                                         @item.PracticeReport.ReportTitleResx.ResxValues.FirstOrDefault(n => n.CultureId == ViewBag.CultureId).Value
+                                        }
+                                        catch
+                                        {
+                                            <text>Null value</text>
+                                        }
                                     </td>
                                     <!-- Full name -->
                                     <td style="word-wrap:break-word">
+                                        @try {
                                         @Html.DisplayFor(m => item.Person.FirstName) @Html.DisplayFor(m => item.Person.LastName)
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>
                                     <!-- Hogan ID -->
-                                    <td style="word-wrap:break-word">
+                                    <td style="word-wrap:break-word">\
+                                    @try
+                                    {
+
+                                    
                                         @Html.DisplayFor(m => item.Person.Hogan_Id)
+                                    }
+                                    catch
+                                    {
+                                        <text>Null Value</text>
+                                    }
                                     </td>                                    
                                     <!-- AAMC# -->
                                     <td style="word-wrap:break-word">
+                                        @try { 
                                         @Html.DisplayFor(m => item.Person.AAMCNumber)
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>
                                     <!-- Start Date -->
                                     <td style="word-wrap:break-word">
@@ -205,22 +291,43 @@
                                     </td>
                                     <!-- End Date -->
                                     <td style="word-wrap:break-word">
+                                        @try { 
                                         @Html.DisplayFor(m => item.Event.EndDate)
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>
                                     <!-- Status -->
                                     <td style="word-wrap:break-word">
-                                        @if (item.Event != null)
+                                        @try
                                         {
                                         @item.Event.EventStatus.NameResx.ResxValues.FirstOrDefault(m => m.CultureId == ViewBag.CultureId).Value
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
                                         }
                                     </td>
                                     <!-- Run Date -->
                                     <td style="word-wrap:break-word">
-                                        @Html.DisplayFor(m => item.RunDate, "ShortDateTime")
+                                        @try { 
+                                        @Html.DisplayFor(m => item.RunDate, "ShortDateTime")}
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>   
                                     <!-- Run By -->                                 
                                     <td style="word-wrap:break-word">
+                                        @try { 
                                         @Html.DisplayFor(m => item.AspNetUser.UserName)
+                                        }
+                                        catch
+                                        {
+                                            <text>Null Value</text>
+                                        }
                                     </td>               
                                 </tr>
                                 }
