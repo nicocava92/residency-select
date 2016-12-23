@@ -253,6 +253,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\AMSABillingController.cs" />
     <Compile Include="Controllers\AMSACodesController.cs" />
     <Compile Include="Controllers\AMSAEmailsController.cs" />
     <Compile Include="Controllers\AMSAEventsController.cs" />
@@ -377,6 +378,7 @@
     <Compile Include="Models\AmsaReports\ViewExtensions.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSABillingViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantProfileViewModel.cs" />
@@ -3107,6 +3109,8 @@
     <Content Include="Views\AMSAEmails\_PartialEmailInvitation.cshtml" />
     <Content Include="Views\Account\AdministerUsers.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\AMSABilling\Index.cshtml" />
+    <Content Include="Views\AMSABilling\_PartialParticipantsAMSA.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

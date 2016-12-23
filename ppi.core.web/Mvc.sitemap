@@ -73,7 +73,7 @@
       
     </mvcSiteMapNode>
       <mvcSiteMapNode title="AMSA User Upload" controller="AMSAParticipants" action="Upload"/>
-    
+      <mvcSiteMapNode title="Billing" controller="AMSABilling" action="Index"/>    
     </mvcSiteMapNode>
     
     <mvcSiteMapNode title="Users" controller="Account" action="Index">

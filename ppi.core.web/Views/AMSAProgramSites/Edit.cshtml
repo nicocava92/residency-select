@@ -22,12 +22,14 @@
                     @Html.LabelFor(model => model.AMSAProgram, htmlAttributes: new { @class = "control-label col-md-2 bold" })
                     <div class="col-md-10">
                         @Html.DropDownListFor(model => model.idSelectedProgram, Model.AMSAProgram, new { @class = "form-control col-md-2" })
+                        @Html.ValidationMessageFor(model => model.AMSAProgram)
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.AMSASite, htmlAttributes: new { @class = "control-label col-md-2 bold" })
                     <div class="col-md-10">
                         @Html.DropDownListFor(model => model.idSelectedSite, Model.AMSASite, new { @class = "form-control col-md-2" })
+                        @Html.ValidationMessageFor(model => model.AMSASite)
                     </div>
                 </div>
                 <div class="form-group">

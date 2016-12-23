@@ -1,0 +1,394 @@
+﻿@model  PPI.Core.Web.Models.AmsaReports.ViewModel.AMSABillingViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section AddToHead{
+
+    <link href="@Url.Content("~/Content/Libraries/daterangepicker.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Libraries/datepicker.css")" rel="stylesheet" type="text/css" />
+}
+<div class="main-box clearfix">
+    <div class="main-box-body">
+        <h2>Billing</h2>
+        <hr />
+        <div class="row ">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tabs-wrapper" style="border:4px solid #d0d8de;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab-event" data-toggle="tab">Events</a></li>
+                        <li><a href="#tab-reports" data-toggle="tab">Reports</a></li>
+                    </ul>
+                    @using (Html.BeginForm("Review", "AMSABilling"))
+            {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-1" for="datepickerDateRange">Billing Range</label>
+                                <div class="input-group col-md-11">
+                                    <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                                    @Html.Editor("datepickerDateRange", new { htmlAttributes = new { @class = "" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="tab-event">
+
+                                <div class="table-condensed">
+                                    <table class="table">
+                                        <tr>
+                                            <th>
+                                                Event Name
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                            <th>
+                                                Start Date
+                                            </th>
+                                            <th>
+                                                End Date
+                                            </th>
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            <th>
+                                                Matched
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                        @foreach (var item in Model.LlstAMSAEvents)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @try
+                                                    {
+                                                        @Html.DisplayFor(m => item.Name)
+                                                    }
+                                                    catch
+                                                    {
+                                                        <text>Null value</text>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @try
+                                                    {
+                                                        @Html.DisplayFor(m => item.Description)
+                                                    }
+                                                    catch
+                                                    {
+                                                        <text>Null value</text>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @try
+                                                    {
+                                                        @Html.DisplayFor(m => item.StartDate, "ShortDateTime")
+                                                    }
+                                                    catch
+                                                    {
+                                                        <text> Null Value</text>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @try
+                                                    {
+                                                        @Html.DisplayFor(m => item.EndDate, "ShortDateTime")
+                                                    }
+                                                    catch
+                                                    {
+                                                        <text>Null Value</text>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @try
+                                                    {
+                                                        @Html.DisplayFor(m => item.AMSAEventType.Name)
+                                                    }
+                                                    catch
+                                                    {
+                                                        <text>Null Value</text>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @try
+                                                    {
+                                                        @Html.DisplayFor(m => item.Name)
+                                                    }
+                                                    catch
+                                                    {
+                                                        <text>Null Value</text>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @try
+                                                    {
+                                                        @Html.DisplayFor(m => item.Placement)
+                                                    }
+                                                    catch
+                                                    {
+                                                        <text>Null Value</text>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <a href="#" onclick="ParticipantsPopup(@item.id)" class="table-link success" id="Participants">
+                                                        <span class="fa-stack">
+                                                            <i class="fa fa-square fa-stack-2x "></i>
+                                                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                        </span>
+                                                    </a>
+                                                    <button disabled href="#" onclick="ReportsPopup(@item.id)" class="table-link success" id="Participants">
+                                                        <span class="fa-stack">
+                                                            <i class="fa fa-square fa-stack-2x "></i>
+                                                            <i class="fa fa-bank fa-stack-1x fa-inverse"></i>
+                                                        </span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="tab-reports">
+                                <div class="table-condensed">
+                                    <div class="table-condensed">
+                                        <table class="table" style="table-layout:fixed">
+                                            <tr>
+                                                <th>
+                                                    Event Name
+                                                </th>
+                                                <th>
+                                                    Description
+                                                </th>
+                                                <th>
+                                                    Type
+                                                </th>
+                                                <th>
+                                                    Billable / Non - billable
+                                                </th>
+                                                
+                                                <th>
+                                                    Full Name
+                                                </th>
+                                                <th>
+                                                    Hogan ID
+                                                </th>
+                                                <th>
+                                                    AAMC#
+                                                </th>
+                                                <th>
+                                                    Start Date
+                                                </th>
+                                                <th>
+                                                    End Date
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                                <th>
+                                                    Run Date
+                                                </th>
+                                            </tr>
+                                            @foreach (var item in Model.LstAMSAReports)
+                                            {
+                                                @* We get the participant to search through its information and show it*@
+                                                PPI.Core.Web.Models.AmsaReports.AMSAParticipant p = Model.getParticipantById(item.PersonId,item.AMSAEvent.id);
+                                                <tr>
+                                                    <!-- Event Name-->
+                                                    <td style="word-wrap:break-word">
+                                                        @try
+                                                        {
+                                                            @Html.DisplayFor(m => item.AMSAEvent.Name)
+                                                        }
+                                                        catch
+                                                        {
+                                                            <text>Null Value</text>
+                                                        }
+                                                    </td>
+                                                    <!-- Description -->
+                                                    <td style="word-wrap:break-word">
+                                                        @try
+                                                        {
+                                                            @Html.DisplayFor(m => item.AMSAEvent.Description)
+                                                        }
+                                                        catch
+                                                        { <text>Null Value</text>}
+                                                    </td>
+                                                    <!-- Type -->
+                                                    <td style="word-wrap:break-word">
+                                                        @try
+                                                        {
+                                                            @Html.DisplayFor(m => item.AMSAEvent.AMSAEventType.Name)
+                                                        }
+                                                        catch
+                                                        {
+                                                            <text>Null Value</text>
+                                                        }
+                                                    </td>
+                                                    <!-- Billable / Non-Billable -->
+                                                    <td style="word-wrap:break-word">
+                                                        @try
+                                                        {
+
+                                                            if ((Boolean)item.AMSAEvent.Billable)
+                                                            {
+                                                                <text>Yes</text>
+                                                            }
+                                                            else {
+                                                                <text>No</text>
+                                                            }
+                                                        }
+                                                        catch
+                                                        {
+                                                            <text>Not set</text>
+                                                        }
+                                                    </td>
+                                                    
+                                                    <!-- Full name -->
+                                                    <td style="word-wrap:break-word">
+                                                        @try
+                                                        {
+                                                            @Html.DisplayFor(m => item.FirstName) @Html.DisplayFor(m => item.LastName)
+                                                        }
+                                                        catch
+                                                        {
+                                                            <text>Null Value</text>
+                                                        }
+                                                    </td>
+                                                    <!-- AMSA Code -->
+                                                    <td style="word-wrap:break-word">
+                                                        
+                                                        @try
+                                                        {
+                                                            @p.AMSACode
+                                                        }
+                                                        catch
+                                                        {
+                                                            <text>Null Value</text>
+                                                        }
+                                                    </td>
+                                                    <!-- AAMC# -->
+                                                    <td style="word-wrap:break-word">
+                                                        @try
+                                                        {
+                                                            @p.AAMCNumber
+                                                        }
+                                                        catch
+                                                        {
+                                                            <text>Null Value</text>
+                                                        }
+                                                    </td>
+                                                    <!-- Start Date -->
+                                                    <td style="word-wrap:break-word">
+                                                        @Html.DisplayFor(m => item.AMSAEvent.StartDate)
+                                                    </td>
+                                                    <!-- End Date -->
+                                                    <td style="word-wrap:break-word">
+                                                        @try
+                                                        {
+                                                            @Html.DisplayFor(m => item.AMSAEvent.EndDate)
+                                                        }
+                                                        catch
+                                                        {
+                                                            <text>Null Value</text>
+                                                        }
+                                                    </td>
+                                                    <!-- Status -->
+                                                    <td style="word-wrap:break-word">
+                                                        @try
+                                                        {
+                                                            @Html.DisplayFor(m => item.AMSAEvent.AMSAEventStatus.Name)
+                                                        }
+                                                        catch
+                                                        {
+                                                            <text>Null Value</text>
+                                                        }
+                                                    </td>
+                                                    <!-- Run Date -->
+                                                    <td style="word-wrap:break-word">
+                                                        @try
+                                                        {
+                                                            @Html.DisplayFor(m => item.AMSAEvent.StartDate, "ShortDateTime")}
+                                                        catch
+                                                        {
+                                                            <text>Null Value</text>
+                                                        }
+                                                    </td>
+                                                    
+                                                </tr>
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--PopUP-->
+    <div tabindex="-1" class="modal fade" id="openpreview" role="dialog" aria-hidden="true" aria-labelledby="openpreviewLabel" style="display: none;">
+        <div class="modal-dialog">
+
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <div id="replaceme" class="main-box-body clearfix">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end PopUp -->
+    @section Scripts
+    {
+        <script src="~/Scripts/Plugin/daterangepicker.js"></script>
+        <script src="~/Scripts/Plugin/bootstrap-datepicker.js"></script>
+        <script src="~/Scripts/Plugin/moment.min.js"></script>
+        <script>
+        $(function ($) {
+            //$('#datepickerDateRange').daterangepicker();
+            $('#datepickerDateRange').daterangepicker(
+               {}
+               , function (start, end, label) { $('form').submit(); }
+               );
+        });
+
+        function ParticipantsPopup(eventId) {
+            $.ajax({
+                url: "/AMSABilling/Participants?eventId=" + eventId,
+                type: 'get',
+                data: null,
+                success: function (response) {
+                    $('#replaceme').html(response);
+                    $('#openpreview').modal('show');
+                }
+            });
+        }
+
+        //This is not functional just yet, need input from Dianne to know what needs to go on here
+        function ReportsPopup(eventId) {
+            $.ajax({
+                url: "/AMSABilling/Reports?eventId=" + eventId,
+                type: 'get',
+                data: null,
+                success: function (response) {
+                    $('#replaceme').html(response);
+                    $('#openpreview').modal('show');
+                }
+            });
+        }
+
+        </script>
+
+
+
+    }

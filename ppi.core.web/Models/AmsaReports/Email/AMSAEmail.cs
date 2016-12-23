@@ -152,6 +152,8 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
                 if (p.timeToSendReminder(this)) {
                     try { 
                         this.send(p, controller);
+                        p.Reminder_date = DateTime.Now;
+                        p.saveChanges();
                     }
                     catch
                     {

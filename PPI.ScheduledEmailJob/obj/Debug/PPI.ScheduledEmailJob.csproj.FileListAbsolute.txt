@@ -196,3 +196,4 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\Excel.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\ICSharpCode.SharpZipLib.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\Excel.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Debug\MvcHaack.Ajax.dll

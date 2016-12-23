@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,7 +10,9 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
     public class AMSAProgramSiteViewModel
     {
         public AMSAProgramSite AMSAProgramSite{ get; set; }
+        [Required(ErrorMessage = "A AMSAProgram is required to insert a Program Site")]
         public SelectList AMSAProgram { get; set; }
+        [Required(ErrorMessage = "A AMSASite is required to insert a Program Site")]
         public SelectList AMSASite { get; set; }
         public int idSelectedProgram { get; set; }
         public int idSelectedSite { get; set; }
@@ -52,6 +55,6 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             dbr.SaveChanges();
             dbr.Dispose();
         }
-
+        
     }
 }

@@ -122,4 +122,23 @@ namespace PPI.Core.Web.Models.AmsaReports
             }
         }
     }
+
+    public class AMSAParticipantForCSV { 
+        [DisplayName("First Name")]
+        public string FirstName { get; set; }
+        [DisplayName("Last Name")]
+        public string LastName { get; set; }
+        [EmailAddress(ErrorMessage = "Please insert a valid e-mail address")]
+        [DisplayName("Primary E-mail address")]
+        public string PrimaryEmail { get; set; }
+        public string Gender { get; set; }
+        public string Title { get; set; }
+        [DisplayName("AAMC Number")]
+        public string AAMCNumber { get; set; }
+
+        //Same as Hogan Code
+        [DisplayName("AMSA Code")]
+        public string AMSACode { get; set; }
+        
+    }
 }
