@@ -114,7 +114,14 @@ namespace PPI.Core.Web.Models.AmsaReports
                 DateTime invitation = Invitation_date ?? DateTime.Now;
                 TimeSpan i = (DateTime.Now - invitation);
                 int numOfDays = Convert.ToInt32(i.TotalDays);
-                return numOfDays >= email.automaticReminderDays;
+                if(numOfDays >= email.automaticReminderDays && Reminder_date == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {

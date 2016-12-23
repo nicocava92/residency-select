@@ -34,7 +34,7 @@ namespace PPI.Core.Web.Controllers
                 var model = new AMSABillingViewModel();
                 var startDate = DateTime.Parse(datepickerDateRange.Substring(0, datepickerDateRange.IndexOf("-") - 1));
                 var endDate = DateTime.Parse(datepickerDateRange.Substring(datepickerDateRange.IndexOf("-") + 1));
-                model.LlstAMSAEvents = db.AMSAEvent.Where(m => DbFunctions.TruncateTime(m.CreateDate) >= startDate && DbFunctions.TruncateTime(m.CreateDate) <= endDate && m.Billable == true).ToList();
+                model.LlstAMSAEvents = db.AMSAEvent.Where(m => DbFunctions.TruncateTime(m.StartDate) >= startDate && DbFunctions.TruncateTime(m.CreateDate) <= endDate && m.Billable == true).ToList();
                 //UnitOfWork.IEventRepository.AsQueryable().Where(m => DbFunctions.TruncateTime(m.CreateDate) >= startDate && DbFunctions.TruncateTime(m.CreateDate) <= endDate && m.Billable == true).ToList();
                 //Get events that we will be searching for in the reports
                 model.LstAMSAReports = db.lstStudentsForReport
@@ -53,8 +53,8 @@ namespace PPI.Core.Web.Controllers
         public ActionResult Participants(int eventId)
         {
             AMSAReportContext db = new AMSAReportContext();
+            //To get participants we need to first
             var model = db.AMSAParticipant.Where(m => m.AMSAEvent.id == eventId);
-            //db.dispose();
             ViewBag.AMSAEventid = eventId;
             return PartialView("_PartialParticipantsAMSA", model);
         }
