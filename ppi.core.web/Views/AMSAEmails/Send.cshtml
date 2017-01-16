@@ -157,6 +157,9 @@
                                                             AMSA Code
                                                         </th>
                                                         <th>
+                                                            Reminder Sent Date
+                                                        </th>
+                                                        <th>
                                                             <div class="checkbox-nice">
                                                                 <input id="checkbox-selectAll-reminder" name="checkbox" type="checkbox">
                                                                 <label for="checkbox-selectAll-reminder"></label>
@@ -190,6 +193,18 @@
                                                         <td>
                                                             <text>
                                                                 @item.AMSACode
+                                                            </text>
+                                                        </td>
+                                                        <td>
+                                                            <text>
+                                                                @if(item.Reminder_date == null)
+                                                                {
+                                                                    <text>Reminder yet to be sent</text>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @Html.DisplayFor(m => item.Reminder_date)
+                                                                }
                                                             </text>
                                                         </td>
                                                         <td>
@@ -428,7 +443,8 @@
                         $("#send-email-message").modal("show");
                         //Reload location after a timeout of 4000 milliseconds
                         setTimeout(function () {
-                            location.reload();
+                            var url = '@Url.Action("Send","AMSAEmails",new { eventId = Model.idSelectedEvent})';
+                            window.location.href = url;
                         }, 4000);
                     },
                     error: function (data) {

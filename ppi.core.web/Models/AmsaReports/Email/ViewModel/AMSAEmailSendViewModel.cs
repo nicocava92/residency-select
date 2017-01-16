@@ -43,25 +43,9 @@ namespace PPI.Core.Web.Models.AmsaReports.Email.ViewModel
             if (idSelectedEvent > 0)
             {
                 AMSAReportContext dbr = new AMSAReportContext();
-                lstParticipantForReminder = dbr.AMSAParticipant.Where(m => m.Reminder_date == null && m.AMSAEvent.id == idSelectedEvent).ToList();
-                //Eliminate the participants that are in the invitation list (this means they have a reminder date as null
-                //Because the invitation has not yet been set
-                List<AMSAParticipant> auxLstParticipantToDelete = new List<AMSAParticipant>();
-                //Get list of participants to delete
-                foreach (AMSAParticipant p in lstParticipantForReminder)
-                {
-                    //Contains not working need to perform the loop through manuall
-                    foreach (AMSAParticipant pWaitingInvitation in lstParticipantsForInvitation)
-                    {
-                        if (p.Id == pWaitingInvitation.Id)
-                            auxLstParticipantToDelete.Add(p);
-                    }
-                }
-                //Remove participants that are on the invitation list from the reminder list
-                foreach (AMSAParticipant pa in auxLstParticipantToDelete)
-                {
-                    lstParticipantForReminder.Remove(pa);
-                }
+                //Get users that have already received an invitation (if they received an invitation this means that they are ready for a reminder
+                //Always keep users on the reminder list
+                lstParticipantForReminder = dbr.AMSAParticipant.Where(m => m.Invitation_date != null && m.AMSAEvent.id == idSelectedEvent).ToList();
                 dbr.Dispose();
             }
         }
