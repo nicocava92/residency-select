@@ -64,15 +64,8 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             p.FirstName = this.AMSAParticipant.FirstName;
             p.LastName = this.AMSAParticipant.LastName;
             p.Gender = this.stringSelectedGender;
+            p.PrimaryEmail = this.AMSAParticipant.PrimaryEmail;
             dbr.SaveChanges();
-
-            /*
-            ModelState.Remove("AMSAParticipant.AMSA_Password");
-            ModelState.Remove("AMSAParticipant.Title");
-            ModelState.Remove("AMSAParticipant.AAMCNumber");
-            ModelState.Remove("AMSAParticipant.AMSACode");
-            */
-
             dbr.Dispose();
         }
 
@@ -88,7 +81,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             //p.AMSA_Password = this.AMSAParticipant.AMSA_Password;
 
             //If AAMC Number
-            if (this.AMSAParticipant.AAMCNumber != null)
+            if (this.AMSAParticipant.AAMCNumber != null && !this.AMSAParticipant.AAMCNumber.Equals(""))
                 p.AAMCNumber = this.AMSAParticipant.AAMCNumber;
             else
             {
@@ -97,10 +90,11 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             }
 
             //Assign amsa code and amsa PIN (Password)
-            if (this.AMSAParticipant.AMSACode != null)
+            if (this.AMSAParticipant.AMSACode != null && !this.AMSAParticipant.AMSACode.Equals("") &&  amsaCodeExists())
             {
+                assignASMACodeWithPreExistingCode();
                 p.AMSACode = this.AMSAParticipant.AMSACode;
-                this.markCodeAsChecked(p.AMSACode);
+                p.AMSA_Password = this.AMSAParticipant.AMSA_Password;
             }
             else
             {
@@ -114,12 +108,13 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             p.PrimaryEmail = this.AMSAParticipant.PrimaryEmail;
             p.Title = this.AMSAParticipant.Title;
             p.Gender = this.stringSelectedGender;
-            if (p.Gender == null)
+            if (this.AMSAParticipant.Gender == null && !this.AMSAParticipant.Gender.Equals(""))
                 p.Gender = this.AMSAParticipant.Gender;
             checkIfStatusExists(p);
             //Check if the are results in the database for the participant if there are update status to the participant status
             dbr.AMSAParticipant.Add(p);
             dbr.SaveChanges();
+            this.markCodeAsChecked(p.AMSACode);
             dbr.Dispose();
         }
 
@@ -155,10 +150,30 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             if(c != null) {
                 this.AMSAParticipant.AMSACode = c.Code;
                 this.AMSAParticipant.AMSA_Password = c.Pin;
-                c.markAsUsed();
                 dbr.SaveChanges();
             }
             dbr.Dispose();
+        }
+        //Assign amsa code if the participant is added to the application with an already existent amsa code
+        public void assignASMACodeWithPreExistingCode() {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSACode c = dbr.AMSACodes.Where(m => m.AMSAEvent.id == this.idSelectedEvent && m.Code.Equals(this.AMSAParticipant.AMSACode)).FirstOrDefault();
+            if(c != null)
+            {
+                this.AMSAParticipant.AMSACode = c.Code;
+                this.AMSAParticipant.AMSA_Password = c.Pin;
+                dbr.SaveChanges();
+            }
+            dbr.Dispose();
+        }
+
+        //Check if the amsa code that the user wants to add in exists or not in the database
+        public bool amsaCodeExists()
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSACode c = dbr.AMSACodes.Where(m => m.Code.Equals(this.AMSAParticipant.AMSACode) && m.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
+            dbr.Dispose();
+            return c != null;
         }
 
         public int AMASCodeCount()

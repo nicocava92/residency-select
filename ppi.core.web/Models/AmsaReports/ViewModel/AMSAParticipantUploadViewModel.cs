@@ -127,7 +127,9 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 AMSAParticipantViewModel pvm = new AMSAParticipantViewModel();
                 pvm.AMSAParticipant = p;
                 pvm.idSelectedEvent = this.idSelectedEvent;
-
+                AMSAEvent ae = new AMSAEvent();
+                ae.id = pvm.idSelectedEvent;
+                p.AMSAEvent = ae;
                 this.checkModelState(p, m);
                 
                     //We where able to store the participant
@@ -144,7 +146,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     catch
                     {
                         //If we go into catch if because there where not enough amsa codes to store the 
-                        m.AddModelError("Participant", "From Participant with e-mail address " + p.PrimaryEmail + "in line #" + position + " File #" + i + " forward no participants were inserted after this row as well, not enough codes available. Please insert more codes to upload Participants" + System.Environment.NewLine);
+                        m.AddModelError("Participant", "From Participant with e-mail address " + p.PrimaryEmail + "in line #" + position + " File #" + i + " forward no participants were inserted after this row as well, not enough codes available or data is incoherent. Please double check and produce the necessary changes to upload data correctly" + System.Environment.NewLine);
                         this.Errors += " From participant with e-mail address " + p.PrimaryEmail + "in line #" + position + " File #" + i + " forward no participants were inserted after this row as well, not enough codes available. Please insert more codes to upload Participants";
                         //If all fails then we need to return with an error to the view
                         return;
@@ -158,6 +160,11 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         //Check if the model state is valid or not
         public void checkModelState(AMSAParticipant p, ModelStateDictionary m)
         {
+            //Checks if code exists, if it doesnt then the user is not loaded and we wait for the uploader to decide if they want to add the user with a random code or correct their error
+            if (!p.amsaCodeExits(p.AMSAEvent.id))
+            {
+                m.AddModelError("Participant", "Candidate ID missing for" + p.FirstName + "Please add the corresponding candidate id to the Event or upload the participant without pre-assigning a candidate id.");
+            }
             if (p.PrimaryEmail == null) {
                 this.Errors += " Primary e-mail missing for " + p.FirstName;
                 m.AddModelError("Participant", "Primary e - mail missing for " + p.FirstName);
@@ -181,9 +188,9 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 else
                 {
                     //Check size of name
-                    if(p.FirstName.Length <= 3)
+                    if(p.FirstName.Length <= 1)
                     {
-                        this.Errors += "First name needs to have 3 letters or more" + p.FirstName;
+                        this.Errors += "First name needs to have 1 letter or more" + p.FirstName;
                         m.AddModelError("Participant", "First name needs to have 3 letters or more" + p.FirstName);
                     }
                 }
@@ -196,9 +203,9 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 else
                 {
                     //Check length of last name
-                    if(p.LastName.Length <= 3)
+                    if(p.LastName.Length <= 1)
                     {
-                        this.Errors += "Last name needs to have 3 letters or more" + p.LastName;
+                        this.Errors += "Last name needs to have 1 letter or more" + p.LastName;
                         m.AddModelError("Participant", "last name needs to have 3 letters or more" + p.LastName);
                     }
                 }
