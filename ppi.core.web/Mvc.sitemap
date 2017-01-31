@@ -36,7 +36,7 @@
     </mvcSiteMapNode>
     <mvcSiteMapNode title="Billing" controller="Billing" action="Index"/>
     </mvcSiteMapNode>
-    <mvcSiteMapNode title="Amsa Reports" controller="Reports" action="IndexAmsaStudents">
+    <mvcSiteMapNode title="AMSA Reports" controller="Reports" action="IndexAmsaStudents">
       <mvcSiteMapNode title="Dashboard" controller="Administration" action="AMSADashboard" />
       <mvcSiteMapNode title="Reports" controller="Reports" action="#">
         <mvcSiteMapNode title="Generate Reports" controller="Reports" action="IndexAmsaStudents"/>
@@ -70,13 +70,15 @@
         <mvcSiteMapNode title="Program Sites" controller="AMSAProgramSites" action="Index"/>
         <mvcSiteMapNode title="Not Billable Reason" controller="AMSANotBillableReasons" action="Index"/>
       </mvcSiteMapNode>
-    </mvcSiteMapNode>
       
-    
+    </mvcSiteMapNode>
+      <mvcSiteMapNode title="AMSA User Upload" controller="AMSAParticipants" action="Upload"/>
+      <mvcSiteMapNode title="Billing" controller="AMSABilling" action="Index"/>    
     </mvcSiteMapNode>
     
     <mvcSiteMapNode title="Users" controller="Account" action="Index">
     <mvcSiteMapNode title="Add User" controller="Account" action="Register"/>  
+    <mvcSiteMapNode title="Administer Users" controller="Account" action="AdministerUsers"/>  
   </mvcSiteMapNode>    
   </mvcSiteMapNode>
   

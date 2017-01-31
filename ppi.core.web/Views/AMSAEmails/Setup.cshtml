@@ -41,7 +41,7 @@
                         Days before reminder
                     </th>
                     <th>
-                        Name
+                        Event Name
                     </th>
                     <th>
                         Type
@@ -88,6 +88,10 @@
                         <td>
                             @if (item.Type.ToUpper().Equals("REMINDER")) { 
                                 @item.automaticReminderDays
+                            }
+                            else
+                            {
+                                <text>N/A</text>
                             }
                         </td>
                         <td>

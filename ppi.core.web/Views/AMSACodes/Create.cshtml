@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+
+@{string link = "../../AMSACodes/Upload/" + @Model.idSelectedEvent;}
+
+
 <h1>Create</h1>
 <div class="main-box clearfix">
     <div class="main-box-body">
@@ -36,12 +40,13 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.AMSACode.AMSAEvent, htmlAttributes: new { @class = "control-label col-md-2 bold" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @id = "EventDepartmentId", @onChange = "getSpeciality()" })
+                        @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @id = "EventDepartmentId", @onChange = "changeEvent()" })
                         @Html.ValidationMessageFor(model => model.AMSACode.AMSAEvent, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
+                        <a href="@link" id="changeToUpload" class="btn btn-primary">Upload Codes Instead</a>
                         <input type="submit" value="Create" class="btn btn-success" />
                     </div>
                 </div>
@@ -52,3 +57,16 @@
             @Html.ActionLink("Back to List", "Index")
         </div>
 </div></div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function changeEvent() {
+            var i = $("#EventDepartmentId").find(":selected").val();
+            $("#changeToUpload").attr("href","../../AMSACodes/Upload/" + i);
+        }
+
+    </script>
+    
+    
+    
+    }

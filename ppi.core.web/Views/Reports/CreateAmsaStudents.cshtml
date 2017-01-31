@@ -191,6 +191,14 @@
                         @Html.ValidationMessageFor(model => model.Data.Stanine_Structure)
                     </div>
                 </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Data.Status, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Data.Status, Model.Status, new { @class = "form-control", @id = "EventDepartmentId", @onChange = "getSpeciality()" })
+                        @Html.ValidationMessageFor(model => model.Data.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
                 @*
                 <div class="form-group">
                     @Html.LabelFor(model => model.ClientName, new { @class = "control-label col-md-2 bold" })

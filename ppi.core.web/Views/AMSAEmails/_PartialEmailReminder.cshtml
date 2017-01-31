@@ -693,9 +693,23 @@
                                                             @Html.Raw(Model.introduction)
 
                                                             <p>
-                                                                Reminder information.
-                                                            </p>
+                                                                <ul>
 
+                                                                    <li>
+                                                                        Access the login page at <a href="https://gate.aon.com/Candidate/Session/SignIn">https://gate.aon.com/Candidate/Session/SignIn</a> <br />
+                                                                    </li>
+                                                                    <li>
+                                                                        Login using supplied credentials:<br />
+                                                                        ***(Helpful Tip: Copy and Paste the User ID and PIN)***<br />
+                                                                        Enter ID: <font style="BACKGROUND-COLOR: yellow">@Model.amsa_id</font>
+                                                                        Enter PIN: <font style="BACKGROUND-COLOR: yellow">@Model.amsa_password</font>
+                                                                    </li>
+                                                                </ul>
+                                                            </p>
+                                                            <p>
+                                                                Note: Your computer will need access to a high-speed Internet connection (e.g., LAN, cable modem); phone modem connection will work, but will be substantially slower. To avoid system issues use the Back and Next buttons on the testing website when taking the assessment. Do not use the browser navigation buttons.
+                                                            </p>
+                                                            <br />
                                                             @Html.Raw(Model.closing)
                                                         </div>
 

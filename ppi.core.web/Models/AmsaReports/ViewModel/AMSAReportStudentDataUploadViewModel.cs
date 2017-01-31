@@ -18,7 +18,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         [DisplayName("Event")]
         public SelectList Events { get; set; }
         public int idSelectedEvent { get; set; }
-        [DisplayName("Upload CSV For Event")]
+        [DisplayName("Upload .csv, .xls, .xlsx For Event")]
         public HttpPostedFile csvFile { get; set; }
         public AMSAEvent selectedEvent { get; set; }
         //Store errors on upload so further users are added even if other users generated errors, inform multiple errors at once without stopping the application form finishing its normal course
@@ -85,7 +85,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             {
                 try { 
                     //Read files and get array
-                    List<string[]> values = ReportUtilities.getDataFromCsvXlsxORXL(request.Files[i]);
+                    List<string[]> values = ReportUtilities.getDataFromCsvXlsxORXLReportData(request.Files[i]);
                     //WHere participants to be inserted into the database will be added
 
                     //Get list of participants from va
@@ -117,6 +117,9 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     {
                         //Check if the participant already exists in the database
                         this.checkAlreadyAssignedToEvent(p, m);
+                        //Check if the Participant is added into the participant list
+                        //If the participant does not exist then thell the user that he needs to add the participant in
+                        this.checkParticipantExists(p,m);
                         if (this.Errors == "" || this.Errors == null)
                         {
                             //If participant has all of its information present then try adding him in
@@ -138,19 +141,32 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 }
             }
         }
+        //Show error if Participant is not added to the event, making sure whomever is uploading data onto the event makes sure to add the participant onto the event
+        private void checkParticipantExists(AmsaReportStudentData p, ModelStateDictionary m)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSAParticipant auxParticipant = dbr.AMSAParticipant.Where(r => r.AMSACode.ToUpper().Equals(p.PersonId)).FirstOrDefault();
+            if(auxParticipant == null)
+            {
+                // Let the user know that this participant needs to be added before this can move on forward
+                this.Errors += "Please add " + p.FirstName + " " + p.LastName + " " + p.PersonId + " as a Participant for the event. Data for participants that is uploaded without having the participant inserted into the event will generate inconsistency in the data for Participants that can be seen in the AMSA Dashboard. Remember that you will need to add the AMSA Code and PIN (Password) before you can assign an AMSA Code to an AMSA Participant";
+                m.AddModelError("Participant", "Please add " + p.FirstName + " " + p.LastName + " " + p.PersonId + " as a Participant for the event. Data for participants that is uploaded without having the participant inserted into the event will generate inconsistency in the data for Participants that can be seen in the AMSA Dashboard. Remember that you will need to add the AMSA Code and PIN (Password) before you can assign an AMSA Code to an AMSA Participant.");
+            }
+        }
+
         //Check if the model state is valid or not
         public void checkModelState(AmsaReportStudentData p, ModelStateDictionary m)
         {
             
             if (p.PersonId == null)
             {
-                this.Errors += " Id missing for " + p.FirstName;
+                this.Errors += "Id missing for " + p.FirstName;
                 m.AddModelError("Participant", "Id missing for" + p.FirstName);
             }
 
             if (p.Status == null)
             {
-                this.Errors += " Status missing for " + p.FirstName;
+                this.Errors += "Status missing for " + p.FirstName;
                 m.AddModelError("Participant", "Status missing for " + p.FirstName);
             }
 
@@ -158,7 +174,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             {
                 if (p.FirstName == null)
                 {
-                    this.Errors += " Name missing for " + p.PersonId;
+                    this.Errors += "Name missing for " + p.PersonId;
                     m.AddModelError("Participant", "Name missing for " + p.PersonId);
                 }
                 else
@@ -166,14 +182,14 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     //Check size of name
                     if (p.FirstName.Length < 3)
                     {
-                        this.Errors += " First name needs to have 3 letters or more" + p.PersonId;
+                        this.Errors += "First name needs to have 3 letters or more" + p.PersonId;
                         m.AddModelError("Participant", "First name needs to have 3 letters or more" + p.PersonId);
                     }
                 }
 
                 if (p.LastName == null)
                 {
-                    this.Errors += " Last name missing for " + p.PersonId;
+                    this.Errors += "Last name missing for " + p.PersonId;
                     m.AddModelError("Participant", "Last name missing for " + p.PersonId);
                 }
                 else
@@ -181,12 +197,12 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     //Check length of last name
                     if (p.LastName.Length < 3)
                     {
-                        this.Errors += " Last name needs to have 3 letters or more" + p.PersonId;
+                        this.Errors += "Last name needs to have 3 letters or more" + p.PersonId;
                         m.AddModelError("Participant", "last name needs to have 3 letters or more" + p.PersonId);
                     }
                 }
                 if(p.RegistrationDate == null) {
-                    this.Errors += " Registration date missing for" + p.PersonId;
+                    this.Errors += "Registration date missing for" + p.PersonId;
                     m.AddModelError("Participant", "registration date missing for" + p.PersonId);
                 }
                 //Check for certain nulls only if the participant has a status of completed
@@ -194,83 +210,83 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 { 
                     if (p.CompletionDate == null)
                     {
-                        this.Errors += " Completion date missing for" + p.PersonId;
+                        this.Errors += "Completion date missing for" + p.PersonId;
                         m.AddModelError("Participant", "Completion date missing for" + p.PersonId);
                     }
                     if (p.Stanine_Ambition > 9 || p.Stanine_Ambition < 1)
                     {
-                        this.Errors += " Stanine Ambition needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Ambition needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Ambition needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Assertiveness> 9 || p.Stanine_Assertiveness  < 1)
                     {
-                        this.Errors += " Stanine Assertiveness needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Assertiveness needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Assertiveness needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Awareness > 9 || p.Stanine_Awareness < 1)
                     {
-                        this.Errors += " Stanine Awareness needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Awareness needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Awareness needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Composure > 9 || p.Stanine_Composure < 1)
                     {
-                        this.Errors += " Stanine Composure needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Composure needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Composure needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Conceptual > 9 || p.Stanine_Conceptual < 1)
                     {
-                        this.Errors += " Stanine Conceptual needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Conceptual needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Conceptual needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Cooperativeness > 9 || p.Stanine_Cooperativeness < 1)
                     {
-                        this.Errors += " Stanine Cooperativeness needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Cooperativeness needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Cooperativeness needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Drive > 9 || p.Stanine_Drive < 1)
                     {
-                        this.Errors += " Stanine Drive needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Drive needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Drive needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
 
                     if (p.Stanine_Flexibility > 9 || p.Stanine_Flexibility < 1)
                     {
-                        this.Errors += " Stanine Flexibility needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Flexibility needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Flexibility needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Humility > 9 || p.Stanine_Humility < 1)
                     {
-                        this.Errors += " Stanine Humility needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Humility needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Humility needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Liveliness > 9 || p.Stanine_Liveliness < 1)
                     {
-                        this.Errors += " Stanine Liveliness needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Liveliness needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Liveliness needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Mastery > 9 || p.Stanine_Mastery < 1)
                     {
-                        this.Errors += " Stanine Mastery needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Mastery needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Mastery needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Positivity > 9 || p.Stanine_Positivity < 1)
                     {
-                        this.Errors += " Stanine Positivity needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Positivity needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Positivity needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Power > 9 || p.Stanine_Power < 1)
                     {
-                        this.Errors += " Stanine Power needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Power needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Power needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Sensitivity > 9 || p.Stanine_Sensitivity < 1)
                     {
-                        this.Errors += " Stanine Sensitivity needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Sensitivity needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Sensitivity needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                     if (p.Stanine_Structure > 9 || p.Stanine_Structure < 1)
                     {
-                        this.Errors += " Stanine Structure needs to be greater than 1 and smaller than 9" + p.PersonId;
+                        this.Errors += "Stanine Structure needs to be greater than 1 and smaller than 9" + p.PersonId;
                         m.AddModelError("Participant", "Stanine Structure needs to be greater than 1 and smaller than 9" + p.PersonId);
                     }
                 }
@@ -338,7 +354,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             }
 
             //After updating the results then update the participant
-            AMSAParticipant aParticipant = dbr.AMSAParticipant.Where(o => o.AMSACode.ToUpper().Equals(pa.PersonId) && o.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
+            AMSAParticipant aParticipant = dbr.AMSAParticipant.Where(o => o.AMSACode.ToUpper().Equals(pa.PersonId.ToUpper()) && o.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
             if (aParticipant != null)
             {
                 //If participant exists then update his status | if his status goes from something different

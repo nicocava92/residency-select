@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PPI.Hogan.Service")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Hogan Service for automatic load of data")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PPI.Hogan.Service")]

@@ -1,0 +1,201 @@
+﻿@model PPI.Core.Web.Models.ViewModel.EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Edit User</h1>
+
+<div class="main-box clearfix">
+    <div class="main-box-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.User.Id)
+            
+
+            <div class="form-horizontal">
+                <h2>Edit user | @Model.User.UserName</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.User.Email, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @id ="txtNewEmail" })
+                        @Html.ValidationMessageFor(model => model.User.Email)
+                    </div>
+                </div>
+                
+
+
+                <div class="form-group">
+                    
+                        <label for="roleCheckboxes" class="control-label col-md-2 bold">
+                            Roles:
+                        </label>
+                        <fieldset>
+                            
+                                @foreach (var r in Model.LstRoles)
+                                {
+
+                                    if (Model.UserInRoles.Any(m => m.Equals(r.Id)))
+                                    {
+                                        <div class="checkbox-nice">
+                                            <input id="@r.Id" class="roleCheckbox" type="checkbox" name="roleCheckboxes" value="@r.Id" checked="checked" />
+                                            <label for="@r.Id">@r.Name</label>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="checkbox-nice">
+                                            <input id="@r.Id" class="roleCheckbox"  type="checkbox" name="roleCheckboxes" value="@r.Id"/>
+                                            <label for="@r.Id">@r.Name</label>
+                                        </div>
+                                    }
+
+                                }
+
+                        </fieldset>
+                            
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="Site" class="col-md-2 control-label bold">Site</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("Site", (SelectList)ViewData["Site"], "Select Site for Site Cordinator Role", new { @class = "form-control", @data_val = "false" })
+                    </div>
+                </div>
+
+
+                <!-- Errors are shown here -->
+                <div class="error alert alert-danger" style="display:none;">
+
+                </div>
+                <!-- Show success message -->
+                <div class="success alert alert-success" style="display:none;">
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-success" id="formSubmit">Save</button>
+                    </div>
+                </div>
+            </div>
+        
+
+        <div>
+            @Html.ActionLink("Back to List", "AdministerUsers")
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        var currentRoles;
+        var userid = $("#User_Id").val();
+        $(document).ready(function () {
+            //On load we get the roles the user currenlty has set
+            currentRoles = getUsersCurrentRoles();
+            $("#formSubmit").unbind("click");
+            $("#formSubmit").on("click", function () {
+                startFormSubmit();
+            })
+        });
+
+        function startFormSubmit() {
+            //Get all selected values for the user
+
+            var selectedRoles = [];
+            var usersite = "";
+            getSelectedRoles(selectedRoles);
+            var email = $("#txtNewEmail").val();
+            usersite = $("#Site").val();
+            //If +1 roles selected && email == good insert changes
+            if(selectedRoles.length > 0 && validateEmail(email) && usersite != "" && usersite.length > 0){
+                makeChanges(selectedRoles,currentRoles,email,usersite);
+            } else {
+                $(".success").fadeOut();
+                setTimeout(function () {
+                    $(".error").html('<p>Please make sure the inserted e-mail address is valid.<br /> Please make sure there are 1 or more roles selected.<br />' +
+                                    'You need to select a Site for the user.</p>');
+                    $(".error").fadeIn();
+                }, 800);
+            }
+        }
+
+
+
+        //Validate e-mail regex
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+
+        //Add to selected roles array the selected roles
+        function getSelectedRoles(selectedRoles){
+            //class="roleCheckbox"
+            $(".roleCheckbox").each(function (index) {
+                if ($(this).is(":checked")) {
+                    var r = $(this).val();
+                    selectedRoles.push(r);
+                }
+            });
+        }
+
+        //Gets list of current roles for user
+        function getUsersCurrentRoles() {
+            var roles = [];
+            $(".roleCheckbox").each(function (index) {
+                if ($(this).is(":checked")){
+                    var r = $(this).val();
+                    roles.push(r);
+                }
+            });
+            return roles;
+        }
+
+        function makeChanges(selectedRoles,currentRoles,email,usersite){
+            $.ajax({
+                contentType: "application/json; charset=utf-8",
+                type: "POST",
+                url: "../../Account/makeUserChanges",
+                datatype: "json",
+                data: JSON.stringify({
+                    selectedRoles: selectedRoles,
+                    currentRoles: currentRoles,
+                    email: email,
+                    userid: userid,
+                    usersite: usersite
+                }),
+                traditional: true,
+                success: function (data) {
+                    if (data.error) {
+                        $(".success").fadeOut();
+                        setTimeout(function () {
+                            $(".error").html("<p>Error making changes to the user, please make sure you are completing all data as expected</p>")
+                            $(".error").fadeIn();
+                        }, 800);
+                    }
+                    else {
+                        $(".error").fadeOut();
+                        setTimeout(function () {
+                        $(".success").html("<p>User updated successfully!</p>");
+                        $(".success").fadeIn();
+                        }, 800);
+                    }
+                },
+                error: function (data) {
+                    $(".success").fadeOut();
+                    setTimeout(function () {
+                        $(".error").html("<p>Error processing request, please try again. If problem persists please contact IT department.</p>");
+                        $(".error").fadeIn();
+                        btn.removeAttr("disabled");
+                    }, 800);
+                }
+            });
+        }
+    </script>
+}

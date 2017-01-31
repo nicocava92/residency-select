@@ -1,4 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace PPI.Core.Web.Models
 {
@@ -24,7 +28,7 @@ namespace PPI.Core.Web.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -57,12 +61,24 @@ namespace PPI.Core.Web.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
         [Required]
         [Display(Name= "Role")]
         public string UserRole { get; set; }
+
+        public List<IdentityRole> lstRoles { get; set; }
+
         [Display(Name = "Associated Site")]
         public int? Site { get; set; }
+        [Display(Name = "E-mail")]
+        public string Email { get; set; }
+
+
+        public RegisterViewModel()
+        {
+            ApplicationDbContext dbr = new ApplicationDbContext();
+            lstRoles = dbr.Roles.ToList();
+        }
     }
 }

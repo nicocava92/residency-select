@@ -15,7 +15,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         [DisplayName("Event")]
         public SelectList Events { get; set; }
         public int idSelectedEvent { get; set; }
-        [DisplayName("Upload CSV For Event")]
+        [DisplayName("Upload .csv, .xls, .xlsx For Event")]
         public HttpPostedFile csvFile { get; set; }
         public AMSAEvent selectedEvent { get; set; }
         //Store errors on upload so further users are added even if other users generated errors, inform multiple errors at once without stopping the application form finishing its normal course
@@ -27,6 +27,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         {
             AMSAReportContext dbr = new AMSAReportContext();
             LstEvents = dbr.AMSAEvent.ToList();
+            LstEvents.Insert(0, new AMSAEvent { id = 0, Name = "-- Please Select an Event --" });
             Events = new SelectList(LstEvents, "id", "Name");
         }
 
@@ -74,7 +75,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         {
             AMSAReportContext dbr = new AMSAReportContext();
             //Get the the event on first 
-            int eventId = LstEvents[0].id;
+            int eventId = idSelectedEvent;
             List<AMSACode> lstCodes = dbr.AMSACodes.Where(m => !m.Used && m.AMSAEvent.id == eventId).ToList();
             int ammountOfCodes = lstCodes.Count();
             dbr.Dispose();
@@ -89,37 +90,28 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         public void PerformUserInsertionts(HttpRequestBase request, ModelStateDictionary m) {
             List<AMSAParticipant> lstParticipants = new List<AMSAParticipant>();
             int i = 0;
+
+
             while (i < request.Files.Count)
             {
-                HttpPostedFileBase UploadedFile = request.Files[0];
-                //WHere participants to be inserted into the database will be added
-                
-                // Use the InputStream to get the actual stream sent.
-                StreamReader csvreader = new StreamReader(UploadedFile.InputStream);
-                var c = 0;
-                while (!csvreader.EndOfStream)
+                try
                 {
-                    var line = csvreader.ReadLine();
-                    var values = line.Split(',');
-                    //If not on first element 
-                    if (c > 0) { 
-                        //Try to save if there are errors let user know the participants that where not uploaded.. store the participants e-mail address and line number to let the user know
-                        
-                        AMSAParticipant p = new AMSAParticipant();
-                        p.FirstName = values[0];
-                        p.LastName = values[1];
-                        p.PrimaryEmail = values[2];
-                        p.AMSACode = values[3];
-                        p.AAMCNumber = values[4];
-                        p.Gender = values[5];
-                        p.Title = values[6];
-                        lstParticipants.Add(p);
-                    }
-                    c++;
+                    //Read files and get array
+                    List<string[]> values = ReportUtilities.getDataFromCsvXlsxORXLAMSAParticipants(request.Files[i]);
+                    //WHere participants to be inserted into the database will be added
+
+                    //Get list of participants from va
+                    lstParticipants = ReportUtilities.arrayToAMSAParticipants(values);
+                    //After all of the Participants that we are tryign to insert into the database are added into the list, then we try to add them or return errors if there are problems
+                    i++;
                 }
-                //After first line - which is the description file - add participant
-                i++;
+                catch
+                {
+                    m.AddModelError("Participant", "Data load failed for file # " + i + " please check that all information is inserted correctly");
+                    i++;
+                }
             }
+
 
             //After all of the Participants that we are tryign to insert into the database are added into the list, then we try to add them or return errors if there are problems
 
@@ -175,7 +167,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 //Make sure the e-mail is longer than 3 characters
                 if(p.PrimaryEmail.Length <= 3)
                 {
-                    this.Errors += " Primary e-mail needs to be longer than 3 characters" + p.PrimaryEmail;
+                    this.Errors += "Primary e-mail needs to be longer than 3 characters" + p.PrimaryEmail;
                     m.AddModelError("Participant", " Primary e-mail needs to be longer than 3 characters" + p.PrimaryEmail);
                 }
             }
@@ -183,7 +175,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             if (p.PrimaryEmail != null) {
                 if (p.FirstName == null)
                 {
-                    this.Errors += " Name missing for " + p.PrimaryEmail;
+                    this.Errors += "Name missing for " + p.PrimaryEmail;
                     m.AddModelError("Participant", " Name missing for " + p.PrimaryEmail);
                 }
                 else
@@ -191,14 +183,14 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     //Check size of name
                     if(p.FirstName.Length <= 3)
                     {
-                        this.Errors += " First name needs to have 3 letters or more" + p.FirstName;
+                        this.Errors += "First name needs to have 3 letters or more" + p.FirstName;
                         m.AddModelError("Participant", "First name needs to have 3 letters or more" + p.FirstName);
                     }
                 }
                     
                 if (p.LastName == null)
                 {
-                    this.Errors += " Last name missing for " + p.PrimaryEmail;
+                    this.Errors += "Last name missing for " + p.PrimaryEmail;
                     m.AddModelError("Participant", " Last name missing for " + p.PrimaryEmail);
                 }
                 else
@@ -206,20 +198,20 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     //Check length of last name
                     if(p.LastName.Length <= 3)
                     {
-                        this.Errors += " Last name needs to have 3 letters or more" + p.LastName;
+                        this.Errors += "Last name needs to have 3 letters or more" + p.LastName;
                         m.AddModelError("Participant", "last name needs to have 3 letters or more" + p.LastName);
                     }
                 }
                     
                 if (p.Gender == null)
                 {
-                    this.Errors += " Gender missing for " + p.PrimaryEmail;
+                    this.Errors += "Gender missing for " + p.PrimaryEmail;
                     m.AddModelError("Participant", " Gender missing for " + p.PrimaryEmail);
                 }
                   
                 if (p.Title == null)
                 {
-                    this.Errors += " Title missing for " + p.PrimaryEmail;
+                    this.Errors += "Title missing for " + p.PrimaryEmail;
                     m.AddModelError("Participant", " Title missing for " + p.PrimaryEmail);
                 }
                   
@@ -233,7 +225,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             AMSAParticipant p = dbr.AMSAParticipant.Where(r => r.PrimaryEmail.Equals(pa.PrimaryEmail) && r.AMSAEvent.id == this.idSelectedEvent).FirstOrDefault();
             if (p != null)
             {
-                this.Errors += " Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event";
+                this.Errors += "Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event";
                 m.AddModelError("Participant", "Participant with e-mail address " + pa.PrimaryEmail + " already assigned to the selected event");
             }
             dbr.Dispose();

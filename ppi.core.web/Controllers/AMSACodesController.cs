@@ -79,15 +79,22 @@ namespace PPI.Core.Web.Controllers
         
 
         [HttpGet]
-        public ActionResult Upload()
+        public ActionResult Upload(int? id)
         {
-            return View(new AMSACodeUploadViewModel());
+
+            AMSACodeUploadViewModel auvm = new AMSACodeUploadViewModel();
+            int eventId = id ?? 0;
+            if(eventId > 0)
+            {
+                auvm.idSelectedEvent = eventId;
+            }
+            return View(auvm);
         }
 
         [HttpPost]
         public ActionResult Upload(AMSACodeUploadViewModel cvm)
         {
-            ReportUtilities.checkUploadCSV(Request, ModelState);
+            ReportUtilities.checkUploadCSVandExcel(Request, ModelState);
             if (ModelState.IsValid)
             {
                 cvm.PerformCodeInsertions(Request, ModelState);

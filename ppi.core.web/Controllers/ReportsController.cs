@@ -1363,9 +1363,15 @@ namespace PPI.Core.Web.Controllers
 
         //Get view to add csv for datafeed
         [HttpGet]
-        public ActionResult UploadAMSADataFeed()
+        public ActionResult UploadAMSADataFeed(int? id)
         {
-            return View(new AMSAReportStudentDataUploadViewModel());
+            AMSAReportStudentDataUploadViewModel avm = new AMSAReportStudentDataUploadViewModel();
+            int eventId = id ?? 0;
+            if(eventId > 0)
+            {
+                avm.idSelectedEvent = eventId;
+            }
+            return View(avm);
         }
 
 
@@ -1375,7 +1381,7 @@ namespace PPI.Core.Web.Controllers
         {
             if(pvm.idSelectedEvent != 0) { 
 
-                ReportUtilities.checkUploadCSV(Request, ModelState);
+                ReportUtilities.checkUploadCSVandExcel(Request, ModelState);
                 
                 if (ModelState.IsValid)
                 {

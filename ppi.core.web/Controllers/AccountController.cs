@@ -9,6 +9,10 @@ using PPI.Core.Web.Models;
 using PPI.Core.Domain.Entities;
 using PPI.Core.Domain.Abstract;
 using PPI.Core.Web.Infrastructure;
+using System.Linq;
+using PPI.Core.Web.Models.ViewModel;
+using System;
+using System.Net.Mail;
 
 namespace PPI.Core.Web.Controllers
 {
@@ -16,18 +20,18 @@ namespace PPI.Core.Web.Controllers
 
     [Authorize]
     public class AccountController : BaseController
-    {        
+    {
 
         public AccountController(IUnitOfWork unitOfWork)
-            : base(unitOfWork)             
+            : base(unitOfWork)
         {
             UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         }
-        
+
         [Log]
         public UserManager<ApplicationUser> UserManager { get; private set; }
-        
-        [Authorize(Roles = "Admin")]  
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
@@ -57,11 +61,19 @@ namespace PPI.Core.Web.Controllers
                 model.RememberMe = Rem;
                 ///
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
+
                 if (user != null)
                 {
-                    await SignInAsync(user, model.RememberMe);                    
-                    //Look up the site associated with this user and set the cookie,                                                            
-                    return RedirectToLocal(returnUrl);
+                    //If the user exists check if the account is active or not
+                    if (user.Active) {
+                        await SignInAsync(user, model.RememberMe);
+                        //Look up the site associated with this user and set the cookie,                                                            
+                        return RedirectToLocal(returnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "User is not active, please contact a system administrator.");
+                    }
                 }
                 else
                 {
@@ -102,60 +114,130 @@ namespace PPI.Core.Web.Controllers
         //
         // GET: /Account/Register
         [Log]
-        [Authorize(Roles = "Admin")]    
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
-
-            ViewData["UserRole"] = new SelectList(UsersRoles(), "Value", "Text");
             ViewData["Site"] = new SelectList(SitesLists(), "Value", "Text");
-            return View();
+            return View(new PPI.Core.Web.Models.RegisterViewModel());
         }
 
         //
         // POST: /Account/Register
         [Log]
         [HttpPost]
-        [Authorize(Roles = "Admin")]    
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        [Authorize(Roles = "Admin")]
+        [MvcHaack.Ajax.ValidateJsonAntiForgeryToken]
+        public async Task<ActionResult> Register(string email, string userName, string password, string confirmPassword, string usersite, List<string> roles)
         {
-            if (ModelState.IsValid && (model.UserRole != null && ((model.UserRole == "2" && model.Site != null) || model.UserRole == "1"))) 
-            {
-                var user = new ApplicationUser() { UserName = model.UserName };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+            //Check if username is not in the database already
+            if (userRegisterd(userName)) {
+                return Json(new { error = true, message = "The username is already registered in the system, please try again with another username." });
+            } else if(validUsername(userName)) {
+                //User does not exist and is longer than 3 characterswe can keep moving forward
+                if (passwordsEqual(password, confirmPassword) && password.Length >= 6)
                 {
-                    //Setup Role and Site
-                    //AspNetUserRole UserRole = new AspNetUserRole();
-                    //UserRole.RoleId = model.UserRole;
-                    //UserRole.UserId = user.Id;
+                    //Check the role and the e-mails
+                    if(roles.Count > 0)
+                    {
+                        //Check if e-mails are valid
+                        if (validateEmail(email))
+                        {
+                            var user = new ApplicationUser() { UserName = userName, Active = true };
+                            var result = await UserManager.CreateAsync(user, password);
+                            
+                            if (result.Succeeded)
+                            {
+                                foreach (var r in roles)
+                                {
+                                    user.Roles.Add(new IdentityUserRole() { RoleId = r, UserId = user.Id });
+                                }
+                                UserManager.Update(user);
 
-                    user.Roles.Add(new IdentityUserRole() { RoleId = model.UserRole, UserId = user.Id });
-                    UserManager.Update(user);
-
-                    if (model.UserRole == "2")
-                    { 
-                        SiteUser SiteUser = new SiteUser();
-                        SiteUser.AspNetUsersId = user.Id;
-                        SiteUser.SiteId = model.Site.GetValueOrDefault();
-                        UnitOfWork.ISiteUserRepository.Add(SiteUser);
+                                PPI.Core.Domain.Entities.SiteUser SiteUser = new PPI.Core.Domain.Entities.SiteUser();
+                                SiteUser.AspNetUsersId = user.Id;
+                                SiteUser.SiteId = Convert.ToInt32(usersite);
+                                
+                                UnitOfWork.ISiteUserRepository.Add(SiteUser);
+                                UnitOfWork.Commit();
+                                await SignInAsync(user, isPersistent: false);
+                                return Json(new { error = false , message = "User created successfully."});
+                            }
+                            else
+                            {
+                                return Json(new { error = true, message = "Error creating user." });
+                            }
+                        }
+                        else
+                        {
+                            return Json(new { error = true, message = "Please insert a valid e-mail." });
+                        }
                     }
-                    
-                    UnitOfWork.Commit();
-                    await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    else
+                    {
+                        return Json(new { error = true, message = "Select 1 more or for the user." });
+                    }
+
                 }
                 else
                 {
-                    AddErrors(result);
+                    return Json(new { error = true, message = "Inserted passwords need to match and passwords need to be 6 characters or more." });
                 }
             }
+            else
+            {
+                return Json(new { error = true, message = "Username needs to be more than 3 characters." });
+            }
 
-            // If we got this far, something failed, redisplay form
-            ViewData["UserRole"] = new SelectList(UsersRoles(), "Value", "Text");
-            ViewData["Site"] = new SelectList(SitesLists(), "Value", "Text");
             
-            return View(model);
+        }
+
+        private void removeCurrentSites(string id)
+        {
+            List<SiteUser> lstUserToRemove = new List<SiteUser>();
+            IEnumerable<SiteUser> lstU = UnitOfWork.ISiteUserRepository.GetAll();
+            foreach (SiteUser item in lstU)
+            {
+                if(item.AspNetUsersId.Equals(id))
+                {
+                    lstUserToRemove.Add(item);
+                }
+            }
+            //After we get the list of siteuser to remove we delete them
+            foreach(SiteUser item in lstUserToRemove) {
+                UnitOfWork.ISiteUserRepository.Delete(item);
+           }
+            UnitOfWork.Commit();
+        }
+
+        //Checks for e-mail address and returns value depending if the e-mail address is valid or not
+        private bool validateEmail(string email)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(email);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool passwordsEqual(string password, string confirmPassword)
+        {
+            return password.Equals(confirmPassword);
+        }
+
+        private bool validUsername(string userName)
+        {
+            return userName.Length > 3;
+        }
+
+        private bool userRegisterd(string userName)
+        {
+            ApplicationDbContext dbr = new ApplicationDbContext();
+            ApplicationUser u = dbr.Users.Where(r => r.UserName.Equals(userName)).FirstOrDefault();
+            return u != null;
         }
 
         //
@@ -391,6 +473,106 @@ namespace PPI.Core.Web.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //Receives a user id and an action (deactivate, activate) and performs the action
+        public ActionResult changeStatusUser(int id, string action)
+        {
+            try {
+                ApplicationDbContext idb = new ApplicationDbContext();
+                ApplicationUser u = idb.Users.Find(id);
+                if (action.ToUpper().Equals("DEACTIVATE"))
+                    u.Active = false;
+                if (action.ToUpper().Equals("ACTIVATE"))
+                    u.Active = true;
+
+                idb.SaveChanges();
+                idb.Dispose();
+                return Json(new
+                {
+                    error = false,
+                    message = "User " + u.UserName + " has been " + action
+                });
+            }
+            catch
+            {
+                return Json(new
+                {
+                    error = true,
+                    message = "Error " + action + " user"
+                });
+            }
+        }
+
+        //Return a list of all users in a view
+        public ActionResult AdministerUsers(AdministerUsersViewModel auvm) {
+            AdministerUsersViewModel avm = new AdministerUsersViewModel();
+            if (auvm.idSelectedRole > 0)
+            {
+                avm.changeSelectedRole(auvm.idSelectedRole.ToString());
+            }
+            return View(avm);
+        }
+
+
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            ViewData["Site"] = new SelectList(SitesLists(), "Value", "Text");
+            return View(new EditUserViewModel(id));
+        }
+
+        [HttpPost]
+        public ActionResult makeUserChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userid,string usersite)
+        {
+            try
+            {
+                EditUserViewModel.saveChanges(selectedRoles, currentRoles, email,userid,usersite);
+                PPI.Core.Domain.Entities.SiteUser SiteUser = new PPI.Core.Domain.Entities.SiteUser();
+                removeCurrentSites(userid); //Remove user site if the user is already in one, users can only have 1 user site
+                //After removing the last user site we can add new ones in
+                SiteUser.AspNetUsersId = userid;
+                SiteUser.SiteId = Convert.ToInt32(usersite);
+                UnitOfWork.ISiteUserRepository.Add(SiteUser);
+                UnitOfWork.Commit();
+                return Json(new { error = false });
+            }
+            catch
+            {
+                return Json(new { error = true });
+            }
+        }
+
+
+        //Receives user Id and actino through ajax and changes the status of the user depending on the data sent
+        [HttpPost]
+        public ActionResult changeStatus(string userId, string action)
+        {
+            if (userId == null || action == null)
+                return Json(new
+                {
+                    error = true
+                });
+            else
+            {
+                try
+                {
+                    ApplicationDbContext dbr = new ApplicationDbContext();
+                    ApplicationUser u = dbr.Users.Where(m => m.Id.Equals(userId)).FirstOrDefault();
+                    if (action.ToUpper().Equals("ACTIVATE"))
+                        u.Active = true;
+                    else if (action.ToUpper().Equals("DEACTIVATE"))
+                        u.Active = false;
+                    dbr.SaveChanges();
+                    dbr.Dispose();
+                    return Json(new { error = false });
+                }
+                catch
+                {
+                    return Json(new { error = true });
+                }
+            }
+        }
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins

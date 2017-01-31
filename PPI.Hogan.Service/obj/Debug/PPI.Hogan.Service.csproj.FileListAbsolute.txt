@@ -34,3 +34,35 @@ C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Hogan
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.csproj.GenerateResource.Cache
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.exe
 C:\Users\nico\Desktop\Old Version of Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PPI.Hogan.Service.exe.config
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PPI.Hogan.Service.exe.manifest
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PPI.Hogan.Service.application
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PPI.Hogan.Service.exe
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PPI.Hogan.Service.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\CsvHelper.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\EntityFramework.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PostSharp.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PPI.Core.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PPI.Core.Domain.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\System.Web.WebPages.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\System.Web.Razor.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PPI.Core.Domain.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PPI.Core.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\CsvHelper.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\CsvHelper.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\EntityFramework.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\EntityFramework.SqlServer.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\PostSharp.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\System.Web.WebPages.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\System.Web.Razor.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.csprojResolveAssemblyReference.cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.ProjectInstaller.resources
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.csproj.GenerateResource.Cache
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.exe.manifest
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.application
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.exe
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Debug\PPI.Hogan.Service.pdb

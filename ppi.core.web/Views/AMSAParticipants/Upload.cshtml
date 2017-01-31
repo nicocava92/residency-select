@@ -10,114 +10,144 @@
 
 <div class="main-box clearfix">
     <div class="main-box-body">
-        @using (Html.BeginForm("Upload", "AMSAParticipants",FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            @using (Html.BeginForm("Upload", "AMSAParticipants", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
-                <h2>AMSA Participant Upload</h2>
-                <hr />
-                <p>
-                    <ol>
-                        <li>
-                            PLEASE MAKE SURE THAT YOU ONLY USE THE TEMPLATE IN ITS EXISTING FORM WITHOUT MODIFYING IT. IF THE TEMPLATE IS NOT UPLOADED IN THE EXACT FORMAT IN A CSV FILE, YOUR UPLOAD WILL NOT COMPLETE
-                        </li>
-                        <li>
-                            IF A PARTICIPANT HAS BEEN ADDED TO SYSTEM AND THE SPECIFIC EVENT BY ANOTHER PROGRAM/ORGANIZATION THE NOTIFIER WILL INFORM YOU THAT THE PARTICIPANT HAS ALREADY BEEN ASSIGNED TO THE EVENT
-                        </li>
-                        <li>
-                            IF THERE ARE NOT ENOUGH CODES TO ASSIGN ONTO THE PARTICIPANTS THAT ARE BEING UPLOADED, THE SYSTEM WILL STOP THE OUPLOAD AND INFORM YOU OF THE LINE NUMBER AND FILE NUMBER WHERE THE UPLOAD WAS STOPED
-                        </li>
-                        <li>
-                            PLEASE MAKE SURE YOU ARE UPLOADING YOUR LIST TO THE CORRECT EVENT
-                        </li>
-                    </ol>
-                </p>
+                    <h2>AMSA Participant Upload</h2>
+                    <hr />
+                    <p>
+                        <ol>
+                            <li>
+                                PLEASE MAKE SURE THAT YOU ONLY USE THE TEMPLATE IN ITS EXISTING FORM WITHOUT MODIFYING IT AND MAKE SURE THE FILE IS .CSV, .XLSX, XLS.
+                            </li>
+                            <li>
+                                IF A PARTICIPANT HAS BEEN ADDED TO SYSTEM AND THE SPECIFIC EVENT BY ANOTHER PROGRAM/ORGANIZATION THE NOTIFIER WILL INFORM YOU THAT THE PARTICIPANT HAS ALREADY BEEN ASSIGNED TO THE EVENT
+                            </li>
+                            <li>
+                                IF THERE ARE NOT ENOUGH CODES TO ASSIGN ONTO THE PARTICIPANTS THAT ARE BEING UPLOADED, THE SYSTEM WILL STOP THE OUPLOAD AND INFORM YOU OF THE LINE NUMBER AND FILE NUMBER WHERE THE UPLOAD WAS STOPED
+                            </li>
+                            <li>
+                                PLEASE MAKE SURE YOU ARE UPLOADING YOUR LIST TO THE CORRECT EVENT
+                            </li>
+                        </ol>
+                    </p>
 
-                <hr />  
+                    <hr />
 
-                @*Upload participants via CSV*@
-                <div id="eventSelection">
-                    <div class="row">
-                        @Html.LabelFor(model => model.Events, htmlAttributes: new { @class = "col-md-1 bold" })
-                        <div class="col-md-5">
-                            @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @onChange = "checkAmmountOfCodes()", @id = "eventId" })
-                            @Html.ValidationMessage("AMSAEvent")
-                        </div>
-                        <div class="col-md-2">
-
-                            Available AMSA Codes
-                            <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
-                                @Model.AMASCodeCount()
+                    @*Upload participants via CSV*@
+                    <div id="eventSelection">
+                        <div class="row">
+                            @Html.LabelFor(model => model.Events, htmlAttributes: new { @class = "col-md-1 bold" })
+                            <div class="col-md-5">
+                                @Html.DropDownListFor(model => model.idSelectedEvent, Model.Events, new { @class = "form-control", @onChange = "checkAmmountOfCodes()", @id = "eventId" })
+                                @Html.ValidationMessage("AMSAEvent")
+                            </div>
+                            <div id="numCodesDisplay" class="col-md-4">
+                                 Available AMSA Codes
+                                <div id="amsaCodeCount" class="badge badge-success pull-left" style="">
+                                    @Model.AMASCodeCount()
+                                </div>
                             </div>
 
                         </div>
+                        <br />
+                        @Html.ValidationSummary("Participant")
 
                     </div>
-                    <br />
-                    @Html.ValidationSummary("Participant")
-                    
-                </div>
 
-                @*Show this pannel when there are no codes*@
-                <div id="errorEvent" class="alert alert-danger" style="display:none;">
-                    
-                </div>
+                    @*Show this pannel when there are no codes*@
+                    <div id="errorEvent" class="alert alert-danger" style="display:none;">
 
-                <div id="uploadParticipant" style="display:none;">
-                    <br />
-                    <div class="alert-info" display="display">
-                        <a href="~/Uploadfiles/AMSAParticipant.csv"><label><i class="fa fa-file-excel-o fa-2x"></i></label>  View and download a sample upload file.</a>
                     </div>
-                    <br />  
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="row">
-                        <div class="col-md-9">
-                            @Html.LabelFor(model => model.csvFile, htmlAttributes: new { @class = "col-md-2 bold" })
+
+                    <div id="uploadParticipant" style="display:none;">
+                        <br />
+                        <div class="alert-info" display="display">
+                            <a href="~/Uploadfiles/AMSAParticipant.csv"><label><i class="fa fa-file-excel-o fa-2x"></i></label>  View and download a sample upload file.</a>
                         </div>
+                        <br />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="row">
                             <div class="col-md-9">
-                                <input type="file" name="file" id="file" multiple="" placeholder="select 1 or multiple files">
-                                
+                                @Html.LabelFor(model => model.csvFile, htmlAttributes: new { @class = "col-md-12 bold" })
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <input type="file" name="file" id="file" multiple="" placeholder="select 1 or multiple files">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mt20 mb20">
+                                <input type="submit" id="btnsubmit" name="submit" class="btn btn-primary btn200" value="Submit" /><br />
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div  class="mt20 mb20">
-                            <input type="submit" id="btnsubmit" name="submit" class="btn btn-primary btn200" value="Submit" /><br />
-                        </div>
-                    </div>
                 </div>
-            </div>
-            
-        }
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+                <h2>Available AMSA Codes per Event</h2>
+                <ul class="list-group">
+                    @foreach(PPI.Core.Web.Models.AmsaReports.AMSAEvent e in Model.LstEvents) {
+                    if (e.id > 0)
+                    {
+
+                        <li class="list-group-item">
+                        @{ int code = @e.getAmmountCodes();}
+                        @if (code == 0) { 
+                        <span class="badge badge-default" style="width:40px; font-size:14px;">@e.getAmmountCodes()</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success" style="width:40px; font-size:14px;">@e.getAmmountCodes()</span>
+                        }
+                        @e.Name
+
+                    </li>
+                        }
+                                            }
+                </ul>
+            </div>
     </div>
 </div>
 
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            checkAmmountOfCodes();
-            
+            if ($("#eventId").val() > 0) {
+                $("#numCodesDisplay").css("display","none");
+                checkAmmountOfCodes();
+            }
+            if ($("#eventId").val() <= 0){
+                $("#numCodesDisplay").css("display","none");
+            }
         });
         function checkAmmountOfCodes() {
             //Get e-mail address
             var eventId = $("#eventId").val();
+            $("#numCodesDisplay").fadeIn();
             $("#modalMessage").modal('show');
                 $('.alert').fadeOut();
                 $.ajax({
                     contentType: "application/json; charset=utf-8",
                     type: "GET",
-                    url: "../AMSAParticipants/getAmmountOfCodes",
+                    url: "../../AMSAParticipants/getAmmountOfCodes",
                     data: { eventId : eventId },
                     datatype: "json",
                     traditional: true,
                     success: function (data) {
-                        var button = '<br />@Html.ActionLink("Insert Codes", "Create", "AMSACodes", null, new { @class = "btn btn-primary" })';
+                        var button = '<br /><a id="btnRedirect" class="btn btn-primary" href="../../AMSACodes/Create/' + eventId + '">Insert Codes</a>';
                         if (!data.error) {
                             //There is no error
                             $("#errorEvent").fadeOut();

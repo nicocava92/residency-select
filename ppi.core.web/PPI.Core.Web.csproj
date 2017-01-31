@@ -144,6 +144,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Moq.4.2.1408.0717\lib\net40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="MvcHaack.Ajax, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcHaack.Ajax.1.1\lib\net40\MvcHaack.Ajax.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MvcSiteMapProvider, Version=4.6.15.0, Culture=neutral, PublicKeyToken=1923abe4657913cc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvcSiteMapProvider.MVC5.Core.4.6.15\lib\net45\MvcSiteMapProvider.dll</HintPath>
@@ -249,6 +253,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\AMSABillingController.cs" />
     <Compile Include="Controllers\AMSACodesController.cs" />
     <Compile Include="Controllers\AMSAEmailsController.cs" />
     <Compile Include="Controllers\AMSAEventsController.cs" />
@@ -373,6 +378,7 @@
     <Compile Include="Models\AmsaReports\ViewExtensions.cs" />
     <Compile Include="Models\AmsaReports\ReportUtilities.cs" />
     <Compile Include="Models\AmsaReports\UserAnswersViewModel.cs" />
+    <Compile Include="Models\AmsaReports\ViewModel\AMSABillingViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeUploadViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSACodeViewModel.cs" />
     <Compile Include="Models\AmsaReports\ViewModel\AMSAParticipantProfileViewModel.cs" />
@@ -425,6 +431,8 @@
     <Compile Include="Models\SiteMVPIViewModel.cs" />
     <Compile Include="Models\SiteViewModel.cs" />
     <Compile Include="Models\UploadFileModel.cs" />
+    <Compile Include="Models\ViewModel\AdministerUsersViewModel.cs" />
+    <Compile Include="Models\ViewModel\EditUserViewModel.cs" />
     <Compile Include="Models\ZCOExportConfigViewModel.cs" />
     <Compile Include="PracticeReports.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -3099,6 +3107,10 @@
     <Content Include="Views\AMSAEvents\_PartialEmailForAdministrators.cshtml" />
     <Content Include="Views\AMSAEmails\_PartialEmailReminder.cshtml" />
     <Content Include="Views\AMSAEmails\_PartialEmailInvitation.cshtml" />
+    <Content Include="Views\Account\AdministerUsers.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\AMSABilling\Index.cshtml" />
+    <Content Include="Views\AMSABilling\_PartialParticipantsAMSA.cshtml" />
     <None Include="Web.PPI_DEV_NETWORK.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

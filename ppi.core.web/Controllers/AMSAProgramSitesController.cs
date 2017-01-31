@@ -62,6 +62,15 @@ namespace PPI.Core.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AMSAProgramSiteViewModel avm)
         {
+            if(!(avm.idSelectedProgram > 0))
+            {
+                ModelState.AddModelError("AMSAProgram","An AMSA Program Site can't be inserted without a AMSAProgram");
+            }
+            if(!(avm.idSelectedSite > 0))
+            {
+                ModelState.AddModelError("AMSASite", "An AMSA Program Site can't be inserted without a AMSASite");
+            }
+
             if (ModelState.IsValid)
             {
                 //db.AMSAProgramSite.Add(aMSAProgramSite);
@@ -76,6 +85,8 @@ namespace PPI.Core.Web.Controllers
         // GET: /AMSAProgramSites/Edit/5
         public ActionResult Edit(int? id)
         {
+           
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -100,10 +111,21 @@ namespace PPI.Core.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AMSAProgramSiteViewModel avm)
         {
-              // db.Entry(aMSAProgramSite).State = EntityState.Modified;
-                //db.SaveChanges();
+            if (!(avm.idSelectedProgram > 0))
+            {
+                ModelState.AddModelError("AMSAProgram", "An AMSA Program Site can't be inserted without a AMSAProgram");
+            }
+            if (!(avm.idSelectedSite > 0))
+            {
+                ModelState.AddModelError("AMSASite", "An AMSA Program Site can't be inserted without a AMSASite");
+            }
+            // db.Entry(aMSAProgramSite).State = EntityState.Modified;
+            //db.SaveChanges();
+            if (ModelState.IsValid) { 
                 avm.saveChanges();
-				return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View(avm);
         }
 
         // GET: /AMSAProgramSites/Delete/5

@@ -14,7 +14,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         [DisplayName("Event")]
         public SelectList Events { get; set; }
         public int idSelectedEvent { get; set; }
-        [DisplayName("Upload CSV With AMSA Codes For Event")]
+        [DisplayName("Upload .csv, .xls, .xlsx For Event")]
         public HttpPostedFile csvFile { get; set; }
         public AMSAEvent selectedEvent { get; set; }
         //Store errors on upload so further users are added even if other users generated errors, inform multiple errors at once without stopping the application form finishing its normal course
@@ -89,41 +89,26 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         {
             List<AMSACode> lstCodes = new List<AMSACode>();
             int i = 0;
+
+
             while (i < request.Files.Count)
             {
-                HttpPostedFileBase UploadedFile = request.Files[0];
-                //WHere participants to be inserted into the database will be added
-
-                // Use the InputStream to get the actual stream sent.
-                StreamReader csvreader = new StreamReader(UploadedFile.InputStream);
-                var c = 0;
-                while (!csvreader.EndOfStream)
+                try
                 {
-                    var line = csvreader.ReadLine();
-                    var values = line.Split(',');
-                    //If not on first element 
-                    if (c > 0)
-                    {
-                        //Try to save if there are errors let user know the participants that where not uploaded.. store the participants e-mail address and line number to let the user know
+                    //Read files and get array
+                    List<string[]> values = ReportUtilities.getDataFromCsvXlsxORXLAMSACodes(request.Files[i]);
+                    //WHere participants to be inserted into the database will be added
 
-                        //AMSAParticipant p = new AMSAParticipant();
-                        //p.FirstName = values[0];
-                        //p.LastName = values[1];
-                        //p.PrimaryEmail = values[2];
-                        //p.AMSACode = values[3];
-                        //p.AAMCNumber = values[4];
-                        //p.Gender = values[5];
-                        //p.Title = values[6];
-                        //lstParticipants.Add(p);
-                        AMSACode auxCode = new AMSACode();
-                        auxCode.Code = values[0];
-                        auxCode.Pin = values[1];
-                        lstCodes.Add(auxCode);
-                    }
-                    c++;
+                    //Get list of participants from va
+                    lstCodes = ReportUtilities.arrayToAMSACodes(values);
+                    //After all of the Participants that we are tryign to insert into the database are added into the list, then we try to add them or return errors if there are problems
+                    i++;
                 }
-                //After first line - which is the description file - add participant
-                i++;
+                catch
+                {
+                    m.AddModelError("Code", "Data load failed for file # " + i + " please check that all information is inserted correctly");
+                    i++;
+                }
             }
 
             //After all of the Participants that we are tryign to insert into the database are added into the list, then we try to add them or return errors if there are problems

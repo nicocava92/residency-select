@@ -101,6 +101,9 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             var EmailTemplate = new EmailTemplateModel();
             EmailTemplate.subject = this.Subject;
             EmailTemplate.closing = this.Closing;
+            //Send over information about AMSA Code and AMSA Password
+            EmailTemplate.amsa_id = p.AMSACode;
+            EmailTemplate.amsa_password = p.AMSA_Password;
             EmailTemplate.introduction = this.Introduction;
             var Email = new EmailModel();
             Email.to = p.PrimaryEmail;
@@ -149,6 +152,8 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
                 if (p.timeToSendReminder(this)) {
                     try { 
                         this.send(p, controller);
+                        p.Reminder_date = DateTime.Now;
+                        p.saveChanges();
                     }
                     catch
                     {

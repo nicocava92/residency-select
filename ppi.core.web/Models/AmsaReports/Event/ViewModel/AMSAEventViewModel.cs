@@ -274,7 +274,14 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             ae.OrderBy = this.AMSAEvent.OrderBy;
             ae.JetRequired = this.AMSAEvent.JetRequired;
             ae.CompositeRequired = this.AMSAEvent.CompositeRequired;
-            ae.AMSAEventStatus = dbr.AMSAEventStatus.Where(m => m.Name.Equals("Invitation")).FirstOrDefault();
+            ae.AMSAEventStatus = dbr.AMSAEventStatus.Where(m => m.Name.ToUpper().Equals("INVITATION")).FirstOrDefault();
+            if(ae.AMSAEventStatus == null)
+            {
+                //If the event status invitation does not exist then we create it and isert it
+                AMSAEventStatus eventStatus = new AMSAEventStatus { Name = "Invitation" };
+                dbr.AMSAEventStatus.Add(eventStatus);
+                ae.AMSAEventStatus = eventStatus;
+            }
             dbr.AMSAEvent.Add(ae);
             dbr.SaveChanges();
             //Create e-mails for the event
