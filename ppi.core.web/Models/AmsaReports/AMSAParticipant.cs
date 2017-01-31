@@ -12,13 +12,13 @@ namespace PPI.Core.Web.Models.AmsaReports
     {
         //FirstName, LastName, PrimaryEmail, PersonId, Gender, Title
         public int Id { get; set; }
-        [Required (ErrorMessage = "First Name is Required")]
-        [DisplayName ("First Name")]
+        [Required(ErrorMessage = "First Name is Required")]
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Last Name is Required")]
         [DisplayName("Last Name")]
         public string LastName { get; set; }
-        [Required (ErrorMessage = "Please insert a valid e-mail address")]
+        [Required(ErrorMessage = "Please insert a valid e-mail address")]
         [EmailAddress(ErrorMessage = "Please insert a valid e-mail address")]
         [DisplayName("Primary E-mail address")]
         public string PrimaryEmail { get; set; }
@@ -33,12 +33,12 @@ namespace PPI.Core.Web.Models.AmsaReports
 
         //Same as Hogan Code
         [DisplayName("AMSA Code")]
-        [Required (ErrorMessage = "AMSA Code is Required")]
+        [Required(ErrorMessage = "AMSA Code is Required")]
         public string AMSACode { get; set; }
         //Password
         [PasswordPropertyText]
         [DisplayName("Password")]
-        [Required (ErrorMessage = "Password is Required")]
+        [Required(ErrorMessage = "Password is Required")]
         public string AMSA_Password { get; set; }
 
 
@@ -107,14 +107,41 @@ namespace PPI.Core.Web.Models.AmsaReports
             dbr.Dispose();
         }
 
+        //Checks if reminder e-mail needs to be sent or not
         internal bool timeToSendReminder(AMSAEmail email)
         {
-            if(this.Invitation_date != null)
+            //Check if the PARTICIPANT HAS FINISHED THEN THERE IS NO POINT IN SENDING OVER A INVITATION NOR REMINDER
+            bool finished = participantFinished();
+            if (!finished) { 
+            if (this.Invitation_date != null)
             {
-                DateTime invitation = Invitation_date ?? DateTime.Now;
-                TimeSpan i = (DateTime.Now - invitation);
+                //Send initial reminder
+                
+                if (this.Reminder_date == null) {
+                    DateTime invitation = Invitation_date ?? DateTime.Now;
+                    TimeSpan i = (DateTime.Now - invitation);
+                    int numOfDays = Convert.ToInt32(i.TotalDays);
+                    if (numOfDays >= email.automaticReminderDays && Reminder_date == null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            //If initial reminder has been sent then we check against the reminder sent date to see if we need to send a reminder
+            else
+            {
+                DateTime reminder = Reminder_date ?? DateTime.Now;
+                TimeSpan i = (DateTime.Now - reminder);
                 int numOfDays = Convert.ToInt32(i.TotalDays);
-                if(numOfDays >= email.automaticReminderDays && Reminder_date == null)
+                if (numOfDays >= email.automaticReminderDays)
                 {
                     return true;
                 }
@@ -123,12 +150,33 @@ namespace PPI.Core.Web.Models.AmsaReports
                     return false;
                 }
             }
+            }
             else
             {
                 return false;
             }
         }
+
+        /// <summary>
+        /// Invoked to test if a participant has finished or no performing what is required form him in the Event
+        /// </summary>
+        /// <returns></returns>
+        private bool participantFinished()
+        {
+            return this.Status.ToUpper().Equals("COMPLETED") || this.Status.ToUpper().Equals("COMPLETED PASS");
+        }
+
+        //Checkes if the amsa code exists or doesn't exist
+        internal bool amsaCodeExits(int eventId)
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            AMSACode c = dbr.AMSACodes.Where(m => m.AMSAEvent.id == eventId && m.Code.Equals(this.AMSACode)).FirstOrDefault();
+            dbr.Dispose();
+            return c != null && !c.Used;
+        }
     }
+
+    
 
     public class AMSAParticipantForCSV { 
         [DisplayName("First Name")]

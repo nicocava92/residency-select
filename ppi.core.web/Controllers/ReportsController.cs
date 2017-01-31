@@ -1315,12 +1315,12 @@ namespace PPI.Core.Web.Controllers
                 if (pvm.idSelectedEvent != 0)
                 {
                     //Get the listing of information that needs to be shown on the view
-                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == pvm.idSelectedEvent && r.Status.ToUpper().Equals("COMPLETED")).ToList();
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == pvm.idSelectedEvent && (r.Status.ToUpper().Equals("COMPLETED") || r.Status.ToUpper().Equals("COMPLETED PASS"))).ToList();
                 }
                 else
                 {
                     //If it is == 0 then what we are need to show is all of the participants
-                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.Status.ToUpper().Equals("COMPLETED")).ToList();
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => (r.Status.ToUpper().Equals("COMPLETED") || r.Status.ToUpper().Equals("COMPLETED PASS"))).ToList();
                 }
                 pvm.LstStudentData = participantsInEvent;
                 return View("IndexAmsaStudents", pvm);
@@ -1344,12 +1344,12 @@ namespace PPI.Core.Web.Controllers
                 if (eventId != 0)
                 {
                     //Get the listing of information that needs to be shown on the view
-                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == eventId && r.Status.ToUpper().Equals("COMPLETED")).ToList();
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.AMSAEvent.id == eventId && (r.Status.ToUpper().Equals("COMPLETED") || r.Status.ToUpper().Equals("COMPLETED PASS"))).ToList();
                 }
                 else
                 {
                     //If it is == 0 then what we are need to show is all of the participants
-                    participantsInEvent = dbr.lstStudentsForReport.Where(r => r.Status.ToUpper().Equals("COMPLETED")).ToList();
+                    participantsInEvent = dbr.lstStudentsForReport.Where(r => (r.Status.ToUpper().Equals("COMPLETED") || r.Status.ToUpper().Equals("COMPLETED PASS"))).ToList();
                 }
                 pvm.LstStudentData = participantsInEvent;
                 return View("IndexAmsaStudents", pvm);

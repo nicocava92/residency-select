@@ -212,23 +212,23 @@ namespace PPI.Core.Web.Models.AmsaReports
                     p.Status = values[5].Trim();
                     if (p.Status != "")
                     {
-                        if (p.Status.ToUpper().Equals("COMPLETED"))
+                        if (p.Status.ToUpper().Equals("COMPLETED") || p.Status.ToUpper().Equals("COMPLETED PASS"))
                         {
-                            p.Stanine_Ambition = Convert.ToInt32(values[6]);
-                            p.Stanine_Assertiveness = Convert.ToInt32(values[7]);
-                            p.Stanine_Awareness = Convert.ToInt32(values[8]);
-                            p.Stanine_Composure = Convert.ToInt32(values[9]);
-                            p.Stanine_Conceptual = Convert.ToInt32(values[10]);
-                            p.Stanine_Cooperativeness = Convert.ToInt32(values[11]);
-                            p.Stanine_Drive = Convert.ToInt32(values[12]);
-                            p.Stanine_Flexibility = Convert.ToInt32(values[13]);
-                            p.Stanine_Humility = Convert.ToInt32(values[14]);
-                            p.Stanine_Liveliness = Convert.ToInt32(values[15]);
-                            p.Stanine_Mastery = Convert.ToInt32(values[16]);
-                            p.Stanine_Positivity = Convert.ToInt32(values[17]);
-                            p.Stanine_Power = Convert.ToInt32(values[18]);
-                            p.Stanine_Sensitivity = Convert.ToInt32(values[19]);
-                            p.Stanine_Structure = Convert.ToInt32(values[20]);
+                            p.Stanine_Ambition = Convert.ToInt32(values[7]);
+                            p.Stanine_Assertiveness = Convert.ToInt32(values[8]);
+                            p.Stanine_Awareness = Convert.ToInt32(values[9]);
+                            p.Stanine_Composure = Convert.ToInt32(values[10]);
+                            p.Stanine_Conceptual = Convert.ToInt32(values[11]);
+                            p.Stanine_Cooperativeness = Convert.ToInt32(values[12]);
+                            p.Stanine_Drive = Convert.ToInt32(values[13]);
+                            p.Stanine_Flexibility = Convert.ToInt32(values[14]);
+                            p.Stanine_Humility = Convert.ToInt32(values[15]);
+                            p.Stanine_Liveliness = Convert.ToInt32(values[16]);
+                            p.Stanine_Mastery = Convert.ToInt32(values[17]);
+                            p.Stanine_Positivity = Convert.ToInt32(values[18]);
+                            p.Stanine_Power = Convert.ToInt32(values[19]);
+                            p.Stanine_Sensitivity = Convert.ToInt32(values[20]);
+                            p.Stanine_Structure = Convert.ToInt32(values[21]);
                         }
                     }
                     lstParticipants.Add(p);
@@ -286,7 +286,7 @@ namespace PPI.Core.Web.Models.AmsaReports
                 if (Type.ToUpper().Equals("REPORTDATA")) { 
                     //Add values for columns into the file
                     //Loop through the columns in the row 
-                    for (int i = 0; i <= 20; i++)
+                    for (int i = 0; i <= 21; i++)
                     {
 
                         //For .xls reading dates is different, because of this we try for each column to read a date

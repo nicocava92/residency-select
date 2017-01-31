@@ -35,10 +35,10 @@
                                     </span>
                                 </td>
                                 <td>
-                                        @if (Model.AmsaParticipant.Status.ToUpper().Equals("COMPLETED"))
+                                        @if (Model.AmsaParticipant.Status.ToUpper().Equals("COMPLETED") || Model.AmsaParticipant.Status.ToUpper().Equals("COMPLETED PASS"))
                                         {
                                             <div class="label label-large label-primary pull-right" style="margin-top:0px;">
-                                                @Model.AmsaParticipant.Status
+                                                Completed
                                             </div>
                                         }
                                         else

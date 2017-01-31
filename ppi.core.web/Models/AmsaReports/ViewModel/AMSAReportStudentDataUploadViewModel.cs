@@ -180,7 +180,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 else
                 {
                     //Check size of name
-                    if (p.FirstName.Length < 3)
+                    if (p.FirstName.Length < 1)
                     {
                         this.Errors += "First name needs to have 3 letters or more" + p.PersonId;
                         m.AddModelError("Participant", "First name needs to have 3 letters or more" + p.PersonId);
@@ -195,7 +195,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                 else
                 {
                     //Check length of last name
-                    if (p.LastName.Length < 3)
+                    if (p.LastName.Length < 1)
                     {
                         this.Errors += "Last name needs to have 3 letters or more" + p.PersonId;
                         m.AddModelError("Participant", "last name needs to have 3 letters or more" + p.PersonId);
@@ -206,7 +206,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     m.AddModelError("Participant", "registration date missing for" + p.PersonId);
                 }
                 //Check for certain nulls only if the participant has a status of completed
-                if (p.Status.ToUpper().Equals("COMPLETED"))
+                if (p.Status.ToUpper().Equals("COMPLETED") || p.Status.ToUpper().Equals("COMPLETED PASS"))
                 { 
                     if (p.CompletionDate == null)
                     {

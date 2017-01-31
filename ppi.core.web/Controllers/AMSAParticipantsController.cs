@@ -88,6 +88,12 @@ namespace PPI.Core.Web.Controllers
             ModelState.Remove("AMSAParticipant.AAMCNumber");
             ModelState.Remove("AMSAParticipant.AMSACode");
             ModelState.Remove("AMSAParticipant.PrimaryEmail");
+            //Check if the e-mail is unique or if exists for another Participant already
+            AMSAParticipant p = dbr.AMSAParticipant.Where(m => m.PrimaryEmail.ToUpper().Equals(pvm.AMSAParticipant.PrimaryEmail.ToUpper())).FirstOrDefault();
+            if(p != null)
+            {
+                ModelState.AddModelError("AMSAParticipantEmail", "There is another participant already registered with this e-mail address, please enter another e-mail address.");
+            }
 
             if (ModelState.IsValid)
             {

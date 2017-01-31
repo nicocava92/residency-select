@@ -177,14 +177,14 @@ namespace PPI.Core.Web.Controllers
         public ActionResult AMSAAssessmentsCompleted(int eventId)
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == eventId).ToList();
+            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => (r.Status.ToUpper().Equals("COMPLETED") || r.Status.ToUpper().Equals("COMPLETED PASS")) && r.AMSAEvent.id == eventId).ToList();
             return PartialView("AMSAAssessmentsCompleted", lst);
         }
         [Log]
         public ActionResult AMSAAssessmentsUncompleted(int eventId)
         {
            AMSAReportContext dbr = new AMSAReportContext();
-            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => !r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == eventId).ToList();
+            List<AMSAParticipant> lst = dbr.AMSAParticipant.Where(r => !(r.Status.ToUpper().Equals("COMPLETED") || !r.Status.ToUpper().Equals("COMPLETED PASS")) && r.AMSAEvent.id == eventId).ToList();
             return PartialView("AMSAAssessmentsUnCompleted", lst);
         }
         [Log]
@@ -203,6 +203,21 @@ namespace PPI.Core.Web.Controllers
             switch (assessmentStatus)
             {
                 case "Completed":
+                    {
+                        var PeopleList = GetAssessmentList(eventId, assessmentStatus).Select(m => m.Person);
+                        if (PeopleList.Count() > 0)
+                        {
+                            var CsvConfig = new CsvConfiguration();
+                            CsvConfig.RegisterClassMap<PPI.Core.Web.Infrastructure.ImportMaps.People_Map>();
+                            writer = new CsvWriter(sw, CsvConfig);
+                            IEnumerable<Person> records = PeopleList.ToList();
+                            writer.WriteRecords(records);
+                            sw.Flush();
+                        }
+                        streamoutput.Seek(0, SeekOrigin.Begin);
+                        break;
+                    }
+                case "Completed Pass":
                     {
                         var PeopleList = GetAssessmentList(eventId, assessmentStatus).Select(m => m.Person);
                         if (PeopleList.Count() > 0)
@@ -290,13 +305,13 @@ namespace PPI.Core.Web.Controllers
                 }
 
                 //TodayCompleted = dbr.lstStudentsForReport.Where(r => DbFunctions.TruncateTime(r.Updated) == ThisRun.Date && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList().Count();
-                UsersCompleted = dbr.lstStudentsForReport.Where(r => r.Updated < ThisRun && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList().Count();
+                UsersCompleted = dbr.lstStudentsForReport.Where(r => r.Updated < ThisRun && (r.Status.ToUpper().Equals("COMPLETED") || r.Status.ToUpper().Equals("COMPLETED PASS")) && r.AMSAEvent.id == e.id).ToList().Count();
 
                 //Get list of people
                 List<AMSAParticipant> listAllParticipants = dbr.AMSAParticipant.Where(r => r.AMSAEvent.id == e.id).ToList();
                 TotalInvitations = listAllParticipants.Where(r => r.Invitation_date != null).ToList().Count();
                 TotalReminders = listAllParticipants.Where(r => r.Reminder_date != null).ToList().Count();
-                List<AmsaReportStudentData> lstAllData = dbr.lstStudentsForReport.Where(r => r.CompletionDate != null && r.Status.ToUpper().Equals("COMPLETED") && r.AMSAEvent.id == e.id).ToList();
+                List<AmsaReportStudentData> lstAllData = dbr.lstStudentsForReport.Where(r => r.CompletionDate != null && (r.Status.ToUpper().Equals("COMPLETED") || r.Status.ToUpper().Equals("COMPLETED PASS")) && r.AMSAEvent.id == e.id).ToList();
                 //After we get the list of reports we check for the ammount completed today
                 foreach (AmsaReportStudentData sd in lstAllData) {
                     if (sd.CompletionDate.Date == DateTime.Now.Date)
