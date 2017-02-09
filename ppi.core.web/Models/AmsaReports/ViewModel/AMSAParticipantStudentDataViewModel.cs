@@ -52,6 +52,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
             AmsaReportStudentData s = new AmsaReportStudentData();
             s.CompletionDate = this.Data.CompletionDate;
             s.RegistrationDate = this.Data.RegistrationDate;
+            s.GateID = this.Data.GateID; // Adding GateId which is equal to AMSA Code
             s.PersonId = this.Data.PersonId;
             s.FirstName = this.Data.FirstName;
             s.LastName = this.Data.LastName;

@@ -201,8 +201,11 @@ namespace PPI.Core.Web.Models.AmsaReports
                     //Try to save if there are errors let the user know
                     AmsaReportStudentData p = new AmsaReportStudentData();
                     p.FirstName = values[0];
+                    //Check if it is empty row if it isnt then add in
+                    if (!p.FirstName.Equals("")) { 
                     p.LastName = values[1];
                     p.PersonId = values[2];
+                    p.GateID = values[6]; //Adding in Gate Field (AMSA CODE)
                     //Only do date conversions if the dates exist 
                     if (values[3] != "")
                         p.RegistrationDate = Convert.ToDateTime(values[3]);
@@ -212,7 +215,8 @@ namespace PPI.Core.Web.Models.AmsaReports
                     p.Status = values[5].Trim();
                     if (p.Status != "")
                     {
-                        if (p.Status.ToUpper().Equals("COMPLETED") || p.Status.ToUpper().Equals("COMPLETED PASS"))
+                        if (p.Status.ToUpper().Equals("COMPLETED") || p.Status.ToUpper().Equals("COMPLETED PASS") ||
+                            p.Status.ToUpper().Equals("COMPLETE") || p.Status.ToUpper().Equals("COMPLETE PASS"))
                         {
                             p.Stanine_Ambition = Convert.ToInt32(values[7]);
                             p.Stanine_Assertiveness = Convert.ToInt32(values[8]);
@@ -232,6 +236,7 @@ namespace PPI.Core.Web.Models.AmsaReports
                         }
                     }
                     lstParticipants.Add(p);
+                    }
                 }
                 c++;
             }

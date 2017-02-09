@@ -1,0 +1,18 @@
+namespace PPI.Core.Web.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class ADDINGGATEIDTOREPORT : DbMigration
+    {
+        public override void Up()
+        {
+            AddColumn("dbo.AmsaReportStudentDatas", "GateID", c => c.String());
+        }
+        
+        public override void Down()
+        {
+            DropColumn("dbo.AmsaReportStudentDatas", "GateID");
+        }
+    }
+}

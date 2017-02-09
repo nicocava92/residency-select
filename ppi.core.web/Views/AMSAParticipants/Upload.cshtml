@@ -47,7 +47,7 @@
                                 @Html.ValidationMessage("AMSAEvent")
                             </div>
                             <div id="numCodesDisplay" class="col-md-4">
-                                 Available AMSA Codes
+                                 Available GATE ID(S)
                                 <div id="amsaCodeCount" class="badge badge-success pull-left" style="">
                                     @Model.AMASCodeCount()
                                 </div>
@@ -97,7 +97,7 @@
             </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
-                <h2>Available AMSA Codes per Event</h2>
+                <h2>Available GATE ID(S) per Event</h2>
                 <ul class="list-group">
                     @foreach(PPI.Core.Web.Models.AmsaReports.AMSAEvent e in Model.LstEvents) {
                     if (e.id > 0)

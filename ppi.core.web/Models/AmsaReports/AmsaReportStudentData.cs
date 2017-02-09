@@ -27,6 +27,8 @@ namespace PPI.Core.Web.Models.AmsaReports
         public virtual DateTime RegistrationDate { get; set; }
         [System.ComponentModel.DisplayName("Completion Date")]
         public virtual DateTime CompletionDate { get; set; }
+        //Gate id == AMSA CODE
+        public virtual String GateID { get; set; }
         //Ambition
         [System.ComponentModel.DisplayName("Stanine Ambition")]
         [Range(1, 9, ErrorMessage = "Must be between 1 and 9")]

@@ -279,3 +279,4 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debu
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\MvcHaack.Ajax.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\RdlCompile.cache
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\RdlCompile.compiled
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Debug\PPI.Core.Web.Migrations.ADDINGGATEIDTOREPORT.resources

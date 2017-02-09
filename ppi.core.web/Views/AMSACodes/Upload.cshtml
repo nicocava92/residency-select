@@ -1,7 +1,7 @@
 ﻿@model PPI.Core.Web.Models.AmsaReports.ViewModel.AMSACodeUploadViewModel
 
 @{
-    ViewBag.Title = "Upload AMSA Code";
+    ViewBag.Title = "Upload GATE ID";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
 }
@@ -15,7 +15,7 @@
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h2>AMSA Code Upload</h2>
+                <h2>GATE ID Upload</h2>
                 <hr />
                 <p>
                     <ol>
@@ -48,7 +48,7 @@
                                 <div id="amsaCodeCount" class="badge badge-success pull-right" style="">
                                     @Model.AMASCodeCount()
                                 </div>
-                                Available AMSA Codes
+                                Available GATE ID
                             </div>
                         }
 

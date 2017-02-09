@@ -32,8 +32,8 @@ namespace PPI.Core.Web.Models.AmsaReports
         public string AAMCNumber { get; set; }
 
         //Same as Hogan Code
-        [DisplayName("AMSA Code")]
-        [Required(ErrorMessage = "AMSA Code is Required")]
+        [DisplayName("GATE ID")]
+        [Required(ErrorMessage = "GATE ID is Required")]
         public string AMSACode { get; set; }
         //Password
         [PasswordPropertyText]
@@ -163,7 +163,7 @@ namespace PPI.Core.Web.Models.AmsaReports
         /// <returns></returns>
         private bool participantFinished()
         {
-            return this.Status.ToUpper().Equals("COMPLETED") || this.Status.ToUpper().Equals("COMPLETED PASS");
+            return this.Status.ToUpper().Equals("COMPLETED") || this.Status.ToUpper().Equals("COMPLETED PASS") || this.Status.ToUpper().Equals("COMPLETE") || this.Status.ToUpper().Equals("COMPLETE PASS");
         }
 
         //Checkes if the amsa code exists or doesn't exist
@@ -192,7 +192,7 @@ namespace PPI.Core.Web.Models.AmsaReports
         public string AAMCNumber { get; set; }
 
         //Same as Hogan Code
-        [DisplayName("AMSA Code")]
+        [DisplayName("GATE ID")]
         public string AMSACode { get; set; }
         
     }

@@ -145,7 +145,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
         private void checkParticipantExists(AmsaReportStudentData p, ModelStateDictionary m)
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            AMSAParticipant auxParticipant = dbr.AMSAParticipant.Where(r => r.AMSACode.ToUpper().Equals(p.PersonId)).FirstOrDefault();
+            AMSAParticipant auxParticipant = dbr.AMSAParticipant.Where(r => r.AMSACode.ToUpper().Equals(p.GateID)).FirstOrDefault();
             if(auxParticipant == null)
             {
                 // Let the user know that this participant needs to be added before this can move on forward
@@ -206,7 +206,8 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     m.AddModelError("Participant", "registration date missing for" + p.PersonId);
                 }
                 //Check for certain nulls only if the participant has a status of completed
-                if (p.Status.ToUpper().Equals("COMPLETED") || p.Status.ToUpper().Equals("COMPLETED PASS"))
+                if (p.Status.ToUpper().Equals("COMPLETED") || p.Status.ToUpper().Equals("COMPLETED PASS") ||
+                    p.Status.ToUpper().Equals("COMPLETE") || p.Status.ToUpper().Equals("COMPLETE PASS"))
                 { 
                     if (p.CompletionDate == null)
                     {

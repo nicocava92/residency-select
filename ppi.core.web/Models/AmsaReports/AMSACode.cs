@@ -12,10 +12,10 @@ namespace PPI.Core.Web.Models.AmsaReports
     {
         public int Id { get; set; }
         [Required (ErrorMessage = "AMSA Code is required")]
-        [Display (Name = "AMSA Code (User Id for AON)")]
+        [Display (Name = "GATE ID (User Id for AON)")]
         public string Code { get; set; }
         //Store the PIN (Password)t
-        [Required (ErrorMessage = "PING Required")]
+        [Required (ErrorMessage = "PIN Required")]
         [Display(Name = "PIN (Password)")]
         public string Pin { get; set; }
         //Check if the AMSA Code is used
@@ -36,9 +36,9 @@ namespace PPI.Core.Web.Models.AmsaReports
 
                 var emailmessage = new System.Net.Mail.MailMessage();
                 emailmessage.From = new System.Net.Mail.MailAddress("noreply@performanceprograms.com");
-                emailmessage.Subject = "Running low on AMSA Codes for " + this.AMSAEvent.Name;
+                emailmessage.Subject = "Running low on GATE ID (AMSA CODE) for " + this.AMSAEvent.Name;
                 emailmessage.IsBodyHtml = true;
-                emailmessage.Body = "<p>Less than 4 AMSA Codes available for the event - "+this.AMSAEvent.Name+" - Ammount of AMAS codes left: "+lstCodes.Count+". <br />To add more codes onto the event please login to the system and go to AMSA Reports > Codes > Add Codes or Code Upload and select "+this.AMSAEvent.Name+" as the Event.</p>";
+                emailmessage.Body = "<p>Less than 4 Gate (AMSA Codes) available for the event - "+this.AMSAEvent.Name+" - Ammount of AMAS codes left: "+lstCodes.Count+". <br />To add more codes onto the event please login to the system and go to AMSA Reports > Codes > Add Codes or Code Upload and select "+this.AMSAEvent.Name+" as the Event.</p>";
                 //MailClass.SendEmail(emailmessage.Subject, emailmessage.Body, "noreply@j3personica.com", "nicocava92@live.com");
 
                 //Send Grid example code

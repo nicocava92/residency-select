@@ -29,7 +29,7 @@
                                 @Model.AMASCodeCount()
                             </div>
 
-                              Available AMSA Codes 
+                              Available GATE ID(S)
                         </div>
 
                     </div>
@@ -100,8 +100,8 @@
                             @Html.EditorFor(model => model.AMSAParticipant.AMSACode, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.AMSAParticipant.AMSACode, "", new { @class = "text-danger" })
                             @Html.ValidationMessage("AMSACode")<br />
-                            <i class="fa fa-info-circle fa-fw fa-lg red"></i> <strong class="red">Note</strong> <span class="red">Leave Blank to Auto Assign New AMSA Code<br />
-                            PIN (Password) will be automatically assigned to the user from the PIN that corresponds to the AMSA Code inserted here (if left blank this will be auto assigned).</span>
+                            <i class="fa fa-info-circle fa-fw fa-lg red"></i> <strong class="red">Note</strong> <span class="red">Leave Blank to Auto Assign New GATE ID<br />
+                            PIN (Password) will be automatically assigned to the user from the PIN that corresponds to the GATE ID inserted here (if left blank this will be auto assigned).</span>
                         </div>
                     </div>
                     <div class="form-group">

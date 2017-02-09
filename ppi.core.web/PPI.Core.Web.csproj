@@ -346,6 +346,10 @@
     <Compile Include="Migrations\201612011429576_AMSACodes1.Designer.cs">
       <DependentUpon>201612011429576_AMSACodes1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702022025577_ADDING-GATEID-TO-REPORT.cs" />
+    <Compile Include="Migrations\201702022025577_ADDING-GATEID-TO-REPORT.Designer.cs">
+      <DependentUpon>201702022025577_ADDING-GATEID-TO-REPORT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MatchPracticeReports.Designer.cs">
       <DependentUpon>MatchPracticeReports.xsd</DependentUpon>
@@ -3193,6 +3197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612011429576_AMSACodes1.resx">
       <DependentUpon>201612011429576_AMSACodes1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702022025577_ADDING-GATEID-TO-REPORT.resx">
+      <DependentUpon>201702022025577_ADDING-GATEID-TO-REPORT.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
