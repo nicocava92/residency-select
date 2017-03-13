@@ -225,7 +225,6 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bi
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\Microsoft.Owin.Security.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\Microsoft.Owin.Host.SystemWeb.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\SendGrid.SmtpApi.dll
-C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\Microsoft.SqlServer.Types.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\PPI.Core.Web.pdb
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\CsvHelper.pdb
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\CsvHelper.xml
@@ -256,3 +255,9 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bi
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\obj\Release\PPI.Core.Web.Tests.csprojResolveAssemblyReference.cache
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\obj\Release\PPI.Core.Web.Tests.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\obj\Release\PPI.Core.Web.Tests.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\Excel.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\MvcHaack.Ajax.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\HiQPdf.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\Excel.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\HiQPdf.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\HiQPdf.dep

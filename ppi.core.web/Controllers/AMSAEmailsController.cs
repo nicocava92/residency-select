@@ -61,7 +61,7 @@ namespace PPI.Core.Web.Controllers
             bool setup = true;
             if(eventId > 0) { 
             int i = 0;
-            //If e-maisl exist then check if they have something written in them
+            //If e-mails exist then check if they have something written in them
             if (lstEmails.Count > 0) { 
                 while (setup &&  i < lstEmails.Count)
                 {
@@ -81,6 +81,7 @@ namespace PPI.Core.Web.Controllers
                         }
                     i++;
                 }
+
             }
             //If they don't exist then create them and let the user know that there is nothing written in them
             else
@@ -264,6 +265,7 @@ namespace PPI.Core.Web.Controllers
                     //Get all reminder e-mails
                     AMSAReportContext dbr = new AMSAReportContext();
                     List<AMSAEmail> lstReminderEmails = dbr.AMSAEmail.Where(m => m.Type.ToUpper().Equals("REMINDER")).ToList();
+                    //After you have the list of users that need to be reminded of the information then check if they have finisehd or not the event
                     //On each e-mail execute method to send e-mails
                     foreach (AMSAEmail e in lstReminderEmails)
                     {
@@ -292,7 +294,6 @@ namespace PPI.Core.Web.Controllers
                 message = "reminder has already been sent today"
             });
         }
-
 
     }
 }

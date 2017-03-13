@@ -116,7 +116,6 @@ namespace PPI.Core.Web.Models.AmsaReports
             if (this.Invitation_date != null)
             {
                 //Send initial reminder
-                
                 if (this.Reminder_date == null) {
                     DateTime invitation = Invitation_date ?? DateTime.Now;
                     TimeSpan i = (DateTime.Now - invitation);
@@ -173,6 +172,22 @@ namespace PPI.Core.Web.Models.AmsaReports
             AMSACode c = dbr.AMSACodes.Where(m => m.AMSAEvent.id == eventId && m.Code.Equals(this.AMSACode)).FirstOrDefault();
             dbr.Dispose();
             return c != null && !c.Used;
+        }
+
+        /// <summary>
+        /// Checks if the user has finished the event
+        /// </summary>
+        /// <returns>True if the participant has completed the Event, false if the participant hasn't</returns>
+        internal bool finishedEvent()
+        {
+            AMSAReportContext dbr = new AMSAReportContext();
+            //Get report 
+            AmsaReportStudentData rData = dbr.lstStudentsForReport.Where(m => m.GateID.ToUpper().Equals(this.AMSACode.ToUpper())).FirstOrDefault();
+            if (rData == null)
+                return false;
+            //Return the boolean for the comparison to Completed or Complete in regards to the level of completion of the Event
+            return  "COMPLETED" == rData.Status.ToUpper().Trim() ||
+                    "COMPLETE" == rData.Status.ToUpper().Trim();
         }
     }
 

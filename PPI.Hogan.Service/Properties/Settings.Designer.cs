@@ -34,7 +34,7 @@ namespace PPI.Hogan.Service.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\inetpub\\wwwroot\\Residency_Select\\AutoHoganFiles\\\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"C:\inetpub\wwwroot\Residency_Select\AutoHoganFiles")]
         public string FileMonitorPath {
             get {
                 return ((string)(this["FileMonitorPath"]));

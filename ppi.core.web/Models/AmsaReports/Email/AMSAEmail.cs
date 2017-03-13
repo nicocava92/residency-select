@@ -149,21 +149,28 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             //Check if e-mail needs to be sent to the participant or not and send e-mail
             foreach (AMSAParticipant p in lstParticipants)
             {
-                if (p.timeToSendReminder(this)) {
-                    try { 
-                        this.send(p, controller);
-                        p.Reminder_date = DateTime.Now;
-                        p.saveChanges();
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Let the user know that this e-mail was not sent correctly");
+                //Check if the participant has finished the event, if the participant hasn't finished the event then send
+                if (!finishedEvent(p)) { 
+                    //If the participant hasn't finished the event check if it is time to send a reminder and if it is send the reminder
+                    if (p.timeToSendReminder(this)) {
+                        try { 
+                            this.send(p, controller);
+                            p.Reminder_date = DateTime.Now;
+                            p.saveChanges();
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Let the user know that this e-mail was not sent correctly");
+                        }
                     }
                 }
             }
 
         }
 
-        
+        private bool finishedEvent(AMSAParticipant p)
+        {
+            return p.finishedEvent();
+        }
     }
 }

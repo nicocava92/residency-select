@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPI.Core.Web", "ppi.core.web\PPI.Core.Web.csproj", "{9D701E24-C7FD-4B0C-9D95-B5AD3770A33B}"
 EndProject
@@ -20,36 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPI.ScheduledEmailJob", "PPI.ScheduledEmailJob\PPI.ScheduledEmailJob.csproj", "{BA1B6B9A-0466-4884-B66D-09553257751B}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://performanceprograms.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = PPI.Core.Database\\PPI.Core.Database.sqlproj
-		SccProjectName1 = PPI.Core.Database
-		SccLocalPath1 = PPI.Core.Database
-		SccProjectUniqueName2 = ppi.core.domain\\PPI.Core.Domain.csproj
-		SccProjectName2 = ppi.core.domain
-		SccLocalPath2 = ppi.core.domain
-		SccProjectUniqueName3 = ppi.core.web.tests\\PPI.Core.Web.Tests.csproj
-		SccProjectName3 = ppi.core.web.tests
-		SccLocalPath3 = ppi.core.web.tests
-		SccProjectUniqueName4 = ppi.core.web\\PPI.Core.Web.csproj
-		SccProjectName4 = ppi.core.web
-		SccLocalPath4 = ppi.core.web
-		SccProjectUniqueName5 = PPI.Core\\PPI.Core.csproj
-		SccProjectName5 = PPI.Core
-		SccLocalPath5 = PPI.Core
-		SccProjectUniqueName6 = OwinContrib.Security.LinkedIn\\OwinContrib.Security.LinkedIn.csproj
-		SccProjectName6 = OwinContrib.Security.LinkedIn
-		SccLocalPath6 = OwinContrib.Security.LinkedIn
-		SccProjectUniqueName7 = PPI.Hogan.Service\\PPI.Hogan.Service.csproj
-		SccProjectName7 = PPI.Hogan.Service
-		SccLocalPath7 = PPI.Hogan.Service
-		SccProjectUniqueName8 = PPI.ScheduledEmailJob\\PPI.ScheduledEmailJob.csproj
-		SccProjectName8 = PPI.ScheduledEmailJob
-		SccLocalPath8 = PPI.ScheduledEmailJob
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

@@ -109,7 +109,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>S+Unc5JOSP0ZLAHMEzp4a8QG03NB0gQwfzkWoGwx87w=</dsig:DigestValue>
+        <dsig:DigestValue>pf2PDTCTh7yK8RmCFKspV3NQlWTPXqOVf/2vQjq1lKA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -121,19 +121,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>27GX9OudFP/K+qTo6lV/wBKlPmAR2akjd53WSpL4RCE=</dsig:DigestValue>
+        <dsig:DigestValue>dhgKLvygCQRztXUWb0JCnNLCCYx1eSgV3/JXB231QbA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PPI.Hogan.Service.exe" size="40960">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PPI.Hogan.Service.exe" size="41472">
       <assemblyIdentity name="PPI.Hogan.Service" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>EUgp6qa7NCLyEucRPmvQ2IAfv4vLdEtPzYUh1/H3bOs=</dsig:DigestValue>
+        <dsig:DigestValue>HyguJZt4ZWqcwlc+gJDmVMhgq78pxWizcI7BLWPu7RY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

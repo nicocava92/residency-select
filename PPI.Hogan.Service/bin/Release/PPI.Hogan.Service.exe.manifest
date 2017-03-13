@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="PPI.Hogan.Service.exe" version="1.0.0.9" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="PPI.Hogan.Service.exe" version="1.0.0.11" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="PPI.Hogan.Service" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -42,11 +42,6 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.Web.Infrastructure" version="1.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CsvHelper.dll" size="72192">
       <assemblyIdentity name="CsvHelper" version="2.0.0.0" publicKeyToken="8C4959082BE5C823" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -83,6 +78,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Web.Infrastructure.dll" size="45416">
+      <assemblyIdentity name="Microsoft.Web.Infrastructure" version="1.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>/hj0JZyUfB/W108YJzcOctetCa77S3IK8iczNYPgFp8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PostSharp.dll" size="217312">
       <assemblyIdentity name="PostSharp" version="4.0.39.0" publicKeyToken="B13FD38B8F9C99D7" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -95,26 +102,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PPI.Core.dll" size="25088">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PPI.Core.dll" size="24576">
       <assemblyIdentity name="PPI.Core" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8KsWKMPskAjr07iS6KOzBThEsfhqOsmEanhY3z8Ep5I=</dsig:DigestValue>
+        <dsig:DigestValue>r6JNqqdY7FomtQYLbDJTr3UgRTPCKoWAWqUIfhXfsQI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PPI.Core.Domain.dll" size="464384">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PPI.Core.Domain.dll" size="456192">
       <assemblyIdentity name="PPI.Core.Domain" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>oQGTV+1XZuFgY95CFicrmM/aEnOwcz47/Cpy2Girx9g=</dsig:DigestValue>
+        <dsig:DigestValue>MZQx5fQiBtSnevZDrcXSri4r/ARhox44z8IZatdXr0k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -126,7 +133,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>G/guP6Masd8d+sswU+or4nZw1VVkzllAUZbxB6X79lo=</dsig:DigestValue>
+        <dsig:DigestValue>dibLyIzWcMl3ox/rxcTBQz4vinMKyaDrU2F34CwVpxU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -166,13 +173,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="PPI.Hogan.Service.exe.config" size="3983">
+  <file name="PPI.Hogan.Service.exe.config" size="4831">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>06HM9lLVQV20cttBZdo+0Q2MUUc/uQmhJ6QpMs0iTec=</dsig:DigestValue>
+      <dsig:DigestValue>mj+FXrY9qgvmLzY5Wm6nTInMuapJ+EWI4u3a0AQbdfk=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

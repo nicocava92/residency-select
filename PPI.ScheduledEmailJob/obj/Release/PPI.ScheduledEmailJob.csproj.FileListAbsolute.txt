@@ -248,3 +248,10 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\obj\Release\PPI.ScheduledEmailJob.csprojResolveAssemblyReference.cache
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\obj\Release\PPI.ScheduledEmailJob.exe
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\obj\Release\PPI.ScheduledEmailJob.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Release\Excel.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Release\MvcHaack.Ajax.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Release\HiQPdf.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Release\Excel.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Release\HiQPdf.xml
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.ScheduledEmailJob\bin\Release\HiQPdf.dep

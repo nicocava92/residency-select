@@ -120,6 +120,7 @@ namespace PPI.Hogan.Service.Utility
         [Log]
         public void fileWatcher_Created(object sender, System.IO.FileSystemEventArgs e)
         {
+            System.IO.File.Create(AppDomain.CurrentDomain.BaseDirectory + "New File Found.txt");
             Trace.TraceInformation(e.Name);
             Trace.TraceInformation(e.ChangeType.ToString());
             Trace.TraceInformation(e.FullPath);
@@ -134,6 +135,7 @@ namespace PPI.Hogan.Service.Utility
                     FilesToProcess.Dequeue();
                 else
                 {
+                    System.IO.File.Create(AppDomain.CurrentDomain.BaseDirectory + "File not processed, error -- check why this happened.txt");
                     Trace.TraceError("file will not process - " + FilesToProcess.Dequeue());
                 }
             }
@@ -141,6 +143,7 @@ namespace PPI.Hogan.Service.Utility
         [Log]
         public void StartWatching(FileSystemWatcher fileWatcher)
         {
+            
             fileWatcher = new System.IO.FileSystemWatcher();
             fileWatcher.Path = Properties.Settings.Default.FileMonitorPath;
             fileWatcher.Filter = Properties.Settings.Default.Filter;
@@ -154,7 +157,8 @@ namespace PPI.Hogan.Service.Utility
             fileWatcher.Error += fileWatcher_Error;
             Trace.TraceInformation(Properties.Settings.Default.FileMonitorPath);
             Trace.TraceInformation(Properties.Settings.Default.Filter);
-        
+            System.IO.File.Create(AppDomain.CurrentDomain.BaseDirectory + "StartedWatching.txt");
+
         }
         public static Manual_Hogan_Import Update(Manual_Hogan_Import orginal, Manual_Hogan_Import newData)
         {

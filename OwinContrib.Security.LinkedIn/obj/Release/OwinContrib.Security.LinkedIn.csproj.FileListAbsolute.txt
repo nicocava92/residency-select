@@ -43,3 +43,4 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.
 C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Release\OwinContrib.Security.LinkedIn.csprojResolveAssemblyReference.cache
 C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Release\OwinContrib.Security.LinkedIn.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\obj\Release\OwinContrib.Security.LinkedIn.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\OwinContrib.Security.LinkedIn\bin\Release\MvcHaack.Ajax.dll
