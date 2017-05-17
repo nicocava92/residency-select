@@ -1,0 +1,28 @@
+w3wp.exe Information: 0 : Row Exception Fields 'J3P_Id' do not exist in the CSV file.: Row Data Jada,Brown,sonya@performanceprograms.com,HC812350,test101,Female,Dr.
+
+w3wp.exe Information: 0 : Row Exception Fields 'J3P_Id' do not exist in the CSV file.: Row Data Sonya,Test Person 1,hogan@performanceprograms.com,,fakeperson1,Male,Dr.
+
+w3wp.exe Information: 0 : Row Exception Fields 'J3P_Id' do not exist in the CSV file.: Row Data Sonya,Test Person 2,sonya2@performanceprograms.com,,fakeperson4,Female,Dr.
+
+w3wp.exe Information: 0 : Row Exception Fields 'J3P_Id' do not exist in the CSV file.: Row Data Joe,Smart3,JoeSmartTest13567@gmail.com,,,Male,Dr.
+
+w3wp.exe Information: 0 : Row Exception Fields 'J3P_Id' do not exist in the CSV file.: Row Data Joe,Smith3,JoeSmithTest13567@gmail.com,,,Male,Mr.
+
+w3wp.exe Information: 0 : Row Exception Fields 'J3P_Id' do not exist in the CSV file.: Row Data Joe,Smart3,JoeSmartTest13567@gmail.com,,,Male,Dr.
+
+w3wp.exe Information: 0 : Row Exception Fields 'J3P_Id' do not exist in the CSV file.: Row Data Joe,Smith3,JoeSmithTest13567@gmail.com,,,Male,Mr.
+
+Warning: Images with external URL references will not display if the report is published to a report server without an UnattendedExecutionAccount or the target image(s) are not enabled for anonymous access. (rsWarningFetchingExternalImages)
+Warning: Images with external URL references will not display if the report is published to a report server without an UnattendedExecutionAccount or the target image(s) are not enabled for anonymous access. (rsWarningFetchingExternalImages)
+Exception Helper ERROR (E3): The request failed with HTTP status 404: Not Found.
+iisexpress.exe Information: 0 : Row Exception Fields 'HoganId' do not exist in the CSV file.: Row Data ric,roc,flipflop@gmail.com,,,Male,Dr.
+
+Exception Helper ERROR (E3): The request failed with HTTP status 404: Not Found.
+iisexpress.exe Information: 0 : Row Exception Fields 'HoganId' do not exist in the CSV file.: Row Data Dani,Roptz,roopoopoo@gmial.com,,,Female,Dr.
+
+Exception Helper ERROR (E3): The request failed with HTTP status 404: Not Found.
+iisexpress.exe Information: 0 : Row Exception Fields 'HoganId' do not exist in the CSV file.: Row Data Robert,Plant,dfasfasdf@gmail.com,,,Male,Dr.
+
+Exception Helper ERROR (E3): The request failed with HTTP status 404: Not Found.
+iisexpress.exe Information: 0 : Row Exception Fields 'HoganId' do not exist in the CSV file.: Row Data Richard,Norton,coco@gmail.com,,,Male,Dr.
+

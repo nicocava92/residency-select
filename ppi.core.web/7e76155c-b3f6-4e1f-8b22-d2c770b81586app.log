@@ -1,0 +1,822 @@
+w3wp.exe Information: 0 : 01/20/2016 08:17:30 - PPI.Core.Web.FilterConfig.RegisterGlobalFilters: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.FilterConfig.RegisterGlobalFilters: Completion in 53 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:17:30 - PPI.Core.Web.RouteConfig.RegisterRoutes: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.RouteConfig.RegisterRoutes: Completion in 156 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:17:30 - PPI.Core.Web.BundleConfig.RegisterBundles: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.BundleConfig.RegisterBundles: Completion in 28 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:17:30 - PPI.Core.Web.Infrastructure.NinjectControllerFactory..ctor: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:17:30 - PPI.Core.Web.Infrastructure.NinjectControllerFactory.AddBindings: Enter
+    w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.NinjectControllerFactory.AddBindings: Completion in 4 milliseconds
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.NinjectControllerFactory..ctor: Completion in 6 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:17:31 - PPI.Core.Web.Startup.ConfigureAuth: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Startup.ConfigureAuth: Completion in 14 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:18 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:18 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:18 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:18 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:18 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:18 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:20 - PPI.Core.Web.Infrastructure.Utility.SetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.SetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:20 - PPI.Core.PeopleController.Profile: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:18:20 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:20 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:20 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:20 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:20 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:20 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : PPI.Core.PeopleController.Profile: Completion in 726 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.ProgramController.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ProgramController.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:22 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Web.Infrastructure.Utility.SetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.SetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.PeopleController.Profile: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:18:40 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : PPI.Core.PeopleController.Profile: Completion in 23 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:41 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:41 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:41 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:41 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:41 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.ProgramController.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ProgramController.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:18:42 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Web.Infrastructure.Utility.SetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.SetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.PeopleController.Profile: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:01 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : PPI.Core.PeopleController.Profile: Completion in 21 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.ProgramController.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ProgramController.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:02 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Web.Infrastructure.Utility.SetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.SetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.PeopleController.Profile: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:24 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : PPI.Core.PeopleController.Profile: Completion in 21 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.ProgramController.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ProgramController.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:25 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Web.Infrastructure.Utility.SetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.SetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.PeopleController.Profile: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:19:39 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : PPI.Core.PeopleController.Profile: Completion in 21 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.ProgramController.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ProgramController.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:19:40 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Web.Infrastructure.Utility.SetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.SetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.PeopleController.Profile: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:20:23 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : PPI.Core.PeopleController.Profile: Completion in 21 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.ProgramController.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ProgramController.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:20:24 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Web.Infrastructure.Utility.SetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.SetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.PeopleController.Profile: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:21:07 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : PPI.Core.PeopleController.Profile: Completion in 21 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.ProgramController.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ProgramController.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:21:08 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Web.Infrastructure.Utility.SetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.SetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.PeopleController.Profile: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:06 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : PPI.Core.PeopleController.Profile: Completion in 22 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.ProgramController.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ProgramController.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:07 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Web.Infrastructure.Utility.GetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.GetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Web.Infrastructure.Utility.SetCookie: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Infrastructure.Utility.SetCookie: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.PeopleController.Profile: Enter
+    w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+    w3wp.exe Information: 0 : 01/20/2016 08:24:35 - PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Enter
+    w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfGenericRepository`1.AsQueryable: Completion in 0 milliseconds
+w3wp.exe Information: 0 : PPI.Core.PeopleController.Profile: Completion in 21 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.ProgramController.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ProgramController.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.PeopleController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.PeopleController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.AccountController.get_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.get_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.AccountController.set_UserManager: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.AccountController.set_UserManager: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.ReportsController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.ReportsController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Web.Controllers.HoganController..ctor: Enter
+w3wp.exe Information: 0 : PPI.Core.Web.Controllers.HoganController..ctor: Completion in 0 milliseconds
+w3wp.exe Information: 0 : 01/20/2016 08:24:36 - PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Enter
+w3wp.exe Information: 0 : PPI.Core.Domain.Concrete.EfUnitOfWork.Dispose: Completion in 0 milliseconds
