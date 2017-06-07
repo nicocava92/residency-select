@@ -141,6 +141,8 @@ namespace PPI.Core.Web.Models.AmsaReports.Email
             transportWeb.Deliver(Mail);
         }
 
+       
+
         internal void sendReminders(AMSAEmailsController controller)
         {
             AMSAReportContext dbr = new AMSAReportContext();

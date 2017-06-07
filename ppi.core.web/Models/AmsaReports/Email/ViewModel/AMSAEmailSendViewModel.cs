@@ -18,7 +18,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Email.ViewModel
         public AMSAEmailSendViewModel()
         {
             AMSAReportContext dbr = new AMSAReportContext();
-            List<AMSAEvent> lstE = dbr.AMSAEvent.ToList();
+            List<AMSAEvent> lstE = dbr.AMSAEvent.Where(m => m.EndDate > DateTime.Now).ToList(); // Only show events that are happening now, if they are finished then don't show
             lstE.Insert(0, new AMSAEvent{ id = 0, Name = "Select an Event" });
             Events = new SelectList(lstE, "id", "Name");
 

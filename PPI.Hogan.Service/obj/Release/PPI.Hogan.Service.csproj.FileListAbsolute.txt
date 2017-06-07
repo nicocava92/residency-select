@@ -96,3 +96,4 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Release\System.Web.WebPages.Deployment.xml
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.exe.manifest
 C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\obj\Release\PPI.Hogan.Service.application
+C:\wamp\www\PPI\projects\Residency Select\residency-select\PPI.Hogan.Service\bin\Release\PPI.Core.Domain.dll.config

@@ -1,0 +1,9 @@
+PPI.Hogan.Service.vshost.exe Information: 0 : C:\inetpub\wwwroot\Residency_Select\AutoHoganFiles\\
+PPI.Hogan.Service.vshost.exe Information: 0 : *.csv
+PPI.Hogan.Service.vshost.exe Information: 0 : C:\inetpub\wwwroot\Residency_Select\AutoHoganFiles\\
+PPI.Hogan.Service.vshost.exe Information: 0 : *.csv
+PPI.Hogan.Service.vshost.exe Information: 0 : AMSAParticipant (1).csv
+PPI.Hogan.Service.vshost.exe Information: 0 : Created
+PPI.Hogan.Service.vshost.exe Information: 0 : C:\inetpub\wwwroot\Residency_Select\AutoHoganFiles\\AMSAParticipant (1).csv
+PPI.Hogan.Service.vshost.exe Information: 0 : Row Exception Fields 'ClientID' do not exist in the CSV file.: Row Data John,Sample,john@domain.com,HC999999,,Male,Dr.,
+

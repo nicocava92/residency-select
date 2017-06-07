@@ -68,10 +68,18 @@ namespace PPI.Core.Web.Controllers
                      ///    
                      foreach (var item in filterEvents)
                      {
-                         var newItem = new SelectListItem();
-                         newItem.Text = item.Name + "-" + item.ProgramSite.Site.FriendlyName + "     [Created " + item.CreateDate.ToShortDateString()  +"]";
-                         newItem.Value = item.Id.ToString();
-                         UploadEvents.Add(newItem);
+                        //try
+                        //{
+                            var newItem = new SelectListItem();
+                            //newItem.Text = item.Name + "-" + item.ProgramSite.Site.FriendlyName + "     [Created " + item.CreateDate.ToShortDateString() + "]";
+                            newItem.Text = item.Name;
+                            newItem.Value = item.Id.ToString();
+                            UploadEvents.Add(newItem);
+                        //}
+                        //catch(Exception ex)
+                        //{
+                        //    Console.WriteLine("REMMBER TO REMOVE THIS AND FIX THIS LOAD");
+                        //}
                      }          
                         
                     return new SelectList(UploadEvents, "Value", "Text",GlobalItem);

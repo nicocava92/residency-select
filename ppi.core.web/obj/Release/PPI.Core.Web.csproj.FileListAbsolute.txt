@@ -446,9 +446,10 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Rele
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Release\PPI.Core.Web.Migrations.AMSACodes.resources
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Release\PPI.Core.Web.Migrations.AMSACodes1.resources
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Release\PPI.Core.Web.Migrations.ADDINGGATEIDTOREPORT.resources
-C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Release\RdlCompile.cache
-C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\obj\Release\RdlCompile.compiled
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\Excel.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\ICSharpCode.SharpZipLib.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\MvcHaack.Ajax.dll
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\Excel.pdb
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\Microsoft.Web.Administration.dll
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\OwinContrib.Security.LinkedIn.dll.config
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web\bin\PPI.Core.Domain.dll.config

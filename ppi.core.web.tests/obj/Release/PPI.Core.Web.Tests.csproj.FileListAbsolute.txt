@@ -261,3 +261,5 @@ C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bi
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\Excel.pdb
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\HiQPdf.xml
 C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\HiQPdf.dep
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\PPI.Core.Web.dll.config
+C:\wamp\www\PPI\projects\Residency Select\residency-select\ppi.core.web.tests\bin\Release\PPI.Core.Domain.dll.config

@@ -253,6 +253,11 @@ namespace PPI.Core.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// Used to send e-mail reminders to users automatically (should be called by external service that runs this method automatically every morning)
+        /// </summary>
+        /// <returns></returns>
+
         [HttpPost]
         public ActionResult sendReminder()
         {
@@ -264,7 +269,14 @@ namespace PPI.Core.Web.Controllers
                     ReportUtilities.setReminderSentToday(); //Set today as the last date in which the reminder was sent
                     //Get all reminder e-mails
                     AMSAReportContext dbr = new AMSAReportContext();
-                    List<AMSAEmail> lstReminderEmails = dbr.AMSAEmail.Where(m => m.Type.ToUpper().Equals("REMINDER")).ToList();
+                    //Get list of events that are not yet finished, making sure that only the e-mails that need to be sent are sent
+                    List<AMSAEvent> lstEventsForReminders = dbr.AMSAEvent.Where(m => m.EndDate > DateTime.Now).ToList();
+
+                    List<AMSAEmail> lstReminderEmails = dbr.AMSAEmail.Where(
+                        m => m.Type.ToUpper().Equals("REMINDER") 
+                        && 
+                        lstEventsForReminders.Any(x => x.id == m.AMSAEvent.id) //Makse sure that the e-mail is not one that is the list of finished events
+                        ).ToList();
                     //After you have the list of users that need to be reminded of the information then check if they have finisehd or not the event
                     //On each e-mail execute method to send e-mails
                     foreach (AMSAEmail e in lstReminderEmails)
