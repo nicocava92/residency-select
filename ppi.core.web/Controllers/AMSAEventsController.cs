@@ -55,6 +55,7 @@ namespace PPI.Core.Web.Controllers
         public ActionResult Create()
         {
             AMSAEventViewModel ae = new AMSAEventViewModel();
+            ae.AMSAEvent.OrderBy = User.Identity.Name;
             if (Session["ae"] != null)
                 ae = (AMSAEventViewModel)Session["ae"];
             return View(ae);
@@ -158,7 +159,11 @@ namespace PPI.Core.Web.Controllers
                 */
 
                 var EmailTemplate = new EmailTemplateModel();
-                EmailTemplate.subject = "Your event " + e.Name + " has been created";
+                System.Text.StringBuilder subject = new System.Text.StringBuilder();
+                subject.Append("Your event ");
+                subject.Append(e.Name);
+                subject.Append(" has been created");
+                EmailTemplate.subject = subject.ToString();
                 EmailTemplate.closing = "You can now manage this event through the J3P Residency Select Administration portal.";
                 EmailTemplate.introduction = "This email is to inform you that your event is now active. ";
                 var Email = new EmailModel();
@@ -324,15 +329,15 @@ namespace PPI.Core.Web.Controllers
         public ActionResult GetSpeciality(int departmentId)
         {
             List<AMSAProgram> lstResult = new List<AMSAProgram>();
-            //Store the ids of programs related to the department
-            List<int> lstIdDepartment = new List<int>();
+            //Store the ids of programs related to the location
+            List<int> lstIdLocation = new List<int>();
             List<AMSAProgramSite> lstProgramSite = dbr.AMSAProgramSite.Where(m => m.AMSASite.id == departmentId).ToList();
             foreach(var a in lstProgramSite)
             {
-                lstIdDepartment.Add(a.AMSAProgram.id);
+                lstIdLocation.Add(a.AMSAProgram.id);
             }
             //Get all programs and filter them
-            foreach(int i in lstIdDepartment)
+            foreach(int i in lstIdLocation)
             {
                 AMSAProgram auxProgram = dbr.AMSAProgram.Where(m => m.id == i).FirstOrDefault();
                 if (!lstResult.Contains(auxProgram))

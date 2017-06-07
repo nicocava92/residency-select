@@ -59,7 +59,7 @@ namespace PPI.Core.Web.Models.AmsaReports
         [DisplayName("Speciality")]
         public virtual AMSAProgram AMSAProgram { get; set; } // Speciality
 
-        [DisplayName("Department")]
+        [DisplayName("Location")]
         public virtual AMSASite AMSASite { get; set; } //Departement
 
         [DisplayName("Total Number of Participants")]

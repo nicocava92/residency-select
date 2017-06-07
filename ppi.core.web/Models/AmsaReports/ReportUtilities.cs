@@ -399,6 +399,12 @@ namespace PPI.Core.Web.Models.AmsaReports
         {
             DateReminderSent = DateTime.Now;
         }
+
+        //Adding Enums
+        public enum AMSAEventSetup
+        {
+            defaultOrganization = 1 //AMSA Organization
+        }
         
     }
 }

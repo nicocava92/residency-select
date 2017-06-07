@@ -10,7 +10,7 @@ namespace PPI.Core.Web.Models.AmsaReports
 {
     public class AMSAParticipant
     {
-        //FirstName, LastName, PrimaryEmail, PersonId, Gender, Title
+        //FirstName, LastName, PrimaryEmail, PersonId, Identified Gender, Title
         public int Id { get; set; }
         [Required(ErrorMessage = "First Name is Required")]
         [DisplayName("First Name")]
@@ -22,6 +22,7 @@ namespace PPI.Core.Web.Models.AmsaReports
         [EmailAddress(ErrorMessage = "Please insert a valid e-mail address")]
         [DisplayName("Primary E-mail address")]
         public string PrimaryEmail { get; set; }
+        [DisplayName("Identified Gender")]
         public string Gender { get; set; }
         [Required(ErrorMessage = "Please insert a Title")]
         public string Title { get; set; }

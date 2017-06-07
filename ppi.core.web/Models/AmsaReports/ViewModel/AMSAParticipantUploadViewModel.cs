@@ -212,7 +212,7 @@ namespace PPI.Core.Web.Models.AmsaReports.ViewModel
                     
                 if (p.Gender == null)
                 {
-                    this.Errors += "Gender missing for " + p.PrimaryEmail;
+                    this.Errors += "Identified gender missing for " + p.PrimaryEmail;
                     m.AddModelError("Participant", " Gender missing for " + p.PrimaryEmail);
                 }
                   

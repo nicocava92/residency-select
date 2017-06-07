@@ -46,7 +46,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             AMSAEventStatus = new SelectList(dbr.AMSAEventStatus.ToList(), "id", "Name");
             AMSASurveyType = new SelectList(dbr.AMSASurveySiteType.ToList(), "id", "Name");
             AMSANotBillableReason = new SelectList(dbr.AMSANotBillableReason.ToList(), "id", "Name");
-            ListOfOrganization = dbr.AMSAOrganization.ToList();
+            ListOfOrganization = dbr.AMSAOrganization.Where(m => m.id == (int)ReportUtilities.AMSAEventSetup.defaultOrganization).ToList();
             AMSAOrganization = new SelectList(ListOfOrganization, "id", "Name");
             //AMSASite = new SelectList(dbr.AMSASite.ToList(), "id", "Name"); //We get this value when an organization is selected
             ListOfAmsaSite = getSiteRelatedToFirstOrganization(dbr);
@@ -56,7 +56,6 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
 
             //Order by set
             this.AMSAEvent = new AMSAEvent();
-            AMSAEvent.OrderBy = "perform";
             addValuesToYesNo();
             this.YesNo = new SelectList(this.ValuesYesNo, "value", "name");
             dbr.Dispose();
@@ -75,7 +74,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
 
             AMSASite s = dbr.AMSASite.Find(idSelectedSite);
             if (s == null)
-                m.AddModelError("selectedDepartment", "Error! Please select a Department");
+                m.AddModelError("selectedDepartment", "Error! Please select a Location");
             else
                 this.AMSAEvent.AMSASite = s;
 
@@ -221,7 +220,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             //Store Fk to classes it points to now
             ae.AMSAEventType = dbr.AMSAEventType.Find(this.idSelectedEventType);
             ae.AMSAEventStatus = dbr.AMSAEventStatus.Find(this.idSelectedEventStatus);
-            ae.AMSAOrganization = dbr.AMSAOrganization.Find(this.idSelectedOrganization);
+            ae.AMSAOrganization = dbr.AMSAOrganization.Find((int)ReportUtilities.AMSAEventSetup.defaultOrganization); //always store with AMSA as the organization
             ae.AMSAProgram = dbr.AMSAProgram.Find(this.idSelectedProgram);
             ae.AMSASurveyType = dbr.AMSASurveySiteType.Find(this.idSelectedSurveyType);
             ae.AMSANotBillableReason = dbr.AMSANotBillableReason.Find(this.idSelectedNotBillableReason);
@@ -296,7 +295,7 @@ namespace PPI.Core.Web.Models.AmsaReports.Event.ViewModel
             return new SelectList(dbr.AMSASite.Where(m => m.AMSAOrganization.id == this.idSelectedOrganization).ToList(),"id","Name");
         } 
 
-        //Check if department (site) - speciality (program) exists before insertion
+        //Check if location (site) - speciality (program) exists before insertion
         //They should exist in the many to many list, if not user can either add them or correct their error.
         public bool departmentSpecialityExists()
         {

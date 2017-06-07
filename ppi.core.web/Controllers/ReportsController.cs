@@ -1163,9 +1163,11 @@ namespace PPI.Core.Web.Controllers
                 emailmessage.Subject = "Your AMSA Reports are ready";
                 emailmessage.IsBodyHtml = true;
                 var filename = fileName.ToString();
-                emailmessage.Body = "<p>Your AMSA reports have been generated successfully!</p>";
-                emailmessage.Body += "<p>Please click the 'Requested Reports' link to view and download the reports.</p>";
-                emailmessage.Body += "<p><a href='" + requestUrl + "/Reports/" + fileNameEmail + "'>Requested Reports</a></p>";
+                System.Text.StringBuilder body = new System.Text.StringBuilder();
+                body.Append("<p>Your AMSA reports have been generated successfully!</p>");
+                body.Append("<p>Please click the 'Requested Reports' link to view and download the reports.</p>");
+                body.Append("<p><a href='" + requestUrl + "/Reports/" + fileNameEmail + "'>Requested Reports</a></p>");
+                emailmessage.Body = body.ToString();
                 //MailClass.SendEmail(emailmessage.Subject, emailmessage.Body, "noreply@j3personica.com", "nicocava92@live.com");
 
 

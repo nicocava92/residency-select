@@ -42,7 +42,7 @@
                         @Html.DropDownListFor(model => model.idSelectedSite, Model.AMSASite, new { @class = "form-control", @id = "EventDepartmentId", @onChange = "getSpeciality()" })
                         @Html.ValidationMessage("selectedDepartment")
                         <br />
-                        @Html.ActionLink("Add New Department (Site)", "Create", "AMSASites", null, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Add New Location", "Create", "AMSASites", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -51,7 +51,7 @@
                         @Html.DropDownListFor(model => model.idSelectedProgram, Model.AMSAProgram, new { @class = "form-control", @id = "SpecialityId" })
                         @Html.ValidationMessage("selectedSpeciality")
                         <br />
-                        @Html.ActionLink("Add New Department (Site)", "Create", "AMSAProgramSites", null, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Add New Location", "Create", "AMSAProgramSites", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
 
