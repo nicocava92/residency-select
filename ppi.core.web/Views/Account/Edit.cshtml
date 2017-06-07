@@ -64,7 +64,14 @@
                 <div class="form-group">
                     <label for="Site" class="col-md-2 control-label bold">Site</label>
                     <div class="col-md-10">
-                        @Html.DropDownList("Site", (SelectList)ViewData["Site"], "Select Site for Site Cordinator Role", new { @class = "form-control", @data_val = "false" })
+                        @Html.DropDownList("Site", (SelectList)ViewData["Site"], "--Select Site--", new { @class = "form-control", @data_val = "false" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Site" class="col-md-2 control-label bold">Site</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.p)
                     </div>
                 </div>
 

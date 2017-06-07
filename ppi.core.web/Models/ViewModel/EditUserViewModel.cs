@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 
 namespace PPI.Core.Web.Models.ViewModel
 {
@@ -17,6 +18,10 @@ namespace PPI.Core.Web.Models.ViewModel
         public List<string> UserInRoles { get; set; }
         //List roles for the user to become a part of
         public List<string> LstNewUserRoles { get; set; }
+        //used to edit password
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
 
         public EditUserViewModel() { }
 
@@ -44,16 +49,15 @@ namespace PPI.Core.Web.Models.ViewModel
         }
 
         //Save changes to the user
-        internal static void saveChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userId,string usersite)
+        internal static void saveChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userId,string usersite,string password)
         {
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             ApplicationDbContext db = new ApplicationDbContext();
             ApplicationUser u = db.Users.Find(userId);
+            if(password == passwordRepeat) { 
+                u.PasswordHash = UserManager.PasswordHasher;
+            }
             u.Email = email;
-
-            
-            
-            
-
             removeAllRoles(u);
             addSelectedRoles(selectedRoles, db,u);
             db.SaveChanges();
