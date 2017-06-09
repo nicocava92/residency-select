@@ -54,9 +54,9 @@ namespace PPI.Core.Web.Models.ViewModel
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             ApplicationDbContext db = new ApplicationDbContext();
             ApplicationUser u = db.Users.Find(userId);
-            if(password == passwordRepeat) { 
-                u.PasswordHash = UserManager.PasswordHasher;
-            }
+            //if(password == passwordRepeat) { 
+            //    u.PasswordHash = UserManager.PasswordHasher;
+            //}
             u.Email = email;
             removeAllRoles(u);
             addSelectedRoles(selectedRoles, db,u);

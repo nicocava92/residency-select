@@ -108,26 +108,22 @@
     }
     else
     {
-        <div class="jumbotron">
-            <div class="row">
-                <table>
-                    <tr>
-                        <td valign="top" width="400"><img src="@Url.Content("~/Content/Images/amsa.png")" /></td>
-                        <td valign="top">
-                            <h1>Welcome to J3Personica </h1>
-                            <hr />
-                            <h2>AMSA Report Dashboard</h2>
-                            <div class="profile-label mt20">
-                                <div class="alert alert-info ml20">
-                                    <i class="fa fa-check-circle fa-fw fa-lg"></i>
-                                    <strong>GET STARTED!</strong>  Simply select an Event from the dropdown above.
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+            <div class="row jumbotron">
+                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                    <img style="max-width:350px;" class="img-responsive" src="@Url.Content("~/Content/Images/amsa.png")" />
+                </div>
+                <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                    <h1>Welcome to J3Personica </h1>
+                    <hr />
+                    <h2>AMSA Report Dashboard</h2>
+                    <div class="profile-label mt20">
+                        <div class="alert alert-info ml20">
+                            <i class="fa fa-check-circle fa-fw fa-lg"></i>
+                            <strong>GET STARTED!</strong>  Simply select an Event from the dropdown above.
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
     }
     @section Scripts
 {

@@ -526,7 +526,7 @@ namespace PPI.Core.Web.Controllers
         {
             try
             {
-                EditUserViewModel.saveChanges(selectedRoles, currentRoles, email,userid,usersite);
+                //EditUserViewModel.saveChanges(selectedRoles, currentRoles, email,userid,usersite);
                 PPI.Core.Domain.Entities.SiteUser SiteUser = new PPI.Core.Domain.Entities.SiteUser();
                 removeCurrentSites(userid); //Remove user site if the user is already in one, users can only have 1 user site
                 //After removing the last user site we can add new ones in
