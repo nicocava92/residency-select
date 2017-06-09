@@ -11,7 +11,17 @@
     <div class="main-box-body">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.User.Id)
-            
+            <br />
+            <!-- Inform users how changes happen-->
+            <div class="alert alert-info">
+                <p>
+                    <strong>
+                        If no changes are performed to the e-mail address or the e-mail address field is left empty no changes will happen to the user's e-mail address.<br />
+                        If nothing is inserted in the password fields then the system will not recognize an attempt to change the password for the user and no changes will be applied to the user's password.<br />
+                        Inserting at least 1 role and a site for the user is mandatory.
+                    </strong>
+                </p>
+            </div>
 
             <div class="form-horizontal">
                 <h2>Edit user | @Model.User.UserName</h2>
@@ -26,6 +36,22 @@
                     </div>
                 </div>
                 
+                <!-- Changing passwords, only changed if user inserts information in here -->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @id = "txtPassword" })
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PasswordRepeat, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.PasswordRepeat, new { @class = "form-control", @id = "txtPasswordRepeat" })
+                        @Html.ValidationMessageFor(model => model.PasswordRepeat)
+                    </div>
+                </div>
 
 
                 <div class="form-group">
@@ -64,7 +90,7 @@
                 <div class="form-group">
                     <label for="Site" class="col-md-2 control-label bold">Site</label>
                     <div class="col-md-10">
-                        @Html.DropDownList("Site", (SelectList)ViewData["Site"], "--Select Site--", new { @class = "form-control", @data_val = "false" })
+                        @Html.DropDownList("Site", (SelectList)ViewData["Site"],new { @class = "form-control", @data_val = "false" })
                     </div>
                 </div>
 
@@ -77,11 +103,11 @@
 
 
                 <!-- Errors are shown here -->
-                <div class="error alert alert-danger" style="display:none;">
+                <div class="error alert alert-danger col-md-push-2 col-md-10" style="display:none;">
 
                 </div>
                 <!-- Show success message -->
-                <div class="success alert alert-success" style="display:none;">
+                <div class="success alert alert-success col-md-push-2 col-md-10" style="display:none;">
 
                 </div>
                 <div class="form-group">
@@ -103,11 +129,14 @@
     <script type="text/javascript">
         var currentRoles;
         var userid = $("#User_Id").val();
+        var ValidationError = false; //stores if there is an error in validation, depending on this the ajax method will be executed or not
+
         $(document).ready(function () {
             //On load we get the roles the user currenlty has set
             currentRoles = getUsersCurrentRoles();
             $("#formSubmit").unbind("click");
-            $("#formSubmit").on("click", function () {
+            $("#formSubmit").on("click", function (e) {
+                e.preventDefault(); 
                 startFormSubmit();
             })
         });
@@ -120,17 +149,79 @@
             getSelectedRoles(selectedRoles);
             var email = $("#txtNewEmail").val();
             usersite = $("#Site").val();
-            //If +1 roles selected && email == good insert changes
-            if(selectedRoles.length > 0 && validateEmail(email) && usersite != "" && usersite.length > 0){
-                makeChanges(selectedRoles,currentRoles,email,usersite);
-            } else {
-                $(".success").fadeOut();
-                setTimeout(function () {
-                    $(".error").html('<p>Please make sure the inserted e-mail address is valid.<br /> Please make sure there are 1 or more roles selected.<br />' +
-                                    'You need to select a Site for the user.</p>');
-                    $(".error").fadeIn();
-                }, 800);
+            //Getting passwords
+            var Password = $("#txtPassword").val();
+            var PasswordRepeat = $("#txtPasswordRepeat").val();
+            ValidationError = false; //Reset validation errors
+            
+            //Validations
+            //If +1 roles selected 
+            if (selectedRoles.length == 0) {
+                //Show no roles selected validation message (having at least 1 role selected is mandatory in all cases)
+                showError("ROLES");
             }
+            //if e-mail is being changed validate the change
+            if (email.length > 0) {
+                if (!validateEmail(email)) {
+                    showError("EMAIL");
+                }
+            }
+            //Valdiate if a user site is selected (this is mandatory in all cases)
+            if (usersite == "" && usersite.length <= 0) {
+                console.log(usersite);
+                showError("SITE");
+            }
+            //Check if password is being changed
+            if (Password.length > 0) {
+                if (Password != PasswordRepeat) {
+                    showError("PASSWORD_NOT_EQUAL");
+                }
+                else if (Password.length < 6) {
+                    showError("PASSWORD_LENGTH");
+                }
+            }
+            
+            //If there is no validation error then submit the form
+            if (!ValidationError) {
+                //Check if any changes are happening
+                console.log(usersite);
+                    makeChanges(selectedRoles, currentRoles, email, usersite, Password, PasswordRepeat);
+            }
+
+            
+
+
+
+            //email == good ** Only if new e-mail was inserted for the user, not mandatory
+            
+            
+        }
+
+        function showError(e) {
+            $(".success").fadeOut();
+            var error = "";
+            ValidationError = true; //errors
+            //Set in error depending on the error types
+            if (e == "ROLES") {
+                error = "<p>1 or more Roles need to be selected</p>";
+            }
+            else if (e == "EMAIL") {
+                error = "<p>The inserted e-mail address is not in the correct format, please revise and re-submit.</p>"
+            }
+            else if (e == "SITE") {
+                error = "<p>A site must be selected</p>";
+            }
+            else if (e == "PASSWORD_NOT_EQUAL") {
+                error = "<p>The inserted passwords are not equal.</p>"
+            }
+            else if (e == "PASSWORD_LENGTH") {
+                error = "<p>Passwords must have a length of at least 6 characters.</p>"
+            }
+            //Show error on the screen
+            setTimeout(function () {
+                $(".error").html(error);
+                $(".error").fadeIn();
+            }, 800);
         }
 
 
@@ -164,7 +255,8 @@
             return roles;
         }
 
-        function makeChanges(selectedRoles,currentRoles,email,usersite){
+        function makeChanges(selectedRoles, currentRoles, email, usersite, Password, PasswordRepeat) {
+            $(".error").fadeOut(); //Hide errors and start execution of controller method 
             $.ajax({
                 contentType: "application/json; charset=utf-8",
                 type: "POST",
@@ -175,7 +267,9 @@
                     currentRoles: currentRoles,
                     email: email,
                     userid: userid,
-                    usersite: usersite
+                    usersite: usersite,
+                    Password: Password,
+                    PasswordRepeat: PasswordRepeat
                 }),
                 traditional: true,
                 success: function (data) {

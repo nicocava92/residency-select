@@ -517,24 +517,42 @@ namespace PPI.Core.Web.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            ViewData["Site"] = new SelectList(SitesLists(), "Value", "Text");
+            
+            //Check for the current site
+            var site = UnitOfWork.ISiteUserRepository.GetAll().Where(m => m.AspNetUsersId.Equals(id)).FirstOrDefault();
+            var selectedSite = "--Select Site--";
+            if (site != null)
+            {
+                selectedSite = site.Site.FriendlyName;
+            }
+            EditUserViewModel evm = new EditUserViewModel(id);
+            ViewData["Site"] = new SelectList(SitesLists(), "Value", "Text", selectedSite);
             return View(new EditUserViewModel(id));
         }
 
         [HttpPost]
-        public ActionResult makeUserChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userid,string usersite)
+        //Need to add anti foreign key check right here
+        public ActionResult makeUserChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userid,string usersite,string Password, string PasswordRepeat)
         {
+            /*
+             Need to add validations on server side right here.
+             
+             */
+            
             try
             {
-                //EditUserViewModel.saveChanges(selectedRoles, currentRoles, email,userid,usersite);
-                PPI.Core.Domain.Entities.SiteUser SiteUser = new PPI.Core.Domain.Entities.SiteUser();
+                //Running backend validations
+                string error = EditUserViewModel.saveChanges(selectedRoles, currentRoles, email,userid,usersite,Password,PasswordRepeat,UnitOfWork); //if there is a string returned then there is aproblem that should be shown on the view.
                 removeCurrentSites(userid); //Remove user site if the user is already in one, users can only have 1 user site
                 //After removing the last user site we can add new ones in
-                SiteUser.AspNetUsersId = userid;
-                SiteUser.SiteId = Convert.ToInt32(usersite);
-                UnitOfWork.ISiteUserRepository.Add(SiteUser);
-                UnitOfWork.Commit();
-                return Json(new { error = false });
+                if(error.Length > 0) //There are errors nothing can be stored
+                {
+                    return Json(new { error = true, validationError = error });
+                }
+                else
+                {
+                    return Json(new { error = false });
+                }
             }
             catch
             {
