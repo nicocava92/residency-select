@@ -77,35 +77,43 @@ namespace PPI.Core.Web.Models.ViewModel
                 bool emailBeingchanged = false;
                 //Run validations first
                 System.Text.StringBuilder errors = new System.Text.StringBuilder();
+                errors.Append("<ul>");
+                bool error = false;
                 if (Password.Length > 0 && PasswordRepeat.Length > 0)
                 {
                     //Password needs validation
                     if (!Password.Equals(PasswordRepeat))
                     {
-                        errors.Append("<p>Inserted passwords do not appear to be the same.</p>");
+                        errors.Append("<li>Inserted passwords do not appear to be the same.</li>");
+                        error = true;
                     }
                     else if (Password.Length < 6)
                     {
-                        errors.Append("<p>Password must have more than 6 characters.</p>");
+                        errors.Append("<li>Password must have more than 6 characters.</li>");
+                        error = true;
                     }
                     passwordBeingChanged = true;
                 }
                 if (usersite == "")
                 {
-                    errors.Append("<p>A site needs to be selected.</p>");
+                    errors.Append("<li>A site needs to be selected.</li>");
+                    error = true;
                 }
                 if (selectedRoles.Count == 0)
                 {
-                    errors.Append("<p>At least 1 Role needs to be selected.</p>");
+                    errors.Append("<li>At least 1 Role needs to be selected.</li>");
+                    error = true;
                 }
                 if (email.Length > 0)
                 {
-                    if (IsValidEmail(email))
-                        errors.Append("<p>Please revise the inserted e-mail address, it appears to be in an invalid format.</p>");
+                    if (!IsValidEmail(email)) {
+                        errors.Append("<li>Please revise the inserted e-mail address, it appears to be in an invalid format.</li>");
+                        error = true;
+                    }
                     emailBeingchanged = true;
                 }
 
-                if (errors.Length == 0)
+                if (!error)
                 {
                     var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                     ApplicationDbContext db = new ApplicationDbContext();
@@ -129,17 +137,18 @@ namespace PPI.Core.Web.Models.ViewModel
                     site_user.SiteId = Convert.ToInt32(usersite);
                     unitOfWork.ISiteUserRepository.Add(site_user);
 
-
+                    errors.Clear();
                     //Save changes to both contexts
                     db.SaveChanges();
                     unitOfWork.Commit();
+                    return errors.ToString(); //returning empty string because there are no problems
                 }
-
-
-
-
-
-                return errors.ToString(); //Return errors it will either return none or a more than 1
+                else
+                {
+                    //There is an error, close out the list and return the error to the view
+                    errors.Append("</ul>");
+                    return errors.ToString();
+                }
             }
         }
 

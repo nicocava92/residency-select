@@ -9,92 +9,91 @@
 
 <div class="main-box clearfix">
     <div class="main-box-body">
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.User.Id)
+        <br />
+        <!-- Inform users how changes happen-->
+        <div class="alert alert-info">
+            <ul>
+                <li>If no changes are performed to the e-mail address or the e-mail address field is left empty no changes will happen to the user's e-mail address.</li>
+                <li>If nothing is inserted in the password fields then the system will not recognize an attempt to change the password for the user and no changes will be applied to the user's password.</li>
+                <li>Inserting at least 1 role and a site for the user is mandatory.</li>
+            </ul>
+        </div>
+
+        <div class="form-horizontal">
+            <h2>Edit user | @Model.User.UserName</h2>
+            <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.User.Id)
-            <br />
-            <!-- Inform users how changes happen-->
-            <div class="alert alert-info">
-                <p>
-                    <strong>
-                        If no changes are performed to the e-mail address or the e-mail address field is left empty no changes will happen to the user's e-mail address.<br />
-                        If nothing is inserted in the password fields then the system will not recognize an attempt to change the password for the user and no changes will be applied to the user's password.<br />
-                        Inserting at least 1 role and a site for the user is mandatory.
-                    </strong>
-                </p>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.User.Email, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @id = "txtNewEmail" })
+                    @Html.ValidationMessageFor(model => model.User.Email)
+                </div>
             </div>
 
-            <div class="form-horizontal">
-                <h2>Edit user | @Model.User.UserName</h2>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                
-                <div class="form-group">
-                    @Html.LabelFor(model => model.User.Email, htmlAttributes: new { @class = "control-label col-md-2 bold" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @id ="txtNewEmail" })
-                        @Html.ValidationMessageFor(model => model.User.Email)
-                    </div>
+            <!-- Changing passwords, only changed if user inserts information in here -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", @id = "txtPassword" })
+                    @Html.ValidationMessageFor(model => model.Password)
                 </div>
-                
-                <!-- Changing passwords, only changed if user inserts information in here -->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2 bold" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @id = "txtPassword" })
-                        @Html.ValidationMessageFor(model => model.Password)
-                    </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PasswordRepeat, htmlAttributes: new { @class = "control-label col-md-2 bold" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.PasswordRepeat, new { @class = "form-control", @id = "txtPasswordRepeat" })
+                    @Html.ValidationMessageFor(model => model.PasswordRepeat)
                 </div>
-                
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PasswordRepeat, htmlAttributes: new { @class = "control-label col-md-2 bold" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(model => model.PasswordRepeat, new { @class = "form-control", @id = "txtPasswordRepeat" })
-                        @Html.ValidationMessageFor(model => model.PasswordRepeat)
-                    </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="roleCheckboxes" class="control-label col-md-2 bold">
+                    Roles:
+                </label>
+                <fieldset>
+
+                    @foreach (var r in Model.LstRoles)
+                    {
+
+                        if (Model.UserInRoles.Any(m => m.Equals(r.Id)))
+                        {
+                            <div class="checkbox-nice">
+                                <input id="@r.Id" class="roleCheckbox" type="checkbox" name="roleCheckboxes" value="@r.Id" checked="checked" />
+                                <label for="@r.Id">@r.Name</label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="checkbox-nice">
+                                <input id="@r.Id" class="roleCheckbox" type="checkbox" name="roleCheckboxes" value="@r.Id" />
+                                <label for="@r.Id">@r.Name</label>
+                            </div>
+                        }
+
+                    }
+
+                </fieldset>
+
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="Site" class="col-md-2 control-label bold">Site</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("Site", (SelectList)ViewData["Site"], new { @class = "form-control", @data_val = "false" })
                 </div>
+            </div>
 
-
-                <div class="form-group">
-                    
-                        <label for="roleCheckboxes" class="control-label col-md-2 bold">
-                            Roles:
-                        </label>
-                        <fieldset>
-                            
-                                @foreach (var r in Model.LstRoles)
-                                {
-
-                                    if (Model.UserInRoles.Any(m => m.Equals(r.Id)))
-                                    {
-                                        <div class="checkbox-nice">
-                                            <input id="@r.Id" class="roleCheckbox" type="checkbox" name="roleCheckboxes" value="@r.Id" checked="checked" />
-                                            <label for="@r.Id">@r.Name</label>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="checkbox-nice">
-                                            <input id="@r.Id" class="roleCheckbox"  type="checkbox" name="roleCheckboxes" value="@r.Id"/>
-                                            <label for="@r.Id">@r.Name</label>
-                                        </div>
-                                    }
-
-                                }
-
-                        </fieldset>
-                            
-                </div>
-
-
-
-                <div class="form-group">
-                    <label for="Site" class="col-md-2 control-label bold">Site</label>
-                    <div class="col-md-10">
-                        @Html.DropDownList("Site", (SelectList)ViewData["Site"],new { @class = "form-control", @data_val = "false" })
-                    </div>
-                </div>
-
-                @*<div class="form-group">
+            @*<div class="form-group">
                     <label for="Site" class="col-md-2 control-label bold">Site</label>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.p)
@@ -102,21 +101,21 @@
                 </div>*@
 
 
-                <!-- Errors are shown here -->
-                <div class="error alert alert-danger col-md-push-2 col-md-10" style="display:none;">
+            <!-- Errors are shown here -->
+            <div class="error alert alert-danger col-md-push-2 col-md-10" style="display:none;">
 
-                </div>
-                <!-- Show success message -->
-                <div class="success alert alert-success col-md-push-2 col-md-10" style="display:none;">
+            </div>
+            <!-- Show success message -->
+            <div class="success alert alert-success col-md-push-2 col-md-10" style="display:none;">
 
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button class="btn btn-success" id="formSubmit">Save</button>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-success" id="formSubmit">Save</button>
                 </div>
             </div>
-        
+        </div>
+
 
         <div>
             @Html.ActionLink("Back to List", "AdministerUsers")
@@ -136,7 +135,7 @@
             currentRoles = getUsersCurrentRoles();
             $("#formSubmit").unbind("click");
             $("#formSubmit").on("click", function (e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 startFormSubmit();
             })
         });
@@ -153,9 +152,9 @@
             var Password = $("#txtPassword").val();
             var PasswordRepeat = $("#txtPasswordRepeat").val();
             ValidationError = false; //Reset validation errors
-            
+
             //Validations
-            //If +1 roles selected 
+            //If +1 roles selected
             if (selectedRoles.length == 0) {
                 //Show no roles selected validation message (having at least 1 role selected is mandatory in all cases)
                 showError("ROLES");
@@ -180,7 +179,7 @@
                     showError("PASSWORD_LENGTH");
                 }
             }
-            
+
             //If there is no validation error then submit the form
             if (!ValidationError) {
                 //Check if any changes are happening
@@ -188,13 +187,13 @@
                     makeChanges(selectedRoles, currentRoles, email, usersite, Password, PasswordRepeat);
             }
 
-            
+
 
 
 
             //email == good ** Only if new e-mail was inserted for the user, not mandatory
-            
-            
+
+
         }
 
         function showError(e) {
@@ -203,19 +202,19 @@
             ValidationError = true; //errors
             //Set in error depending on the error types
             if (e == "ROLES") {
-                error = "<p>1 or more Roles need to be selected</p>";
+                error = "<ul><li>1 or more Roles need to be selected.</li></ul>";
             }
             else if (e == "EMAIL") {
-                error = "<p>The inserted e-mail address is not in the correct format, please revise and re-submit.</p>"
+                error = "<ul><li>The inserted e-mail address is not in the correct format, please revise and re-submit.</li></ul>";
             }
             else if (e == "SITE") {
-                error = "<p>A site must be selected</p>";
+                error = "<ul><li>A site must be selected.</li></ul>";
             }
             else if (e == "PASSWORD_NOT_EQUAL") {
-                error = "<p>The inserted passwords are not equal.</p>"
+                error = "<ul><li>The inserted passwords are not equal.</li></ul>";
             }
             else if (e == "PASSWORD_LENGTH") {
-                error = "<p>Passwords must have a length of at least 6 characters.</p>"
+                error = "<ul><li>Passwords must have a length of at least 6 characters.</li></ul>";
             }
             //Show error on the screen
             setTimeout(function () {
@@ -256,12 +255,21 @@
         }
 
         function makeChanges(selectedRoles, currentRoles, email, usersite, Password, PasswordRepeat) {
-            $(".error").fadeOut(); //Hide errors and start execution of controller method 
+            $(".error").fadeOut(); //Hide errors and start execution of controller method
+            //Get the antiforgery token to send to the POST method
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+            alert(gettoken());
+            var headers = {};
+            var headers = {};
+            // other headers omitted
+            headers['__RequestVerificationToken'] = gettoken();
             $.ajax({
-                contentType: "application/json; charset=utf-8",
+                contentType: "application/json",
                 type: "POST",
                 url: "../../Account/makeUserChanges",
                 datatype: "json",
+                headers: headers,
                 data: JSON.stringify({
                     selectedRoles: selectedRoles,
                     currentRoles: currentRoles,
@@ -269,21 +277,21 @@
                     userid: userid,
                     usersite: usersite,
                     Password: Password,
-                    PasswordRepeat: PasswordRepeat
+                    PasswordRepeat: PasswordRepeat,
                 }),
                 traditional: true,
                 success: function (data) {
                     if (data.error) {
                         $(".success").fadeOut();
                         setTimeout(function () {
-                            $(".error").html("<p>Error making changes to the user, please make sure you are completing all data as expected</p>")
+                            $(".error").html(data.validationError); //show error from Json return
                             $(".error").fadeIn();
                         }, 800);
                     }
                     else {
                         $(".error").fadeOut();
                         setTimeout(function () {
-                        $(".success").html("<p>User updated successfully!</p>");
+                        $(".success").html("<ul><li>User updated successfully!</li><ul>");
                         $(".success").fadeIn();
                         }, 800);
                     }
@@ -291,12 +299,20 @@
                 error: function (data) {
                     $(".success").fadeOut();
                     setTimeout(function () {
-                        $(".error").html("<p>Error processing request, please try again. If problem persists please contact IT department.</p>");
+                        $(".error").html("<ul><li>Error processing request, please try again. If problem persists please contact IT department.</li></ul>");
                         $(".error").fadeIn();
                         btn.removeAttr("disabled");
                     }, 800);
                 }
             });
         }
+
+        //Get antiforgery token for form submit
+        function gettoken() {
+            var token = '@Html.AntiForgeryToken()';
+            token = $(token).val();
+            return token;
+        }
+
     </script>
 }

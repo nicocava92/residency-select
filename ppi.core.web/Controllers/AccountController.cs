@@ -531,6 +531,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         [HttpPost]
+        [MvcHaack.Ajax.ValidateJsonAntiForgeryToken]
         //Need to add anti foreign key check right here
         public ActionResult makeUserChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userid,string usersite,string Password, string PasswordRepeat)
         {
@@ -556,7 +557,7 @@ namespace PPI.Core.Web.Controllers
             }
             catch
             {
-                return Json(new { error = true });
+                return Json(new { error = true, validationError = "<ul><li>System error please try again or inform IT department.</li></ul>" });
             }
         }
 
