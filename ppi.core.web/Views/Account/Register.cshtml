@@ -92,11 +92,11 @@
             $(document).ready(function () {
                 /*
                     Email *
-                    UserName 
+                    UserName
                     Password *
                     ConfirmPassword *
                     Roles
-                    
+
                 */
                 $("#register").unbind("click");
                 $("#register").on("click", function (e) {
@@ -178,7 +178,7 @@
             }
 
             /*
-                string email, string userName, string password, string confirmPassword, 
+                string email, string userName, string password, string confirmPassword,
                 string usersite, List<string> roles
             */
             function registerUser(email,userName,password,confirmPassword,usersite,roles) {
@@ -209,7 +209,7 @@
                         if (data.error) {
                             $(".success").fadeOut();
                             setTimeout(function () {
-                                $(".error").html("<p>" + data.message + "</p>");
+                                $(".error").html("<ul>" + data.message + "</ul>");
                                 $(".error").fadeIn();
                             }, 800);
                         }
@@ -218,25 +218,25 @@
                             $(".error").fadeOut();
                             $("#register").removeAttr("disabled");
                             setTimeout(function () {
-                                $(".success").html("<p>User registered successfully! Page will reload in 4 seconds.</p>");
+                                $(".success").html("<ul><li>User registered successfully!</li></ul>");
                                 $(".success").fadeIn();
                             }, 800);
                             setTimeout(function () {
-                                location.reload();
-                            }, 4000);
-                        }
+                                window.location = "@Url.Action("AdministerUsers","Account")";
+                        }, 1500);
+            }
                     },
-                    error: function (error) {
-                        $(".success").fadeOut();
-                        setTimeout(function () {
-                            $("#register").removeAttr("disabled");
-                            $('.error').fadeIn();
-                            $('.error').html("<p> System error, please make sure you are connected to the internet. If problem persists contact IT department.</p>");
-                        }, 800);
-                    }
+            error: function (error) {
+                $(".success").fadeOut();
+                setTimeout(function () {
+                    $("#register").removeAttr("disabled");
+                    $('.error').fadeIn();
+                    $('.error').html("<ul><li>System error, please make sure you are connected to the internet. If problem persists contact IT department.</li></ul>");
+                }, 800);
+            }
                 });
             }
-            
+
         </script>
 
 

@@ -131,7 +131,7 @@ namespace PPI.Core.Web.Controllers
         {
             //Check if username is not in the database already
             if (userRegisterd(userName)) {
-                return Json(new { error = true, message = "The username is already registered in the system, please try again with another username." });
+                return Json(new { error = true, message = "<li>The username is already registered in the system, please try again with another username.</li>" });
             } else if(validUsername(userName)) {
                 //User does not exist and is longer than 3 characterswe can keep moving forward
                 if (passwordsEqual(password, confirmPassword) && password.Length >= 6)
@@ -159,33 +159,33 @@ namespace PPI.Core.Web.Controllers
                                 
                                 UnitOfWork.ISiteUserRepository.Add(SiteUser);
                                 UnitOfWork.Commit();
-                                await SignInAsync(user, isPersistent: false);
-                                return Json(new { error = false , message = "User created successfully."});
+                                //await SignInAsync(user, isPersistent: false); <== Line removed since it logged users out when they registered a new person, we don't want this.
+                                return Json(new { error = false , message = "<li>User created successfully.</li>"});
                             }
                             else
                             {
-                                return Json(new { error = true, message = "Error creating user." });
+                                return Json(new { error = true, message = "<li>Error creating user.</li>" });
                             }
                         }
                         else
                         {
-                            return Json(new { error = true, message = "Please insert a valid e-mail." });
+                            return Json(new { error = true, message = "<li>Please insert a valid e-mail.</li>" });
                         }
                     }
                     else
                     {
-                        return Json(new { error = true, message = "Select 1 more or for the user." });
+                        return Json(new { error = true, message = "<li>Select 1 more or for the user.</li>" });
                     }
 
                 }
                 else
                 {
-                    return Json(new { error = true, message = "Inserted passwords need to match and passwords need to be 6 characters or more." });
+                    return Json(new { error = true, message = "<li>Inserted passwords need to match and passwords need to be 6 characters or more.</li>" });
                 }
             }
             else
             {
-                return Json(new { error = true, message = "Username needs to be more than 3 characters." });
+                return Json(new { error = true, message = "<li>Username needs to be more than 3 characters.</li>" });
             }
 
             
