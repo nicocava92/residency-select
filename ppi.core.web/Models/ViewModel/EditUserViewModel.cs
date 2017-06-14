@@ -28,6 +28,7 @@ namespace PPI.Core.Web.Models.ViewModel
         [DataType(DataType.Password)]
         [Display(Name = "Repeat password")]
         public string PasswordRepeat { get; set; }
+        public string idSelectedSite { get; set; }
 
 
 
@@ -70,7 +71,7 @@ namespace PPI.Core.Web.Models.ViewModel
         /// <returns>
         /// Returns an error string if the amount is greater than 0 then there are errors and the user changes were not stored.
         /// </returns>
-        internal static string saveChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userid, string usersite, string Password, string PasswordRepeat, IUnitOfWork unitOfWork)
+        internal static string saveChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userid, string usersite, string Password, string PasswordRepeat)
         {
             {
                 bool passwordBeingChanged = false;
@@ -132,15 +133,11 @@ namespace PPI.Core.Web.Models.ViewModel
                     addSelectedRoles(selectedRoles, db, u);
 
 
-                    SiteUser site_user = new SiteUser();
-                    site_user.AspNetUsersId = userid;
-                    site_user.SiteId = Convert.ToInt32(usersite);
-                    unitOfWork.ISiteUserRepository.Add(site_user);
 
                     errors.Clear();
                     //Save changes to both contexts
                     db.SaveChanges();
-                    unitOfWork.Commit();
+                    
                     return errors.ToString(); //returning empty string because there are no problems
                 }
                 else

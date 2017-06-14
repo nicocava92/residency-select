@@ -56,6 +56,7 @@ namespace PPI.Core.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.UserName = model.UserName.Trim();
                 //Check box for remember me, update the model with the real value
                 bool Rem = (Request["checkbox-RememberMe"] == "on") ? true : false;
                 model.RememberMe = Rem;
@@ -100,14 +101,21 @@ namespace PPI.Core.Web.Controllers
 
         private List<SelectListItem> SitesLists()
         {
-            var Sites = UnitOfWork.ISiteRepository.AsQueryable();
+            //var Sites = UnitOfWork.ISiteRepository.AsQueryable().Where(m => m.FriendlyName != null && (m.FriendlyName.Trim().ToUpper().Equals("AMSA") || m.FriendlyName.Trim().ToUpper().Equals("J3P")));
+            var Sites = UnitOfWork.ISiteRepository.GetAll().Where(m => m.FriendlyName != null && (m.FriendlyName.Trim().ToUpper().Equals("AMSA") || m.FriendlyName.Trim().ToUpper().Equals("J3P"))).ToList();
             var SitesList = new List<SelectListItem>();
             foreach (var item in Sites)
             {
+                try { 
                 var newItem = new SelectListItem();
-                newItem.Text = item.FriendlyName;
+                newItem.Text = item.FriendlyName.Trim();
                 newItem.Value = item.Id.ToString();
                 SitesList.Add(newItem);
+                }
+                catch
+                {
+                    Console.WriteLine("error with" + item.Id);
+                }
             }
             return SitesList;
         }
@@ -523,11 +531,12 @@ namespace PPI.Core.Web.Controllers
             var selectedSite = "--Select Site--";
             if (site != null)
             {
-                selectedSite = site.Site.FriendlyName;
+                selectedSite = site.SiteId.ToString();
             }
             EditUserViewModel evm = new EditUserViewModel(id);
-            ViewData["Site"] = new SelectList(SitesLists(), "Value", "Text", selectedSite);
-            return View(new EditUserViewModel(id));
+            ViewData["Site"] = new SelectList(SitesLists(), "Value", "Text",selectedSite);
+            evm.idSelectedSite =  selectedSite;
+            return View(evm);
         }
 
         [HttpPost]
@@ -543,7 +552,7 @@ namespace PPI.Core.Web.Controllers
             try
             {
                 //Running backend validations
-                string error = EditUserViewModel.saveChanges(selectedRoles, currentRoles, email,userid,usersite,Password,PasswordRepeat,UnitOfWork); //if there is a string returned then there is aproblem that should be shown on the view.
+                string error = EditUserViewModel.saveChanges(selectedRoles, currentRoles, email,userid,usersite,Password,PasswordRepeat); //if there is a string returned then there is aproblem that should be shown on the view.
                 removeCurrentSites(userid); //Remove user site if the user is already in one, users can only have 1 user site
                 //After removing the last user site we can add new ones in
                 if(error.Length > 0) //There are errors nothing can be stored
@@ -552,6 +561,18 @@ namespace PPI.Core.Web.Controllers
                 }
                 else
                 {
+                    try { 
+                    SiteUser site_user = new SiteUser();
+                    site_user.AspNetUsersId = userid;
+                    site_user.SiteId = Convert.ToInt32(usersite);
+                    UnitOfWork.ISiteUserRepository.Add(site_user);
+                    UnitOfWork.Commit();
+                    }
+                    catch
+                    {
+                        return Json(new { error = true, validationError = "<ul><li>Problem storing User Site information, please try again. If problem persists contact system administrator.</li></ul>" });
+                    }
+
                     return Json(new { error = false });
                 }
             }

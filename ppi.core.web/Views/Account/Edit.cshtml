@@ -89,7 +89,7 @@
             <div class="form-group">
                 <label for="Site" class="col-md-2 control-label bold">Site</label>
                 <div class="col-md-10">
-                    @Html.DropDownList("Site", (SelectList)ViewData["Site"], new { @class = "form-control", @data_val = "false" })
+                    @Html.DropDownListFor(model => model.idSelectedSite, (SelectList)ViewData["Site"], new { @class = "form-control", @data_val = "false", @id = "Site" })
                 </div>
             </div>
 
@@ -259,8 +259,6 @@
             //Get the antiforgery token to send to the POST method
             var form = $('#__AjaxAntiForgeryForm');
             var token = $('input[name="__RequestVerificationToken"]', form).val();
-            alert(gettoken());
-            var headers = {};
             var headers = {};
             // other headers omitted
             headers['__RequestVerificationToken'] = gettoken();
