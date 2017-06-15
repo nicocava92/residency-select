@@ -78,7 +78,7 @@
                                     <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
-                            @if (item.OrderStatusId == 1 && !User.IsInRole("J3PAdmin") && !User.IsInRole("SiteCordinator")) 
+                            @if (item.OrderStatusId == 1 && !User.IsInRole("J3PAdmin") && !User.IsInRole("SiteCoordinator")) 
                             {
                             <a href="@Url.Action("Convert","Events", new { id=item.Id })" class="table-link">
                                 <span class="fa-stack">

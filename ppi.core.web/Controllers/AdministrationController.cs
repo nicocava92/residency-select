@@ -16,7 +16,9 @@ namespace PPI.Core.Web.Controllers
     using CsvHelper;
     using Models.AmsaReports;
     using System.Data.Entity;
-    [Authorize(Roles = "SiteCordinator,Admin,J3PAdmin")]
+    using PPI.Core.Web.Infrastructure;
+
+    [Authorize(Roles = "SiteCoordinator,Admin,J3PAdmin,AMSASiteCoordinator")]
     public class AdministrationController : BaseController
     {
         public AdministrationController(IUnitOfWork unitOfWork)
@@ -32,10 +34,35 @@ namespace PPI.Core.Web.Controllers
             return RedirectToAction("AMSADashboard", new { eventId = SelectedProgramSiteEventId });
             //Clear the Session information if you switch events           
         }
+
+        /// <summary>
+        /// Redirect Users to their corresponding dashboard
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        /// 
+        [Authorize(Roles = "SiteCoordinator,Admin,J3PAdmin,AMSASiteCoordinator")]
+        public ActionResult LoginRedirect()
+        {
+            if( User.IsInRole(Utility.UserRoles.Administrator)      ||
+                User.IsInRole(Utility.UserRoles.J3PAdmin)           ||
+                User.IsInRole(Utility.UserRoles.SiteCoordinator)    
+               )
+            {
+                return RedirectToAction("Index");
+            }
+            else if(User.IsInRole(Utility.UserRoles.AMSA_Site_Coordinator)){
+                return RedirectToAction("AMSADashboard");
+            }
+
+            return RedirectToAction("Index");
+
+        }
+        
         //
         // GET: /Administration/
-        [Authorize()]
         [Log]
+        [Authorize(Roles = "SiteCoordinator,Admin,J3PAdmin")]
         public ActionResult Index(int? eventId)
         {            
             var model = new DashboardViewModel();
@@ -283,10 +310,14 @@ namespace PPI.Core.Web.Controllers
             return File(streamoutput, "text/csv", exportName);
         }
 
-
-
+        [HttpGet]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult AMSADashboard(int? eventId)
         {
+            if(eventId == null)
+            {
+                eventId = -1;
+            }
             AMSAReportContext dbr = new AMSAReportContext();
             List<AMSAEvent> lstE = dbr.AMSAEvent.ToList();
             lstE.Insert(0, new AMSAEvent { id = -1, Name = "-- No Event Selected --" });

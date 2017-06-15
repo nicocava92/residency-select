@@ -23,6 +23,8 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /AMSAParticipants/
+
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Index()
         {
             ParticipantListViewModel pvm = new ParticipantListViewModel();
@@ -30,6 +32,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /AMSAParticipants/Details/5
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Details(int id)
         {
             //Get data to show on view model
@@ -40,6 +43,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /AMSAParticipants/Create
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Create()
         {
             return View(new AMSAParticipantViewModel());
@@ -50,6 +54,7 @@ namespace PPI.Core.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Create(AMSAParticipantViewModel pvm)
         {
             ModelState["AMSAParticipant.AAMCNumber"].Errors.Clear() ;
@@ -158,6 +163,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Upload(int? id)
         {
             AMSAParticipantUploadViewModel apvm = new AMSAParticipantUploadViewModel();
@@ -170,6 +176,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Upload(AMSAParticipantUploadViewModel pvm)
         {
 

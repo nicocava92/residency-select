@@ -54,19 +54,21 @@ namespace PPI.Core.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            //Need to clear out values for the user before I can move on forward
             if (ModelState.IsValid)
             {
                 model.UserName = model.UserName.Trim();
                 //Check box for remember me, update the model with the real value
                 bool Rem = (Request["checkbox-RememberMe"] == "on") ? true : false;
                 model.RememberMe = Rem;
-                ///
+                
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
 
                 if (user != null)
                 {
                     //If the user exists check if the account is active or not
-                    if (user.Active) {
+                    if (user.Active)
+                    {
                         await SignInAsync(user, model.RememberMe);
                         //Look up the site associated with this user and set the cookie,                                                            
                         return RedirectToLocal(returnUrl);
@@ -106,11 +108,12 @@ namespace PPI.Core.Web.Controllers
             var SitesList = new List<SelectListItem>();
             foreach (var item in Sites)
             {
-                try { 
-                var newItem = new SelectListItem();
-                newItem.Text = item.FriendlyName.Trim();
-                newItem.Value = item.Id.ToString();
-                SitesList.Add(newItem);
+                try
+                {
+                    var newItem = new SelectListItem();
+                    newItem.Text = item.FriendlyName.Trim();
+                    newItem.Value = item.Id.ToString();
+                    SitesList.Add(newItem);
                 }
                 catch
                 {
@@ -138,21 +141,26 @@ namespace PPI.Core.Web.Controllers
         public async Task<ActionResult> Register(string email, string userName, string password, string confirmPassword, string usersite, List<string> roles)
         {
             //Check if username is not in the database already
-            if (userRegisterd(userName)) {
+            email = email.Trim();
+            userName = userName.Trim();
+            if (userRegisterd(userName))
+            {
                 return Json(new { error = true, message = "<li>The username is already registered in the system, please try again with another username.</li>" });
-            } else if(validUsername(userName)) {
+            }
+            else if (validUsername(userName))
+            {
                 //User does not exist and is longer than 3 characterswe can keep moving forward
                 if (passwordsEqual(password, confirmPassword) && password.Length >= 6)
                 {
                     //Check the role and the e-mails
-                    if(roles.Count > 0)
+                    if (roles.Count > 0)
                     {
                         //Check if e-mails are valid
                         if (validateEmail(email))
                         {
                             var user = new ApplicationUser() { UserName = userName, Active = true };
                             var result = await UserManager.CreateAsync(user, password);
-                            
+
                             if (result.Succeeded)
                             {
                                 foreach (var r in roles)
@@ -164,11 +172,11 @@ namespace PPI.Core.Web.Controllers
                                 PPI.Core.Domain.Entities.SiteUser SiteUser = new PPI.Core.Domain.Entities.SiteUser();
                                 SiteUser.AspNetUsersId = user.Id;
                                 SiteUser.SiteId = Convert.ToInt32(usersite);
-                                
+
                                 UnitOfWork.ISiteUserRepository.Add(SiteUser);
                                 UnitOfWork.Commit();
                                 //await SignInAsync(user, isPersistent: false); <== Line removed since it logged users out when they registered a new person, we don't want this.
-                                return Json(new { error = false , message = "<li>User created successfully.</li>"});
+                                return Json(new { error = false, message = "<li>User created successfully.</li>" });
                             }
                             else
                             {
@@ -196,7 +204,7 @@ namespace PPI.Core.Web.Controllers
                 return Json(new { error = true, message = "<li>Username needs to be more than 3 characters.</li>" });
             }
 
-            
+
         }
 
         private void removeCurrentSites(string id)
@@ -205,15 +213,16 @@ namespace PPI.Core.Web.Controllers
             IEnumerable<SiteUser> lstU = UnitOfWork.ISiteUserRepository.GetAll();
             foreach (SiteUser item in lstU)
             {
-                if(item.AspNetUsersId.Equals(id))
+                if (item.AspNetUsersId.Equals(id))
                 {
                     lstUserToRemove.Add(item);
                 }
             }
             //After we get the list of siteuser to remove we delete them
-            foreach(SiteUser item in lstUserToRemove) {
+            foreach (SiteUser item in lstUserToRemove)
+            {
                 UnitOfWork.ISiteUserRepository.Delete(item);
-           }
+            }
             UnitOfWork.Commit();
         }
 
@@ -485,7 +494,8 @@ namespace PPI.Core.Web.Controllers
         //Receives a user id and an action (deactivate, activate) and performs the action
         public ActionResult changeStatusUser(int id, string action)
         {
-            try {
+            try
+            {
                 ApplicationDbContext idb = new ApplicationDbContext();
                 ApplicationUser u = idb.Users.Find(id);
                 if (action.ToUpper().Equals("DEACTIVATE"))
@@ -512,7 +522,8 @@ namespace PPI.Core.Web.Controllers
         }
 
         //Return a list of all users in a view
-        public ActionResult AdministerUsers(AdministerUsersViewModel auvm) {
+        public ActionResult AdministerUsers(AdministerUsersViewModel auvm)
+        {
             AdministerUsersViewModel avm = new AdministerUsersViewModel();
             if (auvm.idSelectedRole > 0)
             {
@@ -525,7 +536,7 @@ namespace PPI.Core.Web.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            
+
             //Check for the current site
             var site = UnitOfWork.ISiteUserRepository.GetAll().Where(m => m.AspNetUsersId.Equals(id)).FirstOrDefault();
             var selectedSite = "--Select Site--";
@@ -534,39 +545,40 @@ namespace PPI.Core.Web.Controllers
                 selectedSite = site.SiteId.ToString();
             }
             EditUserViewModel evm = new EditUserViewModel(id);
-            ViewData["Site"] = new SelectList(SitesLists(), "Value", "Text",selectedSite);
-            evm.idSelectedSite =  selectedSite;
+            ViewData["Site"] = new SelectList(SitesLists(), "Value", "Text", selectedSite);
+            evm.idSelectedSite = selectedSite;
             return View(evm);
         }
 
         [HttpPost]
         [MvcHaack.Ajax.ValidateJsonAntiForgeryToken]
         //Need to add anti foreign key check right here
-        public ActionResult makeUserChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userid,string usersite,string Password, string PasswordRepeat)
+        public ActionResult makeUserChanges(List<string> selectedRoles, List<string> currentRoles, string email, string userid, string usersite, string Password, string PasswordRepeat)
         {
             /*
              Need to add validations on server side right here.
              
              */
-            
+
             try
             {
                 //Running backend validations
-                string error = EditUserViewModel.saveChanges(selectedRoles, currentRoles, email,userid,usersite,Password,PasswordRepeat); //if there is a string returned then there is aproblem that should be shown on the view.
+                string error = EditUserViewModel.saveChanges(selectedRoles, currentRoles, email, userid, usersite, Password, PasswordRepeat); //if there is a string returned then there is aproblem that should be shown on the view.
                 removeCurrentSites(userid); //Remove user site if the user is already in one, users can only have 1 user site
                 //After removing the last user site we can add new ones in
-                if(error.Length > 0) //There are errors nothing can be stored
+                if (error.Length > 0) //There are errors nothing can be stored
                 {
                     return Json(new { error = true, validationError = error });
                 }
                 else
                 {
-                    try { 
-                    SiteUser site_user = new SiteUser();
-                    site_user.AspNetUsersId = userid;
-                    site_user.SiteId = Convert.ToInt32(usersite);
-                    UnitOfWork.ISiteUserRepository.Add(site_user);
-                    UnitOfWork.Commit();
+                    try
+                    {
+                        SiteUser site_user = new SiteUser();
+                        site_user.AspNetUsersId = userid;
+                        site_user.SiteId = Convert.ToInt32(usersite);
+                        UnitOfWork.ISiteUserRepository.Add(site_user);
+                        UnitOfWork.Commit();
                     }
                     catch
                     {
@@ -632,7 +644,6 @@ namespace PPI.Core.Web.Controllers
             PPI.Core.Web.Infrastructure.Utility.ClearCookies();
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
-            
         }
 
         private void AddErrors(IdentityResult result)
@@ -663,13 +674,14 @@ namespace PPI.Core.Web.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
+
             if (Url.IsLocalUrl(returnUrl))
             {
-                return Redirect(returnUrl);
+                return RedirectToAction("LoginRedirect", "Administration"); 
             }
             else
             {
-                return RedirectToAction("Index", "Administration");
+                return RedirectToAction("LoginRedirect", "Administration"); 
             }
         }
 

@@ -16,7 +16,7 @@ using Microsoft.AspNet.Identity.EntityFramework;    //for usermanager
 
 namespace PPI.Core.Web.Controllers
 {    
-    [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+    [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin,AMSASiteCoordinator")]
     public class ErrorController : BaseController
     {
         public ErrorController(IUnitOfWork unitOfWork)

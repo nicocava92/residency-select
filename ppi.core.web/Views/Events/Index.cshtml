@@ -89,7 +89,7 @@
                         </td>
                         <td>
                             <div class="groupbtn text-right">
-                            @if (User.IsInRole("J3PAdmin") || User.IsInRole("SiteCordinator"))
+                            @if (User.IsInRole("J3PAdmin") || User.IsInRole("SiteCoordinator"))
                             {
                                 <a href="@Url.Action("CordinatorEdit", new { id = item.Id })" title="Edit" class="btn btn-default btn-sm btn60">Edit</a>
                             }

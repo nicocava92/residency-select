@@ -116,6 +116,7 @@ namespace PPI.Core.Web.Models.ViewModel
 
                 if (!error)
                 {
+                    email = email.Trim();
                     var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                     ApplicationDbContext db = new ApplicationDbContext();
                     ApplicationUser u = db.Users.Find(userid);

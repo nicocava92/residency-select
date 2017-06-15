@@ -18,7 +18,7 @@ namespace PPI.Core.Web.Infrastructure
         public static void SetCookie(string key, string value, TimeSpan expires)
         {
             HttpCookie cookie = new HttpCookie(key, value);
-            
+
             if (HttpContext.Current.Request.Cookies[key] != null)
             {
                 var existingCookie = HttpContext.Current.Request.Cookies[key];
@@ -51,13 +51,13 @@ namespace PPI.Core.Web.Infrastructure
             {
                 HttpContext.Current.Response.Cookies[cookie].Expires = DateTime.Now.AddDays(-1);
             }
-                        
+
         }
         public static Manual_Hogan_Import Update(Manual_Hogan_Import orginal, Manual_Hogan_Import newData)
         {
             orginal.LastUpdated = DateTime.Now;
             orginal.ClientName = newData.ClientName;
-            orginal.GroupName = newData.GroupName;            
+            orginal.GroupName = newData.GroupName;
             orginal.First_Name = newData.First_Name;
             orginal.Last_Name = newData.Last_Name;
             orginal.Gender = newData.Gender;
@@ -227,11 +227,11 @@ namespace PPI.Core.Web.Infrastructure
             orginal.PRecognition = newData.PRecognition;
             orginal.PScientific = newData.PScientific;
             orginal.PSecurity = newData.PSecurity;
-            orginal.PTradition = newData.PTradition;        
+            orginal.PTradition = newData.PTradition;
             return orginal;
         }
 
-        public static List<int> ReportDataAvailible(string hoganId,IUnitOfWork unitOfWork)
+        public static List<int> ReportDataAvailible(string hoganId, IUnitOfWork unitOfWork)
         {
             List<int> RetVal = new List<int>();
             var HoganData = unitOfWork.IManual_Hogan_ImportRepository.AsQueryable().FirstOrDefault(m => m.Hogan_User_ID == hoganId);
@@ -277,11 +277,17 @@ namespace PPI.Core.Web.Infrastructure
                         }
 
                 }
-            
-            }                        
+
+            }
             return RetVal;
         }
-    
-    
-}
+
+        public static class UserRoles
+        {
+            public const string Administrator = "Admin";
+            public const string AMSA_Site_Coordinator = "AMSASiteCoordinator";
+            public const string J3PAdmin = "J3PAdmin";
+            public const string SiteCoordinator = "SiteCoordinator";
+        }
+    }
 }

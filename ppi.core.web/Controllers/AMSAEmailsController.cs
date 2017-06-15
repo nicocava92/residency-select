@@ -28,6 +28,7 @@ namespace PPI.Core.Web.Controllers
 
         //Setup page (shows listing with buttons to edit)
         [HttpGet]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Setup(int? id)
         {
             EmailListingViewModel evm = new EmailListingViewModel();
@@ -42,6 +43,7 @@ namespace PPI.Core.Web.Controllers
 
         //Get page by id
         [HttpPost]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Setup(EmailListingViewModel elvm)
         {
             if(elvm.idSelectedEvent > 0)
@@ -115,6 +117,7 @@ namespace PPI.Core.Web.Controllers
         //since they all do
         //Shows Invitation && Reminder
         [HttpGet]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Send(int? eventId)
         {
             AMSAEmailSendViewModel esvm = new AMSAEmailSendViewModel();
@@ -146,6 +149,7 @@ namespace PPI.Core.Web.Controllers
         //Store edit for e-mail
         [HttpPost]
         [ValidateInput(false)]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Edit(AMSAEmail email)
         {
             email.saveChanges();
@@ -161,6 +165,7 @@ namespace PPI.Core.Web.Controllers
 
         [HttpGet]
         //Preview e-mail that will be sent
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Preview(int id)
         {
             AMSAEmail e = dbr.AMSAEmail.Find(id);
@@ -177,6 +182,7 @@ namespace PPI.Core.Web.Controllers
               can either be invite or reminder
             */
         [HttpPost]
+        //[Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult SendEmail(List<int> lstId, int eventId, string type)
         {
             AMSAEmail email = AMSAEmail.getEmail(eventId, type);

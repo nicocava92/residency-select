@@ -182,7 +182,7 @@ namespace PPI.Core.Web.Controllers
             return View();
         }
         [Log]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult PreviewProfessionReport(string hoganId, int language, int report, int siteId, int programId,int eventId)
         {
             var model = new PracticeReportsViewModel(UnitOfWork.IUserPracticeTextRepository, hoganId, language, report);
@@ -382,7 +382,7 @@ namespace PPI.Core.Web.Controllers
                 return File(renderbytes, model.LastmimeType, model.ReportExportFileName);                            
         }
         [Log]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult PreviewMatchReport(string hoganId, int language, int report, int siteId, int programId, int eventId)
         {
 
@@ -602,7 +602,7 @@ namespace PPI.Core.Web.Controllers
             return View("Delete");
         }
         #endregion        
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult GetReports(int? eventId, int? page)
         {
             var model = new GetReportViewModel();
@@ -647,7 +647,7 @@ namespace PPI.Core.Web.Controllers
 
             return View(model);
         }
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [HttpPost]
         public ActionResult GetReports(GetReportsPostViewModel model)
         {            
@@ -1047,7 +1047,7 @@ namespace PPI.Core.Web.Controllers
             System.IO.File.WriteAllBytes(savedFileName, renderbytes);
             return savedFileName;
         }
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [HttpGet]
         public ActionResult AMSAReportToPDF(ViewDataDictionary data)
         {
@@ -1072,7 +1072,7 @@ namespace PPI.Core.Web.Controllers
         
         //Getting reports for users and triggering download to pdf
         //Getting reports for users and triggering download to pdf
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public void getPdfReports(List<int> lstParticipantIds)
         {
             //Get e-mail of the user that is performing the task right away, just in case 
@@ -1252,7 +1252,7 @@ namespace PPI.Core.Web.Controllers
             return stringWriter.ToString();
         }
 
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [HttpGet]
         public ActionResult CreateAmsaStudents()
         {
@@ -1260,7 +1260,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [ValidateAntiForgeryToken]
         public ActionResult CreateAmsaStudents(AMSAParticipantStudentDataViewModel pvm)
         {
@@ -1276,7 +1276,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult EditAmsaStudents(int id) {
             AMSAParticipantStudentDataViewModel svm = new AMSAParticipantStudentDataViewModel();
             svm.loadStudentData(id);
@@ -1284,7 +1284,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [ValidateAntiForgeryToken]
         public ActionResult EditAmsaStudents(AMSAParticipantStudentDataViewModel svm)
         {
@@ -1298,7 +1298,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult IndexAmsaStudents()
         {
             return View(new ReportStudentDataListViewModel());

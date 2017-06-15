@@ -49,11 +49,11 @@ namespace PPI.Core.Web.Controllers
             get
             {
                 IEnumerable<Event> filterEvents = null;
-                if (User.IsInRole("SiteCordinator"))
+                if (User.IsInRole("SiteCoordinator"))
                     {
                         filterEvents = UnitOfWork.IEventRepository.AsQueryable().Where(m => m.ProgramSite.SiteId == CurrentSite).OrderBy(m => m.Name.Trim());
                     }
-                else if (User.IsInRole("Admin") || User.IsInRole("J3PAdmin"))
+                else if (User.IsInRole("Admin") || User.IsInRole("J3PAdmin") || User.IsInRole("AMSASiteCoordinator") || User.IsInRole("SiteCoordinator"))
                     {
                         filterEvents = UnitOfWork.IEventRepository.AsQueryable().OrderBy(m => m.Name.Trim());
                     }

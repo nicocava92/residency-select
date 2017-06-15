@@ -17,7 +17,7 @@ using PPI.Core.Web.Infrastructure;
 
 namespace PPI.Core.Web.Controllers
 {
-    [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+    [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin,AMSASiteCoordinator")]
     public class EmailsController : BaseController
     {
         [Log]
@@ -294,20 +294,20 @@ namespace PPI.Core.Web.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "SiteCordinator,Admin,J3PAdmin")]
+        [Authorize(Roles = "SiteCoordinator,Admin,J3PAdmin")]
         public ActionResult CordinatorSendSwitch(int eventId)
         {
             clearSelectedList();
             return RedirectToAction("Send", new { eventId = eventId });
             //Clear the Session information if you switch events           
         }
-        [Authorize(Roles = "SiteCordinator,Admin,J3PAdmin")]
+        [Authorize(Roles = "SiteCoordinator,Admin,J3PAdmin")]
         public ActionResult CordinatorEventSwitch(int eventId)
         {
             return RedirectToAction("Cordinator", new { eventId = eventId });
         }
         //CordinatorIndex
-        [Authorize(Roles = "SiteCordinator")]
+        [Authorize(Roles = "SiteCoordinator")]
         [ActionName("Cordinator")]
         public ActionResult CordinatorIndex(int? eventId)
         {
@@ -619,7 +619,7 @@ namespace PPI.Core.Web.Controllers
             return RedirectToAction("Send", new { @eventId = EventId });
         }
 
-        [Authorize(Roles = "SiteCordinator,Admin,J3PAdmin")]
+        [Authorize(Roles = "SiteCoordinator,Admin,J3PAdmin")]
         public ActionResult Send(int? eventId, int? page, int? emailTypeId, string search)
         {
             var model = new EmailSendViewModel();
@@ -807,7 +807,7 @@ namespace PPI.Core.Web.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult CreateCordinator()
         {
             //TODO relook at this why auto mapper not working
@@ -850,7 +850,7 @@ namespace PPI.Core.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult Create([Bind(Include = "Id,EventId,DefaultFrom,Subject,Introduction,Closing")] Email email)
         {
             if (ModelState.IsValid)
@@ -947,7 +947,7 @@ namespace PPI.Core.Web.Controllers
             // base.Dispose(disposing);
         }
 
-        [Authorize(Roles = "Admin,J3PAdmin,SiteCordinator")]
+        [Authorize(Roles = "Admin,J3PAdmin,SiteCoordinator")]
         public ActionResult Preview(int? Id)
         {
             if (Id == null || Id < 1)

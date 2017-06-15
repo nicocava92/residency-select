@@ -55,7 +55,7 @@ namespace PPI.Core
         {
             var model = new PersonViewModel();
             int totalRecords = 0;
-            if (User.IsInRole("SiteCordinator"))
+            if (User.IsInRole("SiteCoordinator"))
             {
                 int SiteId = CurrentSite;
 
@@ -153,7 +153,7 @@ namespace PPI.Core
 
         #region Persons
         [Log]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult Index(int? page, string search, int? eventFilter)
         {
             if (eventFilter.HasValue)
@@ -172,13 +172,13 @@ namespace PPI.Core
             model.eventFilter = this.CurrentEvent;
             return View(model);
         }
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [ActionName("Edit")]
         public ActionResult EditPersons(int id)
         {
 
             Person model = null;
-            if (User.IsInRole("SiteCordinator"))
+            if (User.IsInRole("SiteCoordinator"))
             {
                 //make sure this user is part of this site users site
                 int SiteId = CurrentSite;
@@ -193,7 +193,7 @@ namespace PPI.Core
             return View(model);
         }
         [Log]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Edit")]
@@ -211,7 +211,7 @@ namespace PPI.Core
             return RedirectToAction("Edit");
         }
         [Log]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("New")]
@@ -276,7 +276,7 @@ namespace PPI.Core
         }
 
         [Log]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [ActionName("New")]
         public ActionResult AddPersons()
         {
@@ -284,7 +284,7 @@ namespace PPI.Core
             int DefaultSite = 0;
             //IEnumerable<ProgramSiteEvent> ProgramsSitesEvents = null;
             IEnumerable<Event> Events = null;
-            if (User.IsInRole("SiteCordinator"))
+            if (User.IsInRole("SiteCoordinator"))
             {
                 DefaultSite = CurrentSite;
                 Events = UnitOfWork.IEventRepository.AsQueryable().Where(m => m.ProgramSite.SiteId == DefaultSite && m.EventStatusId != 1).OrderBy(s => s.Name.Trim());
@@ -319,14 +319,14 @@ namespace PPI.Core
             return View(model);
         }
         [Log]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [ActionName("Load")]
         public ActionResult LoadPersons()
         {
             var model = new PersonLoadViewModel();
             //IEnumerable<ProgramSiteEvent> ProgramsSitesEvents = null;
             IEnumerable<Event> Events = null;
-            if (User.IsInRole("SiteCordinator"))
+            if (User.IsInRole("SiteCoordinator"))
             {
                 var DefaultSite = CurrentSite;
                 Events = UnitOfWork.IEventRepository.AsQueryable().Where(m => m.ProgramSite.SiteId == DefaultSite && m.EventStatusId != 1).OrderBy(s => s.Name.Trim());
@@ -897,7 +897,7 @@ namespace PPI.Core
 
         [Log]
         [ActionName("ExecuteLoad")]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult ExecuteLoadPersons(int SelectedEventId)
         {
 
@@ -920,7 +920,7 @@ namespace PPI.Core
 
 
         [Log]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         [ActionName("Delete")]
         public ActionResult DeletePerson(int id, int? page)
         {
@@ -930,7 +930,7 @@ namespace PPI.Core
                 UnitOfWork.IPersonRepository.Delete(UnitOfWork.IPersonRepository.AsQueryable().Single(m => m.Id == id));
                 UnitOfWork.Commit();
             }
-            else if (User.IsInRole("SiteCordinator"))
+            else if (User.IsInRole("SiteCoordinator"))
             {
                 int SiteId = CurrentSite;
                 var EventsToRemove = UnitOfWork.IPersonEventRepository.AsQueryable()
@@ -942,7 +942,7 @@ namespace PPI.Core
             return RedirectToAction("Index", new { page = page });
         }
         [Log]
-        [Authorize(Roles = "Admin,J3PAdmin,SiteCordinator")]
+        [Authorize(Roles = "Admin,J3PAdmin,SiteCoordinator")]
         public ActionResult Profile(int id)
         {
 
@@ -1016,7 +1016,7 @@ namespace PPI.Core
                     model.ProgramEvents.Add(ProgramEvent);
                 }
             }
-            else if (User.IsInRole("SiteCordinator"))
+            else if (User.IsInRole("SiteCoordinator"))
             {
                 PersonEmails = UnitOfWork.IPersonEmailRepository.AsQueryable().Where(m => m.PersonId == id && m.Email.Event.ProgramSite.SiteId == CurrentSite).OrderByDescending(m => m.SentDate);
                 int SiteId = CurrentSite;
@@ -1046,7 +1046,7 @@ namespace PPI.Core
         }
         #endregion
         [Log]
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult Export(int? page, string search, int? eventFilter)
         {
             string exportName = "peopleExport.csv";

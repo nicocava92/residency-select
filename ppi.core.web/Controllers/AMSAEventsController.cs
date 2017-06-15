@@ -28,6 +28,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /AMSAEvents/
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Index()
         {
             var model = dbr.AMSAEvent.ToList();
@@ -35,6 +36,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /AMSAEvents/Details/5
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -52,6 +54,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /AMSAEvents/Create
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Create()
         {
             AMSAEventViewModel ae = new AMSAEventViewModel();
@@ -66,6 +69,7 @@ namespace PPI.Core.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Create(AMSAEventViewModel ae)
         {
             if (Session["ae"] != null)
@@ -95,6 +99,7 @@ namespace PPI.Core.Web.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult CreateInsertDates(AMSAEventViewModel ae) {
             ae = (AMSAEventViewModel)Session["ae"];
             return View(ae);
@@ -102,6 +107,7 @@ namespace PPI.Core.Web.Controllers
         //After dates are inserted show preview craete
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult CreateInsertDatesPost(AMSAEventViewModel ae) {
             AMSAEventViewModel aeForInsert = (AMSAEventViewModel)Session["ae"];
             //Assing the dates to the model that is stored in the session variable
@@ -125,6 +131,7 @@ namespace PPI.Core.Web.Controllers
 
         //Get page that shows a preview of the information that will be stored for the AMSA Event at hand (if accepted stores)
         [HttpGet]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult PreviewCreate()
         {
             AMSAEventViewModel ae = (AMSAEventViewModel)Session["ae"];
@@ -134,6 +141,7 @@ namespace PPI.Core.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //Stores the event in the database
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult CompleteEventInsertion()
         {
             //Gets value from the datbase for the event
@@ -208,6 +216,7 @@ namespace PPI.Core.Web.Controllers
         /// <param name="name">Name of the view, that is, its path.</param>
         /// <param name="data">Data to pass to the view, a model or something like that.</param>
         /// <returns>A string with the (HTML of) view.</returns>
+        /// 
         public string RenderPartialToString(string viewName, object model)
         {
             if (string.IsNullOrEmpty(viewName))
@@ -226,24 +235,28 @@ namespace PPI.Core.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Complete()
         {
             return View();
         }
         
         [HttpGet]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult GoBackToInsertDates(AMSAEventViewModel ae)
         {
             return RedirectToAction("CreateInsertDates", ae);
         }
 
         [HttpGet]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult GoBackToInitialCreate(AMSAEventViewModel ae)
         {
             return RedirectToAction("Craete", ae);
         }
 
         // GET: /AMSAEvents/Edit/5
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Edit(int id)
         {   
             //AMSAEvent aMSAEvent = db.AMSAEvent.Find(id);
@@ -262,6 +275,7 @@ namespace PPI.Core.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Edit(AMSAEventViewModel ae)
         {
             ae.checkDates(ModelState);
@@ -278,6 +292,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /AMSAEvents/Delete/5
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -296,6 +311,7 @@ namespace PPI.Core.Web.Controllers
         // POST: /AMSAEvents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
            // AMSAEvent aMSAEvent = db.AMSAEvent.Find(id);
@@ -318,6 +334,7 @@ namespace PPI.Core.Web.Controllers
 
         //Method called to get values for when Organization changes
         [HttpPost]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult GetDepartments(int organizationId) {
             //Search for departments (sites) with the selected organization Id and change the values inside of the select menu
             List<AMSASite> lstResult = new List<AMSASite>();
@@ -326,6 +343,7 @@ namespace PPI.Core.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "AMSASiteCoordinator,Admin")]
         public ActionResult GetSpeciality(int departmentId)
         {
             List<AMSAProgram> lstResult = new List<AMSAProgram>();

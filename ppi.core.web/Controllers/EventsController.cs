@@ -24,12 +24,12 @@ namespace PPI.Core.Web.Controllers
         }
 
         // GET: /Events/
-        [Authorize(Roles = "Admin,SiteCordinator,J3PAdmin")]
+        [Authorize(Roles = "Admin,SiteCoordinator,J3PAdmin")]
         public ActionResult Index(int? NumberSent)
         {
             //Only show events for there SITE
             IEnumerable<Event> model;
-            if (User.IsInRole("SiteCordinator"))
+            if (User.IsInRole("SiteCoordinator"))
             {
                 int SiteId = CurrentSite;
                 model = UnitOfWork.IEventRepository.AsQueryable().Where(m => m.ProgramSite.SiteId == SiteId);
